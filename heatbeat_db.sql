@@ -1,0 +1,126 @@
+
+--Create table
+----Create table User
+CREATE TABLE TB_USER
+(
+    USERID INTEGER PRIMARY KEY,
+    FIRSTNAME NVARCHAR2(40) NOT NULL,
+    LASTNAME NVARCHAR2(40) NOT NULL,
+    GENDER INTEGER NOT NULL,
+    PHONE CHAR(10) NOT NULL UNIQUE,
+    DATEOFBIRTH DATE NOT NULL,
+    EMAIL VARCHAR2(255) NOT NULL UNIQUE,
+    SCORE INTEGER NOT NULL,
+    AVATAR NVARCHAR2(255),
+    CREATEDON DATE NOT NULL,
+    PASSWORD VARCHAR2(255) NOT NULL,
+    ROLEID NUMBER NOT NULL
+)
+
+----Create table Post
+CREATE TABLE TB_POST
+(
+    POSTID INTEGER PRIMARY KEY,
+    OWNERID INTEGER NOT NULL,
+    PARTNERID INTEGER,
+    STATUSID NUMBER NOT NULL,
+    TITLE NVARCHAR2(255) NOT NULL,
+    CONTENT NVARCHAR2(255) NOT NULL,
+    CATEGORYID INTEGER NOT NULL,
+    IMAGEPATH VARCHAR2(255),
+    CREATEDON DATE NOT NULL,
+    UPDATEDON DATE,
+    PURPOSEID INTEGER NOT NULL
+)
+
+----Create table Category
+CREATE TABLE TB_CATEGORY
+(
+    CATEGORYID INTEGER PRIMARY KEY,
+    CATEGORYNAME NVARCHAR2(255) NOT NULL
+)
+
+----Create table Purpose
+CREATE TABLE TB_PURPOSE
+(
+    PURPOSEID INTEGER PRIMARY KEY,
+    PURPOSENAME NVARCHAR2(255) NOT NULL
+)
+
+----Create table Role
+CREATE TABLE TB_ROLE
+(
+    ROLEID INTEGER PRIMARY KEY,
+    ROLENAME NVARCHAR2(255) NOT NULL
+)
+
+----Create table ScoreTransaction
+CREATE TABLE TB_SCORETRANSACTION
+(
+    SCORETRANSACTIONID INTEGER PRIMARY KEY,
+    USERID INTEGER NOT NULL,
+    CURRENTSCORE INTEGER NOT NULL,
+    POSTID INTEGER NOT NULL
+)
+
+----Create table PostStatus
+CREATE TABLE TB_POSTSTATUS
+(
+    STATUSID INTEGER PRIMARY KEY,
+    STATUSNAME NVARCHAR2(255) NOT NULL
+)
+
+----Create table Address
+CREATE TABLE TB_ADDRESS
+(
+    USERID INTEGER PRIMARY KEY,
+    CITY NVARCHAR2(255) NOT NULL,
+    DISTRICT NVARCHAR2(255) NOT NULL,
+    WARD NVARCHAR2(255) NOT NULL,
+    ADDRESS NVARCHAR2(255) NOT NULL
+)
+
+
+--Constraint database:
+/*
+FOREIGN KEY
+*/
+--FOREIGN KEY OF TABLE JV_USER
+alter table TB_USER 
+add constraint FK_USER_ROLE foreign key (RoleId)
+references TB_ROLE(Roleid);
+
+--FOREIGN KEY OF TABLE TB_POST
+alter table TB_POST 
+add constraint FK_POST_USER1 foreign key (OwnerId)
+references TB_USER(UserId);
+
+alter table TB_POST 
+add constraint FK_POST_USER2 foreign key (Partner)
+references TB_USER(UserId);
+
+alter table TB_POST 
+add constraint FK_POST_STATUS foreign key (StatusId)
+references TB_PostStatus(StatusId);
+
+alter table TB_POST 
+add constraint FK_POST_CATEGORY foreign key (CategoryId)
+references TB_CATEGORY(CategoryId);
+
+alter table TB_POST 
+add constraint FK_POST_PURPOSE foreign key (PurposeId)
+references TB_PURPOSE(PurposeId);
+
+--FOREIGN KEY OF TABLE TB_ScoreTransaction
+alter table TB_ScoreTransaction 
+add constraint FK_STRAN_USER foreign key (UserId)
+references TB_USER(UserId);
+
+alter table TB_ScoreTransaction 
+add constraint FK_STRAN_POST foreign key (PostId)
+references TB_POST(PostId);
+
+--FOREIGN KEY OF TABLE TB_ADDRESS
+alter table TB_ADDRESS 
+add constraint FK_ADDR_USER foreign key (UserId)
+references TB_USER(UserId);
