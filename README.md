@@ -10,5 +10,8 @@
 
 
 ## Giới thiệu về đồ án
-Quản lý hệ thống hỗ trợ từ thiện - HeartBeat
-Người Việt Nam nói riêng và mọi người nói chung đều có tấm lòng tương thân tương ái, muốn giúp đỡ người khác nhưng một trong những rào cản lớn nhất chính là khả năng tiếp cận đến đúng đối tượng, đúng người cần được giúp đỡ. Ứng dụng là nền tảng kết hợp giữa công nghệ và các hoạt động công tác xã hội để đem đến cho người dùng một nơi mọi người cho đi thực phẩm, vật dụng hay tìm kiếm sự hỗ trợ khi bản thân cần được giúp đỡ. 
+<p align="center">
+    **Quản lý hệ thống hỗ trợ từ thiện - HeartBeat**
+</p>
+Hiện nay, nước ta có rất nhiều tổ chức từ thiện và người hỗ trợ đang hoạt động để giúp đỡ những người có hoàn cảnh khó khăn và đòi hỏi sự quản lý chặt chẽ về thông tin người cần giúp đỡ và phần gây quỹ của tổ chức đòi hỏi tính minh bạch cao. Để đảm bảo tất cả các công việc trên được thực hiện một cách chuẩn xác nhất thì cần một hệ thống cơ sở dữ liệu quản lý tổ chức từ thiện. Ngoài ra hệ thống này là nơi xây dựng một cộng đồng của sự sẻ chia, nơi con người trao nhau những giá trị cao đẹp, xây dựng một môi trường sống tốt đẹp nơi mọi người cùng học tập nhau những điều tốt, lan tỏa năng lượng tích cực cho xã hội. Dự án cũng nhằm thúc đẩy giảm thiểu lượng rác thải còn có thể được sử dụng ra môi trường, đặc biệt là những rác thải khó xử lý hay những loại rác thải thực phẩm vốn chưa hết vòng đời sử dụng. Dự án cũng giúp xóa dần đi khoảng cách giàu nghèo, giúp những người vốn đang thiếu thốn về cái ăn cái mặc có thêm niềm tin để lao động. 
+Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay thiếu thốn vật chất kêu gọi hỗ trợ cho chính mình và người hỗ trợ hoặc các tổ chức từ thiện có thể đi giúp đỡ những hoàn cảnh đó. Ngoài ra, hệ thống còn hỗ trợ tính năng gây quỹ mang tính minh bạch cao để nâng cao lòng tin của người dân. Người dân sử dụng hệ thống này cần đăng ký và đăng nhập, cập nhật thông tin cá nhân để phục vụ cho việc đăng bài hỗ trợ. 
