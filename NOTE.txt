@@ -1,0 +1,4 @@
+thứ tự chạy bảng
+
+poststatus -> category -> purpose -> role -> user -> address -> post -> scoretransaction
+khoan chạy bảng scoretransaction
