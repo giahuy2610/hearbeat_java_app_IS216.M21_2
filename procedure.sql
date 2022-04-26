@@ -3,33 +3,53 @@ DEMO INSERT INTO DATABASE
 */
 --set múi giờ của VN cho database
 ALTER SESSION SET TIME_ZONE = '-7:0';
+
 /*
 CREATE PROCEDURE FOR DATABASE
 */
--- procedure 1
-CREATE OR REPLACE PROCEDURE P_INSERT_ACCOUNT (--USERID TB_USER.USERID%type,
-                                            FIRSTNAME TB_USER.FIRSTNAME%type,
-                                            LASTNAME TB_USER.LASTNAME%type,
-                                            GENDER TB_USER.GENDER%type,
-                                            PHONE TB_USER.PHONE%type,
-                                            DATEOFBIRTH TB_USER.DATEOFBIRTH%type,
-                                            EMAIL TB_USER.EMAIL%type,
-                                            SCORE TB_USER.SCORE%type,
-                                            AVATAR TB_USER.AVATAR%type,
-                                            --CREATEDON TB_USER.CREATEDON%type,
-                                            PASSWORD TB_USER.PASSWORD%type,
-                                            ROLEID TB_USER.ROLEID%type)
-AS
+
+-- procedure 1: procedure thêm tài khoản mới
+CREATE OR REPLACE PROCEDURE p_insert_account (
+    firstname    tb_user.firstname%TYPE,
+    lastname     tb_user.lastname%TYPE,
+    gender       tb_user.gender%TYPE,
+    phone        tb_user.phone%TYPE,
+    dateofbirth  tb_user.dateofbirth%TYPE,
+    email        tb_user.email%TYPE,
+    password     tb_user.password%TYPE,
+    roleid       tb_user.roleid%TYPE
+    --Thuộc tính Score, CreateOn, Avatar đã được thiết lặp mặc định trong TRIGGER_DEFAULT_VALUE_USER
+) AS
 BEGIN
-    INSERT INTO TB_USER (
-        FIRSTNAME, LASTNAME, GENDER, PHONE, DATEOFBIRTH, EMAIL, SCORE,
-        AVATAR, PASSWORD, ROLEID)
-    VALUES (
-        FIRSTNAME, LASTNAME, GENDER, PHONE, DATEOFBIRTH, EMAIL, SCORE,
-        AVATAR, PASSWORD, ROLEID);
+    INSERT INTO tb_user (
+        firstname,
+        lastname,
+        gender,
+        phone,
+        dateofbirth,
+        email,
+        password,
+        roleid
+    ) VALUES (
+        firstname,
+        lastname,
+        gender,
+        phone,
+        dateofbirth,
+        email,
+        password,
+        roleid
+    );
 END;
-/
--- procedure 2
+
+/* Mẫu cho hàm p_insert_account
+    BEGIN
+        p_insert_account('Trịnh Gia', 'Phat', 1, '0941511664', TO_DATE('26/10/2002',
+                        'dd/mm/yyyy'), 'congatayu@gmai.com', '123', 2);
+    END;
+*/
+
+-- procedure 2: procedure thêm một bài đăng mới
 CREATE OR REPLACE PROCEDURE P_INSERT_POST (--POSTID TB_POST.POSTID%type,
                                             --OWNERID TB_POST.OWNERID%type,
                                             --PARTNERID TB_POST.PARTNERID%type,
