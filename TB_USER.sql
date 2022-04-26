@@ -45,3 +45,22 @@ INSERT INTO TB_USER (FIRSTNAME,LASTNAME,GENDER,PHONE,DATEOFBIRTH,EMAIL,SCORE,AVA
 INSERT INTO TB_USER (FIRSTNAME,LASTNAME,GENDER,PHONE,DATEOFBIRTH,EMAIL,SCORE,AVATAR,CREATEDON,PASSWORD,ROLEID,ISDELETED) VALUES  ('Trần Cẩm', 'Thu', 2, '0342392222', TO_DATE('09/09/1997', 'dd/mm/yyyy'), 'trancamthu@gmail.com', 95, NULL, sysdate, 'camthu123@', 2, 0);
 INSERT INTO TB_USER (FIRSTNAME,LASTNAME,GENDER,PHONE,DATEOFBIRTH,EMAIL,SCORE,AVATAR,CREATEDON,PASSWORD,ROLEID,ISDELETED) VALUES  ('Trương Chí', 'Cương', 1, '0933545218', TO_DATE('19/02/2001', 'dd/mm/yyyy'), 'truongchicuong@gmail.com', 105, NULL, sysdate, 'chicuong2022@', 2, 0);
 INSERT INTO TB_USER (FIRSTNAME,LASTNAME,GENDER,PHONE,DATEOFBIRTH,EMAIL,SCORE,AVATAR,CREATEDON,PASSWORD,ROLEID,ISDELETED) VALUES  ('Nguyễn Đức ', 'Đại', 1, '0847523389', TO_DATE('25/10/1992', 'dd/mm/yyyy'), 'nguyenducdai@gmail.com', 125, NULL, sysdate, '135792468', 1, 0);
+
+--Trigger thiết lập các giá trị mặc định cho dữ liệu bảng TB_USER
+CREATE OR REPLACE TRIGGER TRIGGER_DEFAULT_VALUE_USER BEFORE 
+    INSERT ON tb_user
+    REFERENCING
+        NEW AS new
+    FOR EACH ROW
+BEGIN
+    SELECT
+        current_date
+    INTO :new.createdon
+    FROM
+        dual;
+
+    :new.score := 0;
+    :new.avatar := NULL;
+    :new.isdeleted := 0;
+END;
+/
