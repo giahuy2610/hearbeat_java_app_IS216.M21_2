@@ -2,7 +2,7 @@ CREATE TABLE TB_NOTIFICATION
 (
     NOTIID INTEGER PRIMARY KEY,
     USERID INTEGER NOT NULL,
-    POSTID INTEGER,
+    CONTENT NVARCHAR2,
     CREATEDON DATE NOT NULL,
     ISSEEN INTEGER NOT NULL
 );
@@ -25,6 +25,18 @@ alter table TB_NOTIFICATION
 add constraint FK_NOTIFICATION_USERID foreign key (UserId)
 references TB_USER(UserId);
 
-alter table TB_NOTIFICATION
-add constraint FK_NOTIFICATION_POSTID foreign key (PostId)
-references TB_POST(PostId);
+CREATE OR REPLACE TRIGGER TRIGGER_DEFAULT_VALUE_NOTIFICATION BEFORE 
+    INSERT ON TB_NOTIFICATION
+    REFERENCING
+        NEW AS new
+    FOR EACH ROW
+BEGIN
+    SELECT
+        current_date
+    INTO :new.createdon
+    FROM
+        dual; 
+    :NEW.ISSEEN := 0;
+END;
+
+--INSERT INTO TB_NOTIFICATION (USERID, CONTENT) VALUES (1,'Đã tạo tài khoản thành công')
