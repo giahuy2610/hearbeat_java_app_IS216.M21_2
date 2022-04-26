@@ -108,6 +108,28 @@ BEGIN
 END;
 
 -- procedure 4 -- chưa sửa
+CREATE OR REPLACE PROCEDURE p_update_post (
+    postid      tb_post.postid%TYPE,
+    partnerid   tb_post.partnerid%TYPE,
+    statusid    tb_post.statusid%TYPE,
+    title       tb_post.title%TYPE,
+    content     tb_post.content%TYPE,
+    categoryid  tb_post.categoryid%TYPE,
+    imagepath   tb_post.imagepath%TYPE,
+    purposeid   tb_post.purposeid%TYPE
+) AS
+BEGIN
+    UPDATE tb_post
+    SET
+        tb_post.statusid = statusid,
+        tb_post.title = title,
+        tb_post.content = content,
+        tb_post.categoryid = categoryid,
+        tb_post.imagepath = imagepath,
+        tb_post.purposeid = purposeid
+    WHERE
+        tb_post.postid = postid;
+END;
 
 
 
@@ -154,7 +176,7 @@ BEGIN
     delete from TB_USER
     where TB_USER.USERID =  USERID_IN;
 END;
-/
+
 -- procedure xóa hẳn bài viết ra khỏi cơ sở dữ liệu
 CREATE OR REPLACE PROCEDURE P_HARD_DELETE_POST (POSTID_IN TB_POST.POSTID%type)
 AS
@@ -162,4 +184,3 @@ BEGIN
     delete from TB_POST
     where TB_POST.POSTID =  POSTID_IN;
 END;
-/
