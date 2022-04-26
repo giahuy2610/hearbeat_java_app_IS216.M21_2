@@ -8,7 +8,7 @@ ALTER SESSION SET TIME_ZONE = '-7:0';
 CREATE PROCEDURE FOR DATABASE
 */
 
--- procedure 1: procedure thêm tài khoản mới
+--rocedure thêm tài khoản mới
 CREATE OR REPLACE PROCEDURE p_insert_account (
     firstname    tb_user.firstname%TYPE,
     lastname     tb_user.lastname%TYPE,
@@ -49,7 +49,7 @@ END;
     END;
 */
 
--- procedure 2: procedure thêm một bài đăng mới
+--procedure thêm một bài đăng mới
 CREATE OR REPLACE PROCEDURE p_insert_post (
     ownerid     tb_post.ownerid%TYPE,
     title       tb_post.title%TYPE,

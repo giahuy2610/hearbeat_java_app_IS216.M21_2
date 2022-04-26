@@ -1,3 +1,5 @@
+/*--------------KHONG XAI FILE NAY
+
 ----Create table PostStatus
 CREATE TABLE TB_POSTSTATUS
 (
@@ -257,3 +259,5 @@ RETURN
         FROM TB_USER
         WHERE USERID=USER_ID;
 END;
+
+*/
