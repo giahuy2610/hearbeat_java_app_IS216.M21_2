@@ -51,6 +51,7 @@ alter table TB_POST
 add constraint FK_POST_PURPOSE foreign key (PurposeId)
 references TB_PURPOSE(PurposeId);
 
+-- Insert dữ liệu mẫu cho bảng
 INSERT INTO TB_POST (OWNERID,PARTNERID,STATUSID,TITLE,CONTENT,CATEGORYID,IMAGEPATH,CREATEDON,UPDATEDON,PURPOSEID,ISDELETED) VALUES (2, null, 1, 'Dư một bao 50kg gạo', 'Về quê mà còn bao gạo ngon 50kg, ai cần liên hệ mình tặng', 1, NULL, sysdate, NULL, 1, 0);
 INSERT INTO TB_POST (OWNERID,PARTNERID,STATUSID,TITLE,CONTENT,CATEGORYID,IMAGEPATH,CREATEDON,UPDATEDON,PURPOSEID,ISDELETED) VALUES (3, null, 1, 'Cần cho trứng', 'Gà nhà nuôi đẻ trứng nhiều ăn không hết, ai ăn trứng mình cho', 1, NULL, sysdate, NULL, 1, 0);
 INSERT INTO TB_POST (OWNERID,PARTNERID,STATUSID,TITLE,CONTENT,CATEGORYID,IMAGEPATH,CREATEDON,UPDATEDON,PURPOSEID,ISDELETED) VALUES (4, null, 1, 'Gây quỹ hỗ trợ trẻ em mồ côi do covid', 'Qũy từ thiện ABC gây quỹ hỗ trợ trẻ em mồ côi do covid. Dự kiến hỗ trợ 100 trẻ, giá trị 200 triệu. Ngày kết thúc: 5/5/2022', 6, NULL, sysdate, NULL, 3, 0);
@@ -80,4 +81,27 @@ BEGIN
     :new.imagepath := NULL;
     :new.statusid := 1;
     :new.isdeleted := 0;
+END;
+
+-- trigger điểm nhân ái được tự động tăng khi bài viết chuyển sang trạng thái thành công
+CREATE OR REPLACE TRIGGER TRIGGER_ADD_SCORE AFTER
+    UPDATE ON tb_post
+    REFERENCING
+        OLD AS old
+        NEW AS new
+    FOR EACH ROW
+BEGIN
+    IF (:NEW.STATUSID = 3 AND :NEW.PURPOSEID = 1) THEN
+        --nếu trạng thái thành công (status = 3) và mục đích của
+        --bài đăng là để trao/tặng thì cộng điểm cho chủ bài viết(người cho đi)
+        UPDATE TB_USER
+        SET TB_USER.SCORE = TB_USER.SCORE + 10
+        WHERE TB_USER.USERID = :NEW.OWNERID;
+    ELSIF (:NEW.STATUSID = 3 AND :NEW.PURPOSEID = 2) THEN
+        --nếu trạng thái thành công (status = 3) và mục đích của
+        --bài đăng là để xin/nhận thì cộng điểm cho người đặt hẹn(người tặng)
+        UPDATE TB_USER
+        SET TB_USER.SCORE = TB_USER.SCORE + 10
+        WHERE TB_USER.USERID = :NEW.PARTNERID;
+    END IF;
 END;

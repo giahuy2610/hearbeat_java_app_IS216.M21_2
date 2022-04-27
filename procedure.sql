@@ -2,13 +2,14 @@
 DEMO INSERT INTO DATABASE
 */
 --set múi giờ của VN cho database
-ALTER SESSION SET TIME_ZONE = '-7:0';
+ALTER SESSION SET time_zone = '-7:0';
 
 /*
 CREATE PROCEDURE FOR DATABASE
 */
 
---rocedure thêm tài khoản mới
+--procedure thêm tài khoản mới
+
 CREATE OR REPLACE PROCEDURE p_insert_account (
     firstname    tb_user.firstname%TYPE,
     lastname     tb_user.lastname%TYPE,
@@ -40,6 +41,8 @@ BEGIN
         password,
         roleid
     );
+
+    COMMIT;
 END;
 
 /* Mẫu cho hàm p_insert_account
@@ -50,6 +53,7 @@ END;
 */
 
 --procedure thêm một bài đăng mới
+
 CREATE OR REPLACE PROCEDURE p_insert_post (
     ownerid     tb_post.ownerid%TYPE,
     title       tb_post.title%TYPE,
@@ -71,6 +75,8 @@ BEGIN
         categoryid,
         purposeid
     );
+
+    COMMIT;
 END;
 
 /*Mẫu 
@@ -78,109 +84,122 @@ BEGIN
 P_INSERT_POST(1,'Cho kẹo','Kẹo nhà làm',1,1);
 END;
 */
-/
--- procedure cập nhật thông tin tài khoản người dùng
-CREATE OR REPLACE PROCEDURE p_update_account (
-    --không thể thực hiện việc cập nhật userid, score, roleid, createon
-    userid       tb_user.userid%TYPE,
-    firstname    tb_user.firstname%TYPE,
-    lastname     tb_user.lastname%TYPE,
-    gender       tb_user.gender%TYPE,
-    phone        tb_user.phone%TYPE,
-    dateofbirth  tb_user.dateofbirth%TYPE,
-    email        tb_user.email%TYPE,
-    avatar       tb_user.avatar%TYPE,
-    password     tb_user.password%TYPE
+-- procedure xóa mềm một tài khoản(có thể khôi phục lại thao tác xóa)
+
+CREATE OR REPLACE PROCEDURE p_delete_account (
+    userid_in tb_user.userid%TYPE
 ) AS
 BEGIN
     UPDATE tb_user
     SET
-        tb_user.firstname = firstname,
-        tb_user.lastname = lastname,
-        tb_user.gender = gender,
-        tb_user.phone = phone,
-        tb_user.dateofbirth = dateofbirth,
-        tb_user.email = email,
-        tb_user.avatar = avatar,
-        tb_user.password = password
+        isdeleted = 1
     WHERE
-        tb_user.userid = userid;
+        tb_user.userid = userid_in;
+
+    COMMIT;
 END;
 
--- procedure 4 -- chưa sửa
-CREATE OR REPLACE PROCEDURE p_update_post (
-    postid      tb_post.postid%TYPE,
-    partnerid   tb_post.partnerid%TYPE,
-    statusid    tb_post.statusid%TYPE,
-    title       tb_post.title%TYPE,
-    content     tb_post.content%TYPE,
-    categoryid  tb_post.categoryid%TYPE,
-    imagepath   tb_post.imagepath%TYPE,
-    purposeid   tb_post.purposeid%TYPE
+-- procedure xóa mềm một bài viết(có thể khôi phục lại thao tác xóa)
+
+CREATE OR REPLACE PROCEDURE p_delete_post (
+    postid_in tb_post.postid%TYPE
 ) AS
 BEGIN
     UPDATE tb_post
     SET
-        tb_post.statusid = statusid,
-        tb_post.title = title,
-        tb_post.content = content,
-        tb_post.categoryid = categoryid,
-        tb_post.imagepath = imagepath,
-        tb_post.purposeid = purposeid
+        isdeleted = 1
     WHERE
-        tb_post.postid = postid;
-END;
+        tb_post.postid = postid_in;
 
-
-
--- procedure xóa mềm một tài khoản(có thể khôi phục lại thao tác xóa)
-CREATE OR REPLACE PROCEDURE P_DELETE_ACCOUNT (USERID_IN TB_USER.USERID%type)
-AS
-BEGIN
-    update TB_USER
-    set isDeleted = 1
-    where TB_USER.USERID =  USERID_IN;
-END;
-
--- procedure xóa mềm một bài viết(có thể khôi phục lại thao tác xóa)
-CREATE OR REPLACE PROCEDURE P_DELETE_POST (POSTID_IN TB_POST.POSTID%type)
-AS
-BEGIN
-    update TB_POST
-    set isDeleted = 1
-    where TB_POST.POSTID =  POSTID_IN;
+    COMMIT;
 END;
 
 -- procedure khôi phục tài khoản bị xóa
-CREATE OR REPLACE PROCEDURE P_RECOVERY_ACCOUNT (USERID_IN TB_USER.USERID%type)
-AS
+
+CREATE OR REPLACE PROCEDURE p_recovery_account (
+    userid_in tb_user.userid%TYPE
+) AS
 BEGIN
-    update TB_USER
-    set isDeleted = 0
-    where TB_USER.USERID =  USERID_IN;
+    UPDATE tb_user
+    SET
+        isdeleted = 0
+    WHERE
+        tb_user.userid = userid_in;
+
+    COMMIT;
 END;
 
 -- procedure khôi phục tài khoản bị xóa
-CREATE OR REPLACE PROCEDURE P_RECOVERY_POST (POSTID_IN TB_POST.POSTID%type)
-AS
+
+CREATE OR REPLACE PROCEDURE p_recovery_post (
+    postid_in tb_post.postid%TYPE
+) AS
 BEGIN
-    update TB_POST
-    set isDeleted = 0
-    where TB_POST.POSTID =  POSTID_IN;
+    UPDATE tb_post
+    SET
+        isdeleted = 0
+    WHERE
+        tb_post.postid = postid_in;
+
+    COMMIT;
 END;
 
 -- procedure xóa hẳn tài khoản ra khỏi cơ sở dữ liệu
-CREATE OR REPLACE PROCEDURE P_HARD_DELETE_ACCOUNT (USERID_IN TB_USER.USERID%type)
-AS
+
+CREATE OR REPLACE PROCEDURE p_hard_delete_account (
+    userid_in tb_user.userid%TYPE
+) AS
 BEGIN
-    delete from TB_USER
-    where TB_USER.USERID =  USERID_IN;
+    DELETE FROM tb_user
+    WHERE
+        tb_user.userid = userid_in;
+
+    COMMIT;
 END;
 
 -- procedure xóa hẳn bài viết ra khỏi cơ sở dữ liệu
-CREATE OR REPLACE PROCEDURE P_HARD_DELETE_POST (POSTID_IN TB_POST.POSTID%type)
-AS
+
+CREATE OR REPLACE PROCEDURE p_hard_delete_post (
+    postid_in tb_post.postid%TYPE
+) AS
 BEGIN
-    delete from TB_POST
-    where TB_POST.POSTID =  POSTID_IN;
+    DELETE FROM tb_post
+    WHERE
+        tb_post.postid = postid_in;
+
+    COMMIT;
+END;
+
+-- procedure tạo một thông báo mới
+
+CREATE OR REPLACE PROCEDURE p_insert_notification (
+    userid_in   tb_user.userid%TYPE,
+    content_in  tb_notification.content%TYPE
+) AS
+BEGIN
+    INSERT INTO tb_notification (
+        userid,
+        content
+    ) VALUES (
+        userid_in,
+        content_in
+    );
+
+    COMMIT;
+END;
+
+-- procedure cập nhật lại trạng thái bài viết
+
+CREATE OR REPLACE PROCEDURE p_update_status_post (
+    postid_in    tb_post.postid%TYPE,
+    statusid_in  tb_post.statusid%TYPE
+) AS
+BEGIN
+    UPDATE tb_post
+    SET
+        statusid = statusid_in
+    WHERE
+        postid = postid_in;
+
+    COMMIT;
 END;

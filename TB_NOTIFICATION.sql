@@ -40,3 +40,4 @@ BEGIN
 END;
 
 --INSERT INTO TB_NOTIFICATION (USERID, CONTENT) VALUES (1,'Đã tạo tài khoản thành công')
+
