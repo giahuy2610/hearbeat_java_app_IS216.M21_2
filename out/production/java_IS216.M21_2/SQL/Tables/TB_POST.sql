@@ -62,7 +62,7 @@ INSERT INTO TB_POST (OWNERID,PARTNERID,STATUSID,TITLE,CONTENT,CATEGORYID,IMAGEPA
 INSERT INTO TB_POST (OWNERID,PARTNERID,STATUSID,TITLE,CONTENT,CATEGORYID,IMAGEPATH,CREATEDON,UPDATEDON,PURPOSEID,ISDELETED) VALUES (7, null, 1, 'Tặng sách giải tích, vật lí', 'Mình có dư sách giải tích 1 2, vật lí 1 2, em nào cần mình tặng', 4, NULL, sysdate, NULL, 1, 0);
 INSERT INTO TB_POST (OWNERID,PARTNERID,STATUSID,TITLE,CONTENT,CATEGORYID,IMAGEPATH,CREATEDON,UPDATEDON,PURPOSEID,ISDELETED) VALUES (4, null, 1, 'Tặng cà ri', 'Nay học nấu ăn, cà ri mình nấu ngon lắm, bạn nào qua ăn phụ mình mình cảm ơn', 5, NULL, sysdate, NULL, 1, 0);
 INSERT INTO TB_POST (OWNERID,PARTNERID,STATUSID,TITLE,CONTENT,CATEGORYID,IMAGEPATH,CREATEDON,UPDATEDON,PURPOSEID,ISDELETED) VALUES (3, null, 1, 'Xin sách toeic', 'Có anh chị nào học xong toeic thì cho em xin hoặc mua lại ạ', 4, NULL, sysdate, NULL, 2, 0);
-commit;
+
 --Trigger thiết lập các giá trị mặc định cho dữ liệu bảng TB_Post
 CREATE OR REPLACE TRIGGER trigger_default_value_post BEFORE
     INSERT ON tb_post
