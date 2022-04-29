@@ -64,3 +64,14 @@ BEGIN
     :new.isdeleted := 0;
 END;
 /
+CREATE OR REPLACE TRIGGER trigger_date_role BEFORE
+    INSERT OR UPDATE ON tb_user
+    REFERENCING
+        NEW AS new
+    FOR EACH ROW
+BEGIN
+    IF ( :new.dateofbirth >= :new.createdon ) THEN
+        dbms_output.put_line('Loi, ngay sinh phai nho hon ngay tao tai khoan!');
+        raise_application_error(-2000, 'Ngay sinh sai');
+    END IF;
+END;
