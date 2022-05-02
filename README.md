@@ -36,5 +36,6 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 > 
 ## Cách thức cài đặt chương trình
 > * Bước 1: Clone lại project với bằng các các ide như vs code với http:.. hoặc sstp:..
-> * Bước 2: updating
+> * Bước 2: Chạy project với NetBean, lúc này NetBean hiển thị thông báo xảy ra lỗi đối với các thư viện chưa có trên máy.
+> * Bước 3: Chọn resolve và chọn đường dẫn tới file jdbc11.jar để cài đặt jdbc. Tương tự chọn đường dẫn đến file KGradientPanel.jar để cài đặt thư viện hỗ trợ việc tạo hình ảnh có màu gradient.
 
