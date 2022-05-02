@@ -20,3 +20,4 @@ END;
 --insert dữ liệu cho bảng
 INSERT INTO TB_ROLE (ROLENAME) VALUES ('Người dùng');
 INSERT INTO TB_ROLE (ROLENAME) VALUES ('Quản trị viên');
+commit;

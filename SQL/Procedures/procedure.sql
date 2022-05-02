@@ -203,3 +203,22 @@ BEGIN
 
     COMMIT;
 END;
+
+-- procedure thêm một sao kê
+CREATE OR REPLACE PROCEDURE p_insert_statement (
+    userid_in   tb_user.userid%TYPE,
+    postid_in  tb_post.postid%TYPE,
+    total_in tb_statement.total%TYPE
+) AS
+BEGIN
+    INSERT INTO tb_statement (
+        postid,
+        userid,
+        total
+    ) VALUES (
+        postid_in,
+        userid_in,
+        total_in
+    );
+    COMMIT;
+END;
