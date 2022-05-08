@@ -15,6 +15,7 @@ public class dialogXoa extends javax.swing.JFrame {
      */
     public dialogXoa() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -44,6 +45,11 @@ public class dialogXoa extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(0, 51, 153));
         jButton1.setText("Xóa");
         jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 51, 51), 1, true));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -98,6 +104,11 @@ public class dialogXoa extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
