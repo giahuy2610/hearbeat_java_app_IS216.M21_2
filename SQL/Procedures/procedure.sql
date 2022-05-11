@@ -330,7 +330,7 @@ END;
 --procedure hủy lịch hẹn
 CREATE OR REPLACE PROCEDURE p_cancel_scheduling (
     postid_in  tb_post.postid%TYPE,--bài viết bị tác động lên
-    userid_in  tb_user.userid%TYPE --id người dùng thực hiện đặt hẹn
+    userid_in  tb_user.userid%TYPE --id người dùng thực hiện hủy hẹn
 ) AS
     get_post tb_post%rowtype;
 BEGIN
@@ -368,4 +368,28 @@ BEGIN
         
         dbms_output.put_line('Hủy lịch hẹn thành công');
     end if;
+END;
+
+--procedure xác nhận đã hỗ trợ thành công
+CREATE OR REPLACE PROCEDURE p_scheduling (
+    postid_in  tb_post.postid%TYPE,--bài viết bị tác động lên
+    userid_in  tb_user.userid%TYPE --id chủ bài viết
+) AS
+    get_post          tb_post%rowtype;
+BEGIN
+IF (get_post.statusid != 2) then
+    dbms_output.put_line('Bài viết chưa có lịch hẹn');
+ELSE 
+    --chỉ có chủ bài viết mới có thể xác nhận hoàn thành
+    IF (userid_in != get_post.ownerid) then
+        dbms_output.put_line('Lỗi, chỉ chủ bài đăng có thể xác nhận');
+    ELSE 
+        UPDATE tb_post
+        SET
+            statusid = 3
+        WHERE
+            postid = postid_in;
+        --sau thời điểm này, TRIGGER TRIGGER_ADD_SCORE sẽ được chạy để cộng điểm cho người hỗ trợ
+    END IF;
+END IF;
 END;
