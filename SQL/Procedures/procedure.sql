@@ -279,7 +279,7 @@ BEGIN
                 );
 
             IF ( get_post.purposeid = 1 AND current_schedule > 5 ) THEN
-                dbms_output.put_line('Không thể đặt hẹn do đã quá 5 lần đặt hẹn trong tuần');
+                raise_application_error(-20000,'Không thể đặt hẹn do đã quá 5 lần đặt hẹn trong tuần');
 
             ELSE
                 --cập nhật lại trạng thái bài viết là đã có người hẹn
@@ -322,7 +322,7 @@ BEGIN
             END IF;
 
         ELSE
-            dbms_output.put_line('Lỗi!! Bài viết không khả dụng lúc này.');
+            raise_application_error(-20000,'Lỗi!! Bài viết không khả dụng lúc này.');
         END IF;
     END IF;
 
@@ -344,7 +344,7 @@ BEGIN
         postid = postid_in;
 
     if (get_post.statusid != 2 ) then
-        dbms_output.put_line('Bài viết chưa có lịch hẹn để thực hiện thao tác hủy');
+        raise_application_error(-20000,'Bài viết chưa có lịch hẹn để thực hiện thao tác hủy');
     else  
         update tb_post set statusid = 1, partnerid = null where ownerid = postid_in;
         --gửi thông báo tới người dùng
@@ -379,11 +379,11 @@ CREATE OR REPLACE PROCEDURE p_confirm_scheduling (
     get_post          tb_post%rowtype;
 BEGIN
 IF (get_post.statusid != 2) then
-    dbms_output.put_line('Bài viết chưa có lịch hẹn');
+    raise_application_error(-20000,'Bài viết chưa có lịch hẹn');
 ELSE 
     --chỉ có chủ bài viết mới có thể xác nhận hoàn thành
     IF (userid_in != get_post.ownerid) then
-        dbms_output.put_line('Lỗi, chỉ chủ bài đăng có thể xác nhận');
+        raise_application_error(-20000,'Lỗi, chỉ chủ bài đăng có thể xác nhận');
     ELSE 
         UPDATE tb_post
         SET
