@@ -223,6 +223,7 @@ BEGIN
     COMMIT;
 END;
 
+/*Bổ sung thêm ngày 10/5-Giahuy*/
 --Procedure đặt hẹn
 CREATE OR REPLACE PROCEDURE p_scheduling (
     postid_in  tb_post.postid%TYPE,--bài viết bị tác động lên
@@ -392,4 +393,19 @@ ELSE
         --sau thời điểm này, TRIGGER TRIGGER_ADD_SCORE sẽ được chạy để cộng điểm cho người hỗ trợ
     END IF;
 END IF;
+END;
+
+--procedure lấy ra bảng xếp hạng nhân ái
+CREATE OR REPLACE PROCEDURE p_score_list 
+AS
+    USER_ROW TB_USER%ROWTYPE;
+    CURSOR GET_TOP_USER IS SELECT * FROM TB_USER ORDER BY SCORE DESC FETCH NEXT 5 ROWS ONLY;
+BEGIN
+    OPEN GET_TOP_USER;
+    LOOP
+    FETCH GET_TOP_USER INTO USER_ROW;
+    EXIT WHEN GET_TOP_USER%notfound;
+    dbms_output.put_line(USER_ROW.FIRSTNAME || ' ' || USER_ROW.LASTNAME || ' ' || USER_ROW.SCORE || ' điểm');
+    END LOOP;
+    CLOSE GET_TOP_USER;
 END;
