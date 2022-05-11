@@ -107,3 +107,29 @@ BEGIN
         WHERE TB_USER.USERID = :NEW.PARTNERID;
     END IF;
 END;
+
+--trigger kiểm tra partnerid khác ownerid
+CREATE OR REPLACE TRIGGER TRIGGER_POST_OWNER_PARTNER BEFORE
+    UPDATE ON tb_post--mới thêm bài viết thì không thể có partnerid nên không xét before insert
+    REFERENCING
+        OLD AS old
+        NEW AS new
+    FOR EACH ROW
+BEGIN
+    IF ( :NEW.PARTNERID = :NEW.OWNERID ) THEN
+    raise_application_error (-20000, 'Chủ bài viết và người đặt hẹn phải khác nhau');
+    END IF;
+END;
+
+--trigger điều kiện: khi một bài viết ở trạng thái đang chờ thì không thể có partnerid
+CREATE OR REPLACE TRIGGER TRIGGER_POST_OWNER_PARTNER BEFORE
+    INSERT OR UPDATE ON tb_post
+    REFERENCING
+        OLD AS old
+        NEW AS new
+    FOR EACH ROW
+BEGIN
+    IF ( :NEW.statusid = 1 AND :NEW.PARTNERID <> NULL ) THEN
+        raise_application_error (-20000, 'Bài viết có người đặt hẹn thì không thể là trạng thái "đang chờ"');
+    END IF;
+END;
