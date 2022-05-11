@@ -372,7 +372,7 @@ BEGIN
 END;
 
 --procedure xác nhận đã hỗ trợ thành công
-CREATE OR REPLACE PROCEDURE p_scheduling (
+CREATE OR REPLACE PROCEDURE p_confirm_scheduling (
     postid_in  tb_post.postid%TYPE,--bài viết bị tác động lên
     userid_in  tb_user.userid%TYPE --id chủ bài viết
 ) AS
@@ -396,27 +396,16 @@ END IF;
 END;
 
 --procedure lấy ra bảng xếp hạng nhân ái
-CREATE OR REPLACE TRIGGER TRIGGER_POST_OWNER_PARTNER BEFORE
-    UPDATE ON tb_post
-    REFERENCING
-        OLD AS old
-        NEW AS new
-    FOR EACH ROW
+CREATE OR REPLACE PROCEDURE p_score_list 
+AS
+    USER_ROW TB_USER%ROWTYPE;
+    CURSOR GET_TOP_USER IS SELECT * FROM TB_USER ORDER BY SCORE DESC FETCH NEXT 5 ROWS ONLY;
 BEGIN
-    IF ( :NEW.PARTNERID = :NEW.OWNERID ) THEN
-    raise_application_error (-20000, 'Chủ bài viết và người đặt hẹn phải khác nhau');
-    END IF;
-END;
-
---procedure lấy ra bảng xếp hạng nhân ái
-CREATE OR REPLACE TRIGGER TRIGGER_POST_OWNER_PARTNER BEFORE
-    UPDATE ON tb_post
-    REFERENCING
-        OLD AS old
-        NEW AS new
-    FOR EACH ROW
-BEGIN
-    IF ( :NEW.PARTNERID = :NEW.OWNERID ) THEN
-    raise_application_error (-20000, 'Chủ bài viết và người đặt hẹn phải khác nhau');
-    END IF;
+    OPEN GET_TOP_USER;
+    LOOP
+    FETCH GET_TOP_USER INTO USER_ROW;
+    EXIT WHEN GET_TOP_USER%notfound;
+    dbms_output.put_line(USER_ROW.FIRSTNAME || ' ' || USER_ROW.LASTNAME || ' ' || USER_ROW.SCORE || ' điểm');
+    END LOOP;
+    CLOSE GET_TOP_USER;
 END;
