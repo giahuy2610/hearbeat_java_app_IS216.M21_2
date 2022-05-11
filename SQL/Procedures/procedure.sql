@@ -254,7 +254,7 @@ BEGIN
         dbms_output.put_line('Lỗi!! Không thể tự đặt hẹn cho chính mình!');
     ELSE 
         --bài viết đang chưa có ai đặt hẹn nên có thể đặt hẹn
-        IF ( get_post.statusid = 0 ) THEN
+        IF ( get_post.statusid = 1 ) THEN
             --nếu người dùng này đang đặt hẹn để giúp đỡ người khác thì không xét điều kiện
             --xét người này có đang đặt hẹn(xin nhận) hoặc đã đăng bài(xin nhận) đồng thời ở 5 bài viết khác trong 7 ngày gần đây không
             SELECT
@@ -277,11 +277,14 @@ BEGIN
                 AND createdon > sysdate - 7
                 );
 
-            IF ( get_post.purposeid = 1 OR current_schedule < 6 ) THEN
+            IF ( get_post.purposeid = 1 AND current_schedule > 5 ) THEN
+                dbms_output.put_line('Không thể đặt hẹn do đã quá 5 lần đặt hẹn trong tuần');
+                
+            ELSE
                 --cập nhật lại trạng thái bài viết là đã có người hẹn
                 UPDATE tb_post
                 SET
-                    statusid = 1
+                    statusid = 2
                 WHERE
                     postid = postid_in;
                 --cập nhật id của người đặt hẹn vào bài viết
@@ -314,8 +317,7 @@ BEGIN
                 );
 
                 dbms_output.put_line('Thực hiện đặt hẹn thành công');
-            ELSE
-                dbms_output.put_line('Không thể đặt hẹn do đã quá 5 lần đặt hẹn trong tuần');
+
             END IF;
 
         ELSE
