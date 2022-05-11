@@ -122,7 +122,7 @@ BEGIN
 END;
 
 --trigger điều kiện: khi một bài viết ở trạng thái đang chờ thì không thể có partnerid
-CREATE OR REPLACE TRIGGER TRIGGER_POST_OWNER_PARTNER BEFORE
+CREATE OR REPLACE TRIGGER TRIGGER_POST_STATUS_PARTNER BEFORE
     INSERT OR UPDATE ON tb_post
     REFERENCING
         OLD AS old
