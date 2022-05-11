@@ -97,6 +97,8 @@ BEGIN
         UPDATE TB_USER
         SET TB_USER.SCORE = TB_USER.SCORE + 10
         WHERE TB_USER.USERID = :NEW.OWNERID;
+        execute p_insert_notification( tb_user,
+            'Bạn đã được cộng 10 điểm cho việc giúp đỡ thành công một người, hãy tiếp tục nhé');
     ELSIF (:NEW.STATUSID = 3 AND :NEW.PURPOSEID = 2) THEN
         --nếu trạng thái thành công (status = 3) và mục đích của
         --bài đăng là để xin/nhận thì cộng điểm cho người đặt hẹn(người tặng)

@@ -222,3 +222,105 @@ BEGIN
     );
     COMMIT;
 END;
+
+--Procedure đặt hẹn
+CREATE OR REPLACE PROCEDURE p_scheduling (
+    postid_in  tb_post.postid%TYPE,--bài viết bị tác động lên
+    userid_in  tb_user.userid%TYPE --id người dùng thực hiện đặt hẹn
+) AS
+    get_post          tb_post%rowtype;
+    username          tb_user.lastname%TYPE;
+    current_schedule  NUMBER; --số bài viết đang hẹn(để nhận) của người đặt hẹn
+BEGIN
+    SELECT
+        *
+    INTO get_post
+    FROM
+        tb_post
+    WHERE
+        postid = postid_in;
+
+    SELECT
+        lastname
+    INTO username
+    FROM
+        tb_user
+    WHERE
+        userid = userid_in;
+
+    --xét không cho chủ bài viết đặt hẹn chính bài viết của bản thân
+
+    IF ( userid_in = get_post.ownerid ) THEN
+        dbms_output.put_line('Lỗi!! Không thể tự đặt hẹn cho chính mình!');
+    ELSE 
+        --bài viết đang chưa có ai đặt hẹn nên có thể đặt hẹn
+        IF ( get_post.statusid = 0 ) THEN
+            --nếu người dùng này đang đặt hẹn để giúp đỡ người khác thì không xét điều kiện
+            --xét người này có đang đặt hẹn(xin nhận) hoặc đã đăng bài(xin nhận) đồng thời ở 5 bài viết khác trong 7 ngày gần đây không
+            SELECT
+                COUNT(postid)
+            INTO current_schedule
+            FROM
+                tb_post
+            WHERE
+                (
+                    partnerid = userid_in
+                AND purposeid = 1
+                AND createdon > sysdate - 7
+                )
+                
+                OR 
+                
+                (
+                ownerid = userid_in
+                AND purposeid = 2
+                AND createdon > sysdate - 7
+                );
+
+            IF ( get_post.purposeid = 1 OR current_schedule < 6 ) THEN
+                --cập nhật lại trạng thái bài viết là đã có người hẹn
+                UPDATE tb_post
+                SET
+                    statusid = 1
+                WHERE
+                    postid = postid_in;
+                --cập nhật id của người đặt hẹn vào bài viết
+
+                UPDATE tb_post
+                SET
+                    partnerid = userid_in
+                WHERE
+                    postid = postid_in;
+                --gửi thông báo đến người đặt hẹn
+
+                INSERT INTO tb_notification (
+                    userid,
+                    content
+                ) VALUES (
+                    userid_in,
+                    'Bạn đã đặt lịch hẹn thành công tại bài viết' || get_post.title
+                );
+                --gửi thông báo đến chủ bài viết
+
+                INSERT INTO tb_notification (
+                    userid,
+                    content
+                ) VALUES (
+                    get_post.ownerid,
+                    'Bài viết'
+                    || get_post.title
+                    || ' của bạn đã được đặt hẹn bởi '
+                    || username
+                );
+
+                dbms_output.put_line('Thực hiện đặt hẹn thành công');
+            ELSE
+                dbms_output.put_line('Không thể đặt hẹn do đã quá 5 lần đặt hẹn trong tuần');
+            END IF;
+
+        ELSE
+            dbms_output.put_line('Lỗi!! Bài viết không khả dụng lúc này.');
+        END IF;
+    END IF;
+
+END;
