@@ -279,7 +279,7 @@ BEGIN
 
             IF ( get_post.purposeid = 1 AND current_schedule > 5 ) THEN
                 dbms_output.put_line('Không thể đặt hẹn do đã quá 5 lần đặt hẹn trong tuần');
-                
+
             ELSE
                 --cập nhật lại trạng thái bài viết là đã có người hẹn
                 UPDATE tb_post
@@ -325,4 +325,47 @@ BEGIN
         END IF;
     END IF;
 
+END;
+
+--procedure hủy lịch hẹn
+CREATE OR REPLACE PROCEDURE p_cancel_scheduling (
+    postid_in  tb_post.postid%TYPE,--bài viết bị tác động lên
+    userid_in  tb_user.userid%TYPE --id người dùng thực hiện đặt hẹn
+) AS
+    get_post tb_post%rowtype;
+BEGIN
+    SELECT
+        *
+    INTO get_post
+    FROM
+        tb_post
+    WHERE
+        postid = postid_in;
+
+    if (get_post.statusid != 2 ) then
+        dbms_output.put_line('Bài viết chưa có lịch hẹn để thực hiện thao tác hủy');
+    else  
+        update tb_post set statusid = 1, partnerid = null where ownerid = postid_in;
+        --gửi thông báo tới người dùng
+        INSERT INTO tb_notification (
+                    userid,
+                    content
+                ) VALUES (
+                    userid_in,
+                    'Bạn đã hủy lịch hẹn thành công tại bài viết' || get_post.title
+                );
+        --gửi thông báo đến chủ bài viết
+
+        INSERT INTO tb_notification (
+                    userid,
+                    content
+                ) VALUES (
+                    get_post.ownerid,
+                    'Bài viết'
+                    || get_post.title
+                    || ' của bạn đã bị hủy lịch hẹn '
+                );
+        
+        dbms_output.put_line('Hủy lịch hẹn thành công');
+    end if;
 END;
