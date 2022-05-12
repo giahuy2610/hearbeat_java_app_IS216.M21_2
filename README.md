@@ -33,7 +33,10 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 > 
 ## Các chức năng, công nghệ mới(ngoài phạm vi môn học)
 > * Chức năng xóa mềm: khi một bài đăng được xóa, nó sẽ không bị xóa hẳn khỏi cơ sở dữ liệu mà sẽ được lưu vào thư mục thùng rác và tồn tại trong 2 ngày, nếu người dùng không thực hiện khôi phục, bài đăng sẽ bị xóa thực sự khỏi cơ sở dữ liệu
-> 
+> * Sử dụng Maven để quản lí các thư viện được cài thêm một cách dễ dàng
+> * Sử dụng Kĩ thuật băm MD5 để băm mật khẩu của người dùng, tránh các rủi ro về bảo mật cho người dùng
+> * Sử dụng Regex để kiểm tra các ràng buộc đối với các trường dữ liệu 
+> * Sử dụng JavaMail để thực hiện việc gửi mail tự động khi người dùng có nhu cầu khôi phục lại mật khẩu
 ## Cách thức cài đặt chương trình
 > * Bước 1: Clone lại project với bằng các các ide như vs code với http:.. hoặc sstp:..
 > * Bước 2: Chạy project với NetBean, lúc này NetBean hiển thị thông báo xảy ra lỗi đối với các thư viện chưa có trên máy.
