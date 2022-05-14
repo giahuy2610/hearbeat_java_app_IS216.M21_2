@@ -1,4 +1,4 @@
-package JavaMail;
+package Views.javaMail;
 
 import java.util.Properties;
 import javax.mail.Session;
