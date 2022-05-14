@@ -222,3 +222,190 @@ BEGIN
     );
     COMMIT;
 END;
+
+/*Bổ sung thêm ngày 10/5-Giahuy*/
+--Procedure đặt hẹn
+CREATE OR REPLACE PROCEDURE p_scheduling (
+    postid_in  tb_post.postid%TYPE,--bài viết bị tác động lên
+    userid_in  tb_user.userid%TYPE --id người dùng thực hiện đặt hẹn
+) AS
+    get_post          tb_post%rowtype;
+    username          tb_user.lastname%TYPE;
+    current_schedule  NUMBER; --số bài viết đang hẹn(để nhận) của người đặt hẹn
+BEGIN
+    SELECT
+        *
+    INTO get_post
+    FROM
+        tb_post
+    WHERE
+        postid = postid_in;
+
+    SELECT
+        lastname
+    INTO username
+    FROM
+        tb_user
+    WHERE
+        userid = userid_in;
+
+    --xét không cho chủ bài viết đặt hẹn chính bài viết của bản thân
+
+    IF ( userid_in = get_post.ownerid ) THEN
+        dbms_output.put_line('Lỗi!! Không thể tự đặt hẹn cho chính mình!');
+    ELSE 
+        --bài viết đang chưa có ai đặt hẹn nên có thể đặt hẹn
+        IF ( get_post.statusid = 1 ) THEN
+            --nếu người dùng này đang đặt hẹn để giúp đỡ người khác thì không xét điều kiện
+            --xét người này có đang đặt hẹn(xin nhận) hoặc đã đăng bài(xin nhận) đồng thời ở 5 bài viết khác trong 7 ngày gần đây không
+            SELECT
+                COUNT(postid)
+            INTO current_schedule
+            FROM
+                tb_post
+            WHERE
+                (
+                    partnerid = userid_in
+                AND purposeid = 1
+                AND createdon > sysdate - 7
+                )
+                
+                OR 
+                
+                (
+                ownerid = userid_in
+                AND purposeid = 2
+                AND createdon > sysdate - 7
+                );
+
+            IF ( get_post.purposeid = 1 AND current_schedule > 5 ) THEN
+                raise_application_error(-20000,'Không thể đặt hẹn do đã quá 5 lần đặt hẹn trong tuần');
+
+            ELSE
+                --cập nhật lại trạng thái bài viết là đã có người hẹn
+                UPDATE tb_post
+                SET
+                    statusid = 2
+                WHERE
+                    postid = postid_in;
+                --cập nhật id của người đặt hẹn vào bài viết
+
+                UPDATE tb_post
+                SET
+                    partnerid = userid_in
+                WHERE
+                    postid = postid_in;
+                --gửi thông báo đến người đặt hẹn
+
+                INSERT INTO tb_notification (
+                    userid,
+                    content
+                ) VALUES (
+                    userid_in,
+                    'Bạn đã đặt lịch hẹn thành công tại bài viết' || get_post.title
+                );
+                --gửi thông báo đến chủ bài viết
+
+                INSERT INTO tb_notification (
+                    userid,
+                    content
+                ) VALUES (
+                    get_post.ownerid,
+                    'Bài viết'
+                    || get_post.title
+                    || ' của bạn đã được đặt hẹn bởi '
+                    || username
+                );
+
+                dbms_output.put_line('Thực hiện đặt hẹn thành công');
+
+            END IF;
+
+        ELSE
+            raise_application_error(-20000,'Lỗi!! Bài viết không khả dụng lúc này.');
+        END IF;
+    END IF;
+
+END;
+
+--procedure hủy lịch hẹn
+CREATE OR REPLACE PROCEDURE p_cancel_scheduling (
+    postid_in  tb_post.postid%TYPE,--bài viết bị tác động lên
+    userid_in  tb_user.userid%TYPE --id người dùng thực hiện hủy hẹn
+) AS
+    get_post tb_post%rowtype;
+BEGIN
+    SELECT
+        *
+    INTO get_post
+    FROM
+        tb_post
+    WHERE
+        postid = postid_in;
+
+    if (get_post.statusid != 2 ) then
+        raise_application_error(-20000,'Bài viết chưa có lịch hẹn để thực hiện thao tác hủy');
+    else  
+        update tb_post set statusid = 1, partnerid = null where ownerid = postid_in;
+        --gửi thông báo tới người dùng
+        INSERT INTO tb_notification (
+                    userid,
+                    content
+                ) VALUES (
+                    userid_in,
+                    'Bạn đã hủy lịch hẹn thành công tại bài viết' || get_post.title
+                );
+        --gửi thông báo đến chủ bài viết
+
+        INSERT INTO tb_notification (
+                    userid,
+                    content
+                ) VALUES (
+                    get_post.ownerid,
+                    'Bài viết'
+                    || get_post.title
+                    || ' của bạn đã bị hủy lịch hẹn '
+                );
+        
+        dbms_output.put_line('Hủy lịch hẹn thành công');
+    end if;
+END;
+
+--procedure xác nhận đã hỗ trợ thành công
+CREATE OR REPLACE PROCEDURE p_confirm_scheduling (
+    postid_in  tb_post.postid%TYPE,--bài viết bị tác động lên
+    userid_in  tb_user.userid%TYPE --id chủ bài viết
+) AS
+    get_post          tb_post%rowtype;
+BEGIN
+IF (get_post.statusid != 2) then
+    raise_application_error(-20000,'Bài viết chưa có lịch hẹn');
+ELSE 
+    --chỉ có chủ bài viết mới có thể xác nhận hoàn thành
+    IF (userid_in != get_post.ownerid) then
+        raise_application_error(-20000,'Lỗi, chỉ chủ bài đăng có thể xác nhận');
+    ELSE 
+        UPDATE tb_post
+        SET
+            statusid = 3
+        WHERE
+            postid = postid_in;
+        --sau thời điểm này, TRIGGER TRIGGER_ADD_SCORE sẽ được chạy để cộng điểm cho người hỗ trợ
+    END IF;
+END IF;
+END;
+
+--procedure lấy ra bảng xếp hạng nhân ái
+CREATE OR REPLACE PROCEDURE p_score_list 
+AS
+    USER_ROW TB_USER%ROWTYPE;
+    CURSOR GET_TOP_USER IS SELECT * FROM TB_USER ORDER BY SCORE DESC FETCH NEXT 5 ROWS ONLY;
+BEGIN
+    OPEN GET_TOP_USER;
+    LOOP
+    FETCH GET_TOP_USER INTO USER_ROW;
+    EXIT WHEN GET_TOP_USER%notfound;
+    dbms_output.put_line(USER_ROW.FIRSTNAME || ' ' || USER_ROW.LASTNAME || ' ' || USER_ROW.SCORE || ' điểm');
+    END LOOP;
+    CLOSE GET_TOP_USER;
+END;
