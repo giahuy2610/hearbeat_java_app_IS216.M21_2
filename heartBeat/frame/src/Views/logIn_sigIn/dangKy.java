@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package logIn_sigIn;
+package Views.logIn_sigIn;
 
 import connect.OracleConnUtils;
 import java.awt.Color;
@@ -24,6 +24,7 @@ public class dangKy extends javax.swing.JFrame {
      */
     public dangKy() {
         initComponents();
+        this.setLocationRelativeTo(null); 
         jLabel12.setText("Vui lòng điền ho và tên đệm");
         jLabel12.setForeground(Color.red);
         jLabel12.setVisible(false);
@@ -35,6 +36,7 @@ public class dangKy extends javax.swing.JFrame {
         jLabel14.setText("Vui lòng điền ho và tên đệm");
         jLabel14.setForeground(Color.red);
         jLabel14.setVisible(false);
+        
     }
 
     /**
@@ -202,7 +204,7 @@ public class dangKy extends javax.swing.JFrame {
                             .addComponent(jButton1)
                             .addGap(1, 1, 1)))
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +235,7 @@ public class dangKy extends javax.swing.JFrame {
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jButton1))
@@ -248,7 +250,7 @@ public class dangKy extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("<html>\n\"Nơi trao đi \n<br>\nnhịp đập trái tim\"");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logIn_sigIn/Thiết kế chưa có tên (2).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/Thiết kế chưa có tên (2).png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 255, 204));
@@ -400,6 +402,7 @@ public class dangKy extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new dangKy().setVisible(true);
+                
             }
         });
     }

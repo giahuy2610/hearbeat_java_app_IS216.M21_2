@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package quanLyUser;
+package Views.quanLyUser;
 
 /**
  *
@@ -133,7 +133,6 @@ public class quanLyNguoiDung extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(0, 51, 153));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/quanLyUser/pen.png"))); // NOI18N
         jButton1.setText("Sửa");
-        jButton1.setActionCommand("Sửa");
         jButton1.setMaximumSize(new java.awt.Dimension(163, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(163, 40));
         jButton1.addActionListener(new java.awt.event.ActionListener() {

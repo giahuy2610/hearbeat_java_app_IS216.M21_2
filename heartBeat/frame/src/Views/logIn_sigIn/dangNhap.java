@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package logIn_sigIn;
+package Views.logIn_sigIn;
 
 /**
  *
@@ -15,6 +15,7 @@ public class dangNhap extends javax.swing.JFrame {
      */
     public dangNhap() {
         initComponents();
+        this.setLocationRelativeTo(null); 
     }
 
     /**
@@ -77,7 +78,6 @@ public class dangNhap extends javax.swing.JFrame {
         jLabel8.setText("Mật khẩu");
 
         jPasswordField1.setForeground(new java.awt.Color(102, 102, 102));
-        jPasswordField1.setText("jPasswordField1");
         jPasswordField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 51, 153)));
 
         kGradientPanel2.setkEndColor(new java.awt.Color(204, 0, 255));
@@ -214,7 +214,7 @@ public class dangNhap extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
@@ -225,7 +225,7 @@ public class dangNhap extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("<html>\n\"Nơi trao đi \n<br>\nnhịp đập trái tim\"");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logIn_sigIn/Thiết kế chưa có tên (2).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/Thiết kế chưa có tên (2).png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 255, 204));
@@ -246,7 +246,7 @@ public class dangNhap extends javax.swing.JFrame {
                     .addGroup(kGradientPanel1Layout.createSequentialGroup()
                         .addGap(180, 180, 180)
                         .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(120, 120, 120))
         );

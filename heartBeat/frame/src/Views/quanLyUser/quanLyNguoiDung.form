@@ -705,7 +705,6 @@
               <Image iconType="3" name="/quanLyUser/pen.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
-            <Property name="actionCommand" type="java.lang.String" value="S&#x1eed;a"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[163, 40]"/>
             </Property>
