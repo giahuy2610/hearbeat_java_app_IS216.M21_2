@@ -22,7 +22,7 @@ public class chuyenManHinhController {
     private JPanel root;
     private String kindSelected = "";
 
-    private List<danhMucBean> listItem = null;
+    private static List<danhMucBean> listItem = null;
 
     public chuyenManHinhController(JPanel jpnRoot) {
         this.root = jpnRoot;
@@ -119,15 +119,12 @@ public class chuyenManHinhController {
 
     private void setChangeBackground(String kind) {
         for (danhMucBean item : listItem) {
-            System.out.println(item.getKind());
             if (item.getKind().equalsIgnoreCase(kind)) {
                 item.getJbtn().setOpaque(true);
             }
             else {
-                item.getJbtn().setOpaque(false);
-                System.out.println("false");
+                item.getJbtn().setOpaque(false);              
             }
-            System.out.println("/////////////////////");
         }
 
     }
