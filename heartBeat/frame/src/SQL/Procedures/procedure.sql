@@ -395,11 +395,12 @@ ELSE
 END IF;
 END;
 
---procedure lấy ra bảng xếp hạng nhân ái
+--procedure lấy ra bảng xếp hạng nhân ái ở thời điểm hiện tại
 CREATE OR REPLACE PROCEDURE p_score_list 
 AS
     USER_ROW TB_USER%ROWTYPE;
-    CURSOR GET_TOP_USER IS SELECT * FROM TB_USER ORDER BY SCORE DESC FETCH NEXT 5 ROWS ONLY;
+    CURSOR GET_TOP_USER IS SELECT * FROM TB_USER WHERE ISDELETED = 0 ORDER BY SCORE DESC FETCH NEXT 5 ROWS ONLY;
+    --phải xét isdeleted = 0 để tránh thống kê phải những tài khoản đã bị xóa(xóa mềm)
 BEGIN
     OPEN GET_TOP_USER;
     LOOP
