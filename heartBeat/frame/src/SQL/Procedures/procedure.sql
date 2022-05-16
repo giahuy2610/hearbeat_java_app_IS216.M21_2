@@ -278,7 +278,7 @@ BEGIN
                 AND createdon > sysdate - 7
                 );
 
-            IF ( get_post.purposeid = 1 AND current_schedule > 5 ) THEN
+            IF ( get_post.purposeid = 1 AND current_schedule >= 5 ) THEN
                 raise_application_error(-20000,'Không thể đặt hẹn do đã quá 5 lần đặt hẹn trong tuần');
 
             ELSE
