@@ -19,10 +19,5 @@ public class user {
         
     }
     
-    public user(int userid) {
-        this.userid = userid;
-        
-    }
-    
-    
+    public user {
 }
