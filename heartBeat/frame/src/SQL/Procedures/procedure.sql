@@ -96,6 +96,12 @@ BEGIN
     WHERE
         tb_user.userid = userid_in;
 
+
+    --gửi một thông báo đến các bài viết đang có người này đặt hẹn(chưa hoàn thành)
+    --hủy lịch hẹn của người này trên mọi bài viết(chưa hoàn thành)
+    --gửi một thông báo đến các người dùng đang đặt hẹn với các bài viết mà người này đã đăng(chưa hoàn thành)
+    --vậy trường hợp gì xảy ra nếu một bài viết đã hoàn thành, có thằng này đặt hẹn?? xóa bài viết đó luôn hay set null?
+
     COMMIT;
 END;
 
@@ -110,6 +116,8 @@ BEGIN
         isdeleted = 1
     WHERE
         tb_post.postid = postid_in;
+
+
 
     COMMIT;
 END;
@@ -129,7 +137,7 @@ BEGIN
     COMMIT;
 END;
 
--- procedure khôi phục tài khoản bị xóa
+-- procedure khôi phục bài viết bị xóa
 
 CREATE OR REPLACE PROCEDURE p_recovery_post (
     postid_in tb_post.postid%TYPE
@@ -254,8 +262,8 @@ BEGIN
     IF ( userid_in = get_post.ownerid ) THEN
         dbms_output.put_line('Lỗi!! Không thể tự đặt hẹn cho chính mình!');
     ELSE 
-        --bài viết đang chưa có ai đặt hẹn nên có thể đặt hẹn
-        IF ( get_post.statusid = 1 ) THEN
+        --bài viết đang chưa có ai đặt hẹn và không bị xóa nên có thể đặt hẹn
+        IF ( get_post.statusid = 1  and get_post.isdeleted = 0) THEN
             --nếu người dùng này đang đặt hẹn để giúp đỡ người khác thì không xét điều kiện
             --xét người này có đang đặt hẹn(xin nhận) hoặc đã đăng bài(xin nhận) đồng thời ở 5 bài viết khác trong 7 ngày gần đây không
             SELECT
