@@ -379,7 +379,7 @@ BEGIN
     end if;
 END;
 
---procedure xác nhận đã hỗ trợ thành công
+--procedure xác nhận bài viết đã thành công
 CREATE OR REPLACE PROCEDURE p_confirm_scheduling (
     postid_in  tb_post.postid%TYPE,--bài viết bị tác động lên
     userid_in  tb_user.userid%TYPE --id chủ bài viết

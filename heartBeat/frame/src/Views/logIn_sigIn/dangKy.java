@@ -6,6 +6,9 @@ package Views.logIn_sigIn;
 
 import connect.OracleConnUtils;
 import java.awt.Color;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,14 +32,17 @@ public class dangKy extends javax.swing.JFrame {
         jLabel12.setForeground(Color.red);
         jLabel12.setVisible(false);
         
-        jLabel13.setText("Vui lòng điền ho và tên đệm");
+        jLabel13.setText("Vui lòng điền tên");
         jLabel13.setForeground(Color.red);
         jLabel13.setVisible(false);
         
-        jLabel14.setText("Vui lòng điền ho và tên đệm");
+        jLabel14.setText("Vui lòng điền số điện thoại");
         jLabel14.setForeground(Color.red);
         jLabel14.setVisible(false);
         
+        jLabel15.setText("Vui lòng điền mật khẩu");
+        jLabel15.setForeground(Color.red);
+        jLabel15.setVisible(false);
     }
 
     /**
@@ -66,6 +72,7 @@ public class dangKy extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -178,6 +185,8 @@ public class dangKy extends javax.swing.JFrame {
 
         jLabel14.setText("jLabel14");
 
+        jLabel15.setText("jLabel15");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -203,8 +212,9 @@ public class dangKy extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButton1)
                             .addGap(1, 1, 1)))
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,9 +243,11 @@ public class dangKy extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel15)
+                .addGap(8, 8, 8)
                 .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(jButton1))
@@ -320,9 +332,37 @@ public class dangKy extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
-
+    
+    public static String getMd5(String input)
+    {
+        try {
+  
+            // Static getInstance method is called with hashing MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+  
+            // digest() method is called to calculate message digest
+            //  of an input digest() return array of byte
+            byte[] messageDigest = md.digest(input.getBytes());
+  
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+  
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
+            }
+            return hashtext;
+        } 
+  
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        if(jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("")){
+        if(jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jPasswordField1.getPassword().length == 0){
             if(jTextField1.getText().equals("")){
                 jLabel12.setVisible(true);
             }else{
@@ -338,6 +378,11 @@ public class dangKy extends javax.swing.JFrame {
             }else{
                 jLabel14.setVisible(false);
             }
+            if(jPasswordField1.getPassword().length == 0){
+                jLabel15.setVisible(true);
+            }else{
+                jLabel15.setVisible(false);
+            }
         }
         else{
             Connection conn = null;
@@ -348,14 +393,15 @@ public class dangKy extends javax.swing.JFrame {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(dangKy.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+            String HoTenDem = jTextField1.getText();
+            String Ten = jTextField2.getText();
+            String SDT = jTextField3.getText();            
+            String Password = getMd5(String.valueOf(jPasswordField1.getPassword()));
             String query = "";
             synchronized(query) {
                 query = "INSERT INTO TB_USER (FIRSTNAME,LASTNAME,GENDER,PHONE,DATEOFBIRTH,EMAIL,SCORE,AVATAR,CREATEDON,PASSWORD,ROLEID,ISDELETED) "
-                        + "VALUES  ('"+jTextField1.getText()+ "', '"+jTextField2.getText()+ "', 1, '"+jTextField3.getText()+ "', TO_DATE('1/1/2000', 'dd/mm/yyyy'), NULL, 0, NULL, sysdate, '123456789', 2, 0)";
+                        + "VALUES  ('"+HoTenDem+ "', '"+Ten+ "', 1, '"+SDT+ "', TO_DATE('1/1/2000', 'dd/mm/yyyy'), NULL, 0, NULL, sysdate, '"+Password+ "', 2, 0)";
             }
-            System.out.println(query);
-            JOptionPane.showMessageDialog(null, query,"aaaaa" , JOptionPane.INFORMATION_MESSAGE);
         try (Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
         } catch (SQLException e) {
@@ -415,6 +461,7 @@ public class dangKy extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

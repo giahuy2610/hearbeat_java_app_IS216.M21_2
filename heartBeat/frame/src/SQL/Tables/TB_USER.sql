@@ -64,7 +64,8 @@ BEGIN
     :new.isdeleted := 0;
 END;
 /
-CREATE OR REPLACE TRIGGER trigger_date_role BEFORE
+--trigger ngày sinh
+CREATE OR REPLACE TRIGGER trigger_birth BEFORE
     INSERT OR UPDATE ON tb_user
     REFERENCING
         NEW AS new

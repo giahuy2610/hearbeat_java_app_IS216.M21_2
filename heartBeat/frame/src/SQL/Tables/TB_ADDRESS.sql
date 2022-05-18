@@ -23,7 +23,7 @@ references TB_DISTRICT(DISTRICTId);
 
 --TRIGGER kiểm tra quận/huyện phải nằm trong thành phố/tỉnh đã chọn
 CREATE OR REPLACE TRIGGER trigger_address BEFORE
-    INSERT ON tb_address
+    INSERT OR UPDATE ON tb_address
     REFERENCING
         NEW AS new
     FOR EACH ROW
