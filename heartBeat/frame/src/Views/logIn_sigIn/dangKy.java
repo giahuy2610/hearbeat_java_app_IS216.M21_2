@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author TRAN VAN QUANG
@@ -27,19 +28,19 @@ public class dangKy extends javax.swing.JFrame {
      */
     public dangKy() {
         initComponents();
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
         jLabel12.setText("Vui lòng điền ho và tên đệm");
         jLabel12.setForeground(Color.red);
         jLabel12.setVisible(false);
-        
+
         jLabel13.setText("Vui lòng điền tên");
         jLabel13.setForeground(Color.red);
         jLabel13.setVisible(false);
-        
+
         jLabel14.setText("Vui lòng điền số điện thoại");
         jLabel14.setForeground(Color.red);
         jLabel14.setVisible(false);
-        
+
         jLabel15.setText("Vui lòng điền mật khẩu");
         jLabel15.setForeground(Color.red);
         jLabel15.setVisible(false);
@@ -318,7 +319,7 @@ public class dangKy extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private static Connection getConnection()throws SQLException, ClassNotFoundException{
+    private static Connection getConnection() throws SQLException, ClassNotFoundException {
         return OracleConnUtils.getOracleConnection();
     }
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -332,59 +333,55 @@ public class dangKy extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
-    
-    public static String getMd5(String input)
-    {
+
+    public static String getMd5(String input) {
         try {
-  
+
             // Static getInstance method is called with hashing MD5
             MessageDigest md = MessageDigest.getInstance("MD5");
-  
+
             // digest() method is called to calculate message digest
             //  of an input digest() return array of byte
             byte[] messageDigest = md.digest(input.getBytes());
-  
+
             // Convert byte array into signum representation
             BigInteger no = new BigInteger(1, messageDigest);
-  
+
             // Convert message digest into hex value
             String hashtext = no.toString(16);
             while (hashtext.length() < 32) {
                 hashtext = "0" + hashtext;
             }
             return hashtext;
-        } 
-  
-        // For specifying wrong message digest algorithms
+        } // For specifying wrong message digest algorithms
         catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }
-    
+
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        if(jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jPasswordField1.getPassword().length == 0){
-            if(jTextField1.getText().equals("")){
+        if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jPasswordField1.getPassword().length == 0) {
+            if (jTextField1.getText().equals("")) {
                 jLabel12.setVisible(true);
-            }else{
+            } else {
                 jLabel12.setVisible(false);
             }
-            if(jTextField2.getText().equals("")){
+            if (jTextField2.getText().equals("")) {
                 jLabel13.setVisible(true);
-            }else{
+            } else {
                 jLabel13.setVisible(false);
             }
-            if(jTextField3.getText().equals("")){
-                jLabel14.setVisible(true);       
-            }else{
+            if (jTextField3.getText().equals("")) {
+                jLabel14.setVisible(true);
+            } else {
                 jLabel14.setVisible(false);
             }
-            if(jPasswordField1.getPassword().length == 0){
+            if (jPasswordField1.getPassword().length == 0) {
                 jLabel15.setVisible(true);
-            }else{
+            } else {
                 jLabel15.setVisible(false);
             }
-        }
-        else{
+        } else {
             Connection conn = null;
             try {
                 conn = dangKy.getConnection();
@@ -395,18 +392,23 @@ public class dangKy extends javax.swing.JFrame {
             }
             String HoTenDem = jTextField1.getText();
             String Ten = jTextField2.getText();
-            String SDT = jTextField3.getText();            
+            String SDT = jTextField3.getText();
             String Password = getMd5(String.valueOf(jPasswordField1.getPassword()));
             String query = "";
-            synchronized(query) {
+            synchronized (query) {
                 query = "INSERT INTO TB_USER (FIRSTNAME,LASTNAME,GENDER,PHONE,DATEOFBIRTH,EMAIL,SCORE,AVATAR,CREATEDON,PASSWORD,ROLEID,ISDELETED) "
-                        + "VALUES  ('"+HoTenDem+ "', '"+Ten+ "', 1, '"+SDT+ "', TO_DATE('1/1/2000', 'dd/mm/yyyy'), NULL, 0, NULL, sysdate, '"+Password+ "', 2, 0)";
+                        + "VALUES  ('" + HoTenDem + "', '" + Ten + "', 1, '" + SDT + "', TO_DATE('1/1/2000', 'dd/mm/yyyy'), 'giahuytrinh.26102002@gmail.com', 0, NULL, sysdate, '" + Password + "', 2, 0)";
             }
-        try (Statement stmt = conn.createStatement()) {
-            ResultSet rs = stmt.executeQuery(query);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+            try ( Statement stmt = conn.createStatement()) {
+                ResultSet rs = stmt.executeQuery(query);
+                JOptionPane.showMessageDialog(null, "Thành công", "", JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException e) {
+                
+                System.out.println("lỗi khi truy vấn sql đăng ký " + e.getMessage().toString());
+                if (e.getMessage().equals("ORA-00001: unique constraint (HEARTBEAT.SYS_C008436) violated\n" +"")) {
+                    JOptionPane.showMessageDialog(null, "Số điện thoại đã được sử dụng", "", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
         }
     }//GEN-LAST:event_jLabel10MouseClicked
 
@@ -448,7 +450,7 @@ public class dangKy extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new dangKy().setVisible(true);
-                
+
             }
         });
     }

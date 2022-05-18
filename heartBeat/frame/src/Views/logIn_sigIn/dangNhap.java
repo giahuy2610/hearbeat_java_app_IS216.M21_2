@@ -421,7 +421,6 @@ public class dangNhap extends javax.swing.JFrame {
             }
             String inputPassword = getMd5(String.valueOf(jPasswordField1.getPassword()));
             if(Password.equals(inputPassword)){
-                JOptionPane.showMessageDialog(null, "Thành công", "", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
                 new mainFrame().setVisible(true);
             }
@@ -439,7 +438,7 @@ public class dangNhap extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         this.dispose();
-        new quenMatKhau().setVisible(true);
+        new nhapEmail().setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

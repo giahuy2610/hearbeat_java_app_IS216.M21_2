@@ -1,4 +1,4 @@
-package JavaMail;
+package Views.javaMail;
 
 import java.util.Random;
 
@@ -13,7 +13,7 @@ public class RandomStringGenerator {
     /**
      * Random string with a-zA-Z0-9, not included special characters
      */
-    public String randomAlphaNumeric(int numberOfCharactor) {
+    public static String randomAlphaNumeric(int numberOfCharactor) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < numberOfCharactor; i++) {
             int number = randomNumber(0, ALPHA_NUMERIC.length() - 1);
@@ -26,4 +26,6 @@ public class RandomStringGenerator {
     public static int randomNumber(int min, int max) {
         return generator.nextInt((max - min) + 1) + min;
     }
+
+
 }

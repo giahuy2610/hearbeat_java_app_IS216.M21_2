@@ -4,18 +4,53 @@
  */
 package Views.logIn_sigIn;
 
+import java.awt.Color;
+import Views.javaMail.JavaMailUtil;
+import Views.javaMail.RandomStringGenerator;
+import static Views.javaMail.RandomStringGenerator.randomAlphaNumeric;
+import static Views.javaMail.JavaMailUtil.sendMail;
+import connect.OracleConnUtils;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author giahu
  */
 public class quenMatKhau extends javax.swing.JFrame {
 
+    private String auth_code;
+    private String email;
+
+    private static Connection getConnection() throws SQLException, ClassNotFoundException {
+        return OracleConnUtils.getOracleConnection();
+    }
+
     /**
      * Creates new form quenMatKhau
      */
-    public quenMatKhau() {
+    public quenMatKhau(String email) {
+
         initComponents();
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
+        jLabel11.setVisible(false);
+        jLabel11.setText("Vui lòng điền mã khôi phục");
+        jLabel11.setForeground(Color.red);
+
+        jLabel12.setVisible(false);
+        jLabel12.setText("Vui lòng điền mật khẩu");
+        jLabel12.setForeground(Color.red);
+        this.email = email;
+        auth_code = randomAlphaNumeric(8);
+
+        sendMail(email, auth_code);
+
     }
 
     /**
@@ -40,12 +75,8 @@ public class quenMatKhau extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        panel_nhap_email = new keeptoo.KGradientPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         popupMenu1.setLabel("popupMenu1");
 
@@ -57,7 +88,9 @@ public class quenMatKhau extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panel_nhap_ma.setkEndColor(new java.awt.Color(234, 216, 218));
+        jLayeredPane1.setLayout(new java.awt.CardLayout());
+
+        panel_nhap_ma.setkEndColor(new java.awt.Color(153, 153, 255));
         panel_nhap_ma.setkStartColor(new java.awt.Color(238, 156, 167));
         panel_nhap_ma.setPreferredSize(new java.awt.Dimension(450, 600));
 
@@ -76,116 +109,72 @@ public class quenMatKhau extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 204, 204));
         jButton1.setText("Xác nhận");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jLabel11.setText("jLabel11");
+
+        jLabel12.setText("jLabel11");
 
         javax.swing.GroupLayout panel_nhap_maLayout = new javax.swing.GroupLayout(panel_nhap_ma);
         panel_nhap_ma.setLayout(panel_nhap_maLayout);
         panel_nhap_maLayout.setHorizontalGroup(
             panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_nhap_maLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51))
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(78, 78, 78))
             .addGroup(panel_nhap_maLayout.createSequentialGroup()
-                .addGap(180, 180, 180)
+                .addGap(163, 163, 163)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
+            .addGroup(panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panel_nhap_maLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panel_nhap_maLayout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(55, 55, 55)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panel_nhap_maLayout.createSequentialGroup()
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(55, 55, 55)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         panel_nhap_maLayout.setVerticalGroup(
             panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_nhap_maLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addGroup(panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(63, 63, 63)
+                .addComponent(jLabel11)
+                .addGap(60, 60, 60)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(413, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
+            .addGroup(panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panel_nhap_maLayout.createSequentialGroup()
+                    .addGap(0, 32, Short.MAX_VALUE)
+                    .addGroup(panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panel_nhap_maLayout.createSequentialGroup()
+                            .addGap(3, 3, 3)
+                            .addComponent(jLabel1))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(55, 55, 55)
+                    .addGroup(panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panel_nhap_maLayout.createSequentialGroup()
+                            .addGap(3, 3, 3)
+                            .addComponent(jLabel3))
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 132, Short.MAX_VALUE)))
         );
 
-        panel_nhap_email.setkEndColor(new java.awt.Color(234, 216, 218));
-        panel_nhap_email.setkStartColor(new java.awt.Color(238, 156, 167));
-        panel_nhap_email.setPreferredSize(new java.awt.Dimension(450, 600));
-
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Mã khôi phục:");
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Đặt lại mật khẩu");
-
-        jButton2.setBackground(new java.awt.Color(255, 204, 204));
-        jButton2.setText("Xác nhận");
-
-        javax.swing.GroupLayout panel_nhap_emailLayout = new javax.swing.GroupLayout(panel_nhap_email);
-        panel_nhap_email.setLayout(panel_nhap_emailLayout);
-        panel_nhap_emailLayout.setHorizontalGroup(
-            panel_nhap_emailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_nhap_emailLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(panel_nhap_emailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
-                .addGroup(panel_nhap_emailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51))
-            .addGroup(panel_nhap_emailLayout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panel_nhap_emailLayout.setVerticalGroup(
-            panel_nhap_emailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_nhap_emailLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(panel_nhap_emailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addGroup(panel_nhap_emailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(413, Short.MAX_VALUE))
-        );
-
-        jLayeredPane1.setLayer(panel_nhap_ma, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(panel_nhap_email, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_nhap_ma, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
-            .addComponent(panel_nhap_email, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
-        );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(panel_nhap_ma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_nhap_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
+        jLayeredPane1.add(panel_nhap_ma, "card2");
         panel_nhap_ma.getAccessibleContext().setAccessibleName("Khôi phục mật khẩu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,9 +197,53 @@ public class quenMatKhau extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if (jTextField1.getText().equals("") || jTextField3.getText().equals("")) {
+            if (jTextField1.getText().equals("")) {
+                jLabel11.setVisible(true);
+            } else {
+                jLabel11.setVisible(false);
+            }
+            if (jTextField3.getText().equals("")) {
+                jLabel12.setVisible(true);
+            } else {
+                jLabel12.setVisible(false);
+                System.out.println("false");
+            }
+        } else {
+
+            if (!jTextField1.getText().equals(this.auth_code)) {
+                JOptionPane.showMessageDialog(null, "Mã khôi phục không đúng! Hệ thống đã gửi lại mã mới, vui lòng nhập lại!", "", JOptionPane.INFORMATION_MESSAGE);
+                jTextField1.setText("");
+                jTextField3.setText("");
+            } else {
+                Connection conn = null;
+                try {
+                    conn = quenMatKhau.getConnection();
+                } catch (SQLException ex) {
+                    Logger.getLogger(dangKy.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(dangKy.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                String query = "";
+                synchronized (query) {
+                    query = "update tb_user set password = '" + jTextField3.getText() + "' where email = '" + this.email + "'";
+                    System.out.println(query);
+                }
+                try ( Statement stmt = conn.createStatement()) {
+                    ResultSet rs = stmt.executeQuery(query);
+                    if (rs.next()) {
+                        JOptionPane.showMessageDialog(null, "Đặt lại mật khẩu thành công!", "", JOptionPane.INFORMATION_MESSAGE);
+                        this.dispose();
+                        new dangNhap().setVisible(true);
+                    }
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -242,28 +275,24 @@ public class quenMatKhau extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new quenMatKhau().setVisible(true);
+                new quenMatKhau("test").setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private keeptoo.KGradientPanel panel_nhap_email;
     private keeptoo.KGradientPanel panel_nhap_ma;
     private java.awt.PopupMenu popupMenu1;
     private java.awt.PopupMenu popupMenu2;
