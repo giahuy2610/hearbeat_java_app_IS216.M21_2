@@ -4,7 +4,7 @@
  */
 package Views.logIn_sigIn;
 
-import static Views.logIn_sigIn.dangKy.getMd5;
+import static Views.logIn_sigIn.md5.getMd5;
 import Views.main.mainFrame;
 import connect.OracleConnUtils;
 import java.awt.Color;
@@ -30,6 +30,7 @@ public class dangNhap extends javax.swing.JFrame {
      */
     public dangNhap() {
         initComponents();
+        setTitle("HeartBeat - Đăng nhập");
         jLabel11.setVisible(false);
         jLabel11.setText("Vui lòng điền số điện thoại");
         jLabel11.setForeground(Color.red);
@@ -356,33 +357,6 @@ public class dangNhap extends javax.swing.JFrame {
         d.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
 
-    public static String getMd5(String input)
-    {
-        try {
-  
-            // Static getInstance method is called with hashing MD5
-            MessageDigest md = MessageDigest.getInstance("MD5");
-  
-            // digest() method is called to calculate message digest
-            //  of an input digest() return array of byte
-            byte[] messageDigest = md.digest(input.getBytes());
-  
-            // Convert byte array into signum representation
-            BigInteger no = new BigInteger(1, messageDigest);
-  
-            // Convert message digest into hex value
-            String hashtext = no.toString(16);
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-            return hashtext;
-        } 
-  
-        // For specifying wrong message digest algorithms
-        catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         if(jTextField1.getText().equals("") || jPasswordField1.getPassword().length == 0){
             if(jTextField1.getText().equals("")){

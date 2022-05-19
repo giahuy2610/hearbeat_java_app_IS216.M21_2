@@ -27,6 +27,7 @@ public class nhapEmail extends javax.swing.JFrame {
      */
     public nhapEmail() {
         initComponents();
+        setTitle("HeartBeat - Khôi phục mật khẩu");
         this.setLocationRelativeTo(null);
         jLabel11.setVisible(false);
         jLabel11.setText("Vui lòng điền email");

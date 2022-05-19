@@ -9,6 +9,7 @@ import Views.javaMail.JavaMailUtil;
 import Views.javaMail.RandomStringGenerator;
 import static Views.javaMail.RandomStringGenerator.randomAlphaNumeric;
 import static Views.javaMail.JavaMailUtil.sendMail;
+import static Views.logIn_sigIn.md5.getMd5;
 import connect.OracleConnUtils;
 
 import java.sql.Connection;
@@ -38,6 +39,7 @@ public class quenMatKhau extends javax.swing.JFrame {
     public quenMatKhau(String email) {
 
         initComponents();
+        setTitle("HeartBeat - Khôi phục mật khẩu");
         this.setLocationRelativeTo(null);
         jLabel11.setVisible(false);
         jLabel11.setText("Vui lòng điền mã khôi phục");
@@ -227,7 +229,10 @@ public class quenMatKhau extends javax.swing.JFrame {
                 }
                 String query = "";
                 synchronized (query) {
-                    query = "update tb_user set password = '" + jTextField3.getText() + "' where email = '" + this.email + "'";
+                    String newPassword = getMd5(String.valueOf(jTextField3.getText()));
+                    
+                    
+                    query = "update tb_user set password = '" + newPassword + "' where email = '" + this.email + "'";
                     System.out.println(query);
                 }
                 try ( Statement stmt = conn.createStatement()) {
