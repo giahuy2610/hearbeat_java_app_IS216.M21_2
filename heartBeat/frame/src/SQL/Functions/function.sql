@@ -1,105 +1,64 @@
 -----FUNCTION---------
---1. F_SUM_SCORE
-CREATE OR REPLACE FUNCTION F_SUM_SCORE(USER_ID INTEGER)
-RETURN INTEGER
-AS
-    TOTAL_SCORE INTEGER;
+Function thống kê số bài viết mới trong khoảng thời gian
+CREATE OR REPLACE FUNCTION f_count_new_post (
+    from_date         DATE,
+    to_date           DATE,
+    statusid_filter   tb_post.statusid%TYPE,
+    purposeid_filter  tb_post.purposeid%TYPE
+    --nếu statusid_filter = 0 hoặc purposeid_filter = 0 nghĩa là không xét bất kì điều kiện nào
+) RETURN INTEGER AS
+    count_new_post  INTEGER;
+    temp            INTEGER;
 BEGIN
-    SELECT SUM(SCORE) INTO TOTAL_SCORE
-    FROM TB_USER
-    WHERE USERID=USER_ID;
-RETURN TOTAL_SCORE;
-EXCEPTION WHEN NO_DATA_FOUND THEN
-RETURN ('NO DATA FOUND');
-END;
+    SELECT
+        COUNT(postid)
+    INTO count_new_post
+    FROM
+        tb_post
+    WHERE
+            createdon >= from_date
+        AND createdon <= to_date
+        AND ( ( ( statusid_filter != 0 )
+                AND statusid = statusid_filter )
+              OR ( statusid_filter = 0 ) )
+        AND ( ( ( purposeid_filter != 0 )
+                AND purposeid = purposeid_filter )
+              OR ( purposeid_filter = 0 ) );
 
-SET SERVEROUTPUT ON;
-EXECUTE dbms_output.put_line('TOTAL SCORE IS: '||F_SUM_SCORE(&USER_ID));
-
---2. F_SUM_POST_OWNER
-CREATE OR REPLACE FUNCTION F_COUNT_POST_OWNER(OWNER_ID NUMBER)
-RETURN NUMBER
-AS
-    COUNT_POST_OWNER NUMBER;
-BEGIN
-    SELECT COUNT(OWNERID) INTO COUNT_POST_OWNER
-    FROM TB_POST
-    WHERE OWNERID=OWNER_ID;
-RETURN COUNT_POST_OWNER;
-EXCEPTION WHEN NO_DATA_FOUND THEN
-RETURN ('NO DATA FOUND');
+    RETURN count_new_post;
 END;
+/
 
-SET SERVEROUTPUT ON;
-EXECUTE dbms_output.put_line('THE NUMBERS OF POSTS IS: '||F_COUNT_POST_OWNER(&OWNER_ID));
---3. THONG KE SO LUONG BAI VIET TRONG MOT NGAY
-CREATE OR REPLACE FUNCTION F_SUM_POST_DAY (NGAY NUMBER, THANG NUMBER, NAM NUMBER )
-RETURN NUMBER
-AS
-    SUM_POST_DAY NUMBER;
-BEGIN
-    SELECT COUNT(POSTID) INTO SUM_POST_DAY
-    FROM TB_POST
-    WHERE EXTRACT ( DAY FROM CREATEDON ) = NGAY AND EXTRACT ( MONTH FROM CREATEDON ) = THANG AND EXTRACT (YEAR FROM CREATEDON)=NAM; 
-RETURN SUM_POST_DAY;
-EXCEPTION WHEN NO_DATA_FOUND THEN
-RETURN ('NO DATA FOUND');
-END;
 DECLARE
-TOTAL_OF_DAY NUMBER;
+    total_of_post NUMBER;
 BEGIN
-TOTAL_OF_DAY := F_SUM_POST_DAY(29,04,2022);
-DBMS_OUTPUT.PUT_LINE('Tong so bai viet trong ngay: ' || TOTAL_OF_DAY);
-END;
---4. THONG KE SO LUONG BAI VIET TRONG MOT THANG, MOT NAM
-CREATE OR REPLACE FUNCTION F_SUM_POST_MONTH_YEAR (THANG NUMBER, NAM NUMBER )
-RETURN NUMBER
-AS
-    SUM_POST_MONTH_YEAR NUMBER;
-BEGIN
-    SELECT COUNT(POSTID) INTO SUM_POST_MONTH_YEAR
-    FROM TB_POST
-    WHERE EXTRACT ( MONTH FROM CREATEDON ) = THANG AND EXTRACT (YEAR FROM CREATEDON)=NAM; 
-RETURN SUM_POST_MONTH_YEAR;
-EXCEPTION WHEN NO_DATA_FOUND THEN
-RETURN ('NO DATA FOUND');
-END;
-DECLARE
-TOTAL_OF_MONTH_YEAR NUMBER;
-BEGIN
-TOTAL_OF_MONTH_YEAR := F_SUM_POST_MONTH_YEAR(04,2022);
-DBMS_OUTPUT.PUT_LINE('Tong so bai viet trong thang va nam: ' || TOTAL_OF_MONTH_YEAR);
-END;
---5. THONG KE SO LUONG NGUOI DUNG MOI TRONG MOT THANG 
-CREATE OR REPLACE FUNCTION F_COUNT_USER_NEW_MONTH(THANG NUMBER)
-RETURN NUMBER
-AS
-COUNT_USER_NEW_MONTH NUMBER;
-BEGIN
-IF( THANG < 1 AND THANG > 12 )
-THEN
-RAISE_APPLICATION_ERROR (-20399, 'Thang nhap vao khong hop le');
-END IF;
-SELECT COUNT(USERID) INTO COUNT_USER_NEW_MONTH
-FROM TB_USER
-WHERE EXTRACT(MONTH FROM CREATEDON) = THANG AND ROLEID='1';
-RETURN COUNT_USER_NEW_MONTH;
-END;
-DECLARE
-TOTAL_OF_USER_MONTH NUMBER;
-BEGIN
-TOTAL_OF_USER_MONTH := F_COUNT_USER_NEW_MONTH(04);
-DBMS_OUTPUT.PUT_LINE('Tong so nguoi dung moi trong thang: ' || TOTAL_OF_USER_MONTH);
-END; 
---4.F_FIND_USER
-
-CREATE OR REPLACE FUNCTION F_FIND_USER(USER_ID TB_USER.USERID%TYPE)
-RETURN %type
-AS
-RETURN 
-    SELECT * 
-    FROM TB_USER
-    WHERE USERID=USER_ID;
+    total_of_post := f_count_new_post(TO_DATE('1/1/2000', 'dd/mm/yyyy'), TO_DATE('1/1/2024', 'dd/mm/yyyy'), 0, 0);
+    dbms_output.put_line('Tong so bai viet moi trong thang: ' || total_of_post);
 END;
 
-*/
+--Function thống kê số người tham gia mới trong khoảng thời gian
+CREATE OR REPLACE FUNCTION f_count_new_user (
+    from_date  DATE,
+    to_date    DATE
+) RETURN INTEGER AS
+    count_new_user INTEGER;
+BEGIN
+    SELECT
+        COUNT(userid)
+    INTO count_new_user
+    FROM
+        tb_user
+    WHERE
+            createdon >= FROM_DATE AND createdon <= TO_DATE
+        AND roleid = '1';
+
+    RETURN count_new_user;
+END;
+
+DECLARE
+    total_of_user_month NUMBER;
+BEGIN
+    total_of_user_month := f_count_new_user(TO_DATE('1/1/2000', 'dd/mm/yyyy'),TO_DATE('1/1/2024', 'dd/mm/yyyy'));
+    dbms_output.put_line('Tong so nguoi dung moi trong thang: ' || total_of_user_month);
+END;
+

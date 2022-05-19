@@ -5,8 +5,6 @@
 package Views.logIn_sigIn;
 
 import java.awt.Color;
-import Views.javaMail.JavaMailUtil;
-import Views.javaMail.RandomStringGenerator;
 import static Views.javaMail.RandomStringGenerator.randomAlphaNumeric;
 import static Views.javaMail.JavaMailUtil.sendMail;
 import static Views.logIn_sigIn.md5.getMd5;
@@ -230,10 +228,7 @@ public class quenMatKhau extends javax.swing.JFrame {
                 String query = "";
                 synchronized (query) {
                     String newPassword = getMd5(String.valueOf(jTextField3.getText()));
-                    
-                    
                     query = "update tb_user set password = '" + newPassword + "' where email = '" + this.email + "'";
-                    System.out.println(query);
                 }
                 try ( Statement stmt = conn.createStatement()) {
                     ResultSet rs = stmt.executeQuery(query);

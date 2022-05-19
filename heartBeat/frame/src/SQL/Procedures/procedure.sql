@@ -310,7 +310,7 @@ BEGIN
                     content
                 ) VALUES (
                     userid_in,
-                    'Bạn đã đặt lịch hẹn thành công tại bài viết' || get_post.title
+                    'Bạn đã đặt lịch hẹn thành công tại bài viết ' || get_post.title
                 );
                 --gửi thông báo đến chủ bài viết
 

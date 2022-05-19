@@ -4,8 +4,6 @@
  */
 package Views.logIn_sigIn;
 
-import static Views.logIn_sigIn.dangNhap.getMd5;
-import Views.main.mainFrame;
 import connect.OracleConnUtils;
 import java.awt.Color;
 import java.sql.Connection;
