@@ -1,8 +1,8 @@
 CREATE OR REPLACE PROCEDURE p_delete_post (
     postid_in tb_post.postid%TYPE
 ) AS
-    partner  tb_post.partnerid%type;
-    owner    tb_post.ownerid%type;
+    partner  tb_post.partnerid%TYPE;
+    owner    tb_post.ownerid%TYPE;
 BEGIN
     UPDATE tb_post
     SET
@@ -68,11 +68,10 @@ BEGIN
 END;
 
 -- procedure xóa mềm một tài khoản(có thể khôi phục lại thao tác xóa)
-
 CREATE OR REPLACE PROCEDURE p_delete_account (
     userid_in tb_user.userid%TYPE
 ) AS
-    --cursor lấy ra bài viết chưa hoàn thành có người dùng bị xóa đăng kí
+    --cursor lấy ra bài viết chưa hoàn thành mà người dùng này đăng ký
 
     CURSOR get_post_scheduled IS
     SELECT
@@ -83,7 +82,7 @@ CREATE OR REPLACE PROCEDURE p_delete_account (
             partnerid = userid_in
         AND statusid = 2;
 
-    --cursor lấy ra bài viết chưa hoàn thành và có người đặt hẹn của người dùng bị xóa tài khoản
+    --cursor lấy ra bài viết chưa hoàn thành của người này và đã có lịch hẹn
 
     CURSOR get_post IS
     SELECT
@@ -107,55 +106,57 @@ BEGIN
         LOOP
             FETCH get_post_scheduled INTO temp_post;
             EXIT WHEN temp_post%notfound;
+            --hủy lịch hẹn của người này trên mọi bài viết(chưa hoàn thành)
+            UPDATE tb_post
+            SET
+                statusid = 1
+            WHERE
+                postid = temp_post.postid;
+            --gửi một thông báo đến các bài viết đang có người này đặt hẹn(chưa hoàn thành)
+
+            INSERT INTO tb_notification (
+                userid,
+                content
+            ) VALUES (
+                temp_post.ownerid,
+                'Bài viết '
+                || temp_post.title
+                || 'đã bị xóa, lịch hẹn của bạn cũng sẽ bị hủy.'
+            );
+
         END LOOP;
         CLOSE get_post_scheduled;
         
-        --hủy lịch hẹn của người này trên mọi bài viết(chưa hoàn thành)
-        UPDATE tb_post
-        SET
-            statusid = 1
-        WHERE
-            postid = temp_post.postid;
-        --gửi một thông báo đến các bài viết đang có người này đặt hẹn(chưa hoàn thành)
 
-        INSERT INTO tb_notification (
-            userid,
-            content
-        ) VALUES (
-            temp_post.ownerid,
-            'Bài viết '
-            || temp_post.title
-            || 'đã bị xóa, lịch hẹn của bạn cũng sẽ bị hủy.'
-        );
 
-        
-
-        
-    
     --trường hợp nếu một bài viết đã hoàn thành, có người dùng bị xóa thực hiện đặt hẹn
     --xóa hết các bài đăng của người dùng này
-
         UPDATE tb_post
         SET
-            isdeleted = 2 --0: khả dụng, 1:bị xóa bởi người dùng, 2: bị xóa bởi hệ thống
+            isdeleted = 2 , partnerid = null 
+            --0: khả dụng, 1:bị xóa bởi người dùng, 2: bị xóa bởi hệ thống
+            --gán lại partnerid = null để xóa hết người dùng đã đặt hẹn, phòng trường hợp có khôi phục lại bài viết thì không bị lưu lại thông tin của người đặt hẹn cũ
         WHERE
             tb_post.ownerid = userid_in;
         
-    --gửi một thông báo đến các người dùng đang đặt hẹn với các bài viết mà người này đã đăng(chưa hoàn thành)
+    --gửi một thông báo đến các người dùng đang đặt hẹn với các bài viết mà người này đã đăng(chưa hoàn thành) 
+
+
 
         INSERT INTO tb_notification (
             userid,
             content
         ) VALUES (
             temp_post.ownerid,
-            'Bài viết '
+            'Lịch hẹn của bạn ở bài viết '
             || temp_post.title
-            || ' của bạn đã bị hủy lịch hẹn.'
+            || ' bị hủy do bài viết đã xóa.'
         );
 
     END;    
     
     
+
     
     
 
