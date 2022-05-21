@@ -5,7 +5,7 @@
 package Views.logIn_sigIn;
 
 import static Views.logIn_sigIn.md5.getMd5;
-import connect.OracleConnUtils;
+import ConnectDB.OracleConnUtils;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;

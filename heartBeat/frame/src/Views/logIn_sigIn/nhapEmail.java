@@ -4,7 +4,7 @@
  */
 package Views.logIn_sigIn;
 
-import connect.OracleConnUtils;
+import ConnectDB.OracleConnUtils;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
