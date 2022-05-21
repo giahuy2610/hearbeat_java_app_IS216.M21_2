@@ -4,14 +4,32 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangCaNhanJPanel.java</file>
-            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/chiTietBaiVietJPanel.java</file>
-            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/chuyenManHinhController.java</file>
-            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/thongBaoJPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/profile/trangCaNhan_BaiViet.java</file>
             <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/themBaiVietJPanel.java</file>
-            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangChuJPanel.java</file>
-            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/quanLyUser/quanLyNguoiDung.java</file>
-            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/mainFrame.java</file>
             <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/danhChoAdminJPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/danhMucBean.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/profile/user.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/danhChoAdmin.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/quanLiNguoiDungJPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/chuyenManHinhController.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/haha.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/Admin/dialogSua_QLND.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/Admin/quanLyBaiDang.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/main.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/mainFrame.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/danhMucJPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/Admin/quanLyNguoiDung.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/Admin/dialogXoa_QLBD.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/test.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/thongBaoJPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/testGetDBToTable.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/setPropertyInnerPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/testGetDB.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/Admin/dialogXoa_QLND.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/chiTietBaiVietJPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/Admin/dialogThem_QLND.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/profile/trangCaNhan_GioiThieu.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangChuJPanel.java</file>
         </group>
     </open-files>
 </project-private>
