@@ -61,7 +61,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
         }
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < postId.size(); i++) {
             baiViet x = new baiViet(postId.get(i),postTitle.get(i),postCategory.get(i),postContent.get(i));
             x.addMouseListener(new MouseAdapter() {
                 @Override
