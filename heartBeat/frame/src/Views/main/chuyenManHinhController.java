@@ -77,7 +77,7 @@ public class chuyenManHinhController {
                     node = new trangCaNhanJPanel();
                     break;
                 case "DanhChoAdmin":
-                    node = new danhChoAdminJPanel();
+                    node = new quanLiNguoiDungJPanel();
                     break;
                 case "DanhMuc":
                     node = new danhMucJPanel();

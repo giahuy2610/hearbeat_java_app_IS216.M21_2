@@ -18,12 +18,12 @@ public class mainFrame extends javax.swing.JFrame {
      */
     public mainFrame() {
         initComponents();
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
         setTitle("HeartBeat - Trang chủ");
-        
+
         chuyenManHinhController controller = new chuyenManHinhController(jpnView);
         controller.setView(jbtnTrangChu);
-        
+
         List<danhMucBean> listItem = new ArrayList<>();
         listItem.add(new danhMucBean("TrangChu", jbtnTrangChu));
         listItem.add(new danhMucBean("ThemBaiViet", jbtnThemBaiViet));
@@ -31,9 +31,9 @@ public class mainFrame extends javax.swing.JFrame {
         listItem.add(new danhMucBean("DanhMuc", jbtnDanhMuc));
         listItem.add(new danhMucBean("TrangCaNhan", jbtnTrangCaNhan));
         listItem.add(new danhMucBean("DanhChoAdmin", jbtnDanhChoAdmin));
-        
+
         controller.setEvent(listItem);
-        
+
     }
 
     /**
@@ -58,6 +58,7 @@ public class mainFrame extends javax.swing.JFrame {
         jpnView = new keeptoo.KGradientPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.CardLayout());
 
         jpnRoot.setPreferredSize(new java.awt.Dimension(1200, 600));
 
@@ -203,9 +204,10 @@ public class mainFrame extends javax.swing.JFrame {
                 .addComponent(jbtnDanhChoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jpnView.setPreferredSize(new java.awt.Dimension(1000, 600));
         jpnView.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout jpnRootLayout = new javax.swing.GroupLayout(jpnRoot);
@@ -215,8 +217,7 @@ public class mainFrame extends javax.swing.JFrame {
             .addGroup(jpnRootLayout.createSequentialGroup()
                 .addComponent(jpnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, 907, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE))
         );
         jpnRootLayout.setVerticalGroup(
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,16 +225,7 @@ public class mainFrame extends javax.swing.JFrame {
             .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnRoot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnRoot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jpnRoot, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
