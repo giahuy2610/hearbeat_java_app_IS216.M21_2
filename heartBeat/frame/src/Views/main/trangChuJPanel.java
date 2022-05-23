@@ -41,13 +41,13 @@ public class trangChuJPanel extends javax.swing.JPanel {
         try {
             conn = OracleConnUtils.getOracleConnection();
         } catch (SQLException ex) {
-            Logger.getLogger(ScrollPaneEg.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ScrollPaneEg.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         String query = "";
         synchronized (query) {
-            query = "select * from  tb_post";
+            query = "select * from  tb_post where isdeleted = 0";
         }
         try ( Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
