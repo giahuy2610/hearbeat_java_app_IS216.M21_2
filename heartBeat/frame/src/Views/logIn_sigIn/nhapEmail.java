@@ -53,6 +53,7 @@ public class nhapEmail extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(450, 250));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         panel_nhap_ma.setkEndColor(new java.awt.Color(153, 153, 255));
@@ -62,14 +63,14 @@ public class nhapEmail extends javax.swing.JFrame {
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nhập email tài khoản:");
-        panel_nhap_ma.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 130, 20));
+        panel_nhap_ma.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 130, 20));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        panel_nhap_ma.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 150, -1));
+        panel_nhap_ma.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 80, 150, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -82,10 +83,10 @@ public class nhapEmail extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        panel_nhap_ma.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 99, -1));
+        panel_nhap_ma.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 99, -1));
 
         jLabel11.setText("jLabel11");
-        panel_nhap_ma.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 150, -1));
+        panel_nhap_ma.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 150, -1));
 
         getContentPane().add(panel_nhap_ma, "card2");
 
