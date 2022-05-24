@@ -5,13 +5,11 @@
 package Views.main;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 
 /**
  *
@@ -30,8 +28,6 @@ public class chuyenManHinhController {
 
     public void setView(JButton jlbItem) {
         kindSelected = "TrangChu";
-
-        
         
         root.removeAll();
         root.setLayout(new BorderLayout());
@@ -40,7 +36,16 @@ public class chuyenManHinhController {
         root.repaint();
         setChangeBackground("TrangChu");
     }
-
+    
+    public void changeView(JPanel item) {
+        root.removeAll();
+        root.setLayout(new BorderLayout());
+        root.add(item);
+        root.validate();
+        root.repaint();
+        
+    }
+    
     public void setEvent(List<danhMucBean> listItem) {
         this.listItem = listItem;
         for (danhMucBean item : listItem) {
@@ -62,36 +67,6 @@ public class chuyenManHinhController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            System.out.println(kindSelected);
-            switch (kindSelected) {
-                case "TrangChu":
-                    node = new trangChuJPanel();
-                    break;
-                case "ThemBaiViet":
-                    node = new themBaiVietJPanel();
-                    break;
-                case "ThongBao":
-                    node = new thongBaoJPanel();
-                    break;
-                case "TrangCaNhan":
-                    node = new trangCaNhanJPanel();
-                    break;
-                case "DanhChoAdmin":
-                    node = new quanLiNguoiDungJPanel();
-                    break;
-                case "DanhMuc":
-                    node = new danhMucJPanel();
-                    break;
-                default:
-                    break;
-            }
-
-            root.removeAll();
-            root.setLayout(new BorderLayout());
-            root.add(node);
-            root.validate();
-            root.repaint();
-            setChangeBackground(kind);
 
         }
 
@@ -112,7 +87,7 @@ public class chuyenManHinhController {
                     node = new trangCaNhanJPanel();
                     break;
                 case "DanhChoAdmin":
-                    node = new quanLiNguoiDungJPanel();
+                    node = new danhChoAdminJPanel();
                     break;
                 case "DanhMuc":
                     node = new danhMucJPanel();
@@ -127,7 +102,7 @@ public class chuyenManHinhController {
             root.validate();
             root.repaint();
             setChangeBackground(kind);
-            
+                    
         }
 
         @Override
@@ -137,7 +112,6 @@ public class chuyenManHinhController {
 
         @Override
         public void mouseEntered(MouseEvent e) {
-            
         }
 
         @Override
@@ -149,6 +123,7 @@ public class chuyenManHinhController {
 
     private void setChangeBackground(String kind) {
         kindSelected = kind;
+        System.out.println(kindSelected);
         for (danhMucBean item : listItem) {
             if (item.getKind().equalsIgnoreCase(kindSelected)) {
                 item.getJbtn().setOpaque(true);

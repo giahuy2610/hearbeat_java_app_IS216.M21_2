@@ -4,15 +4,17 @@
  */
 package Views.main;
 
+import Views.logIn_sigIn.dangNhap;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author giahu
  */
 public class mainFrame extends javax.swing.JFrame {
-
+    private static chuyenManHinhController controller;
     /**
      * Creates new form mainFrame
      */
@@ -21,8 +23,7 @@ public class mainFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setTitle("HeartBeat - Trang chủ");
 
-        chuyenManHinhController controller = new chuyenManHinhController(jpnView);
-        
+        controller = new chuyenManHinhController(jpnView);
 
         List<danhMucBean> listItem = new ArrayList<>();
         listItem.add(new danhMucBean("TrangChu", jbtnTrangChu));
@@ -31,9 +32,12 @@ public class mainFrame extends javax.swing.JFrame {
         listItem.add(new danhMucBean("DanhMuc", jbtnDanhMuc));
         listItem.add(new danhMucBean("TrangCaNhan", jbtnTrangCaNhan));
         listItem.add(new danhMucBean("DanhChoAdmin", jbtnDanhChoAdmin));
-
         controller.setEvent(listItem);
         controller.setView(jbtnTrangChu);
+    }
+
+    public chuyenManHinhController getController() {
+        return controller;
     }
 
     /**
@@ -148,6 +152,11 @@ public class mainFrame extends javax.swing.JFrame {
         jButton12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
         jButton12.setContentAreaFilled(false);
         jButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton12MousePressed(evt);
+            }
+        });
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
@@ -254,12 +263,27 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnDanhMucActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jbtnTrangCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnTrangCaNhanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnTrangCaNhanActionPerformed
+
+    private void jButton12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MousePressed
+        String[] options = {"Đồng ý","Hủy"};
+        int output = JOptionPane.showOptionDialog(this,
+                "Bạn thực sự muốn đăng xuất?", "Xác nhận",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        if (output == JOptionPane.YES_OPTION) {
+            this.dispose();
+            new dangNhap().setVisible(true);
+        } else if (output == JOptionPane.NO_OPTION) {
+            System.out.println("No selected.");
+            controller.changeView(new chiTietBaiVietJPanel());
+        }
+    }//GEN-LAST:event_jButton12MousePressed
 
     /**
      * @param args the command line arguments
