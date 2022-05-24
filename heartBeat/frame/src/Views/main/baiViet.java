@@ -12,7 +12,7 @@ import javax.swing.BorderFactory;
  * @author giahu
  */
 public class baiViet extends javax.swing.JPanel {
-    public String postID;
+    public String postId;
     private String title;
     private String category;
     private String content;
@@ -24,9 +24,9 @@ public class baiViet extends javax.swing.JPanel {
         initComponents();
     }
 
-    public baiViet(String postID, String title, String category, String content) {
+    public baiViet(String postId, String title, String category, String content) {
         initComponents();
-        this.postID = postID;
+        this.postId = postId;
         this.title = title;
         this.category = category;
         this.content = content;
@@ -54,6 +54,11 @@ public class baiViet extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 102, 153));
         setPreferredSize(new java.awt.Dimension(500, 200));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 153));
         jPanel2.setPreferredSize(new java.awt.Dimension(180, 180));
@@ -122,6 +127,10 @@ public class baiViet extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        chuyenManHinhController.setView(new chiTietBaiVietJPanel(this.postId));
+    }//GEN-LAST:event_formMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

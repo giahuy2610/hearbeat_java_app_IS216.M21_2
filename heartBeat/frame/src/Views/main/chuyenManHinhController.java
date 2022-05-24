@@ -26,12 +26,12 @@ public class chuyenManHinhController {
         this.root = jpnRoot;
     }
 
-    public void setView(JButton jlbItem) {
+    public static void setView(JPanel item) {
         kindSelected = "TrangChu";
         
         root.removeAll();
         root.setLayout(new BorderLayout());
-        root.add(new trangChuJPanel());
+        root.add(item);
         root.validate();
         root.repaint();
         setChangeBackground("TrangChu");
@@ -121,7 +121,7 @@ public class chuyenManHinhController {
 
     }
 
-    private void setChangeBackground(String kind) {
+    private static void setChangeBackground(String kind) {
         kindSelected = kind;
         System.out.println(kindSelected);
         for (danhMucBean item : listItem) {

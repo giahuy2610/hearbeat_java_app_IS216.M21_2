@@ -63,13 +63,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
 
         for (int i = 0; i < postId.size(); i++) {
             baiViet x = new baiViet(postId.get(i),postTitle.get(i),postCategory.get(i),postContent.get(i));
-            x.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    System.out.println(x.postID);
-                }
-            });
-            // x.setLocation(0, 45 *i);
             container.add(x);
         }
         
