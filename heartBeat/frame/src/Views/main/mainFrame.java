@@ -6,6 +6,7 @@ package Views.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
 
 /**
  *
@@ -22,7 +23,7 @@ public class mainFrame extends javax.swing.JFrame {
         setTitle("HeartBeat - Trang chủ");
 
         chuyenManHinhController controller = new chuyenManHinhController(jpnView);
-        controller.setView(jbtnTrangChu);
+//        controller.setView(jbtnTrangChu);
 
         List<danhMucBean> listItem = new ArrayList<>();
         listItem.add(new danhMucBean("TrangChu", jbtnTrangChu));
@@ -31,7 +32,8 @@ public class mainFrame extends javax.swing.JFrame {
         listItem.add(new danhMucBean("DanhMuc", jbtnDanhMuc));
         listItem.add(new danhMucBean("TrangCaNhan", jbtnTrangCaNhan));
         listItem.add(new danhMucBean("DanhChoAdmin", jbtnDanhChoAdmin));
-
+         listItem.add(new danhMucBean("XepHangNhanAi", jbtnXepHangNhanAi));
+          
         controller.setEvent(listItem);
 
     }
@@ -53,8 +55,9 @@ public class mainFrame extends javax.swing.JFrame {
         jbtnThemBaiViet = new javax.swing.JButton();
         jbtnThongBao = new javax.swing.JButton();
         jbtnDanhMuc = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        jbtnDangXuat = new javax.swing.JButton();
         jbtnTrangCaNhan = new javax.swing.JButton();
+        jbtnXepHangNhanAi = new javax.swing.JButton();
         jpnView = new keeptoo.KGradientPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -142,16 +145,16 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton12.setBackground(new java.awt.Color(255, 204, 204));
-        jButton12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(0, 255, 255));
-        jButton12.setText(" Đăng xuất");
-        jButton12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
-        jButton12.setContentAreaFilled(false);
-        jButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
+        jbtnDangXuat.setBackground(new java.awt.Color(255, 204, 204));
+        jbtnDangXuat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jbtnDangXuat.setForeground(new java.awt.Color(0, 255, 255));
+        jbtnDangXuat.setText(" Đăng xuất");
+        jbtnDangXuat.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
+        jbtnDangXuat.setContentAreaFilled(false);
+        jbtnDangXuat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbtnDangXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
+                jbtnDangXuatActionPerformed(evt);
             }
         });
 
@@ -168,6 +171,19 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
+        jbtnXepHangNhanAi.setBackground(new java.awt.Color(255, 204, 204));
+        jbtnXepHangNhanAi.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jbtnXepHangNhanAi.setForeground(new java.awt.Color(0, 255, 255));
+        jbtnXepHangNhanAi.setText("Xếp hạng nhân ái");
+        jbtnXepHangNhanAi.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
+        jbtnXepHangNhanAi.setContentAreaFilled(false);
+        jbtnXepHangNhanAi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbtnXepHangNhanAi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnXepHangNhanAiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpnMenuLayout = new javax.swing.GroupLayout(jpnMenu);
         jpnMenu.setLayout(jpnMenuLayout);
         jpnMenuLayout.setHorizontalGroup(
@@ -175,36 +191,43 @@ public class mainFrame extends javax.swing.JFrame {
             .addGroup(jpnMenuLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnDanhChoAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnThemBaiViet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnThongBao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnDanhMuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnTrangCaNhan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnTrangChu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(100, 100, 100))
+                    .addGroup(jpnMenuLayout.createSequentialGroup()
+                        .addComponent(jbtnXepHangNhanAi, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jpnMenuLayout.createSequentialGroup()
+                        .addGroup(jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtnDanhChoAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtnThemBaiViet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtnThongBao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtnDanhMuc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtnDangXuat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtnTrangCaNhan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtnTrangChu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(100, 100, 100))))
         );
         jpnMenuLayout.setVerticalGroup(
             jpnMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jbtnTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jbtnThemBaiViet, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
+                .addComponent(jbtnTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnThemBaiViet, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtnDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jbtnTrangCaNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(jbtnDanhChoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnXepHangNhanAi, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbtnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         jpnView.setPreferredSize(new java.awt.Dimension(1000, 600));
@@ -217,12 +240,12 @@ public class mainFrame extends javax.swing.JFrame {
             .addGroup(jpnRootLayout.createSequentialGroup()
                 .addComponent(jpnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE))
+                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
         );
         jpnRootLayout.setVerticalGroup(
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpnMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 586, Short.MAX_VALUE)
+            .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
         );
 
         getContentPane().add(jpnRoot, "card2");
@@ -254,13 +277,17 @@ public class mainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnDanhMucActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+    private void jbtnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnDangXuatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton12ActionPerformed
+    }//GEN-LAST:event_jbtnDangXuatActionPerformed
 
     private void jbtnTrangCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnTrangCaNhanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnTrangCaNhanActionPerformed
+
+    private void jbtnXepHangNhanAiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnXepHangNhanAiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnXepHangNhanAiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,14 +325,15 @@ public class mainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jbtnDangXuat;
     private javax.swing.JButton jbtnDanhChoAdmin;
     private javax.swing.JButton jbtnDanhMuc;
     private javax.swing.JButton jbtnThemBaiViet;
     private javax.swing.JButton jbtnThongBao;
     private javax.swing.JButton jbtnTrangCaNhan;
     private javax.swing.JButton jbtnTrangChu;
+    private javax.swing.JButton jbtnXepHangNhanAi;
     private keeptoo.KGradientPanel jpnMenu;
     private javax.swing.JPanel jpnRoot;
     private keeptoo.KGradientPanel jpnView;

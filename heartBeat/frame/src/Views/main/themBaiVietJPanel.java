@@ -4,17 +4,85 @@
  */
 package Views.main;
 
+import ConnectDB.OracleConnUtils;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author Admin
  */
 public class themBaiVietJPanel extends javax.swing.JPanel {
-
+ private static ArrayList<String> purposeId = new ArrayList<String>();
+    private static ArrayList<String> purposeName = new ArrayList<String>();
+    
+    private static ArrayList<String> categoryId = new ArrayList<String>();
+    private static ArrayList<String> categoryName = new ArrayList<String>();
+     
     /**
      * Creates new form themBaiVietJPanel
      */
     public themBaiVietJPanel() {
         initComponents();
+   Connection conn = null;
+        try {
+            conn = OracleConnUtils.getOracleConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String query = "";
+        synchronized (query) {
+            query = "select * from tb_purpose";
+          
+        }
+        try ( Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+               
+                purposeName.add(rs.getString("purposename"));
+                
+                comboBoxMucDich.addItem(rs.getString("purposeName"));
+                
+            }
+        } catch (SQLException e) {
+            System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
+        }
+        
+        
+        synchronized (query) {
+            query = "select * from tb_category";
+          
+        }
+         try ( Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+               
+                categoryName.add(rs.getString("categoryname"));
+                
+                comboBoxDanhMuc.addItem(rs.getString("categoryName"));
+                
+            }
+        } catch (SQLException e) {
+            System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
+        }
+        
+        
+        
+        
     }
 
     /**
@@ -31,17 +99,16 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldTieuDe = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboBoxMucDich = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comboBoxDanhMuc = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jButtonLuu = new javax.swing.JButton();
+        jButtonUpload = new javax.swing.JButton();
+        jTextFieldNoiDung = new javax.swing.JTextField();
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -77,16 +144,30 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Tiêu đề");
 
+        jTextFieldTieuDe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTieuDeActionPerformed(evt);
+            }
+        });
+
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Nội dung");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trao tặng", "Xin nhận" }));
+        comboBoxMucDich.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxMucDichActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Mục đích");
 
         jLabel6.setText("Danh mục");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thực phẩm", "Y tế", "Đồ gia dụng", "Gíao dục", "Bữa ăn", "Khác", " " }));
+        comboBoxDanhMuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxDanhMucActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -101,29 +182,24 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
             .addGap(0, 61, Short.MAX_VALUE)
         );
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 255));
-        jButton2.setText("Lưu dữ liệu");
-        jButton2.setPreferredSize(new java.awt.Dimension(85, 50));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLuu.setBackground(new java.awt.Color(255, 153, 255));
+        jButtonLuu.setText("Lưu dữ liệu");
+        jButtonLuu.setPreferredSize(new java.awt.Dimension(85, 50));
+        jButtonLuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonLuuActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(255, 153, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/add.png"))); // NOI18N
-        jButton1.setText("Upload hình ảnh tại đây");
-        jButton1.setPreferredSize(new java.awt.Dimension(185, 50));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonUpload.setBackground(new java.awt.Color(255, 153, 255));
+        jButtonUpload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/add.png"))); // NOI18N
+        jButtonUpload.setText("Upload hình ảnh tại đây");
+        jButtonUpload.setPreferredSize(new java.awt.Dimension(185, 50));
+        jButtonUpload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonUploadActionPerformed(evt);
             }
         });
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -133,9 +209,9 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(279, 279, 279)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonUpload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(79, 79, 79)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -144,19 +220,19 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldTieuDe, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboBoxMucDich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(comboBoxDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldNoiDung, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 39, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -164,26 +240,26 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldTieuDe, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxMucDich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3))
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jTextFieldNoiDung, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                        .addGap(121, 121, 121)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
+                        .addGap(162, 162, 162)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButtonUpload, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -205,20 +281,68 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         jPanel2.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUploadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+     
+          JFileChooser fileChooser = new JFileChooser();
+          fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);//CHI HIEN THI FILE
+          int returnValue = fileChooser.showOpenDialog(this);
+          if (returnValue == JFileChooser.APPROVE_OPTION)
+          {
+              File file = fileChooser.getSelectedFile();
+              // lay duong dan file de luu 1 truong trong csdl
+              String pathFile = file.getAbsolutePath().replace("//","--");
+              BufferedImage b;
+              try
+              {
+                  b = ImageIO.read(file);
+                  jButtonUpload.setIcon(new ImageIcon(b));
+                  
+              } catch (IOException ex) {
+                  Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+              }
+          }
+          
+       
+    }//GEN-LAST:event_jButtonUploadActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLuuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+      String tenTieuDe = jTextFieldTieuDe.getText();
+      String tenMucDich;
+     tenMucDich = (String) comboBoxMucDich.getSelectedItem();
+     String tenDanhMuc = (String) comboBoxDanhMuc.getSelectedItem();
+     String tenNoiDung = jTextFieldNoiDung.getText();
+     String pathFile;
+     pathFile = jButtonUpload.getIcon();
+     
+    }//GEN-LAST:event_jButtonLuuActionPerformed
+
+    private void comboBoxMucDichActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxMucDichActionPerformed
+        // TODO add your handling code here:
+        
+        String selectedItem = (String) comboBoxMucDich.getSelectedItem();
+        
+        
+       
+        
+    }//GEN-LAST:event_comboBoxMucDichActionPerformed
+
+    private void comboBoxDanhMucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxDanhMucActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxDanhMucActionPerformed
+
+    private void jTextFieldTieuDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTieuDeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTieuDeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> comboBoxDanhMuc;
+    private javax.swing.JComboBox<String> comboBoxMucDich;
+    private javax.swing.JButton jButtonLuu;
+    private javax.swing.JButton jButtonUpload;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -228,8 +352,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldNoiDung;
+    private javax.swing.JTextField jTextFieldTieuDe;
     // End of variables declaration//GEN-END:variables
 }

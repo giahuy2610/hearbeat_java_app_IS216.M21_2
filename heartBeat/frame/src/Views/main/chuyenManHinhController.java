@@ -82,6 +82,9 @@ public class chuyenManHinhController {
                 case "DanhMuc":
                     node = new danhMucJPanel();
                     break;
+                case "XepHangNhanAi":
+                    node = new xepHangNhanAiJPanel();
+               
                 default:
                     break;
             }

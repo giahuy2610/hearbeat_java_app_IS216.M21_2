@@ -3,16 +3,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/danhChoAdmin.java</file>
-            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/baiViet.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/themBaiVietJPanel.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/ConnectDB/TestConnectJDBC.java</file>
-            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/ConnectDB/OracleConnUtils.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/ProcessDB/BaiViet.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/mainFrame.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/danhMucJPanel.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/chiTietBaiVietJPanel.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/logIn_sigIn/dangNhap.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangChuJPanel.java</file>
-            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangCaNhanJPanel.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/quanLiNguoiDungJPanel.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/xepHangNhanAiJPanel.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/testGetDBToTable.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/danhChoAdmin.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/baiViet.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/main.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/ConnectDB/OracleConnUtils.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/logIn_sigIn/dangKy.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/java-study/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangCaNhanJPanel.java</file>
         </group>
     </open-files>
 </project-private>
