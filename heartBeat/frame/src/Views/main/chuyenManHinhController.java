@@ -123,7 +123,7 @@ public class chuyenManHinhController {
 
     private static void setChangeBackground(String kind) {
         kindSelected = kind;
-        System.out.println(kindSelected);
+
         for (danhMucBean item : listItem) {
             if (item.getKind().equalsIgnoreCase(kindSelected)) {
                 item.getJbtn().setOpaque(true);
