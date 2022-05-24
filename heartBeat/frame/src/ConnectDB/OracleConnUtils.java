@@ -17,7 +17,7 @@ public class OracleConnUtils {
      String hostName = "localhost";
      String sid = "orcl";
      String userName = "heartbeat";
-     String password = "Oradoc_db1";
+     String password = "@Nhat240322";
 
      return getOracleConnection(hostName, sid, userName, password);
  }
