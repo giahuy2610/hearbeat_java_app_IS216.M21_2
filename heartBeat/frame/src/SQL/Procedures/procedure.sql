@@ -85,10 +85,32 @@ P_INSERT_POST(1,'Cho kẹo','Kẹo nhà làm',1,1);
 END;
 */
 -- procedure xóa mềm một tài khoản(có thể khôi phục lại thao tác xóa)
-
 CREATE OR REPLACE PROCEDURE p_delete_account (
     userid_in tb_user.userid%TYPE
 ) AS
+    --cursor lấy ra bài viết chưa hoàn thành mà người dùng này đăng ký
+
+    CURSOR get_post_scheduled IS
+    SELECT
+        *
+    FROM
+        tb_post
+    WHERE
+            partnerid = userid_in
+        AND statusid = 2 and isdeleted = 0;
+
+    --cursor lấy ra bài viết chưa hoàn thành của người này và đã có lịch hẹn
+
+    CURSOR get_post IS
+    SELECT
+        *
+    FROM
+        tb_post
+    WHERE
+            ownerid = userid_in
+        AND statusid = 2 and isdeleted = 0;
+
+    temp_post tb_post%rowtype;
 BEGIN
     UPDATE tb_user
     SET
@@ -96,13 +118,56 @@ BEGIN
     WHERE
         tb_user.userid = userid_in;
 
+        OPEN get_post_scheduled;
+        LOOP
+            FETCH get_post_scheduled INTO temp_post;
+            EXIT WHEN get_post_scheduled%notfound;
+            --hủy lịch hẹn của người này trên mọi bài viết(chưa hoàn thành)
+            UPDATE tb_post
+            SET
+                statusid = 1
+            WHERE
+                postid = temp_post.postid and isdeleted = 0;
+            --gửi một thông báo đến các chủ bài viết
 
-    --gửi một thông báo đến các bài viết đang có người này đặt hẹn(chưa hoàn thành)
-    --hủy lịch hẹn của người này trên mọi bài viết(chưa hoàn thành)
-    --gửi một thông báo đến các người dùng đang đặt hẹn với các bài viết mà người này đã đăng(chưa hoàn thành)
-    --vậy trường hợp gì xảy ra nếu một bài viết đã hoàn thành, có thằng này đặt hẹn?? xóa bài viết đó luôn hay set null?
+            INSERT INTO tb_notification (
+                userid,
+                content
+            ) VALUES (
+                temp_post.ownerid,
+                'Bài viết '
+                || temp_post.title
+                || 'đã bị hủy lịch hẹn.'
+            );
 
-    COMMIT;
+        END LOOP;
+    CLOSE get_post_scheduled;
+        
+    --xóa hết các bài đăng của người dùng này
+    UPDATE tb_post
+    SET
+        isdeleted = 2 , partnerid = null 
+        --0: khả dụng, 1:bị xóa bởi người dùng, 2: bị xóa bởi hệ thống
+        --gán lại partnerid = null để xóa hết người dùng đã đặt hẹn, phòng trường hợp có khôi phục lại bài viết thì không bị lưu lại thông tin của người đặt hẹn cũ
+    WHERE
+        tb_post.ownerid = userid_in and isdeleted = 0;
+        
+    --gửi một thông báo đến các người dùng đang đặt hẹn với các bài viết mà người này đã đăng(chưa hoàn thành) 
+    OPEN get_post;
+        LOOP
+            FETCH get_post INTO temp_post;
+                EXIT WHEN get_post%notfound;
+                INSERT INTO tb_notification (
+                    userid,
+                    content
+                ) VALUES (
+                    temp_post.ownerid,
+                    'Lịch hẹn của bạn ở bài viết '
+                    || temp_post.title
+                    || ' bị hủy do bài viết đã xóa.'
+                );
+        END LOOP;
+    CLOSE get_post;
 END;
 
 -- procedure xóa mềm một bài viết(có thể khôi phục lại thao tác xóa)
@@ -110,6 +175,7 @@ END;
 CREATE OR REPLACE PROCEDURE p_delete_post (
     postid_in tb_post.postid%TYPE
 ) AS
+    temp_post tb_post%rowtype;
 BEGIN
     UPDATE tb_post
     SET
@@ -117,7 +183,30 @@ BEGIN
     WHERE
         tb_post.postid = postid_in;
 
+    SELECT * into temp_post from tb_post where postid = postid_in;
 
+    INSERT INTO tb_notification (
+        userid,
+        content
+    ) VALUES (
+        temp_post.ownerid,
+        'Bài viết '
+        || temp_post.title
+        || ' đã được xóa thành công.'
+    );
+
+    IF (temp_post.statusid = 2  AND temp_post.partnerid IS NOT NULL) THEN
+        INSERT INTO tb_notification (
+            userid,
+            content
+        ) VALUES (
+            temp_post.partnerid,
+            'Bài viết '
+            || temp_post.title
+            || ' đã bị xóa, lịch hẹn của bạn cũng sẽ bị hủy.'
+        );
+
+    END IF;
 
     COMMIT;
 END;
@@ -133,6 +222,15 @@ BEGIN
         isdeleted = 0
     WHERE
         tb_user.userid = userid_in;
+
+    UPDATE tb_post
+    SET
+        isdeleted = 0 , partnerid = null 
+        --0: khả dụng, 1:bị xóa bởi người dùng, 2: bị xóa bởi hệ thống
+        --gán lại partnerid = null để xóa hết người dùng đã đặt hẹn, phòng trường hợp có khôi phục lại bài viết thì không bị lưu lại thông tin của người đặt hẹn cũ
+    WHERE
+        tb_post.ownerid = userid_in and isdeleted = 2;
+
 
     COMMIT;
 END;
@@ -417,4 +515,28 @@ BEGIN
     dbms_output.put_line(USER_ROW.FIRSTNAME || ' ' || USER_ROW.LASTNAME || ' ' || USER_ROW.SCORE || ' điểm');
     END LOOP;
     CLOSE GET_TOP_USER;
+END;
+
+--procedure lấy ra thông tin 1 bài viết, procedure khá cùi nên chỉ dùng để mô phỏng giao tác đồng thời
+CREATE OR REPLACE PROCEDURE p_post_show (POSTID_IN TB_POST.POSTID%TYPE)
+AS
+    GET_POST TB_POST%ROWTYPE;
+    OWNER_NAME TB_USER.FIRSTNAME%TYPE;
+    PURPOSE_NAME TB_PURPOSE.PURPOSENAME%TYPE;
+    CATEGORY_NAME TB_CATEGORY.CATEGORYNAME%TYPE;
+    STATUS_NAME TB_POSTSTATUS.STATUSNAME%TYPE;
+BEGIN
+SELECT * INTO GET_POST FROM TB_POST WHERE POSTID = POSTID_IN;
+SELECT FIRSTNAME || LASTNAME INTO OWNER_NAME FROM TB_USER WHERE USERID = GET_POST.OWNERID;
+SELECT PURPOSENAME INTO PURPOSE_NAME FROM TB_PURPOSE WHERE PURPOSEID = GET_POST.PURPOSEID;
+SELECT CATEGORYNAME INTO CATEGORY_NAME FROM TB_CATEGORY WHERE CATEGORYID = GET_POST.CATEGORYID;
+SELECT STATUSNAME INTO STATUS_NAME FROM TB_POSTSTATUS WHERE STATUSID = GET_POST.STATUSID;
+
+DBMS_OUTPUT.PUT_LINE('Bài viết: ' || GET_POST.TITLE);
+DBMS_OUTPUT.PUT_LINE('Ngày đăng: ' || GET_POST.CREATEDON);
+DBMS_OUTPUT.PUT_LINE('Đăng bởi: ' || OWNER_NAME);
+DBMS_OUTPUT.PUT_LINE('Phân loại: ' || PURPOSE_NAME);
+DBMS_OUTPUT.PUT_LINE('Danh mục: ' || CATEGORY_NAME);
+DBMS_OUTPUT.PUT_LINE('Nội dung: ' || GET_POST.CONTENT);
+DBMS_OUTPUT.PUT_LINE('Tình trạng: ' || STATUS_NAME);
 END;

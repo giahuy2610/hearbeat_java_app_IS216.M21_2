@@ -154,12 +154,12 @@ public class quenMatKhau extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(60, 60, 60)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(40, 40, 40))
             .addGroup(panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panel_nhap_maLayout.createSequentialGroup()
-                    .addGap(0, 32, Short.MAX_VALUE)
+                    .addGap(0, 29, Short.MAX_VALUE)
                     .addGroup(panel_nhap_maLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(panel_nhap_maLayout.createSequentialGroup()
                             .addGap(3, 3, 3)
@@ -171,7 +171,7 @@ public class quenMatKhau extends javax.swing.JFrame {
                             .addGap(3, 3, 3)
                             .addComponent(jLabel3))
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 132, Short.MAX_VALUE)))
+                    .addGap(0, 128, Short.MAX_VALUE)))
         );
 
         jLayeredPane1.add(panel_nhap_ma, "card2");

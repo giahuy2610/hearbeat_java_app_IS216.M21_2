@@ -418,7 +418,7 @@ public class dangKy extends javax.swing.JFrame {
 
                 System.out.println("lỗi khi truy vấn sql đăng ký " + e.getMessage().toString());
                 if (e.getMessage().equals("ORA-00001: unique constraint (HEARTBEAT.SYS_C008436) violated\n" + "")) {
-                    JOptionPane.showMessageDialog(null, "Số điện thoại đã được sử dụng", "", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Số điện thoại hoặc email đã được sử dụng", "", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }

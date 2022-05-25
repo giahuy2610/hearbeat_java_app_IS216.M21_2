@@ -291,7 +291,6 @@ public class trangCaNhan_BaiViet extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resource/avatarTest.png"))); // NOI18N
         jLabel2.setText("Ảnh đại diện");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 

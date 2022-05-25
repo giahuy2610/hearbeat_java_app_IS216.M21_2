@@ -19,8 +19,8 @@ import javax.swing.JLabel;
  */
 public class chuyenManHinhController {
 
-    private JPanel root;
-    private String kindSelected = "";
+    private static JPanel root;
+    private static String kindSelected = "";
 
     private static List<danhMucBean> listItem = null;
 
@@ -29,22 +29,22 @@ public class chuyenManHinhController {
     }
 
     public void setView(JButton jlbItem) {
-        kindSelected = "trangChu";
-        jlbItem.setOpaque(true);
+        kindSelected = "TrangChu";
 
+        
+        
         root.removeAll();
         root.setLayout(new BorderLayout());
         root.add(new trangChuJPanel());
         root.validate();
         root.repaint();
-
+        setChangeBackground("TrangChu");
     }
 
     public void setEvent(List<danhMucBean> listItem) {
         this.listItem = listItem;
         for (danhMucBean item : listItem) {
             item.getJbtn().addMouseListener(new btnEvent(item.getKind(), item.getJbtn()));
-
         }
     }
 
@@ -62,8 +62,8 @@ public class chuyenManHinhController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-
-            switch (kind) {
+            System.out.println(kindSelected);
+            switch (kindSelected) {
                 case "TrangChu":
                     node = new trangChuJPanel();
                     break;
@@ -101,28 +101,59 @@ public class chuyenManHinhController {
         @Override
         public void mousePressed(MouseEvent e) {
 
+                switch (kind) {
+                case "TrangChu":
+                    node = new trangChuJPanel();
+                    break;
+                case "ThemBaiViet":
+                    node = new themBaiVietJPanel();
+                    break;
+                case "ThongBao":
+                    node = new thongBaoJPanel();
+                    break;
+                case "TrangCaNhan":
+                    node = new trangCaNhanJPanel();
+                    break;
+                case "DanhChoAdmin":
+                    node = new quanLiNguoiDungJPanel();
+                    break;
+                case "DanhMuc":
+                    node = new danhMucJPanel();
+                    break;
+                default:
+                    break;
+            }
+
+            root.removeAll();
+            root.setLayout(new BorderLayout());
+            root.add(node);
+            root.validate();
+            root.repaint();
+            setChangeBackground(kind);
+            
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
-
+  
         }
 
         @Override
         public void mouseEntered(MouseEvent e) {
-
+            
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-
+            
         }
 
     }
 
     private void setChangeBackground(String kind) {
+        kindSelected = kind;
         for (danhMucBean item : listItem) {
-            if (item.getKind().equalsIgnoreCase(kind)) {
+            if (item.getKind().equalsIgnoreCase(kindSelected)) {
                 item.getJbtn().setOpaque(true);
             }
             else {

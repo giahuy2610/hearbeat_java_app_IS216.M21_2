@@ -23,7 +23,11 @@ public class mainFrame extends javax.swing.JFrame {
         setTitle("HeartBeat - Trang chủ");
 
         chuyenManHinhController controller = new chuyenManHinhController(jpnView);
+
 //        controller.setView(jbtnTrangChu);
+
+        
+
 
         List<danhMucBean> listItem = new ArrayList<>();
         listItem.add(new danhMucBean("TrangChu", jbtnTrangChu));
@@ -35,7 +39,7 @@ public class mainFrame extends javax.swing.JFrame {
          listItem.add(new danhMucBean("XepHangNhanAi", jbtnXepHangNhanAi));
           
         controller.setEvent(listItem);
-
+        controller.setView(jbtnTrangChu);
     }
 
     /**
@@ -99,7 +103,6 @@ public class mainFrame extends javax.swing.JFrame {
         jbtnTrangChu.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
         jbtnTrangChu.setContentAreaFilled(false);
         jbtnTrangChu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jbtnTrangChu.setOpaque(true);
         jbtnTrangChu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnTrangChuActionPerformed(evt);
