@@ -397,7 +397,7 @@ public class dangNhap extends javax.swing.JFrame {
             if(Password.equals(inputPassword)){
                 this.dispose();
                 new mainFrame().setVisible(true);
-                //user.setUserid(userId);
+                user.setUserid(userId);
                 
             }
             else{

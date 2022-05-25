@@ -66,6 +66,8 @@ public class mainFrame extends javax.swing.JFrame {
 
         jpnRoot.setPreferredSize(new java.awt.Dimension(1200, 600));
 
+        jpnMenu.setkEndColor(new java.awt.Color(255, 204, 255));
+        jpnMenu.setkStartColor(new java.awt.Color(255, 204, 204));
         jpnMenu.setPreferredSize(new java.awt.Dimension(200, 600));
 
         jButton6.setBackground(new java.awt.Color(238, 190, 190));
@@ -82,9 +84,9 @@ public class mainFrame extends javax.swing.JFrame {
 
         jbtnDanhChoAdmin.setBackground(new java.awt.Color(255, 204, 204));
         jbtnDanhChoAdmin.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jbtnDanhChoAdmin.setForeground(new java.awt.Color(0, 255, 255));
+        jbtnDanhChoAdmin.setForeground(new java.awt.Color(51, 51, 51));
         jbtnDanhChoAdmin.setText("Dành cho admin");
-        jbtnDanhChoAdmin.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
+        jbtnDanhChoAdmin.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jbtnDanhChoAdmin.setContentAreaFilled(false);
         jbtnDanhChoAdmin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jbtnDanhChoAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -95,9 +97,9 @@ public class mainFrame extends javax.swing.JFrame {
 
         jbtnTrangChu.setBackground(new java.awt.Color(255, 204, 204));
         jbtnTrangChu.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jbtnTrangChu.setForeground(new java.awt.Color(0, 255, 255));
+        jbtnTrangChu.setForeground(new java.awt.Color(51, 51, 51));
         jbtnTrangChu.setText(" Trang chủ");
-        jbtnTrangChu.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
+        jbtnTrangChu.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jbtnTrangChu.setContentAreaFilled(false);
         jbtnTrangChu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jbtnTrangChu.addActionListener(new java.awt.event.ActionListener() {
@@ -108,9 +110,9 @@ public class mainFrame extends javax.swing.JFrame {
 
         jbtnThemBaiViet.setBackground(new java.awt.Color(255, 204, 204));
         jbtnThemBaiViet.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jbtnThemBaiViet.setForeground(new java.awt.Color(0, 255, 255));
+        jbtnThemBaiViet.setForeground(new java.awt.Color(51, 51, 51));
         jbtnThemBaiViet.setText(" Thêm bài viết");
-        jbtnThemBaiViet.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
+        jbtnThemBaiViet.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jbtnThemBaiViet.setContentAreaFilled(false);
         jbtnThemBaiViet.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jbtnThemBaiViet.addActionListener(new java.awt.event.ActionListener() {
@@ -121,9 +123,9 @@ public class mainFrame extends javax.swing.JFrame {
 
         jbtnThongBao.setBackground(new java.awt.Color(255, 204, 204));
         jbtnThongBao.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jbtnThongBao.setForeground(new java.awt.Color(0, 255, 255));
+        jbtnThongBao.setForeground(new java.awt.Color(51, 51, 51));
         jbtnThongBao.setText("Thông báo");
-        jbtnThongBao.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
+        jbtnThongBao.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jbtnThongBao.setContentAreaFilled(false);
         jbtnThongBao.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jbtnThongBao.addActionListener(new java.awt.event.ActionListener() {
@@ -134,9 +136,9 @@ public class mainFrame extends javax.swing.JFrame {
 
         jbtnDanhMuc.setBackground(new java.awt.Color(255, 204, 204));
         jbtnDanhMuc.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jbtnDanhMuc.setForeground(new java.awt.Color(0, 255, 255));
+        jbtnDanhMuc.setForeground(new java.awt.Color(51, 51, 51));
         jbtnDanhMuc.setText("Danh mục");
-        jbtnDanhMuc.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
+        jbtnDanhMuc.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jbtnDanhMuc.setContentAreaFilled(false);
         jbtnDanhMuc.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jbtnDanhMuc.addActionListener(new java.awt.event.ActionListener() {
@@ -147,9 +149,9 @@ public class mainFrame extends javax.swing.JFrame {
 
         jButton12.setBackground(new java.awt.Color(255, 204, 204));
         jButton12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(0, 255, 255));
+        jButton12.setForeground(new java.awt.Color(51, 51, 51));
         jButton12.setText(" Đăng xuất");
-        jButton12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
+        jButton12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jButton12.setContentAreaFilled(false);
         jButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -165,9 +167,9 @@ public class mainFrame extends javax.swing.JFrame {
 
         jbtnTrangCaNhan.setBackground(new java.awt.Color(255, 204, 204));
         jbtnTrangCaNhan.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jbtnTrangCaNhan.setForeground(new java.awt.Color(0, 255, 255));
+        jbtnTrangCaNhan.setForeground(new java.awt.Color(51, 51, 51));
         jbtnTrangCaNhan.setText("Trang cá nhân");
-        jbtnTrangCaNhan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
+        jbtnTrangCaNhan.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
         jbtnTrangCaNhan.setContentAreaFilled(false);
         jbtnTrangCaNhan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jbtnTrangCaNhan.addActionListener(new java.awt.event.ActionListener() {
@@ -225,7 +227,7 @@ public class mainFrame extends javax.swing.JFrame {
             .addGroup(jpnRootLayout.createSequentialGroup()
                 .addComponent(jpnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE))
+                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpnRootLayout.setVerticalGroup(
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

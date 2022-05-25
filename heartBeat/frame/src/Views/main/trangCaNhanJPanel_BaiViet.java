@@ -30,7 +30,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         return query;
     }
 
-    @Override
+ /*   @Override
     protected void preparePost() {
         try {
             conn = OracleConnUtils.getOracleConnection();
@@ -63,7 +63,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         }
 
     }
-
+*/
     public trangCaNhanJPanel_BaiViet() {
         initComponents();
         preparePost();
@@ -207,7 +207,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             .addGroup(jPanelProfileLayout.createSequentialGroup()
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
