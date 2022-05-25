@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +23,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
 
     private static ArrayList<String> postId = new ArrayList<String>();
     private static ArrayList<String> postTitle = new ArrayList<String>();
-
     private static ArrayList<String> postCategory = new ArrayList<String>();
     private static ArrayList<String> postContent = new ArrayList<String>();
 
@@ -37,28 +35,194 @@ public class trangChuJPanel extends javax.swing.JPanel {
     private static ArrayList<String> districtId = new ArrayList<String>();
     private static ArrayList<String> districtName = new ArrayList<String>();
 
+    private static ArrayList<String> purposeId = new ArrayList<String>();
+    private static ArrayList<String> purposeName = new ArrayList<String>();
+
+    private static ArrayList<String> sortId = new ArrayList<String>();
+    private static ArrayList<String> sortName = new ArrayList<String>();
+
     private Connection conn = null;
 
-    private static JPanel container;
+    private static JPanel container = new JPanel(new GridLayout(0, 1)); // 1 column variable;
+
+    private static String mainQuerry = "";
 
     /**
      * Creates new form trangChuJPanel
      */
     private void prepareCategoryFilter() {
+        try {
+            conn = OracleConnUtils.getOracleConnection();
+            String query = "select * from tb_category order by categoryid";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            categoryId.add("0");
+            categoryName.add("Tất cả");
+            categoryFilter.addItem("Tất cả");
+
+            while (rs.next()) {
+                categoryId.add(rs.getString("categoryid"));
+                categoryName.add(rs.getString("categoryname"));
+                categoryFilter.addItem(rs.getString("categoryname"));
+            }
+
+            conn.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
-    public trangChuJPanel() {
-        initComponents();
-
-        container = new JPanel(new GridLayout(0, 1)); // 1 column variable
-
+    private void prepareCityFilter() {
         try {
             conn = OracleConnUtils.getOracleConnection();
-            String query = "select * from  tb_post where isdeleted = 0 and statusid = 1 order by createdon";
+            String query = "select * from tb_category order by categoryid";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            cityId.removeAll(cityId);
+            cityName.removeAll(cityName);
+
+            //combobox cityfilter
+            //thêm giá trị cho combobox city
+            cityId.add("0");
+            cityName.add("Tất cả");
+            cityFilter.addItem("Tất cả");
+
+            query = "select * from tb_city";
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                cityId.add(rs.getString("cityid"));
+                cityName.add(rs.getString("cityname"));
+                cityFilter.addItem(rs.getString("cityname"));
+            }
+            conn.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void prepareDistrictFilter() {
+        districtId.removeAll(districtId);
+        districtName.removeAll(districtName);
+        districtFilter.removeAllItems();
+
+        districtFilter.addItem("Tất cả");
+        districtId.add("0");
+        districtName.add("Tất cả");
+
+        System.out.println(cityName.get(cityFilter.getSelectedIndex()));
+        if (cityFilter.getSelectedIndex() == 0) {
+
+        } else {
+            try {
+                conn = OracleConnUtils.getOracleConnection();
+            } catch (SQLException ex) {
+                Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String query = "";
+            String cityid_temp = cityId.get(cityFilter.getSelectedIndex());
+            synchronized (query) {
+                query = "select * from tb_district where cityid = " + cityid_temp;
+            }
+            try ( Statement stmt = conn.createStatement()) {
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    districtId.add(rs.getString("districtid"));
+                    districtName.add(rs.getString("districtname"));
+                    districtFilter.addItem(rs.getString("districtname"));
+                }
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
+            }
+
+        }
+    }
+
+    private void preparePurposeFilter() {
+        try {
+            conn = OracleConnUtils.getOracleConnection();
+            String query = "select * from tb_purpose order by purposeid";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            purposeId.removeAll(purposeId);
+            purposeName.removeAll(purposeName);
+            purposeFilter.removeAllItems();
+
+            purposeId.add("0");
+            purposeName.add("Tất cả");
+            purposeFilter.addItem("Tất cả");
+
+            while (rs.next()) {
+                purposeId.add(rs.getString("purposeid"));
+                purposeName.add(rs.getString("purposename"));
+                purposeFilter.addItem(rs.getString("purposename"));
+            }
+
+            conn.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void prepareSortFilter() {
+        sortId.removeAll(sortId);
+        sortName.removeAll(sortName);
+        categoryFilter1.removeAllItems();
+
+        sortId.add("0");
+        sortName.add("Gần đây");
+        categoryFilter1.addItem("Gần đây");
+
+        sortId.add("1");
+        sortName.add("Lâu nhất");
+        categoryFilter1.addItem("Lâu nhất");
+    }
+
+    private String initQuery() {
+        String query = "select * from  tb_post where isdeleted = 0 and statusid = 1";
+
+        if (categoryFilter.getSelectedIndex() > 0) {
+            query += " and categoryid = " + categoryId.get(categoryFilter.getSelectedIndex());
+        }
+
+        if (purposeFilter.getSelectedIndex() > 0) {
+            query += " and purposeid = " + purposeId.get(purposeFilter.getSelectedIndex());
+        }
+
+        if (cityFilter.getSelectedIndex() > 0) {
+            query += " and ownerid in (select userid from tb_address where cityid = " + cityId.get(cityFilter.getSelectedIndex());
+
+            if (districtFilter.getSelectedIndex() > 0) {
+                query += " and districtid = " + districtId.get(districtFilter.getSelectedIndex());
+            }
+
+            query += ")";
+        }
+        
+        if (categoryFilter1.getSelectedIndex() > 0) {
+            query += " order by createdon desc";
+        }
+        else {
+            query += " order by createdon";
+        }
+ 
+        System.out.println(query);
+        return query;
+    }
+
+    private void preparePost() {
+        try {
+            conn = OracleConnUtils.getOracleConnection();
+            String query = initQuery();
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             container.removeAll();
+
             postId.removeAll(postId);
             postTitle.removeAll(postId);
             postCategory.removeAll(postCategory);
@@ -69,35 +233,29 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 postCategory.add(rs.getString("categoryid"));
                 postContent.add(rs.getString("content"));
             }
-            query = "select * from tb_category order by categoryid";
-            rs = stmt.executeQuery(query);
-
-            categoryFilter.addItem("Tất cả");
-            while (rs.next()) {
-                categoryId.add(rs.getString("categoryid"));
-                categoryName.add(rs.getString("categoryname"));
-                categoryFilter.addItem(rs.getString("categoryname"));
-            }
-
-            query = "select * from tb_city";
-            rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                cityId.add(rs.getString("cityid"));
-                cityName.add(rs.getString("cityname"));
-                cityFilter.addItem(rs.getString("cityname"));
-            }
-
             conn.close();
+
+            for (int i = 0; i < postId.size(); i++) {
+                baiViet x = new baiViet(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i));
+                container.add(x);
+            }
+            jScrollPane1.setViewportView(container);
+
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (int i = 0; i < postId.size(); i++) {
-            baiViet x = new baiViet(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i));
-            container.add(x);
-        }
+    }
 
-        jScrollPane1.setViewportView(container);
+    public trangChuJPanel() {
+        initComponents();
+
+        this.prepareCityFilter();
+        this.prepareDistrictFilter();
+        this.preparePurposeFilter();
+        this.prepareCategoryFilter();
+        this.prepareSortFilter();
+        this.preparePost();
 
     }
 
@@ -162,6 +320,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
         jLabel24 = new javax.swing.JLabel();
         districtFilter = new javax.swing.JComboBox<>();
         jLabel25 = new javax.swing.JLabel();
+        categoryFilter1 = new javax.swing.JComboBox<>();
+        jLabel26 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
@@ -629,10 +789,10 @@ public class trangChuJPanel extends javax.swing.JPanel {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/876054.png"))); // NOI18N
 
-        jPanel4.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel4.setBackground(new java.awt.Color(255, 204, 204));
         jPanel4.setPreferredSize(new java.awt.Dimension(807, 50));
 
-        purposeFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trao tặng", "Xin nhận" }));
+        purposeFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Trao tặng", "Xin nhận" }));
         purposeFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 purposeFilterActionPerformed(evt);
@@ -665,47 +825,55 @@ public class trangChuJPanel extends javax.swing.JPanel {
 
         jLabel25.setText("Quận/Huyện");
 
+        categoryFilter1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryFilter1ActionPerformed(evt);
+            }
+        });
+
+        jLabel26.setText("Xếp theo");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(0, 43, Short.MAX_VALUE)
                 .addComponent(jLabel24)
-                .addGap(29, 29, 29)
-                .addComponent(cityFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cityFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel25)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(districtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jLabel8)
-                .addGap(29, 29, 29)
-                .addComponent(purposeFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel9)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(purposeFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(categoryFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(categoryFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(categoryFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(purposeFilter)
-                            .addComponent(jLabel8)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(districtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel25)
-                            .addComponent(cityFilter)
-                            .addComponent(jLabel24))))
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(districtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25)
+                    .addComponent(cityFilter)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel8)
+                    .addComponent(purposeFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(categoryFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26)
+                    .addComponent(categoryFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -719,9 +887,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(599, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -730,9 +896,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -775,83 +940,30 @@ public class trangChuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void purposeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purposeFilterActionPerformed
-        // TODO add your handling code here:
+        this.preparePost();
     }//GEN-LAST:event_purposeFilterActionPerformed
 
     private void categoryFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryFilterActionPerformed
-
-        try {
-            Connection con = OracleConnUtils.getOracleConnection();
-            if (categoryFilter.getSelectedIndex() != 0) {
-                String cate = String.valueOf(categoryFilter.getSelectedIndex());
-                String query = "select * from  tb_post where isdeleted = 0 and statusid = 1 and categoryid = " + cate + " order by createdon";
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-                container.removeAll();
-                postId.removeAll(postId);
-                postTitle.removeAll(postId);
-                postCategory.removeAll(postCategory);
-                postContent.removeAll(postContent);
-                while (rs.next()) {
-                    postId.add(rs.getString("postid"));
-                    postTitle.add(rs.getString("title"));
-                    postCategory.add(rs.getString("categoryid"));
-                    postContent.add(rs.getString("content"));
-                }
-
-                for (int i = 0; i < postId.size(); i++) {
-                    baiViet x = new baiViet(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i));
-                    container.add(x);
-                }
-                jScrollPane1.setViewportView(container);
-            }
-
-        } catch (SQLException | ClassNotFoundException ex) {
-        }
-
+        //System.out.println("city " + cityFilter.getSelectedIndex() + " district " + districtFilter.getSelectedIndex() + " category " + categoryFilter.getSelectedIndex());
+        this.preparePost();
     }//GEN-LAST:event_categoryFilterActionPerformed
 
     private void cityFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityFilterActionPerformed
-        districtId.removeAll(districtId);
-        districtName.removeAll(districtName);
-        districtFilter.removeAllItems();
-
-        Connection conn = null;
-
-        try {
-            conn = OracleConnUtils.getOracleConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String query = "";
-        String cityid_temp = cityId.get(cityFilter.getSelectedIndex());
-        synchronized (query) {
-            query = "select * from tb_district where cityid = " + cityid_temp;
-        }
-        try ( Statement stmt = conn.createStatement()) {
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                districtId.add(rs.getString("districtid"));
-                districtName.add(rs.getString("districtname"));
-                districtFilter.addItem(rs.getString("districtname"));
-            }
-            conn.close();
-        } catch (SQLException e) {
-            System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
-        }
-
-
+        this.prepareDistrictFilter();
     }//GEN-LAST:event_cityFilterActionPerformed
 
     private void districtFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtFilterActionPerformed
-        // TODO add your handling code here:
+        this.preparePost();
     }//GEN-LAST:event_districtFilterActionPerformed
+
+    private void categoryFilter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryFilter1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_categoryFilter1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> categoryFilter;
+    private javax.swing.JComboBox<String> categoryFilter1;
     private javax.swing.JComboBox<String> cityFilter;
     private javax.swing.JComboBox<String> districtFilter;
     private javax.swing.JButton jButton1;
@@ -873,6 +985,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
