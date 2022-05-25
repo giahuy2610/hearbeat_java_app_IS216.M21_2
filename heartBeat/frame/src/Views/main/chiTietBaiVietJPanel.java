@@ -4,17 +4,55 @@
  */
 package Views.main;
 
+import ConnectDB.OracleConnUtils;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Admin
  */
 public class chiTietBaiVietJPanel extends javax.swing.JPanel {
 
+    private static String postId;
+
     /**
      * Creates new form chiTietBaiVietJPanel
      */
     public chiTietBaiVietJPanel() {
         initComponents();
+        postId = "";
+    }
+
+    public chiTietBaiVietJPanel(String postId) {
+        initComponents();
+        postId = postId;
+        Connection conn = null;
+        try {
+            conn = OracleConnUtils.getOracleConnection();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String query = "";
+        synchronized (query) {
+            query = "select * from tb_post where postid = " + postId;
+        }
+        try ( Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                jLabel9.setText(rs.getString("title"));
+            }
+        } catch (SQLException e) {
+            System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
+        }
+
     }
 
     /**

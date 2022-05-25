@@ -33,7 +33,7 @@ public class mainFrame extends javax.swing.JFrame {
         listItem.add(new danhMucBean("TrangCaNhan", jbtnTrangCaNhan));
         listItem.add(new danhMucBean("DanhChoAdmin", jbtnDanhChoAdmin));
         controller.setEvent(listItem);
-        controller.setView(jbtnTrangChu);
+        chuyenManHinhController.setView(new trangChuJPanel());
     }
 
     public chuyenManHinhController getController() {
@@ -281,7 +281,6 @@ public class mainFrame extends javax.swing.JFrame {
             new dangNhap().setVisible(true);
         } else if (output == JOptionPane.NO_OPTION) {
             System.out.println("No selected.");
-            controller.changeView(new chiTietBaiVietJPanel());
         }
     }//GEN-LAST:event_jButton12MousePressed
 

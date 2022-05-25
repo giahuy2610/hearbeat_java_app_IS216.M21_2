@@ -5,10 +5,7 @@
 package Views.main;
 
 import ConnectDB.OracleConnUtils;
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,57 +20,242 @@ import javax.swing.JPanel;
  * @author giahu
  */
 public class trangChuJPanel extends javax.swing.JPanel {
+
     private static ArrayList<String> postId = new ArrayList<String>();
     private static ArrayList<String> postTitle = new ArrayList<String>();
-
     private static ArrayList<String> postCategory = new ArrayList<String>();
     private static ArrayList<String> postContent = new ArrayList<String>();
+
+    private static ArrayList<String> categoryId = new ArrayList<String>();
+    private static ArrayList<String> categoryName = new ArrayList<String>();
+
+    private static ArrayList<String> cityId = new ArrayList<String>();
+    private static ArrayList<String> cityName = new ArrayList<String>();
+
+    private static ArrayList<String> districtId = new ArrayList<String>();
+    private static ArrayList<String> districtName = new ArrayList<String>();
+
+    private static ArrayList<String> purposeId = new ArrayList<String>();
+    private static ArrayList<String> purposeName = new ArrayList<String>();
+
+    private static ArrayList<String> sortId = new ArrayList<String>();
+    private static ArrayList<String> sortName = new ArrayList<String>();
+
+    private Connection conn = null;
+
+    private static JPanel container = new JPanel(new GridLayout(0, 1)); // 1 column variable;
+
+    private static String mainQuerry = "";
+
     /**
      * Creates new form trangChuJPanel
      */
-    public trangChuJPanel() {
-        initComponents();
-        
-        JPanel container = new JPanel(new GridLayout(0, 1)); // 1 column variable
-
-        // number of rows\
-        Connection conn = null;
+    private void prepareCategoryFilter() {
         try {
             conn = OracleConnUtils.getOracleConnection();
-        } catch (SQLException ex) {
-            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String query = "";
-        synchronized (query) {
-            query = "select * from  tb_post where isdeleted = 0";
-        }
-        try ( Statement stmt = conn.createStatement()) {
+            String query = "select * from tb_category order by categoryid";
+            Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
+
+            categoryId.add("0");
+            categoryName.add("Tất cả");
+            categoryFilter.addItem("Tất cả");
+
+            while (rs.next()) {
+                categoryId.add(rs.getString("categoryid"));
+                categoryName.add(rs.getString("categoryname"));
+                categoryFilter.addItem(rs.getString("categoryname"));
+            }
+
+            conn.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void prepareCityFilter() {
+        try {
+            conn = OracleConnUtils.getOracleConnection();
+            String query = "select * from tb_category order by categoryid";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            cityId.removeAll(cityId);
+            cityName.removeAll(cityName);
+
+            //combobox cityfilter
+            //thêm giá trị cho combobox city
+            cityId.add("0");
+            cityName.add("Tất cả");
+            cityFilter.addItem("Tất cả");
+
+            query = "select * from tb_city";
+            rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                cityId.add(rs.getString("cityid"));
+                cityName.add(rs.getString("cityname"));
+                cityFilter.addItem(rs.getString("cityname"));
+            }
+            conn.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void prepareDistrictFilter() {
+        districtId.removeAll(districtId);
+        districtName.removeAll(districtName);
+        districtFilter.removeAllItems();
+
+        districtFilter.addItem("Tất cả");
+        districtId.add("0");
+        districtName.add("Tất cả");
+
+        System.out.println(cityName.get(cityFilter.getSelectedIndex()));
+        if (cityFilter.getSelectedIndex() == 0) {
+
+        } else {
+            try {
+                conn = OracleConnUtils.getOracleConnection();
+            } catch (SQLException ex) {
+                Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String query = "";
+            String cityid_temp = cityId.get(cityFilter.getSelectedIndex());
+            synchronized (query) {
+                query = "select * from tb_district where cityid = " + cityid_temp;
+            }
+            try ( Statement stmt = conn.createStatement()) {
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    districtId.add(rs.getString("districtid"));
+                    districtName.add(rs.getString("districtname"));
+                    districtFilter.addItem(rs.getString("districtname"));
+                }
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
+            }
+
+        }
+    }
+
+    private void preparePurposeFilter() {
+        try {
+            conn = OracleConnUtils.getOracleConnection();
+            String query = "select * from tb_purpose order by purposeid";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            purposeId.removeAll(purposeId);
+            purposeName.removeAll(purposeName);
+            purposeFilter.removeAllItems();
+
+            purposeId.add("0");
+            purposeName.add("Tất cả");
+            purposeFilter.addItem("Tất cả");
+
+            while (rs.next()) {
+                purposeId.add(rs.getString("purposeid"));
+                purposeName.add(rs.getString("purposename"));
+                purposeFilter.addItem(rs.getString("purposename"));
+            }
+
+            conn.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void prepareSortFilter() {
+        sortId.removeAll(sortId);
+        sortName.removeAll(sortName);
+        categoryFilter1.removeAllItems();
+
+        sortId.add("0");
+        sortName.add("Gần đây");
+        categoryFilter1.addItem("Gần đây");
+
+        sortId.add("1");
+        sortName.add("Lâu nhất");
+        categoryFilter1.addItem("Lâu nhất");
+    }
+
+    private String initQuery() {
+        String query = "select * from  tb_post where isdeleted = 0 and statusid = 1";
+
+        if (categoryFilter.getSelectedIndex() > 0) {
+            query += " and categoryid = " + categoryId.get(categoryFilter.getSelectedIndex());
+        }
+
+        if (purposeFilter.getSelectedIndex() > 0) {
+            query += " and purposeid = " + purposeId.get(purposeFilter.getSelectedIndex());
+        }
+
+        if (cityFilter.getSelectedIndex() > 0) {
+            query += " and ownerid in (select userid from tb_address where cityid = " + cityId.get(cityFilter.getSelectedIndex());
+
+            if (districtFilter.getSelectedIndex() > 0) {
+                query += " and districtid = " + districtId.get(districtFilter.getSelectedIndex());
+            }
+
+            query += ")";
+        }
+        
+        if (categoryFilter1.getSelectedIndex() > 0) {
+            query += " order by createdon desc";
+        }
+        else {
+            query += " order by createdon";
+        }
+ 
+        System.out.println(query);
+        return query;
+    }
+
+    private void preparePost() {
+        try {
+            conn = OracleConnUtils.getOracleConnection();
+            String query = initQuery();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            container.removeAll();
+
+            postId.removeAll(postId);
+            postTitle.removeAll(postId);
+            postCategory.removeAll(postCategory);
+            postContent.removeAll(postContent);
             while (rs.next()) {
                 postId.add(rs.getString("postid"));
                 postTitle.add(rs.getString("title"));
                 postCategory.add(rs.getString("categoryid"));
                 postContent.add(rs.getString("content"));
             }
-        } catch (SQLException e) {
-            System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
+            conn.close();
+
+            for (int i = 0; i < postId.size(); i++) {
+                baiViet x = new baiViet(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i));
+                container.add(x);
+            }
+            jScrollPane1.setViewportView(container);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (int i = 0; i < postId.size(); i++) {
-            baiViet x = new baiViet(postId.get(i),postTitle.get(i),postCategory.get(i),postContent.get(i));
-            x.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    System.out.println(x.postID);
-                }
-            });
-            // x.setLocation(0, 45 *i);
-            container.add(x);
-        }
-        
-        jScrollPane1.setViewportView(container);
+    }
+
+    public trangChuJPanel() {
+        initComponents();
+
+        this.prepareCityFilter();
+        this.prepareDistrictFilter();
+        this.preparePurposeFilter();
+        this.prepareCategoryFilter();
+        this.prepareSortFilter();
+        this.preparePost();
 
     }
 
@@ -130,10 +312,16 @@ public class trangChuJPanel extends javax.swing.JPanel {
         jTextField6 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        filter = new javax.swing.JComboBox<>();
+        purposeFilter = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        sortBy = new javax.swing.JComboBox<>();
+        categoryFilter = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
+        cityFilter = new javax.swing.JComboBox<>();
+        jLabel24 = new javax.swing.JLabel();
+        districtFilter = new javax.swing.JComboBox<>();
+        jLabel25 = new javax.swing.JLabel();
+        categoryFilter1 = new javax.swing.JComboBox<>();
+        jLabel26 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
@@ -177,7 +365,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -204,7 +392,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -217,7 +405,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel4)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -228,7 +416,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -236,8 +424,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -256,7 +444,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -283,7 +471,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -296,7 +484,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel10)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel11)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -307,7 +495,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -315,8 +503,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -335,7 +523,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
@@ -362,7 +550,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -375,7 +563,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel14)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel15)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -386,7 +574,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
@@ -394,8 +582,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -414,7 +602,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
@@ -441,7 +629,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -454,7 +642,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel18)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel19)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -465,7 +653,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
@@ -473,8 +661,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -493,7 +681,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel18Layout.setVerticalGroup(
@@ -520,7 +708,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -533,7 +721,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel22)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel23)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
@@ -544,7 +732,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
@@ -552,8 +740,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -601,51 +789,91 @@ public class trangChuJPanel extends javax.swing.JPanel {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/876054.png"))); // NOI18N
 
-        jPanel4.setBackground(new java.awt.Color(153, 255, 153));
+        jPanel4.setBackground(new java.awt.Color(255, 204, 204));
         jPanel4.setPreferredSize(new java.awt.Dimension(807, 50));
 
-        filter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Title 1", "Title 2", "Title 3" }));
-        filter.addActionListener(new java.awt.event.ActionListener() {
+        purposeFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Trao tặng", "Xin nhận" }));
+        purposeFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filterActionPerformed(evt);
+                purposeFilterActionPerformed(evt);
             }
         });
 
-        jLabel8.setText("Tiêu đề");
+        jLabel8.setText("Mục đích");
 
-        sortBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thực phẩm", "Đồ y tế", "Giáo dục", "Bữa ăn", "Khác" }));
-        sortBy.addActionListener(new java.awt.event.ActionListener() {
+        categoryFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sortByActionPerformed(evt);
+                categoryFilterActionPerformed(evt);
             }
         });
 
         jLabel9.setText("Danh mục");
+
+        cityFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityFilterActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setText("Tình/Thành phố");
+
+        districtFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                districtFilterActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setText("Quận/Huyện");
+
+        categoryFilter1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryFilter1ActionPerformed(evt);
+            }
+        });
+
+        jLabel26.setText("Xếp theo");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(0, 9, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(29, 29, 29)
-                .addComponent(filter, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel9)
+                .addComponent(jLabel24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cityFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(districtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(sortBy, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(purposeFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(categoryFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(categoryFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sortBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(districtFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25)
+                    .addComponent(cityFilter)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel8)
+                    .addComponent(purposeFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(filter)
-                    .addComponent(jLabel8))
+                    .addComponent(categoryFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26)
+                    .addComponent(categoryFilter1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -654,15 +882,12 @@ public class trangChuJPanel extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(66, 66, 66)
+                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(599, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -671,9 +896,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -715,17 +939,33 @@ public class trangChuJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
-    private void filterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filterActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_filterActionPerformed
+    private void purposeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purposeFilterActionPerformed
+        this.preparePost();
+    }//GEN-LAST:event_purposeFilterActionPerformed
 
-    private void sortByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByActionPerformed
+    private void categoryFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryFilterActionPerformed
+        //System.out.println("city " + cityFilter.getSelectedIndex() + " district " + districtFilter.getSelectedIndex() + " category " + categoryFilter.getSelectedIndex());
+        this.preparePost();
+    }//GEN-LAST:event_categoryFilterActionPerformed
+
+    private void cityFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityFilterActionPerformed
+        this.prepareDistrictFilter();
+    }//GEN-LAST:event_cityFilterActionPerformed
+
+    private void districtFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtFilterActionPerformed
+        this.preparePost();
+    }//GEN-LAST:event_districtFilterActionPerformed
+
+    private void categoryFilter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryFilter1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sortByActionPerformed
+    }//GEN-LAST:event_categoryFilter1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> filter;
+    private javax.swing.JComboBox<String> categoryFilter;
+    private javax.swing.JComboBox<String> categoryFilter1;
+    private javax.swing.JComboBox<String> cityFilter;
+    private javax.swing.JComboBox<String> districtFilter;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -743,6 +983,9 @@ public class trangChuJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -772,6 +1015,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField6;
     private keeptoo.KGradientPanel kGradientPanel2;
-    private javax.swing.JComboBox<String> sortBy;
+    private javax.swing.JComboBox<String> purposeFilter;
     // End of variables declaration//GEN-END:variables
 }
