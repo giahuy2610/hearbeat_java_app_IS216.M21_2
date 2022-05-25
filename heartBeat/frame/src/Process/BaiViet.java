@@ -2,13 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ProcessDB;
+package Process;
 
 
 
 import ConnectDB.OracleConnUtils;
-import ConnectDB.TestConnectJDBC;
-import com.sun.jdi.connect.spi.Connection;
+import java.sql.*;
 
 
 public class BaiViet {
@@ -26,15 +25,13 @@ public class BaiViet {
 
         int i = 0;
         // TODO add your handling code here:
-        try (   Connection conn = (Connection) OracleConnUtils.getOracleConnection()) {
+        try  {
 
-//            String query = "INSERT INTO "
-//                    + "DOIBONG(MAD,TENDOI,QUOCGIA)"
-//                    +" VALUES('"
-//                    +maDoi+"','"+tenDoi+"','"+quocGia+"')";
+
+            Connection conn = (Connection) OracleConnUtils.getOracleConnection();
             String query = "INSERT INTO BAIVIET VALUES(?,?,?,?,?)";
-            PreparedStatement ps;
-            ps = conn.PreparedStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
+            
             ps.setString(1, jTextFieldTieuDe);
 
             ps.setString(2, jcomboBoxMucDich);

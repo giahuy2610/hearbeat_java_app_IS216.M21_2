@@ -20,6 +20,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
+import Process.BaiViet;
+
 /**
  *
  * @author Admin
@@ -64,7 +66,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         
         
         synchronized (query) {
-            query = "select * from tb_category";
+            query = "select * from tb_category order by categoryid";
           
         }
          try ( Statement stmt = conn.createStatement()) {
@@ -183,7 +185,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         );
 
         jButtonLuu.setBackground(new java.awt.Color(255, 153, 255));
-        jButtonLuu.setText("Lưu dữ liệu");
+        jButtonLuu.setText("Đăng");
         jButtonLuu.setPreferredSize(new java.awt.Dimension(85, 50));
         jButtonLuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,7 +194,6 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         });
 
         jButtonUpload.setBackground(new java.awt.Color(255, 153, 255));
-        jButtonUpload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/add.png"))); // NOI18N
         jButtonUpload.setText("Upload hình ảnh tại đây");
         jButtonUpload.setPreferredSize(new java.awt.Dimension(185, 50));
         jButtonUpload.addActionListener(new java.awt.event.ActionListener() {
@@ -315,7 +316,11 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
      String tenDanhMuc = (String) comboBoxDanhMuc.getSelectedItem();
      String tenNoiDung = jTextFieldNoiDung.getText();
      String pathFile;
-     pathFile = jButtonUpload.getIcon();
+     //pathFile = jButtonUpload.getIcon();
+     /*BEGIN
+P_INSERT_POST(21,'Cho kẹo ngô','Kẹo nhà làm',1,1);
+END;*/
+     int a = themBaiViet(tenTieuDe, tenMucDich, tenDanhMuc, tenNoiDung, pathFile);
      
     }//GEN-LAST:event_jButtonLuuActionPerformed
 
