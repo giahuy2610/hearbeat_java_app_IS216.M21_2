@@ -34,7 +34,7 @@ public class baiViet extends javax.swing.JPanel {
         jLabel1.setText(title);
         jLabel2.setText(category);
         jLabel3.setText(content);
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+//        setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
     }
 
     /**

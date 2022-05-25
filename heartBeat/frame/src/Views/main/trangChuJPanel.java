@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 /**
@@ -21,39 +22,39 @@ import javax.swing.JPanel;
  */
 public class trangChuJPanel extends javax.swing.JPanel {
 
-    private static ArrayList<String> postId = new ArrayList<String>();
-    private static ArrayList<String> postTitle = new ArrayList<String>();
-    private static ArrayList<String> postCategory = new ArrayList<String>();
-    private static ArrayList<String> postContent = new ArrayList<String>();
+    protected static ArrayList<String> postId = new ArrayList<String>();
+    protected static ArrayList<String> postTitle = new ArrayList<String>();
+    protected static ArrayList<String> postCategory = new ArrayList<String>();
+    protected static ArrayList<String> postContent = new ArrayList<String>();
 
-    private static ArrayList<String> categoryId = new ArrayList<String>();
-    private static ArrayList<String> categoryName = new ArrayList<String>();
+    protected static ArrayList<String> categoryId = new ArrayList<String>();
+    protected static ArrayList<String> categoryName = new ArrayList<String>();
 
-    private static ArrayList<String> cityId = new ArrayList<String>();
-    private static ArrayList<String> cityName = new ArrayList<String>();
+    protected static ArrayList<String> cityId = new ArrayList<String>();
+    protected static ArrayList<String> cityName = new ArrayList<String>();
 
-    private static ArrayList<String> districtId = new ArrayList<String>();
-    private static ArrayList<String> districtName = new ArrayList<String>();
+    protected static ArrayList<String> districtId = new ArrayList<String>();
+    protected static ArrayList<String> districtName = new ArrayList<String>();
 
-    private static ArrayList<String> purposeId = new ArrayList<String>();
-    private static ArrayList<String> purposeName = new ArrayList<String>();
+    protected static ArrayList<String> purposeId = new ArrayList<String>();
+    protected static ArrayList<String> purposeName = new ArrayList<String>();
 
-    private static ArrayList<String> sortId = new ArrayList<String>();
-    private static ArrayList<String> sortName = new ArrayList<String>();
+    protected static ArrayList<String> sortId = new ArrayList<String>();
+    protected static ArrayList<String> sortName = new ArrayList<String>();
 
-    private Connection conn = null;
+    protected Connection conn = null;
 
-    private static JPanel container = new JPanel(new GridLayout(0, 1)); // 1 column variable;
+    protected static JPanel container = new JPanel(new GridLayout(0, 1)); // 1 column variable;
 
-    private static String mainQuerry = "";
+    protected static String query = "";
 
     /**
      * Creates new form trangChuJPanel
      */
-    private void prepareCategoryFilter() {
+    protected void prepareCategoryFilter() {
         try {
+            query = "select * from tb_category order by categoryid";
             conn = OracleConnUtils.getOracleConnection();
-            String query = "select * from tb_category order by categoryid";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
@@ -77,7 +78,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
     private void prepareCityFilter() {
         try {
             conn = OracleConnUtils.getOracleConnection();
-            String query = "select * from tb_category order by categoryid";
+            query = "select * from tb_category order by categoryid";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             cityId.removeAll(cityId);
@@ -111,7 +112,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
         districtId.add("0");
         districtName.add("Tất cả");
 
-        System.out.println(cityName.get(cityFilter.getSelectedIndex()));
         if (cityFilter.getSelectedIndex() == 0) {
 
         } else {
@@ -122,7 +122,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String query = "";
+
             String cityid_temp = cityId.get(cityFilter.getSelectedIndex());
             synchronized (query) {
                 query = "select * from tb_district where cityid = " + cityid_temp;
@@ -142,10 +142,10 @@ public class trangChuJPanel extends javax.swing.JPanel {
         }
     }
 
-    private void preparePurposeFilter() {
+    protected void preparePurposeFilter() {
         try {
             conn = OracleConnUtils.getOracleConnection();
-            String query = "select * from tb_purpose order by purposeid";
+            query = "select * from tb_purpose order by purposeid";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
@@ -169,22 +169,22 @@ public class trangChuJPanel extends javax.swing.JPanel {
         }
     }
 
-    private void prepareSortFilter() {
+    protected void prepareSortFilter(JComboBox cbb) {
         sortId.removeAll(sortId);
         sortName.removeAll(sortName);
-        categoryFilter1.removeAllItems();
+        cbb.removeAllItems();
 
         sortId.add("0");
         sortName.add("Gần đây");
-        categoryFilter1.addItem("Gần đây");
+        cbb.addItem("Gần đây");
 
         sortId.add("1");
         sortName.add("Lâu nhất");
-        categoryFilter1.addItem("Lâu nhất");
+        cbb.addItem("Lâu nhất");
     }
 
-    private String initQuery() {
-        String query = "select * from  tb_post where isdeleted = 0 and statusid = 1";
+    protected String initQuery() {
+        query = "select * from  tb_post where isdeleted = 0 and statusid = 1";
 
         if (categoryFilter.getSelectedIndex() > 0) {
             query += " and categoryid = " + categoryId.get(categoryFilter.getSelectedIndex());
@@ -203,22 +203,22 @@ public class trangChuJPanel extends javax.swing.JPanel {
 
             query += ")";
         }
-        
+
         if (categoryFilter1.getSelectedIndex() > 0) {
             query += " order by createdon desc";
-        }
-        else {
+        } else {
             query += " order by createdon";
         }
- 
+
         System.out.println(query);
         return query;
     }
 
-    private void preparePost() {
+    protected void preparePost() {
         try {
             conn = OracleConnUtils.getOracleConnection();
-            String query = initQuery();
+            query = initQuery();
+            System.out.println(query);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             container.removeAll();
@@ -254,7 +254,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
         this.prepareDistrictFilter();
         this.preparePurposeFilter();
         this.prepareCategoryFilter();
-        this.prepareSortFilter();
+        this.prepareSortFilter(categoryFilter1);
         this.preparePost();
 
     }
@@ -345,6 +345,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
         );
 
         jPanel1.setBackground(new java.awt.Color(200, 200, 200));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1000, 546));
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -886,8 +887,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(599, Short.MAX_VALUE))
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -905,7 +906,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 999, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -923,7 +924,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

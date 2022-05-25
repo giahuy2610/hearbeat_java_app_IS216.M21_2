@@ -9,7 +9,7 @@ package Views.profile;
  * @author giahu
  */
 public class user {
-    private int userid;
+    private static String userid;
     private String FIRSTNAME;
     private int role;
     private String code_auth;//code lưu mã khôi phục mật khẩu
@@ -19,17 +19,17 @@ public class user {
         
     }
     
-    public user(int userid) {
+    public user(String userid) {
         this.userid = userid;
         
     }
 
-    public int getUserid() {
+    public static String getUserId() {
         return userid;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public static void setUserid(String userid) {
+        user.userid = userid;
     }
     
     

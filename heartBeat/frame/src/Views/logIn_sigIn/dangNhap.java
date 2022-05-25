@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import Views.profile.user;
 
 /**
  *
@@ -383,10 +384,12 @@ public class dangNhap extends javax.swing.JFrame {
                 query = "select USERID, FIRSTNAME, PASSWORD, ROLEID from TB_USER where PHONE = '" + jTextField1.getText()+"'";
             }
             String Password = "";
+            String userId = "";
             int role = 1;
         try (Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
+                userId = rs.getString("userid");
                 Password = rs.getString("PASSWORD");
                 role = rs.getInt("ROLEID");
             }
@@ -394,6 +397,8 @@ public class dangNhap extends javax.swing.JFrame {
             if(Password.equals(inputPassword)){
                 this.dispose();
                 new mainFrame().setVisible(true);
+                //user.setUserid(userId);
+                
             }
             else{
                 JOptionPane.showMessageDialog(null, "Sai tên đăng nhập hoặc mật khẩu", "", JOptionPane.INFORMATION_MESSAGE);
