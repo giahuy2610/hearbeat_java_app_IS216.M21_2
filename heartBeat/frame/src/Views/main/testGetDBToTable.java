@@ -35,7 +35,7 @@ public class testGetDBToTable extends javax.swing.JFrame {
         jTextField4.setEditable(enableEditTextField);
 
         try {
-            conn = OracleConnUtils.getOracleConnection();
+            conn = TestConnectJDBC.getConnection();
         } catch (SQLException ex) {
             Logger.getLogger(testGetDBToTable.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -249,6 +249,27 @@ public class testGetDBToTable extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+<<<<<<< HEAD
+        Connection conn = null;
+        try {
+            conn = TestConnectJDBC.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(testGetDBToTable.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(testGetDBToTable.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String query = "";
+        synchronized (query) {
+            query = "update tb_user set isdeleted = 1 where userid = " + jTextField1.getText();
+        }
+        try ( Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            System.out.println(query);
+            while (rs.next()) {
+                String row_temp[] = {rs.getString("userid"), rs.getString("firstname"), rs.getString("lastname"), rs.getString("phone")};
+                DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+=======
+>>>>>>> be82a0dd8e2f6827d6634835c05baf4ee1a3c99a
 
 
     }//GEN-LAST:event_jButton3MouseClicked
