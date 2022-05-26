@@ -4,9 +4,9 @@
  */
 package Views.logIn_sigIn;
 
+import ConnectDB.TestConnectJDBC;
 import static Views.logIn_sigIn.md5.getMd5;
 import Views.main.mainFrame;
-import ConnectDB.OracleConnUtils;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import Views.profile.user;
 
 /**
  *
@@ -39,7 +40,7 @@ public class dangNhap extends javax.swing.JFrame {
     }
 
     private static Connection getConnection()throws SQLException, ClassNotFoundException{
-        return OracleConnUtils.getOracleConnection();
+        return TestConnectJDBC.getConnection();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -383,10 +384,12 @@ public class dangNhap extends javax.swing.JFrame {
                 query = "select USERID, FIRSTNAME, PASSWORD, ROLEID from TB_USER where PHONE = '" + jTextField1.getText()+"'";
             }
             String Password = "";
+            String userId = "";
             int role = 1;
         try (Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
+                userId = rs.getString("userid");
                 Password = rs.getString("PASSWORD");
                 role = rs.getInt("ROLEID");
             }
@@ -394,6 +397,8 @@ public class dangNhap extends javax.swing.JFrame {
             if(Password.equals(inputPassword)){
                 this.dispose();
                 new mainFrame().setVisible(true);
+                new user(userId);
+       
             }
             else{
                 JOptionPane.showMessageDialog(null, "Sai tên đăng nhập hoặc mật khẩu", "", JOptionPane.INFORMATION_MESSAGE);

@@ -4,8 +4,8 @@
  */
 package Views.logIn_sigIn;
 
+import ConnectDB.TestConnectJDBC;
 import static Views.logIn_sigIn.md5.getMd5;
-import ConnectDB.OracleConnUtils;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -348,7 +348,7 @@ public class dangKy extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private static Connection getConnection() throws SQLException, ClassNotFoundException {
-        return OracleConnUtils.getOracleConnection();
+        return TestConnectJDBC.getConnection();
     }
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
