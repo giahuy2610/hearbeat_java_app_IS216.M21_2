@@ -120,9 +120,9 @@ public class trangChuJPanel extends javax.swing.JPanel {
             try {
                 conn = OracleConnUtils.getOracleConnection();
             } catch (SQLException ex) {
-                Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
-                Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             String cityid_temp = cityId.get(cityFilter.getSelectedIndex());

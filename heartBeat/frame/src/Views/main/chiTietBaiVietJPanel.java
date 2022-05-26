@@ -36,9 +36,9 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
             conn = OracleConnUtils.getOracleConnection();
             
         } catch (SQLException ex) {
-            Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         String query = "";
         synchronized (query) {

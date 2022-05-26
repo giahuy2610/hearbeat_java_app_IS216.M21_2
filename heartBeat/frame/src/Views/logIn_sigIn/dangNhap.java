@@ -7,10 +7,6 @@ package Views.logIn_sigIn;
 import ConnectDB.TestConnectJDBC;
 import static Views.logIn_sigIn.md5.getMd5;
 import Views.main.mainFrame;
-<<<<<<< HEAD
-=======
-import ConnectDB.OracleConnUtils;
->>>>>>> be82a0dd8e2f6827d6634835c05baf4ee1a3c99a
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;

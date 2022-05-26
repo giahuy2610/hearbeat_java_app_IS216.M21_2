@@ -36,7 +36,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableThongBao = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -109,8 +109,8 @@ public class thongBaoJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTable1.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableThongBao.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        tableThongBao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -138,13 +138,13 @@ public class thongBaoJPanel extends javax.swing.JPanel {
                 "<html> <h2 style = \"color: #004aad;\">	Thời gian </h2> </html>", "<html> <h2 style = \"color: #004aad;\">Nội dung</h2> </html>"
             }
         ));
-        jTable1.setToolTipText("");
-        jTable1.setRowHeight(30);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(200);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(200);
+        tableThongBao.setToolTipText("");
+        tableThongBao.setRowHeight(30);
+        jScrollPane1.setViewportView(tableThongBao);
+        if (tableThongBao.getColumnModel().getColumnCount() > 0) {
+            tableThongBao.getColumnModel().getColumn(0).setMinWidth(200);
+            tableThongBao.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tableThongBao.getColumnModel().getColumn(0).setMaxWidth(200);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -197,7 +197,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private keeptoo.KGradientPanel kGradientPanel2;
+    private javax.swing.JTable tableThongBao;
     // End of variables declaration//GEN-END:variables
 }
