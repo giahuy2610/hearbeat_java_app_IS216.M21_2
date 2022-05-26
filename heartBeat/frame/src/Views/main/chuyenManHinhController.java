@@ -5,13 +5,11 @@
 package Views.main;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 
 /**
  *
@@ -19,8 +17,8 @@ import javax.swing.JLabel;
  */
 public class chuyenManHinhController {
 
-    private JPanel root;
-    private String kindSelected = "";
+    private static JPanel root;
+    private static String kindSelected = "";
 
     private static List<danhMucBean> listItem = null;
 
@@ -28,23 +26,30 @@ public class chuyenManHinhController {
         this.root = jpnRoot;
     }
 
-    public void setView(JButton jlbItem) {
-        kindSelected = "trangChu";
-        jlbItem.setOpaque(true);
-
+    public static void setView(JPanel item) {
+        kindSelected = "TrangChu";
+        
         root.removeAll();
         root.setLayout(new BorderLayout());
-        root.add(new trangChuJPanel());
+        root.add(item);
         root.validate();
         root.repaint();
-
+        setChangeBackground("TrangChu");
     }
-
+    
+    public void changeView(JPanel item) {
+        root.removeAll();
+        root.setLayout(new BorderLayout());
+        root.add(item);
+        root.validate();
+        root.repaint();
+        
+    }
+    
     public void setEvent(List<danhMucBean> listItem) {
         this.listItem = listItem;
         for (danhMucBean item : listItem) {
             item.getJbtn().addMouseListener(new btnEvent(item.getKind(), item.getJbtn()));
-
         }
     }
 
@@ -63,7 +68,12 @@ public class chuyenManHinhController {
         @Override
         public void mouseClicked(MouseEvent e) {
 
-            switch (kind) {
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+                switch (kind) {
                 case "TrangChu":
                     node = new trangChuJPanel();
                     break;
@@ -92,34 +102,30 @@ public class chuyenManHinhController {
             root.validate();
             root.repaint();
             setChangeBackground(kind);
-
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
+                    
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
-
+  
         }
 
         @Override
         public void mouseEntered(MouseEvent e) {
-
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-
+            
         }
 
     }
 
-    private void setChangeBackground(String kind) {
+    private static void setChangeBackground(String kind) {
+        kindSelected = kind;
+
         for (danhMucBean item : listItem) {
-            if (item.getKind().equalsIgnoreCase(kind)) {
+            if (item.getKind().equalsIgnoreCase(kindSelected)) {
                 item.getJbtn().setOpaque(true);
             }
             else {

@@ -6,7 +6,7 @@ package Views.main;
 
 /**
  *
- * @author giahu
+ * @author Admin
  */
 public class themBaiVietJPanel extends javax.swing.JPanel {
 
@@ -203,6 +203,8 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel2.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

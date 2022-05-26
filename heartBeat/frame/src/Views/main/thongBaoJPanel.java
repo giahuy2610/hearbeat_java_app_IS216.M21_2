@@ -15,6 +15,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
      */
     public thongBaoJPanel() {
         initComponents();
+        tableThongBao.setAutoCreateRowSorter(true);
     }
 
     /**

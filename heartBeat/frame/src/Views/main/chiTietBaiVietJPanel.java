@@ -4,7 +4,7 @@
  */
 package Views.main;
 
-import ConnectDB.TestConnectJDBC;
+import ConnectDB.OracleConnUtils;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +33,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         postId = postId;
         Connection conn = null;
         try {
-            conn = TestConnectJDBC.getConnection();
+            conn = OracleConnUtils.getOracleConnection();
             
         } catch (SQLException ex) {
             Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);

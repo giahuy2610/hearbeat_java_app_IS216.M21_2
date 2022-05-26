@@ -6,6 +6,10 @@ package Views.logIn_sigIn;
 
 import ConnectDB.TestConnectJDBC;
 import static Views.logIn_sigIn.md5.getMd5;
+<<<<<<< HEAD
+=======
+import ConnectDB.OracleConnUtils;
+>>>>>>> be82a0dd8e2f6827d6634835c05baf4ee1a3c99a
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -418,7 +422,7 @@ public class dangKy extends javax.swing.JFrame {
 
                 System.out.println("lỗi khi truy vấn sql đăng ký " + e.getMessage().toString());
                 if (e.getMessage().equals("ORA-00001: unique constraint (HEARTBEAT.SYS_C008436) violated\n" + "")) {
-                    JOptionPane.showMessageDialog(null, "Số điện thoại đã được sử dụng", "", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Số điện thoại hoặc email đã được sử dụng", "", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }

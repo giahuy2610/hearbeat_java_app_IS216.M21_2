@@ -4,26 +4,27 @@
  */
 package Views.main;
 
+import Views.logIn_sigIn.dangNhap;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author giahu
  */
 public class mainFrame extends javax.swing.JFrame {
-
+    private static chuyenManHinhController controller;
     /**
      * Creates new form mainFrame
      */
     public mainFrame() {
         initComponents();
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
         setTitle("HeartBeat - Trang chủ");
-        
-        chuyenManHinhController controller = new chuyenManHinhController(jpnView);
-        controller.setView(jbtnTrangChu);
-        
+
+        controller = new chuyenManHinhController(jpnView);
+
         List<danhMucBean> listItem = new ArrayList<>();
         listItem.add(new danhMucBean("TrangChu", jbtnTrangChu));
         listItem.add(new danhMucBean("ThemBaiViet", jbtnThemBaiViet));
@@ -31,9 +32,12 @@ public class mainFrame extends javax.swing.JFrame {
         listItem.add(new danhMucBean("DanhMuc", jbtnDanhMuc));
         listItem.add(new danhMucBean("TrangCaNhan", jbtnTrangCaNhan));
         listItem.add(new danhMucBean("DanhChoAdmin", jbtnDanhChoAdmin));
-        
         controller.setEvent(listItem);
-        
+        chuyenManHinhController.setView(new trangChuJPanel());
+    }
+
+    public chuyenManHinhController getController() {
+        return controller;
     }
 
     /**
@@ -58,6 +62,7 @@ public class mainFrame extends javax.swing.JFrame {
         jpnView = new keeptoo.KGradientPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.CardLayout());
 
         jpnRoot.setPreferredSize(new java.awt.Dimension(1200, 600));
 
@@ -95,7 +100,6 @@ public class mainFrame extends javax.swing.JFrame {
         jbtnTrangChu.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
         jbtnTrangChu.setContentAreaFilled(false);
         jbtnTrangChu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jbtnTrangChu.setOpaque(true);
         jbtnTrangChu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnTrangChuActionPerformed(evt);
@@ -148,6 +152,11 @@ public class mainFrame extends javax.swing.JFrame {
         jButton12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(153, 255, 204)));
         jButton12.setContentAreaFilled(false);
         jButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton12MousePressed(evt);
+            }
+        });
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
@@ -203,9 +212,10 @@ public class mainFrame extends javax.swing.JFrame {
                 .addComponent(jbtnDanhChoAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jpnView.setPreferredSize(new java.awt.Dimension(1000, 600));
         jpnView.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout jpnRootLayout = new javax.swing.GroupLayout(jpnRoot);
@@ -215,7 +225,7 @@ public class mainFrame extends javax.swing.JFrame {
             .addGroup(jpnRootLayout.createSequentialGroup()
                 .addComponent(jpnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, 993, Short.MAX_VALUE))
+                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE))
         );
         jpnRootLayout.setVerticalGroup(
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,16 +233,7 @@ public class mainFrame extends javax.swing.JFrame {
             .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnRoot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnRoot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(jpnRoot, "card2");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -262,12 +263,26 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnDanhMucActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jbtnTrangCaNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnTrangCaNhanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnTrangCaNhanActionPerformed
+
+    private void jButton12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MousePressed
+        String[] options = {"Đồng ý","Hủy"};
+        int output = JOptionPane.showOptionDialog(this,
+                "Bạn thực sự muốn đăng xuất?", "Xác nhận",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        if (output == JOptionPane.YES_OPTION) {
+            this.dispose();
+            new dangNhap().setVisible(true);
+        } else if (output == JOptionPane.NO_OPTION) {
+            System.out.println("No selected.");
+        }
+    }//GEN-LAST:event_jButton12MousePressed
 
     /**
      * @param args the command line arguments
