@@ -397,8 +397,8 @@ public class dangNhap extends javax.swing.JFrame {
             if(Password.equals(inputPassword)){
                 this.dispose();
                 new mainFrame().setVisible(true);
-                user.setUserid(userId);
-                
+                new user(userId);
+       
             }
             else{
                 JOptionPane.showMessageDialog(null, "Sai tên đăng nhập hoặc mật khẩu", "", JOptionPane.INFORMATION_MESSAGE);
