@@ -127,7 +127,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 51, 153));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/find.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/loupe.png"))); // NOI18N
         jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
