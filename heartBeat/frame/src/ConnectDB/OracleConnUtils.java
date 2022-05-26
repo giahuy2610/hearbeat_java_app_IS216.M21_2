@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package connect;
+package ConnectDB;
 
 
 import java.sql.Connection;
@@ -15,9 +15,9 @@ public class OracleConnUtils {
  public static Connection getOracleConnection() throws SQLException,
          ClassNotFoundException {
      String hostName = "localhost";
-     String sid = "orcl";
-     String userName = "heartbeat";
-     String password = "Oradoc_db1";
+     String sid = "oracle1";
+     String userName = "projava";
+     String password = "1234567890";
 
      return getOracleConnection(hostName, sid, userName, password);
  }

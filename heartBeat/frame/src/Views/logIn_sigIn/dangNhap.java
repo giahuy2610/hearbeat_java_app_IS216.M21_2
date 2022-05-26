@@ -4,9 +4,9 @@
  */
 package Views.logIn_sigIn;
 
+import ConnectDB.TestConnectJDBC;
 import static Views.logIn_sigIn.md5.getMd5;
 import Views.main.mainFrame;
-import connect.OracleConnUtils;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -39,7 +39,7 @@ public class dangNhap extends javax.swing.JFrame {
     }
 
     private static Connection getConnection()throws SQLException, ClassNotFoundException{
-        return OracleConnUtils.getOracleConnection();
+        return TestConnectJDBC.getConnection();
     }
     /**
      * This method is called from within the constructor to initialize the form.

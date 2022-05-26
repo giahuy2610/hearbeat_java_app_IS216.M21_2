@@ -4,7 +4,7 @@
  */
 package Views.logIn_sigIn;
 
-import connect.OracleConnUtils;
+import ConnectDB.TestConnectJDBC;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -33,7 +33,7 @@ public class nhapEmail extends javax.swing.JFrame {
     }
 
     private static Connection getConnection() throws SQLException, ClassNotFoundException {
-        return OracleConnUtils.getOracleConnection();
+        return TestConnectJDBC.getConnection();
     }
 
     /**

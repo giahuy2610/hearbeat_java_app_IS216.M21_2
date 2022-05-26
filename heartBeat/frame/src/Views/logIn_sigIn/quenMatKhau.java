@@ -4,11 +4,11 @@
  */
 package Views.logIn_sigIn;
 
+import ConnectDB.TestConnectJDBC;
 import java.awt.Color;
 import static Views.javaMail.RandomStringGenerator.randomAlphaNumeric;
 import static Views.javaMail.JavaMailUtil.sendMail;
 import static Views.logIn_sigIn.md5.getMd5;
-import connect.OracleConnUtils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -28,7 +28,7 @@ public class quenMatKhau extends javax.swing.JFrame {
     private String email;
 
     private static Connection getConnection() throws SQLException, ClassNotFoundException {
-        return OracleConnUtils.getOracleConnection();
+        return TestConnectJDBC.getConnection();
     }
 
     /**

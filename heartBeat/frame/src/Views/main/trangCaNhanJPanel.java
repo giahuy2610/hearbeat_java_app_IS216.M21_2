@@ -51,9 +51,7 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         jbtnBaiViet = new javax.swing.JButton();
         jbtnThongTin = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 204, 204));
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         kGradientPanel2.setkEndColor(new java.awt.Color(255, 0, 255));
         kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 255));

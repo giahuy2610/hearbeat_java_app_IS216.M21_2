@@ -5,7 +5,7 @@
 package Views.main;
 
 
-import connect.OracleConnUtils;
+import ConnectDB.TestConnectJDBC;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +33,7 @@ public class testGetDB extends javax.swing.JFrame {
         initComponents();
         Connection conn = null;
         try {
-            conn = OracleConnUtils.getOracleConnection();
+            conn = TestConnectJDBC.getConnection();
         } catch (SQLException ex) {
             Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -163,7 +163,7 @@ public class testGetDB extends javax.swing.JFrame {
         Connection conn = null;
 
         try {
-            conn = OracleConnUtils.getOracleConnection();
+            conn = TestConnectJDBC.getConnection();
         } catch (SQLException ex) {
             Logger.getLogger(testGetDB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {

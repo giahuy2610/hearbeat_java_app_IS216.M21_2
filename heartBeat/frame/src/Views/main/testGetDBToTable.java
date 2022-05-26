@@ -4,7 +4,7 @@
  */
 package Views.main;
 
-import connect.OracleConnUtils;
+import ConnectDB.TestConnectJDBC;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,7 +34,7 @@ public class testGetDBToTable extends javax.swing.JFrame {
         jTextField4.setEditable(enableEditTextField);
 
         try {
-            conn = OracleConnUtils.getOracleConnection();
+            conn = TestConnectJDBC.getConnection();
         } catch (SQLException ex) {
             Logger.getLogger(testGetDBToTable.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -222,7 +222,7 @@ public class testGetDBToTable extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         Connection conn = null;
         try {
-            conn = OracleConnUtils.getOracleConnection();
+            conn = TestConnectJDBC.getConnection();
         } catch (SQLException ex) {
             Logger.getLogger(testGetDBToTable.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
