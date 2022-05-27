@@ -5,6 +5,11 @@
 package Views.main;
 
 import ConnectDB.OracleConnUtils;
+import Views.global.city;
+import Views.global.district;
+import Views.global.postCategory;
+import Views.global.postPurpose;
+import Views.global.sort;
 import java.awt.GridLayout;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,7 +18,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 /**
@@ -29,177 +33,36 @@ public class trangChuJPanel extends javax.swing.JPanel {
     protected static ArrayList<String> postPurpose = new ArrayList<String>();
     protected static ArrayList<String> postCreatedOn = new ArrayList<String>();
 
-    protected static ArrayList<String> categoryId = new ArrayList<String>();
-    protected static ArrayList<String> categoryName = new ArrayList<String>();
-
-    protected static ArrayList<String> cityId = new ArrayList<String>();
-    protected static ArrayList<String> cityName = new ArrayList<String>();
-
-    protected static ArrayList<String> districtId = new ArrayList<String>();
-    protected static ArrayList<String> districtName = new ArrayList<String>();
-
-    protected static ArrayList<String> purposeId = new ArrayList<String>();
-    protected static ArrayList<String> purposeName = new ArrayList<String>();
-
-    protected static ArrayList<String> sortId = new ArrayList<String>();
-    protected static ArrayList<String> sortName = new ArrayList<String>();
-
     protected Connection conn = null;
 
     protected static JPanel container = new JPanel(new GridLayout(0, 1)); // 1 column variable;
 
     protected static String query = "";
 
-    /**
-     * Creates new form trangChuJPanel
-     */
-    protected void prepareCategoryFilter() {
-        try {
-            query = "select * from tb_category order by categoryid";
-            conn = OracleConnUtils.getOracleConnection();
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-
-            categoryId.add("0");
-            categoryName.add("Tất cả");
-            categoryFilter.addItem("Tất cả");
-
-            while (rs.next()) {
-                categoryId.add(rs.getString("categoryid"));
-                categoryName.add(rs.getString("categoryname"));
-                categoryFilter.addItem(rs.getString("categoryname"));
-            }
-
-            conn.close();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    private void prepareCityFilter() {
-        try {
-            conn = OracleConnUtils.getOracleConnection();
-            query = "select * from tb_category order by categoryid";
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            cityId.removeAll(cityId);
-            cityName.removeAll(cityName);
-
-            //combobox cityfilter
-            //thêm giá trị cho combobox city
-            cityId.add("0");
-            cityName.add("Tất cả");
-            cityFilter.addItem("Tất cả");
-
-            query = "select * from tb_city";
-            rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                cityId.add(rs.getString("cityid"));
-                cityName.add(rs.getString("cityname"));
-                cityFilter.addItem(rs.getString("cityname"));
-            }
-            conn.close();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void prepareDistrictFilter() {
-        districtId.removeAll(districtId);
-        districtName.removeAll(districtName);
-        districtFilter.removeAllItems();
-
-        districtFilter.addItem("Tất cả");
-        districtId.add("0");
-        districtName.add("Tất cả");
-
-        if (cityFilter.getSelectedIndex() == 0) {
-
-        } else {
-            try {
-                conn = OracleConnUtils.getOracleConnection();
-            } catch (SQLException ex) {
-                Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            String cityid_temp = cityId.get(cityFilter.getSelectedIndex());
-            synchronized (query) {
-                query = "select * from tb_district where cityid = " + cityid_temp;
-            }
-            try ( Statement stmt = conn.createStatement()) {
-                ResultSet rs = stmt.executeQuery(query);
-                while (rs.next()) {
-                    districtId.add(rs.getString("districtid"));
-                    districtName.add(rs.getString("districtname"));
-                    districtFilter.addItem(rs.getString("districtname"));
-                }
-                conn.close();
-            } catch (SQLException e) {
-                System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
-            }
-
-        }
-    }
-
-    protected void preparePurposeFilter() {
-        try {
-            conn = OracleConnUtils.getOracleConnection();
-            query = "select * from tb_purpose order by purposeid";
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-
-            purposeId.removeAll(purposeId);
-            purposeName.removeAll(purposeName);
-            purposeFilter.removeAllItems();
-
-            purposeId.add("0");
-            purposeName.add("Tất cả");
-            purposeFilter.addItem("Tất cả");
-
-            while (rs.next()) {
-                purposeId.add(rs.getString("purposeid"));
-                purposeName.add(rs.getString("purposename"));
-                purposeFilter.addItem(rs.getString("purposename"));
-            }
-
-            conn.close();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    protected void prepareSortFilter(JComboBox cbb) {
-        sortId.removeAll(sortId);
-        sortName.removeAll(sortName);
-        cbb.removeAllItems();
-
-        sortId.add("0");
-        sortName.add("Gần đây");
-        cbb.addItem("Gần đây");
-
-        sortId.add("1");
-        sortName.add("Lâu nhất");
-        cbb.addItem("Lâu nhất");
-    }
-
     protected String initQuery() {
         query = "select * from  tb_post where isdeleted = 0 and statusid = 1";
 
         if (categoryFilter.getSelectedIndex() > 0) {
+            postCategory a = new postCategory();
+            ArrayList<String> categoryId = a.getCategoryId();
             query += " and categoryid = " + categoryId.get(categoryFilter.getSelectedIndex());
         }
 
         if (purposeFilter.getSelectedIndex() > 0) {
+            postPurpose a = new postPurpose();
+            ArrayList<String> purposeId = a.getPurposeId();
+
             query += " and purposeid = " + purposeId.get(purposeFilter.getSelectedIndex());
         }
 
         if (cityFilter.getSelectedIndex() > 0) {
+            city a = new city();
+            ArrayList<String> cityId = a.getCityId();
             query += " and ownerid in (select userid from tb_address where cityid = " + cityId.get(cityFilter.getSelectedIndex());
 
             if (districtFilter.getSelectedIndex() > 0) {
+                district b = new district();
+                ArrayList<String> districtId = b.getDistrictId();
                 query += " and districtid = " + districtId.get(districtFilter.getSelectedIndex());
             }
 
@@ -240,7 +103,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             conn.close();
 
             for (int i = 0; i < postId.size(); i++) {
-                baiViet x = new baiViet(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i),  postPurpose.get(i), postCreatedOn.get(i));
+                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i));
                 //baiViet x = new baiViet(postId.get(i), postTitle.get(i), categoryName.get(Integer.parseInt(postCategory.get(i))), postContent.get(i),  purposeName.get(Integer.parseInt(postPurpose.get(i))), postCreatedOn.get(i));
                 container.add(x);
             }
@@ -255,13 +118,20 @@ public class trangChuJPanel extends javax.swing.JPanel {
     public trangChuJPanel() {
         initComponents();
 
-        this.prepareCityFilter();
-        this.prepareDistrictFilter();
-        this.preparePurposeFilter();
-        this.prepareCategoryFilter();
-        this.prepareSortFilter(sortFilter);
-        this.preparePost();
+        city d = new city();
+        d.prepareCityFilter(cityFilter);
 
+        district.prepareDistrictFilter(cityFilter, districtFilter);
+
+        postPurpose b = new postPurpose();
+        b.preparePurposeFilter(purposeFilter);
+
+        postCategory a = new postCategory();
+        a.prepareCategoryFilter(categoryFilter);
+
+        sort.prepareSortFilter(sortFilter);
+
+        this.preparePost();
     }
 
     /**
@@ -516,7 +386,9 @@ public class trangChuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_categoryFilterActionPerformed
 
     private void cityFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityFilterActionPerformed
-        this.prepareDistrictFilter();
+        //district.prepareDistrictFilter(cityFilter, districtFilter);
+        this.preparePost();
+        district.prepareDistrictFilter(cityFilter, districtFilter);
     }//GEN-LAST:event_cityFilterActionPerformed
 
     private void districtFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtFilterActionPerformed
@@ -524,7 +396,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_districtFilterActionPerformed
 
     private void sortFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortFilterActionPerformed
-       this.preparePost();
+        this.preparePost();
     }//GEN-LAST:event_sortFilterActionPerformed
 
 

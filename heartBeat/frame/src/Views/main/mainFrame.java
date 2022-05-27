@@ -21,7 +21,7 @@ public class mainFrame extends javax.swing.JFrame {
     public mainFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-        setTitle("HeartBeat - Trang chủ");
+        setTitle("HeartBeat");
 
         controller = new chuyenManHinhController(jpnView);
 

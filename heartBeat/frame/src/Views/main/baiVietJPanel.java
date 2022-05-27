@@ -11,24 +11,32 @@ import javax.swing.BorderFactory;
  *
  * @author giahu
  */
-public class baiViet extends javax.swing.JPanel {
+public class baiVietJPanel extends javax.swing.JPanel {
     public String postId;
     private String title;
-    private String category;
+    private String categoryId;
     private String content;
+    private String createdOn;
+    private String updatedOn;
+    private String ownerId;
+    private String partnerId;
+    private String purposeId;
+    private String isDeleted;
+    private String imagePath;
+    private String statusId;
     
     /**
      * Creates new form haha
      */
-    public baiViet(String title) {
+    public baiVietJPanel(String title) {
         initComponents();
     }
 
-    public baiViet(String postId, String title, String category, String content,String purpose, String createdOn) {
+    public baiVietJPanel(String postId, String title, String category, String content,String purpose, String createdOn) {
         initComponents();
         this.postId = postId;
         this.title = title;
-        this.category = category;
+        this.categoryId = category;
         this.content = content;
         
         jLabel1.setText(title);

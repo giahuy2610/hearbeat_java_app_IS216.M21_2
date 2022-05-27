@@ -105,11 +105,11 @@
                           <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                          <Component id="categoryFilter" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="statusFilter" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="categoryFilter1" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Component id="sortFilter" min="-2" pref="91" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -122,10 +122,10 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="jLabel26" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="categoryFilter1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="sortFilter" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jButton14" alignment="0" pref="35" max="32767" attributes="0"/>
                                       <Component id="findUser" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="categoryFilter" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="statusFilter" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" attributes="0">
@@ -179,7 +179,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="categoryFilter">
+                <Component class="javax.swing.JComboBox" name="statusFilter">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="5">
@@ -192,7 +192,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryFilterActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="statusFilterActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -203,14 +203,14 @@
                     <Property name="text" type="java.lang.String" value="Ph&#xe2;n lo&#x1ea1;i"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="categoryFilter1">
+                <Component class="javax.swing.JComboBox" name="sortFilter">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryFilter1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sortFilterActionPerformed"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
