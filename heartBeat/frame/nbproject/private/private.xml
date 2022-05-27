@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangCaNhanJPanel_ThongTin.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangChuJPanel.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/ConnectDB/OracleConnUtils.java</file>
@@ -15,6 +16,21 @@
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/main/testStoreImage.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/main/thongBaoJPanel.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Process/autoCreateDatabase.java</file>
+=======
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangCaNhanJPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/baiVietJPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/themBaiVietJPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/thongBaoJPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangCaNhanJPanel_ThongTin.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangCaNhanJPanel_BaiViet.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Process/autoCreateDatabase.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/global/post.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/trangChuJPanel.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/chuyenManHinhProfile.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/mainFrame.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/main.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/java_IS216.M21_2/heartBeat/frame/src/Views/main/chiTietBaiViet.java</file>
+>>>>>>> 7699be6174ad57d7606d2adf40249fbc2a12249d
         </group>
     </open-files>
 </project-private>

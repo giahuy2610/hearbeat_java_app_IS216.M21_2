@@ -197,6 +197,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="N&#x1ed9;i dung b&#xe0;i &#x111;&#x103;ng"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JPanel" name="jPanel5">
               <Properties>

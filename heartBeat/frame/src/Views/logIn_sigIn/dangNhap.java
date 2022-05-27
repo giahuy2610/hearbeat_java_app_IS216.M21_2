@@ -15,7 +15,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import Views.profile.user;
+import Views.global.user;
 
 /**
  *
@@ -374,31 +374,30 @@ public class dangNhap extends javax.swing.JFrame {
             Connection conn = null;
             try {
                 conn = dangNhap.getConnection();
-            } catch (SQLException ex) {
-                Logger.getLogger(dangKy.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+            } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(dangKy.class.getName()).log(Level.SEVERE, null, ex);
             }
             String query="";
             synchronized(query) {
-                query = "select USERID, FIRSTNAME, PASSWORD, ROLEID from TB_USER where PHONE = '" + jTextField1.getText()+"'";
+                query = "select * from TB_USER where PHONE = '" + jTextField1.getText()+"'";
             }
             String Password = "";
             String userId = "";
-            int role = 1;
+            String roleId = "";
         try (Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 userId = rs.getString("userid");
                 Password = rs.getString("PASSWORD");
-                role = rs.getInt("ROLEID");
+                roleId = rs.getString("ROLEID");
             }
             String inputPassword = getMd5(String.valueOf(jPasswordField1.getPassword()));
             if(Password.equals(inputPassword)){
                 this.dispose();
                 new mainFrame().setVisible(true);
-                new user(userId);
-       
+                user.setCurrentUserId(userId); // lưu lại userId của người dùng đang sử dụng app
+                user.setCurrentRoleId(roleId); // lưu lại roleId của người dùng đang sử dụng app
+                System.out.println("Đăng nhập thành công, userId " + userId + ", roleId " + roleId);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Sai tên đăng nhập hoặc mật khẩu", "", JOptionPane.INFORMATION_MESSAGE);
@@ -406,7 +405,7 @@ public class dangNhap extends javax.swing.JFrame {
            
       
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Lỗi đăng nhập " + e.getMessage());
         }
         }
         

@@ -4,7 +4,6 @@
  */
 package Views.main;
 
-import Views.profile.user;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +18,7 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
      */
     public trangCaNhanJPanel() {
         initComponents();
-        jTextField4.setText(user.getFirstName());
-        jTextField5.setText(user.getLastName());
-        jLabel3.setText(user.getScore());
+
         chuyenManHinhProfile profile = new chuyenManHinhProfile(jPanelProfile);
         profile.setView(jbtnBaiViet);
         
@@ -176,11 +173,9 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addComponent(jLabel3)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnBaiViet, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))

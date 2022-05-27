@@ -131,6 +131,11 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTextPane1);
 
         jTextField1.setText("Nội dung bài đăng");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jPanel5.setBackground(new java.awt.Color(204, 255, 204));
 
@@ -321,6 +326,10 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
