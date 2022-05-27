@@ -272,7 +272,7 @@ public class dangNhap extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("<html>\n\"Nơi trao đi \n<br>\nnhịp đập trái tim\"");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/Thiết kế chưa có tên (2).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/HeartBeat.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 255, 204));
