@@ -47,8 +47,7 @@ END;
 
 /* Mẫu cho hàm p_insert_account
     BEGIN
-        p_insert_account('Trịnh Gia', 'Phat', 1, '0941511664', TO_DATE('26/10/2002',
-                        'dd/mm/yyyy'), 'congatayu@gmai.com', '123', 2);
+        p_insert_account('Trịnh Gia', 'Phat', 1, '0941511664', TO_DATE('26/10/2002','dd/mm/yyyy'), 'congatayu@gmai.com', '123', 2);
     END;
 */
 
