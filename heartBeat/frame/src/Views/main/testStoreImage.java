@@ -5,13 +5,21 @@
 package Views.main;
 
 import java.awt.Image;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import static java.lang.module.ModuleDescriptor.read;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.imageio.ImageIO.read;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import oracle.jdbc.OracleTypeMetaData.Array;
+import static oracle.sql.LobPlsqlUtil.read;
 
 /**
  *
@@ -39,6 +47,7 @@ public class testStoreImage extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +74,8 @@ public class testStoreImage extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.setText("jTextField2");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,7 +84,9 @@ public class testStoreImage extends javax.swing.JFrame {
                 .addGap(146, 146, 146)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
@@ -93,7 +106,9 @@ public class testStoreImage extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -103,23 +118,43 @@ public class testStoreImage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    @SuppressWarnings("empty-statement")
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-       JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f =chooser.getSelectedFile();
-        String filePath = f.getAbsolutePath();
+
+
+JFileChooser chooser = new JFileChooser();
+chooser.showOpenDialog(null);
+File f = chooser.getSelectedFile();
+jLabel1.setIcon(new ImageIcon(f.toString()));
+ filename = f.getAbsolutePath();
+jTextField1.setText(filename);
+//convert filePath to array byte
+try
+{
+    File image = new File(filename);
+    FileInputStream fis = new FileInputStream(image);
+    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    byte[] buf = new byte[1024];
+    for (int readNum; (readNum = fis.read(buf))!= -1;)
         
-        Image getAbsolutePath = null;
-        jTextField1.setText(filePath);
-        ImageIcon icon = new ImageIcon(filePath);
-        Image image =icon.getImage().getScaledInstance(jLabel1.getWidth() , jLabel1.getHeight(),Image.SCALE_SMOOTH);
-        
-        jLabel1.setIcon(icon);
-        
-     byte[] array = method(f);
-           
-        
+    {
+      
+    bos.write(buf,0,readNum);
+    }
+    photo = bos.toByteArray();
+    System.out.print(Arrays.toString(photo));
+    
+    
+}
+catch(FileNotFoundException e)
+{
+    
+    JOptionPane.showMessageDialog(null,e);
+}       catch (IOException ex) {
+            Logger.getLogger(testStoreImage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -173,17 +208,9 @@ public class testStoreImage extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
-    private byte[] method(File f) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        try {
-            FileInputStream fl = new FileInputStream(f);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(testStoreImage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    
-    
-    }
+byte[] photo = null;
+  String filename = null;
 }
