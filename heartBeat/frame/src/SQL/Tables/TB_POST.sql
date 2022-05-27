@@ -135,3 +135,10 @@ BEGIN
         raise_application_error (-20000, 'Bài viết có người đặt hẹn thì không thể là trạng thái "đang chờ"');
     END IF;
 END;
+
+
+
+
+String SQL = "{call proc_select_benhnhanwithtenbacsi(?,?)}";
+            CallableStatement ps = con.prepareCall(SQL);
+            ResultSet rs = ps.executeQuery(SQL)

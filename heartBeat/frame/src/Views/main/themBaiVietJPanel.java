@@ -260,16 +260,16 @@ try {
     {
         java.sql.Connection conn = TestConnectJDBC.getConnection();
         String query = "insert INTO TB_POST(TITLE, PURPOSEID, CATEGORYID,CONTENT,IMAGEPATH) VALUE(?,?,?,?,?)";
-    PreparedStatement pst;
-    pst = conn.prepareStatement(query);
+        PreparedStatement pst;
+        pst = conn.prepareStatement(query);
     
-    
-    String SQL = "{call PROCEDURE p_insert_post(?,?,?,?,?)}";
-    
-    CallableStatement ps = conn.prepareCall(SQL);
-            ResultSet rs = ps.executeQuery(SQL);
-            
-            
+//    
+//        String SQL = "{call PROCEDURE p_insert_post(?,?,?,?,?)}";
+//    
+//        CallableStatement ps = conn.prepareCall(SQL);
+//        ResultSet rs = ps.executeQuery(SQL);
+//            
+//            
             
             
             
