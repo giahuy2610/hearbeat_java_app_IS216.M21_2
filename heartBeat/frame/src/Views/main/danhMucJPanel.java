@@ -33,14 +33,18 @@ public class danhMucJPanel extends javax.swing.JPanel {
         btn_gay_quy = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
+        btnThucPham = new javax.swing.JButton();
+        btnYTe = new javax.swing.JButton();
+        btnDoGiaDung = new javax.swing.JButton();
+        btnGiaoDuc = new javax.swing.JButton();
+        btnBuaAn = new javax.swing.JButton();
+        btnKhac = new javax.swing.JButton();
         kGradientPanel2 = new keeptoo.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(204, 204, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -108,73 +112,75 @@ public class danhMucJPanel extends javax.swing.JPanel {
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
+        jPanel3.setBackground(new java.awt.Color(255, 204, 204));
+
         jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Danh mục");
         jLabel3.setPreferredSize(new java.awt.Dimension(48, 15));
 
-        jButton4.setBackground(new java.awt.Color(153, 255, 255));
-        jButton4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/food.png"))); // NOI18N
-        jButton4.setText("Thực phẩm");
-        jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnThucPham.setBackground(new java.awt.Color(153, 255, 255));
+        btnThucPham.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnThucPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/food.png"))); // NOI18N
+        btnThucPham.setText("Thực phẩm");
+        btnThucPham.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        btnThucPham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnThucPhamActionPerformed(evt);
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(204, 255, 204));
-        jButton5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/drugs.png"))); // NOI18N
-        jButton5.setText("Y tế");
-        jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnYTe.setBackground(new java.awt.Color(204, 255, 204));
+        btnYTe.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnYTe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/drugs.png"))); // NOI18N
+        btnYTe.setText("Y tế");
+        btnYTe.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        btnYTe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnYTeActionPerformed(evt);
             }
         });
 
-        jButton14.setBackground(new java.awt.Color(204, 204, 255));
-        jButton14.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/item.png"))); // NOI18N
-        jButton14.setText("Đồ gia dụng");
-        jButton14.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        btnDoGiaDung.setBackground(new java.awt.Color(204, 204, 255));
+        btnDoGiaDung.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnDoGiaDung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/item.png"))); // NOI18N
+        btnDoGiaDung.setText("Đồ gia dụng");
+        btnDoGiaDung.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        btnDoGiaDung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                btnDoGiaDungActionPerformed(evt);
             }
         });
 
-        jButton15.setBackground(new java.awt.Color(153, 255, 255));
-        jButton15.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/studying.png"))); // NOI18N
-        jButton15.setText("Giáo dục");
-        jButton15.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
+        btnGiaoDuc.setBackground(new java.awt.Color(153, 255, 255));
+        btnGiaoDuc.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnGiaoDuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/studying.png"))); // NOI18N
+        btnGiaoDuc.setText("Giáo dục");
+        btnGiaoDuc.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        btnGiaoDuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
+                btnGiaoDucActionPerformed(evt);
             }
         });
 
-        jButton16.setBackground(new java.awt.Color(204, 255, 204));
-        jButton16.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/lunch.png"))); // NOI18N
-        jButton16.setText("Bữa ăn");
-        jButton16.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
+        btnBuaAn.setBackground(new java.awt.Color(204, 255, 204));
+        btnBuaAn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnBuaAn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/lunch.png"))); // NOI18N
+        btnBuaAn.setText("Bữa ăn");
+        btnBuaAn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        btnBuaAn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
+                btnBuaAnActionPerformed(evt);
             }
         });
 
-        jButton17.setBackground(new java.awt.Color(204, 204, 255));
-        jButton17.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton17.setText("Khác");
-        jButton17.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
+        btnKhac.setBackground(new java.awt.Color(204, 204, 255));
+        btnKhac.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnKhac.setText("Khác");
+        btnKhac.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        btnKhac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
+                btnKhacActionPerformed(evt);
             }
         });
 
@@ -188,16 +194,16 @@ public class danhMucJPanel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(120, 120, 120)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGiaoDuc, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThucPham, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(80, 80, 80)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuaAn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnYTe, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(80, 80, 80)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnKhac, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDoGiaDung, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -206,14 +212,14 @@ public class danhMucJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnThucPham, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDoGiaDung, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnYTe, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGiaoDuc, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuaAn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnKhac, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -257,52 +263,52 @@ public class danhMucJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_trao_tangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_trao_tangActionPerformed
-        // TODO add your handling code here:
+        chuyenManHinhController.setView(new trangChuJPanel(0,1));
     }//GEN-LAST:event_btn_trao_tangActionPerformed
 
     private void btn_xin_nhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xin_nhanActionPerformed
-        // TODO add your handling code here:
+        chuyenManHinhController.setView(new trangChuJPanel(0,2));
     }//GEN-LAST:event_btn_xin_nhanActionPerformed
 
     private void btn_gay_quyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gay_quyActionPerformed
-        // TODO add your handling code here:
+        chuyenManHinhController.setView(new trangChuJPanel(0,3));
     }//GEN-LAST:event_btn_gay_quyActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnThucPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThucPhamActionPerformed
+        chuyenManHinhController.setView(new trangChuJPanel(0,1));
+    }//GEN-LAST:event_btnThucPhamActionPerformed
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void btnYTeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYTeActionPerformed
+        chuyenManHinhController.setView(new trangChuJPanel(0,3));
+    }//GEN-LAST:event_btnYTeActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void btnDoGiaDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoGiaDungActionPerformed
+        chuyenManHinhController.setView(new trangChuJPanel(0,2));
+    }//GEN-LAST:event_btnDoGiaDungActionPerformed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
+    private void btnGiaoDucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoDucActionPerformed
+        chuyenManHinhController.setView(new trangChuJPanel(0,4));
+    }//GEN-LAST:event_btnGiaoDucActionPerformed
 
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton15ActionPerformed
+    private void btnBuaAnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuaAnActionPerformed
+        chuyenManHinhController.setView(new trangChuJPanel(0,5));
+    }//GEN-LAST:event_btnBuaAnActionPerformed
 
-    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton16ActionPerformed
-
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17ActionPerformed
+    private void btnKhacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhacActionPerformed
+        chuyenManHinhController.setView(new trangChuJPanel(0,6));
+    }//GEN-LAST:event_btnKhacActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuaAn;
+    private javax.swing.JButton btnDoGiaDung;
+    private javax.swing.JButton btnGiaoDuc;
+    private javax.swing.JButton btnKhac;
+    private javax.swing.JButton btnThucPham;
+    private javax.swing.JButton btnYTe;
     private javax.swing.JButton btn_gay_quy;
     private javax.swing.JButton btn_trao_tang;
     private javax.swing.JButton btn_xin_nhan;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

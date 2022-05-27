@@ -134,6 +134,32 @@ public class trangChuJPanel extends javax.swing.JPanel {
         this.preparePost();
     }
 
+        public trangChuJPanel(int defaultSeletectedPurpose, int defaultSeletectedCategory) {
+        initComponents();
+        
+        city d = new city();
+        d.prepareCityFilter(cityFilter);
+        
+        district.prepareDistrictFilter(cityFilter, districtFilter);
+
+        postPurpose b = new postPurpose();
+        b.preparePurposeFilter(purposeFilter);
+
+        postCategory a = new postCategory();
+        a.prepareCategoryFilter(categoryFilter);
+
+        purposeFilter.setSelectedIndex(defaultSeletectedPurpose);
+        categoryFilter.setSelectedIndex(defaultSeletectedCategory);
+        
+        sort.prepareSortFilter(sortFilter);
+
+        
+        
+        this.preparePost()
+                
+                ;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

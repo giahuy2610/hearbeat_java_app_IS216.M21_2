@@ -4,9 +4,11 @@
  */
 package Views.main;
 
+import ConnectDB.OracleConnUtils;
 import Process.baiViet;
 import Views.global.postCategory;
 import Views.global.postPurpose;
+import Views.global.user;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,15 +27,16 @@ import java.sql.*;
  * @author Admin
  */
 public class themBaiVietJPanel extends javax.swing.JPanel {
+
     private void changeEnableButton() {
         // nếu người dùng chọn danh mục và mục đích rồi mới cho đăng bài viết
         if (purposeFilter.getSelectedIndex() != 0 && categoryFilter.getSelectedIndex() != 0) {
             postBtn.setEnabled(true);
-        }
-        else {
+        } else {
             postBtn.setEnabled(false);
         }
     }
+
     /**
      * Creates new form themBaiVietJPanel
      */
@@ -260,10 +263,23 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
 
     private void postBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postBtnActionPerformed
         try {
-           baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(),postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()),postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()) );
-            //chuyenManHinhController.setView(new chiTietBaiVietJPanel(this.postId));
-            
-            
+            baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()));
+            try {
+                String query = "select max(postid) as maxPostId from tb_post where ownerid = " + user.getCurrentUserId();
+                
+                try (Connection conn = OracleConnUtils.getOracleConnection()) {
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+                     
+                    while (rs.next()) {
+                        chuyenManHinhController.setView(new chiTietBaiVietJPanel(rs.getString("maxPostId")));
+                    }
+                }
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(postCategory.class.getName()).log(Level.SEVERE, null, ex);
+            }
+//
+
             /*  try {
             
             try
@@ -326,26 +342,21 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         filename = f.getAbsolutePath();
 
         //convert filePath to array byte
-        try
-        {
+        try {
             File image = new File(filename);
             FileInputStream fis = new FileInputStream(image);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             byte[] buf = new byte[1024];
-            for (int readNum; (readNum = fis.read(buf))!= -1;)
+            for (int readNum; (readNum = fis.read(buf)) != -1;) {
 
-            {
-
-                bos.write(buf,0,readNum);
+                bos.write(buf, 0, readNum);
             }
             photo = bos.toByteArray();
 
-        }
-        catch(FileNotFoundException e)
-        {
+        } catch (FileNotFoundException e) {
 
-            JOptionPane.showMessageDialog(null,e);
-        }       catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, e);
+        } catch (IOException ex) {
             Logger.getLogger(testStoreImage.class.getName()).log(Level.SEVERE, null, ex);
         }
         // TODO add your handling code here:
@@ -363,8 +374,8 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         changeEnableButton();
     }//GEN-LAST:event_categoryFilterActionPerformed
 
-byte[] photo = null;
-  String filename = null;
+    byte[] photo = null;
+    String filename = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> categoryFilter;
     private javax.swing.JButton jButton1;
@@ -384,8 +395,7 @@ byte[] photo = null;
     private javax.swing.JComboBox<String> purposeFilter;
     // End of variables declaration//GEN-END:variables
 
-
-public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

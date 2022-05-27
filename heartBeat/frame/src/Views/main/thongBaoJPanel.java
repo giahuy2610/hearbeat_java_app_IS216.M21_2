@@ -27,7 +27,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         ArrayList<notification> notiList = new ArrayList<notification>();
         try {
             Connection conn = OracleConnUtils.getOracleConnection();
-            String query = "select * from tb_notification where userid = "+ userId +" order by createdon";
+            String query = "select * from tb_notification where userid = " + userId + " order by createdon";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
@@ -45,21 +45,23 @@ public class thongBaoJPanel extends javax.swing.JPanel {
     /**
      * Creates new form thongBaoJPanel
      */
+    @SuppressWarnings("empty-statement")
     public thongBaoJPanel() {
         initComponents();
         tableThongBao.setAutoCreateRowSorter(true);
-        
+
         DefaultTableModel model = new DefaultTableModel();
         List<String> list = new ArrayList<String>();
-        
+
         for (notification row : prepareNotifications(user.getCurrentUserId())) {
-            System.out.println("thông báo");
-            list.add(row.getCreatedOn());
-            list.add(row.getContent());
-            model.addRow(list.toArray());
-            System.out.println(list.toArray());
+            String row_temp[] = {row.getCreatedOn(), row.getContent()};
+            DefaultTableModel tblModel = (DefaultTableModel) tableThongBao.getModel();
+
+            tblModel.addRow(row_temp);
         }
-        tableThongBao.setModel(model);
+
+
+
     }
 
     /**
