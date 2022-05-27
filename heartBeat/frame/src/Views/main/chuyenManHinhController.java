@@ -74,26 +74,14 @@ public class chuyenManHinhController {
         public void mousePressed(MouseEvent e) {
 
                 switch (kind) {
-                case "TrangChu":
-                    node = new trangChuJPanel();
-                    break;
-                case "ThemBaiViet":
-                    node = new themBaiVietJPanel();
-                    break;
-                case "ThongBao":
-                    node = new thongBaoJPanel();
-                    break;
-                case "TrangCaNhan":
-                    node = new trangCaNhanJPanel();
-                    break;
-                case "DanhChoAdmin":
-                    node = new danhChoAdminJPanel();
-                    break;
-                case "DanhMuc":
-                    node = new danhMucJPanel();
-                    break;
-                default:
-                    break;
+                case "TrangChu" -> node = new trangChuJPanel();
+                case "ThemBaiViet" -> node = new themBaiVietJPanel();
+                case "ThongBao" -> node = new thongBaoJPanel();
+                case "TrangCaNhan" -> node = new trangCaNhanJPanel();
+                case "DanhChoAdmin" -> node = new danhChoAdminJPanel();
+                case "DanhMuc" -> node = new danhMucJPanel();
+                default -> {
+                }
             }
 
             root.removeAll();

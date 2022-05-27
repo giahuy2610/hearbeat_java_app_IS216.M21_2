@@ -4,11 +4,43 @@
  */
 package Views.main;
 
+import ConnectDB.OracleConnUtils;
+import Views.global.notification;
+import Views.global.user;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author giahu
  */
 public class thongBaoJPanel extends javax.swing.JPanel {
+
+    public static ArrayList<notification> prepareNotifications(String userId) {
+        ArrayList<notification> notiList = new ArrayList<notification>();
+        try {
+            Connection conn = OracleConnUtils.getOracleConnection();
+            String query = "select * from tb_notification where userid = "+ userId +" order by createdon";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                notiList.add(new notification(rs.getString("notiid"), rs.getString("content"), rs.getString("createdon"), rs.getString("isseen")));
+            }
+            conn.close();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(thongBaoJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return notiList;
+    }
 
     /**
      * Creates new form thongBaoJPanel
@@ -16,6 +48,18 @@ public class thongBaoJPanel extends javax.swing.JPanel {
     public thongBaoJPanel() {
         initComponents();
         tableThongBao.setAutoCreateRowSorter(true);
+        
+        DefaultTableModel model = new DefaultTableModel();
+        List<String> list = new ArrayList<String>();
+        
+        for (notification row : prepareNotifications(user.getCurrentUserId())) {
+            System.out.println("thông báo");
+            list.add(row.getCreatedOn());
+            list.add(row.getContent());
+            model.addRow(list.toArray());
+            System.out.println(list.toArray());
+        }
+        tableThongBao.setModel(model);
     }
 
     /**
@@ -69,11 +113,10 @@ public class thongBaoJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 51, 153));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/find.png"))); // NOI18N
-        jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search.png"))); // NOI18N
+        jButton4.setBorder(null);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 153));
@@ -84,11 +127,11 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(findUser, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(63, 63, 63)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,40 +142,21 @@ public class thongBaoJPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(findUser))))
+                        .addComponent(findUser, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         tableThongBao.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         tableThongBao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "<html> <h2 style = \"color: #004aad;\">	Thời gian </h2> </html>", "<html> <h2 style = \"color: #004aad;\">Nội dung</h2> </html>"
