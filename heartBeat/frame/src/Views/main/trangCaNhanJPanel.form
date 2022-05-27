@@ -168,13 +168,10 @@
                                   <Component id="jLabel4" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="jLabel2" pref="125" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel2" pref="125" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jbtnBaiViet" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jbtnThongTin" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
