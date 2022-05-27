@@ -74,7 +74,7 @@ BEGIN
         categoryid,
         purposeid
     );
-
+    
     COMMIT;
 END;
 

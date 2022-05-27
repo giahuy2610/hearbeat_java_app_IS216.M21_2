@@ -260,8 +260,8 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
 
     private void postBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postBtnActionPerformed
         try {
-            baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(),postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()),postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()) );
-            
+           baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(),postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()),postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()) );
+            //chuyenManHinhController.setView(new chiTietBaiVietJPanel(this.postId));
             
             
             /*  try {
