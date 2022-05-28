@@ -72,7 +72,6 @@ public class trangCaNhanJPanel_BaiViet extends javax.swing.JPanel {
         jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
 
         jTable1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(0, 51, 153));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"15/05/2022", "Tặng 1 hộp khẩu trang y tế", "Y tế", null},
@@ -98,11 +97,22 @@ public class trangCaNhanJPanel_BaiViet extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "NGÀY ĐĂNG", "CHỦ ĐỀ", "DANH MỤC", "NỘI DUNG"
+                "<html> <h3 style = \"color: #004aad;\">	Ngày đăng </h3> </html> ", "<html> <h3 style = \"color: #004aad;\"> Chủ đề </h3> </html>", "<html> <h3 style = \"color: #004aad;\"> Danh mục </h3> </html>", "<html> <h3 style = \"color: #004aad;\"> Nội dung </h3> </html>"
             }
         ));
         jTable1.setRowHeight(25);
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
+            jTable1.getColumnModel().getColumn(1).setMinWidth(300);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(300);
+            jTable1.getColumnModel().getColumn(1).setMaxWidth(300);
+            jTable1.getColumnModel().getColumn(2).setMinWidth(150);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(150);
+            jTable1.getColumnModel().getColumn(2).setMaxWidth(150);
+        }
 
         javax.swing.GroupLayout jPanelProfileLayout = new javax.swing.GroupLayout(jPanelProfile);
         jPanelProfile.setLayout(jPanelProfileLayout);

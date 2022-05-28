@@ -36,7 +36,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableThongBao = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -58,6 +58,8 @@ public class thongBaoJPanel extends javax.swing.JPanel {
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         findUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         findUser.setForeground(new java.awt.Color(153, 153, 153));
@@ -87,7 +89,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(findUser, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -96,21 +98,23 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(findUser))))
-                .addContainerGap())
+                        .addComponent(jButton4))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(findUser, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(7, 7, 7))
         );
 
-        jTable1.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        tableThongBao.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 153)));
+        tableThongBao.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        tableThongBao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -138,13 +142,13 @@ public class thongBaoJPanel extends javax.swing.JPanel {
                 "<html> <h2 style = \"color: #004aad;\">	Thời gian </h2> </html>", "<html> <h2 style = \"color: #004aad;\">Nội dung</h2> </html>"
             }
         ));
-        jTable1.setToolTipText("");
-        jTable1.setRowHeight(30);
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(200);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(200);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(200);
+        tableThongBao.setToolTipText("");
+        tableThongBao.setRowHeight(30);
+        jScrollPane1.setViewportView(tableThongBao);
+        if (tableThongBao.getColumnModel().getColumnCount() > 0) {
+            tableThongBao.getColumnModel().getColumn(0).setMinWidth(200);
+            tableThongBao.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tableThongBao.getColumnModel().getColumn(0).setMaxWidth(200);
         }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -160,7 +164,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -197,7 +201,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private keeptoo.KGradientPanel kGradientPanel2;
+    private javax.swing.JTable tableThongBao;
     // End of variables declaration//GEN-END:variables
 }

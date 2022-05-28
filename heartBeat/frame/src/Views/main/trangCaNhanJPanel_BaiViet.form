@@ -208,12 +208,9 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="99" green="33" red="0" type="rgb"/>
-                    </Property>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="4" rowCount="21">
-                        <Column editable="true" title="NG&#xc0;Y &#x110;&#x102;NG" type="java.lang.Object">
+                        <Column editable="true" title="&lt;html&gt; &lt;h3 style = &quot;color: #004aad;&quot;&gt;&#x9;Ng&#xe0;y &#x111;&#x103;ng &lt;/h3&gt; &lt;/html&gt; " type="java.lang.Object">
                           <Data value="15/05/2022"/>
                           <Data value="null"/>
                           <Data value="null"/>
@@ -236,7 +233,7 @@
                           <Data value="null"/>
                           <Data value="null"/>
                         </Column>
-                        <Column editable="true" title="CH&#x1ee6; &#x110;&#x1ec0;" type="java.lang.Object">
+                        <Column editable="true" title="&lt;html&gt; &lt;h3 style = &quot;color: #004aad;&quot;&gt; Ch&#x1ee7; &#x111;&#x1ec1; &lt;/h3&gt; &lt;/html&gt;" type="java.lang.Object">
                           <Data value="T&#x1eb7;ng 1 h&#x1ed9;p kh&#x1ea9;u trang y t&#x1ebf;"/>
                           <Data value="null"/>
                           <Data value="null"/>
@@ -259,7 +256,7 @@
                           <Data value="null"/>
                           <Data value="null"/>
                         </Column>
-                        <Column editable="true" title="DANH M&#x1ee4;C" type="java.lang.Object">
+                        <Column editable="true" title="&lt;html&gt; &lt;h3 style = &quot;color: #004aad;&quot;&gt; Danh m&#x1ee5;c &lt;/h3&gt; &lt;/html&gt;" type="java.lang.Object">
                           <Data value="Y t&#x1ebf;"/>
                           <Data value="null"/>
                           <Data value="null"/>
@@ -282,8 +279,32 @@
                           <Data value="null"/>
                           <Data value="null"/>
                         </Column>
-                        <Column editable="true" title="N&#x1ed8;I DUNG" type="java.lang.Object"/>
+                        <Column editable="true" title="&lt;html&gt; &lt;h3 style = &quot;color: #004aad;&quot;&gt; N&#x1ed9;i dung &lt;/h3&gt; &lt;/html&gt;" type="java.lang.Object"/>
                       </Table>
+                    </Property>
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="100" minWidth="100" prefWidth="100" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="300" minWidth="300" prefWidth="300" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="150" minWidth="150" prefWidth="150" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
                     </Property>
                     <Property name="rowHeight" type="int" value="25"/>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">

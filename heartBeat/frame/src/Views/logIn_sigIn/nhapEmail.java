@@ -4,11 +4,8 @@
  */
 package Views.logIn_sigIn;
 
-<<<<<<< HEAD
-import ConnectDB.TestConnectJDBC;
-=======
 import ConnectDB.OracleConnUtils;
->>>>>>> be82a0dd8e2f6827d6634835c05baf4ee1a3c99a
+import ConnectDB.TestConnectJDBC;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.ResultSet;
