@@ -170,6 +170,7 @@ public class danhMucJPanel extends javax.swing.JPanel {
 
         jButton17.setBackground(new java.awt.Color(204, 204, 255));
         jButton17.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/different.png"))); // NOI18N
         jButton17.setText("Khác");
         jButton17.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton17.addActionListener(new java.awt.event.ActionListener() {
