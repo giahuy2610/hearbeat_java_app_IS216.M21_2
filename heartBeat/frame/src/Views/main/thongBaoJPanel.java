@@ -59,6 +59,8 @@ public class thongBaoJPanel extends javax.swing.JPanel {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         findUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         findUser.setForeground(new java.awt.Color(153, 153, 153));
         findUser.setText("Tìm kiếm thông báo");
@@ -108,6 +110,8 @@ public class thongBaoJPanel extends javax.swing.JPanel {
                         .addComponent(findUser, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         tableThongBao.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         tableThongBao.setModel(new javax.swing.table.DefaultTableModel(
