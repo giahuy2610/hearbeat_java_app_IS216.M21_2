@@ -163,7 +163,7 @@
                               <Component id="jLabel3" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="postContent" min="-2" pref="160" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="33" max="32767" attributes="0"/>
+                          <EmptySpace pref="31" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" pref="100" max="-2" attributes="0"/>
@@ -198,7 +198,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="1"/>
+              <Font name="Arial" size="16" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
@@ -209,7 +209,7 @@
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="1"/>
+              <Font name="Arial" size="16" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
@@ -231,7 +231,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="1"/>
+              <Font name="Arial" size="16" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
@@ -259,7 +259,7 @@
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="1"/>
+              <Font name="Arial" size="16" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
@@ -271,7 +271,7 @@
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="14" style="1"/>
+              <Font name="Arial" size="16" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>

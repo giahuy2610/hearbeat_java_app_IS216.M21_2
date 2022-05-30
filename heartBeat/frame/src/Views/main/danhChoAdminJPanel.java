@@ -26,7 +26,6 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
         listItem.add(new danhMucBean("QLND", jbtnQLND));
         listItem.add(new danhMucBean("QLBD", jbtnQLBD));
         listItem.add(new danhMucBean("QLSK", jbtnQLSK));
-        listItem.add(new danhMucBean("QLDYT", jbtnQLDYT));
         
         profile.setEvent(listItem);
     }
@@ -45,7 +44,6 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
         jbtnQLND = new javax.swing.JButton();
         jbtnQLBD = new javax.swing.JButton();
         jbtnQLSK = new javax.swing.JButton();
-        jbtnQLDYT = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 204));
 
@@ -74,27 +72,26 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
 
         jbtnQLSK.setBackground(new java.awt.Color(0, 204, 255));
         jbtnQLSK.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jbtnQLSK.setText("Quản lý sao kê");
+        jbtnQLSK.setText("Quản lý báo cáo");
         jbtnQLSK.setBorder(new javax.swing.border.MatteBorder(null));
-
-        jbtnQLDYT.setBackground(new java.awt.Color(204, 255, 204));
-        jbtnQLDYT.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jbtnQLDYT.setText("BXH điểm Yêu thương");
-        jbtnQLDYT.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        jbtnQLSK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnQLSKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
                 .addComponent(jbtnQLND, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jbtnQLBD, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jbtnQLSK, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnQLDYT, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,15 +100,14 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnQLND, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnQLBD, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnQLSK, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnQLDYT, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jbtnQLSK, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1001, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -124,12 +120,15 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbtnQLSKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnQLSKActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnQLSKActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbtnQLBD;
-    private javax.swing.JButton jbtnQLDYT;
     private javax.swing.JButton jbtnQLND;
     private javax.swing.JButton jbtnQLSK;
     // End of variables declaration//GEN-END:variables
