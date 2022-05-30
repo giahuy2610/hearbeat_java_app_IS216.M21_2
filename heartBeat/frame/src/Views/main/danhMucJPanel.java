@@ -53,6 +53,7 @@ public class danhMucJPanel extends javax.swing.JPanel {
 
         btn_trao_tang.setBackground(new java.awt.Color(255, 153, 255));
         btn_trao_tang.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btn_trao_tang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/traoTang.png"))); // NOI18N
         btn_trao_tang.setText("Trao tặng");
         btn_trao_tang.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         btn_trao_tang.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +64,7 @@ public class danhMucJPanel extends javax.swing.JPanel {
 
         btn_xin_nhan.setBackground(new java.awt.Color(255, 153, 153));
         btn_xin_nhan.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btn_xin_nhan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/xinNhan.png"))); // NOI18N
         btn_xin_nhan.setText("Xin nhận");
         btn_xin_nhan.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         btn_xin_nhan.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +75,7 @@ public class danhMucJPanel extends javax.swing.JPanel {
 
         btn_gay_quy.setBackground(new java.awt.Color(255, 255, 102));
         btn_gay_quy.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btn_gay_quy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/gayQuy.png"))); // NOI18N
         btn_gay_quy.setText("Đóng góp quỹ");
         btn_gay_quy.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         btn_gay_quy.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +121,7 @@ public class danhMucJPanel extends javax.swing.JPanel {
 
         jButton4.setBackground(new java.awt.Color(153, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/thucPham.png"))); // NOI18N
         jButton4.setText("Thực phẩm");
         jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +132,7 @@ public class danhMucJPanel extends javax.swing.JPanel {
 
         jButton5.setBackground(new java.awt.Color(204, 255, 204));
         jButton5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/yTe.png"))); // NOI18N
         jButton5.setText("Y tế");
         jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +143,7 @@ public class danhMucJPanel extends javax.swing.JPanel {
 
         jButton14.setBackground(new java.awt.Color(204, 204, 255));
         jButton14.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/doGiaDung.png"))); // NOI18N
         jButton14.setText("Đồ gia dụng");
         jButton14.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +154,7 @@ public class danhMucJPanel extends javax.swing.JPanel {
 
         jButton15.setBackground(new java.awt.Color(153, 255, 255));
         jButton15.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/giaoDuc.png"))); // NOI18N
         jButton15.setText("Giáo dục");
         jButton15.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton15.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +165,7 @@ public class danhMucJPanel extends javax.swing.JPanel {
 
         jButton16.setBackground(new java.awt.Color(204, 255, 204));
         jButton16.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/buaAn.png"))); // NOI18N
         jButton16.setText("Bữa ăn");
         jButton16.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +177,7 @@ public class danhMucJPanel extends javax.swing.JPanel {
         jButton17.setBackground(new java.awt.Color(204, 255, 255));
         jButton17.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/more.png"))); // NOI18N
+        jButton17.setText("Khác");
         jButton17.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
