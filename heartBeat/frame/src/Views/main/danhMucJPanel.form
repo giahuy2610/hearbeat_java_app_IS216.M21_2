@@ -32,9 +32,8 @@
               <Component id="kGradientPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="jPanel3" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -102,7 +101,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/donate.png"/>
+              <Image iconType="3" name="/Resource/images/traoTang.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Trao t&#x1eb7;ng"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -124,7 +123,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/give.png"/>
+              <Image iconType="3" name="/Resource/images/xinNhan.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Xin nh&#x1ead;n"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -146,7 +145,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/fundraiser.png"/>
+              <Image iconType="3" name="/Resource/images/gayQuy.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#xf3;ng g&#xf3;p qu&#x1ef9;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -205,13 +204,13 @@
                       <Component id="btnDoGiaDung" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                       <Component id="btnYTe" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="40" max="32767" attributes="0"/>
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnGiaoDuc" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                       <Component id="btnBuaAn" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                       <Component id="btnKhac" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -238,7 +237,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/food.png"/>
+              <Image iconType="3" name="/Resource/images/thucPham.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#x1ef1;c ph&#x1ea9;m"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -260,7 +259,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/drugs.png"/>
+              <Image iconType="3" name="/Resource/images/yTe.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Y t&#x1ebf;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -282,7 +281,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/item.png"/>
+              <Image iconType="3" name="/Resource/images/doGiaDung.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#x1ed3; gia d&#x1ee5;ng"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -304,7 +303,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/studying.png"/>
+              <Image iconType="3" name="/Resource/images/giaoDuc.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Gi&#xe1;o d&#x1ee5;c"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -326,7 +325,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/lunch.png"/>
+              <Image iconType="3" name="/Resource/images/buaAn.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="B&#x1eef;a &#x103;n"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -346,6 +345,9 @@
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Resource/images/more.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Kh&#xe1;c"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
