@@ -38,9 +38,14 @@ public class trangChuJPanel extends javax.swing.JPanel {
     protected static JPanel container = new JPanel(new GridLayout(0, 1)); // 1 column variable;
 
     protected static String query = "";
+    private static int firstFill = 0;
 
     protected String initQuery() {
-        query = "select * from  tb_post where isdeleted = 0 and statusid = 1";
+        if (firstFill == 0) {
+            query = "select * from  tb_post where isdeleted = 0 and statusid = 1";
+        } else {
+            query = "select * from  tb_post where ( upper(title) like upper('%" + field_tim_kiem.getText() + "%') or upper(content) like upper('%" + field_tim_kiem.getText() + "%') ) and isdeleted = 0 and statusid = 1";
+        }
 
         if (categoryFilter.getSelectedIndex() > 0) {
             postCategory a = new postCategory();
@@ -117,7 +122,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
 
     public trangChuJPanel() {
         initComponents();
-
+        field_tim_kiem.setText("Bạn muốn tìm kiếm....");
         city d = new city();
         d.prepareCityFilter(cityFilter);
 
@@ -134,12 +139,12 @@ public class trangChuJPanel extends javax.swing.JPanel {
         this.preparePost();
     }
 
-        public trangChuJPanel(int defaultSeletectedPurpose, int defaultSeletectedCategory) {
+    public trangChuJPanel(int defaultSeletectedPurpose, int defaultSeletectedCategory) {
         initComponents();
-        
+
         city d = new city();
         d.prepareCityFilter(cityFilter);
-        
+
         district.prepareDistrictFilter(cityFilter, districtFilter);
 
         postPurpose b = new postPurpose();
@@ -150,16 +155,12 @@ public class trangChuJPanel extends javax.swing.JPanel {
 
         purposeFilter.setSelectedIndex(defaultSeletectedPurpose);
         categoryFilter.setSelectedIndex(defaultSeletectedCategory);
-        
+
         sort.prepareSortFilter(sortFilter);
 
-        
-        
-        this.preparePost()
-                
-                ;
+        this.preparePost();
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,8 +176,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField6 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        field_tim_kiem = new javax.swing.JTextField();
+        btn_tim_kiem = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         purposeFilter = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
@@ -235,15 +236,25 @@ public class trangChuJPanel extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextField6.setText("Tìm kiem bai viet, danh muc bai viet");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        field_tim_kiem.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        field_tim_kiem.setText("Tìm kiếm");
+        field_tim_kiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                field_tim_kiemMousePressed(evt);
+            }
+        });
+        field_tim_kiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                field_tim_kiemActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/876054.png"))); // NOI18N
+        btn_tim_kiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/876054.png"))); // NOI18N
+        btn_tim_kiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tim_kiemActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 204));
         jPanel4.setPreferredSize(new java.awt.Dimension(807, 50));
@@ -339,9 +350,9 @@ public class trangChuJPanel extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(field_tim_kiem, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_tim_kiem, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
@@ -353,8 +364,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(field_tim_kiem, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_tim_kiem, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -398,9 +409,9 @@ public class trangChuJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    private void field_tim_kiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_tim_kiemActionPerformed
+
+    }//GEN-LAST:event_field_tim_kiemActionPerformed
 
     private void purposeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purposeFilterActionPerformed
         this.preparePost();
@@ -425,12 +436,24 @@ public class trangChuJPanel extends javax.swing.JPanel {
         this.preparePost();
     }//GEN-LAST:event_sortFilterActionPerformed
 
+    private void btn_tim_kiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tim_kiemActionPerformed
+        this.preparePost();
+    }//GEN-LAST:event_btn_tim_kiemActionPerformed
+
+    private void field_tim_kiemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_tim_kiemMousePressed
+        if (firstFill == 0) {
+            firstFill = 1;
+            field_tim_kiem.setText("");
+        }
+    }//GEN-LAST:event_field_tim_kiemMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_tim_kiem;
     private javax.swing.JComboBox<String> categoryFilter;
     private javax.swing.JComboBox<String> cityFilter;
     private javax.swing.JComboBox<String> districtFilter;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField field_tim_kiem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -442,7 +465,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField6;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JComboBox<String> purposeFilter;
     private javax.swing.JComboBox<String> sortFilter;

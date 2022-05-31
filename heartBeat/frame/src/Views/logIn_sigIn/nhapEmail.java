@@ -49,11 +49,10 @@ public class nhapEmail extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_xac_nhan = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(450, 250));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         panel_nhap_ma.setkEndColor(new java.awt.Color(153, 153, 255));
@@ -76,14 +75,14 @@ public class nhapEmail extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         panel_nhap_ma.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 89, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 204, 204));
-        jButton1.setText("Xác nhận");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_xac_nhan.setBackground(new java.awt.Color(255, 204, 204));
+        btn_xac_nhan.setText("Xác nhận");
+        btn_xac_nhan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btn_xac_nhanMouseClicked(evt);
             }
         });
-        panel_nhap_ma.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 99, -1));
+        panel_nhap_ma.add(btn_xac_nhan, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 99, -1));
 
         jLabel11.setText("jLabel11");
         panel_nhap_ma.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 150, -1));
@@ -93,7 +92,7 @@ public class nhapEmail extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btn_xac_nhanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_xac_nhanMouseClicked
         if (jTextField1.getText().equals("")) {
             if (jTextField1.getText().equals("")) {
                 jLabel11.setVisible(true);
@@ -134,7 +133,7 @@ public class nhapEmail extends javax.swing.JFrame {
             }
 
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_btn_xac_nhanMouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -177,7 +176,7 @@ public class nhapEmail extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_xac_nhan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel3;

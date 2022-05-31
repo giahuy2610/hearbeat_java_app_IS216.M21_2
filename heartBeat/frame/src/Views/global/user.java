@@ -19,6 +19,7 @@ import java.sql.Connection;
 public class user {
     private static String currentUserId;// biến lưu userId của người dùng đang sử dụng app
     private static String currentRoleId; // biến lưu roleId của người dùng đang sử dụng app
+    private static String currentEmail;
     
     //các thuộc tính của 1 user
     private String userId;
@@ -176,5 +177,7 @@ public class user {
         this.lastName = lastName;
     }
     
-    
+    public static String getCurrentEmail() {
+        return currentEmail;
+    }
  }

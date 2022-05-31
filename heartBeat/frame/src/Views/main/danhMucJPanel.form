@@ -3,7 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="ff" green="cc" red="cc" type="rgb"/>
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
   </Properties>
   <AuxValues>
@@ -21,8 +21,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
-          <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanelDanhMuc" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanelNhuCau" alignment="0" max="32767" attributes="0"/>
           <Component id="kGradientPanel2" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
@@ -31,19 +31,19 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="kGradientPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanelNhuCau" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+              <Component id="jPanelDanhMuc" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="34" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel2">
+    <Container class="javax.swing.JPanel" name="jPanelNhuCau">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="ff" type="rgb"/>
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
 
@@ -102,7 +102,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/donate.png"/>
+              <Image iconType="3" name="/Resource/images/traoTang.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Trao t&#x1eb7;ng"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -124,7 +124,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/give.png"/>
+              <Image iconType="3" name="/Resource/images/xinNhan.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Xin nh&#x1ead;n"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -146,7 +146,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/fundraiser.png"/>
+              <Image iconType="3" name="/Resource/images/gayQuy.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#xf3;ng g&#xf3;p qu&#x1ef9;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -161,10 +161,10 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel3">
+    <Container class="javax.swing.JPanel" name="jPanelDanhMuc">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="ff" type="rgb"/>
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
       </Properties>
 
@@ -178,18 +178,18 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="btnGiaoDuc" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="btnThucPham" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="btn_giao_duc" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="btn_thuc_pham" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="btnBuaAn" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="btnYTe" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="btn_bua_an" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="btn_y_te" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnKhac" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="btnDoGiaDung" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="btn_khac" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="btn_gia_dung" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="120" max="32767" attributes="0"/>
               </Group>
@@ -201,15 +201,15 @@
                   <Component id="jLabel3" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnThucPham" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
-                      <Component id="btnDoGiaDung" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
-                      <Component id="btnYTe" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="btn_thuc_pham" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="btn_gia_dung" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="btn_y_te" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="40" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnGiaoDuc" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
-                      <Component id="btnBuaAn" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
-                      <Component id="btnKhac" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="btn_giao_duc" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="btn_bua_an" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="btn_khac" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -229,7 +229,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnThucPham">
+        <Component class="javax.swing.JButton" name="btn_thuc_pham">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="99" type="rgb"/>
@@ -238,7 +238,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/food.png"/>
+              <Image iconType="3" name="/Resource/images/thucPham.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#x1ef1;c ph&#x1ea9;m"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -248,10 +248,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThucPhamActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_thuc_phamActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnYTe">
+        <Component class="javax.swing.JButton" name="btn_y_te">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="ff" red="cc" type="rgb"/>
@@ -260,7 +260,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/drugs.png"/>
+              <Image iconType="3" name="/Resource/images/yTe.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Y t&#x1ebf;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -270,10 +270,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnYTeActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_y_teActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnDoGiaDung">
+        <Component class="javax.swing.JButton" name="btn_gia_dung">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="cc" type="rgb"/>
@@ -282,7 +282,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/item.png"/>
+              <Image iconType="3" name="/Resource/images/doGiaDung.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#x1ed3; gia d&#x1ee5;ng"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -292,10 +292,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDoGiaDungActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_gia_dungActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnGiaoDuc">
+        <Component class="javax.swing.JButton" name="btn_giao_duc">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="99" type="rgb"/>
@@ -304,7 +304,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/studying.png"/>
+              <Image iconType="3" name="/Resource/images/giaoDuc.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Gi&#xe1;o d&#x1ee5;c"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -314,10 +314,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGiaoDucActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_giao_ducActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnBuaAn">
+        <Component class="javax.swing.JButton" name="btn_bua_an">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="ff" red="cc" type="rgb"/>
@@ -326,7 +326,7 @@
               <Font name="Arial" size="18" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Resource/images/lunch.png"/>
+              <Image iconType="3" name="/Resource/images/buaAn.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="B&#x1eef;a &#x103;n"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -336,16 +336,19 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuaAnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_bua_anActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnKhac">
+        <Component class="javax.swing.JButton" name="btn_khac">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="cc" red="cc" type="rgb"/>
+              <Color blue="ff" green="ff" red="cc" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Resource/images/more.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Kh&#xe1;c"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -355,7 +358,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnKhacActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_khacActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
