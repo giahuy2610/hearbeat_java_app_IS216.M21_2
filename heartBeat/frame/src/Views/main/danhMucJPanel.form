@@ -31,16 +31,10 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="kGradientPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-<<<<<<< HEAD
               <Component id="jPanelNhuCau" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Component id="jPanelDanhMuc" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="34" max="32767" attributes="0"/>
-=======
-              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jPanel3" max="32767" attributes="0"/>
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
           </Group>
       </Group>
     </DimensionLayout>
@@ -211,13 +205,13 @@
                       <Component id="btn_gia_dung" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                       <Component id="btn_y_te" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="62" max="32767" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_giao_duc" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                       <Component id="btn_bua_an" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                       <Component id="btn_khac" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

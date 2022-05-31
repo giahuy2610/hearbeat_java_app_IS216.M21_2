@@ -119,121 +119,67 @@ public class danhMucJPanel extends javax.swing.JPanel {
         jLabel3.setText("Danh mục");
         jLabel3.setPreferredSize(new java.awt.Dimension(48, 15));
 
-<<<<<<< HEAD
         btn_thuc_pham.setBackground(new java.awt.Color(153, 255, 255));
         btn_thuc_pham.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btn_thuc_pham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/thucPham.png"))); // NOI18N
         btn_thuc_pham.setText("Thực phẩm");
         btn_thuc_pham.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         btn_thuc_pham.addActionListener(new java.awt.event.ActionListener() {
-=======
-        btnThucPham.setBackground(new java.awt.Color(153, 255, 255));
-        btnThucPham.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnThucPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/thucPham.png"))); // NOI18N
-        btnThucPham.setText("Thực phẩm");
-        btnThucPham.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        btnThucPham.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_thuc_phamActionPerformed(evt);
             }
         });
 
-<<<<<<< HEAD
         btn_y_te.setBackground(new java.awt.Color(204, 255, 204));
         btn_y_te.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btn_y_te.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/yTe.png"))); // NOI18N
         btn_y_te.setText("Y tế");
         btn_y_te.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         btn_y_te.addActionListener(new java.awt.event.ActionListener() {
-=======
-        btnYTe.setBackground(new java.awt.Color(204, 255, 204));
-        btnYTe.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnYTe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/yTe.png"))); // NOI18N
-        btnYTe.setText("Y tế");
-        btnYTe.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        btnYTe.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_y_teActionPerformed(evt);
             }
         });
 
-<<<<<<< HEAD
         btn_gia_dung.setBackground(new java.awt.Color(204, 204, 255));
         btn_gia_dung.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btn_gia_dung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/doGiaDung.png"))); // NOI18N
         btn_gia_dung.setText("Đồ gia dụng");
         btn_gia_dung.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         btn_gia_dung.addActionListener(new java.awt.event.ActionListener() {
-=======
-        btnDoGiaDung.setBackground(new java.awt.Color(204, 204, 255));
-        btnDoGiaDung.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnDoGiaDung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/doGiaDung.png"))); // NOI18N
-        btnDoGiaDung.setText("Đồ gia dụng");
-        btnDoGiaDung.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        btnDoGiaDung.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_gia_dungActionPerformed(evt);
             }
         });
 
-<<<<<<< HEAD
         btn_giao_duc.setBackground(new java.awt.Color(153, 255, 255));
         btn_giao_duc.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btn_giao_duc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/giaoDuc.png"))); // NOI18N
         btn_giao_duc.setText("Giáo dục");
         btn_giao_duc.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         btn_giao_duc.addActionListener(new java.awt.event.ActionListener() {
-=======
-        btnGiaoDuc.setBackground(new java.awt.Color(153, 255, 255));
-        btnGiaoDuc.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnGiaoDuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/giaoDuc.png"))); // NOI18N
-        btnGiaoDuc.setText("Giáo dục");
-        btnGiaoDuc.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        btnGiaoDuc.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_giao_ducActionPerformed(evt);
             }
         });
 
-<<<<<<< HEAD
         btn_bua_an.setBackground(new java.awt.Color(204, 255, 204));
         btn_bua_an.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btn_bua_an.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/buaAn.png"))); // NOI18N
         btn_bua_an.setText("Bữa ăn");
         btn_bua_an.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         btn_bua_an.addActionListener(new java.awt.event.ActionListener() {
-=======
-        btnBuaAn.setBackground(new java.awt.Color(204, 255, 204));
-        btnBuaAn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnBuaAn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/buaAn.png"))); // NOI18N
-        btnBuaAn.setText("Bữa ăn");
-        btnBuaAn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        btnBuaAn.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_bua_anActionPerformed(evt);
             }
         });
 
-<<<<<<< HEAD
         btn_khac.setBackground(new java.awt.Color(204, 255, 255));
         btn_khac.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btn_khac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/more.png"))); // NOI18N
         btn_khac.setText("Khác");
         btn_khac.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         btn_khac.addActionListener(new java.awt.event.ActionListener() {
-=======
-        btnKhac.setBackground(new java.awt.Color(204, 204, 255));
-        btnKhac.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnKhac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/more.png"))); // NOI18N
-        btnKhac.setText("Khác");
-        btnKhac.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        btnKhac.addActionListener(new java.awt.event.ActionListener() {
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_khacActionPerformed(evt);
             }
@@ -266,7 +212,6 @@ public class danhMucJPanel extends javax.swing.JPanel {
             .addGroup(jPanelDanhMucLayout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-<<<<<<< HEAD
                 .addGroup(jPanelDanhMucLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_thuc_pham, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_gia_dung, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -277,18 +222,6 @@ public class danhMucJPanel extends javax.swing.JPanel {
                     .addComponent(btn_bua_an, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_khac, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-=======
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThucPham, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDoGiaDung, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnYTe, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGiaoDuc, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuaAn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnKhac, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35))
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
         );
 
         kGradientPanel2.setkEndColor(new java.awt.Color(255, 0, 255));
@@ -323,16 +256,10 @@ public class danhMucJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-<<<<<<< HEAD
                 .addComponent(jPanelNhuCau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(jPanelDanhMuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(34, Short.MAX_VALUE))
-=======
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
         );
     }// </editor-fold>//GEN-END:initComponents
 

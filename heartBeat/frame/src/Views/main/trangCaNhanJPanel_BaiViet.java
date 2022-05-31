@@ -75,7 +75,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        jPanelProfile = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         findUser = new javax.swing.JTextField();
         jButton14 = new javax.swing.JButton();
@@ -83,31 +83,15 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         jLabel9 = new javax.swing.JLabel();
         sortFilter = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
 
-        setPreferredSize(new java.awt.Dimension(1000, 366));
+        setPreferredSize(new java.awt.Dimension(1000, 360));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jScrollPane6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelProfile.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane6)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel17.setBackground(new java.awt.Color(255, 204, 204));
 
         findUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         findUser.setForeground(new java.awt.Color(153, 153, 153));
@@ -119,10 +103,10 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             }
         });
 
-        jButton14.setBackground(new java.awt.Color(255, 255, 255));
+        jButton14.setBackground(new java.awt.Color(255, 204, 204));
         jButton14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton14.setForeground(new java.awt.Color(0, 51, 153));
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search.png"))); // NOI18N
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/loupe.png"))); // NOI18N
         jButton14.setBorder(null);
 
         statusFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Chờ", "Có hẹn", "Thành công", "Đã xóa" }));
@@ -132,8 +116,6 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 51, 153));
         jLabel9.setText("Phân loại");
 
         sortFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -142,8 +124,6 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             }
         });
 
-        jLabel26.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(0, 51, 153));
         jLabel26.setText("Xếp theo");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
@@ -155,65 +135,94 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 .addComponent(findUser, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addGap(173, 173, 173)
                 .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(48, 48, 48)
                 .addComponent(statusFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel26)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(sortFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113))
+                .addGap(97, 97, 97))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(sortFilter, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                            .addComponent(findUser)
+                            .addComponent(statusFilter)))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        jScrollPane6.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanelProfileLayout = new javax.swing.GroupLayout(jPanelProfile);
+        jPanelProfile.setLayout(jPanelProfileLayout);
+        jPanelProfileLayout.setHorizontalGroup(
+            jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelProfileLayout.createSequentialGroup()
                 .addContainerGap()
-<<<<<<< HEAD
                 .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 980, Short.MAX_VALUE)
                     .addComponent(jScrollPane6))
-=======
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(statusFilter)
-                        .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(sortFilter))
-                    .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(findUser))
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
                 .addContainerGap())
+        );
+        jPanelProfileLayout.setVerticalGroup(
+            jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelProfileLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanelProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanelProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sortFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortFilterActionPerformed
+    private void findUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sortFilterActionPerformed
+    }//GEN-LAST:event_findUserActionPerformed
 
     private void statusFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusFilterActionPerformed
         //System.out.println("city " + cityFilter.getSelectedIndex() + " district " + districtFilter.getSelectedIndex() + " category " + categoryFilter.getSelectedIndex());
         this.preparePost();
     }//GEN-LAST:event_statusFilterActionPerformed
 
-    private void findUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findUserActionPerformed
+    private void sortFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortFilterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_findUserActionPerformed
+    }//GEN-LAST:event_sortFilterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -223,6 +232,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanelProfile;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JComboBox<String> sortFilter;
     private javax.swing.JComboBox<String> statusFilter;

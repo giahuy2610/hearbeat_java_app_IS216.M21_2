@@ -21,12 +21,8 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
           <Component id="kGradientPanel2" alignment="0" max="32767" attributes="0"/>
           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-=======
-          <Component id="jPanel1" alignment="0" pref="1001" max="32767" attributes="0"/>
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
           <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
@@ -110,7 +106,6 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   <Component id="jbtnQLND" min="-2" pref="245" max="-2" attributes="0"/>
@@ -119,16 +114,6 @@
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="jbtnQLSK" min="-2" pref="245" max="-2" attributes="0"/>
                   <EmptySpace pref="76" max="32767" attributes="0"/>
-=======
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                  <Component id="jbtnQLND" min="-2" pref="245" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jbtnQLBD" min="-2" pref="245" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jbtnQLSK" min="-2" pref="245" max="-2" attributes="0"/>
-                  <EmptySpace pref="120" max="32767" attributes="0"/>
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
               </Group>
           </Group>
         </DimensionLayout>
@@ -186,11 +171,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-<<<<<<< HEAD
             <Property name="text" type="java.lang.String" value="B&#xe1;o c&#xe1;o"/>
-=======
-            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; b&#xe1;o c&#xe1;o"/>
->>>>>>> 0261df956147336a8f2c94966217ebe311e3dcb0
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
                 <MatteColorBorder/>
