@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Views.main;
+package Views.trangCaNhan;
 
 import Views.global.user;
 import Views.logIn_sigIn.quenMatKhau;
+import Views.main.chuyenManHinhProfile;
+import Views.main.danhMucBean;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;

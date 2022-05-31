@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Views.main;
+package Views.trangCaNhan;
 
 import ConnectDB.OracleConnUtils;
 import Views.global.sort;
 import Views.global.user;
+import Views.main.trangChuJPanel;
 import Views.main.trangChuJPanel;
 import java.sql.*;
 
@@ -172,7 +173,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             .addGroup(jPanelProfileLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 980, Short.MAX_VALUE)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
                     .addComponent(jScrollPane6))
                 .addContainerGap())
         );
