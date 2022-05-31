@@ -47,7 +47,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         try ( Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-               // jLabel9.setText(rs.getString("title"));
+                jLabel7.setText(rs.getString("title"));
             }
         } catch (SQLException e) {
             System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
@@ -93,12 +93,9 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
-        jButton2.setText("HỦY LỊCH HẸN");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        kGradientPanel1.setkEndColor(new java.awt.Color(255, 0, 255));
+        kGradientPanel1.setkGradientFocus(700);
+        kGradientPanel1.setkStartColor(new java.awt.Color(0, 0, 255));
 
         kGradientPanel2.setkEndColor(new java.awt.Color(255, 0, 255));
         kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 255));
@@ -356,13 +353,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -375,7 +366,6 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;

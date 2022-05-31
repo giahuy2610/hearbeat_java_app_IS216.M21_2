@@ -4,6 +4,8 @@
  */
 package Views.main;
 
+import Views.trangCaNhan.trangCaNhanJPanel_ThongTin;
+import Views.trangCaNhan.trangCaNhanJPanel_BaiViet;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

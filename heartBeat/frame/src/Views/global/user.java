@@ -19,6 +19,7 @@ import java.sql.Connection;
 public class user {
     private static String currentUserId;// biến lưu userId của người dùng đang sử dụng app
     private static String currentRoleId; // biến lưu roleId của người dùng đang sử dụng app
+    private static String currentEmail;
     
     //các thuộc tính của 1 user
     private String userId;
@@ -61,6 +62,32 @@ public class user {
 
     public static void setCurrentUserId(String currentUserId) {
         user.currentUserId = currentUserId;
+                    Connection conn = null;
+        
+            try {
+                 conn = OracleConnUtils.getOracleConnection();
+            } catch (SQLException ex) {
+                Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(user.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            String query = "";
+            
+            synchronized (query) {
+                query = "select * from tb_user where userid = " + currentUserId;
+                System.out.println(query);
+            }
+            try ( Statement stmt = conn.createStatement()) {
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    currentRoleId = rs.getString("roleid");
+                    currentEmail = rs.getString("email");
+                }
+                conn.close();
+            } catch (SQLException e) {
+                System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
+            }
     }
 
     public static String getCurrentRoleId() {
@@ -176,5 +203,7 @@ public class user {
         this.lastName = lastName;
     }
     
-    
+    public static String getCurrentEmail() {
+        return currentEmail;
+    }
  }

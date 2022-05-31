@@ -64,12 +64,11 @@ public class city {
         }
     }
 
-    public void prepareCityFilter(JComboBox cityFilter) {
+    public static void prepareCityFilter(JComboBox cityFilter) {
         cityFilter.removeAllItems();
         loadData();
         
-        
-
+       
         for (String item : cityName) {
             cityFilter.addItem(item);
         }

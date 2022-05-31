@@ -4,6 +4,9 @@
  */
 package Views.main;
 
+import Views.danhChoAdmin.danhChoAdminJPanel_QLSK;
+import Views.danhChoAdmin.danhChoAdminJPanel_QLND;
+import Views.danhChoAdmin.danhChoAdminJPanel_QLBD;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
