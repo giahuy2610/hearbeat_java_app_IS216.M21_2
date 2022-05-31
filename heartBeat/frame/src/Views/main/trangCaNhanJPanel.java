@@ -8,7 +8,7 @@ import Views.global.user;
 import Views.logIn_sigIn.quenMatKhau;
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author giahu
@@ -180,9 +180,7 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
                             .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -190,7 +188,7 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
                         .addComponent(jbtnBaiViet, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jbtnThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(165, 165, 165)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
@@ -272,6 +270,8 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
 
     private void jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MousePressed
        //bật thông báo
+       System.out.println(user.getCurrentEmail());
+       JOptionPane.showMessageDialog(this,"Mã khôi phục mật khẩu đã được gửi về email!");
        new quenMatKhau(user.getCurrentEmail()).setVisible(true);
     }//GEN-LAST:event_jLabel7MousePressed
 

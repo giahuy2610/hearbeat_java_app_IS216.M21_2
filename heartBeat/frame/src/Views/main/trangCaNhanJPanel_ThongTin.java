@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Views.main;
+import Views.global.city;
+import Views.global.district;
 
 /**
  *
@@ -15,6 +17,9 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
      */
     public trangCaNhanJPanel_ThongTin() {
         initComponents();
+        city.prepareCityFilter(cb_city);
+        district.prepareDistrictFilter(cb_city, cb_district);
+        
     }
 
     /**
@@ -121,6 +126,11 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(204, 204, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/save.png"))); // NOI18N
         jButton1.setText("Lưu thay đổi");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelProfileLayout = new javax.swing.GroupLayout(jPanelProfile);
         jPanelProfile.setLayout(jPanelProfileLayout);
@@ -154,7 +164,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                     .addComponent(field_address))
                 .addGap(41, 41, 41))
             .addGroup(jPanelProfileLayout.createSequentialGroup()
-                .addGap(405, 405, 405)
+                .addGap(421, 421, 421)
                 .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -208,6 +218,10 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     private void field_addressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_addressActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_field_addressActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

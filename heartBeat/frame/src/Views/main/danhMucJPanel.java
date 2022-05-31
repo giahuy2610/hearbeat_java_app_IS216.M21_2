@@ -264,15 +264,15 @@ public class danhMucJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_trao_tangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_trao_tangActionPerformed
-        chuyenManHinhController.setView(new trangChuJPanel(0, 1));
+        chuyenManHinhController.setView(new trangChuJPanel(1,0));
     }//GEN-LAST:event_btn_trao_tangActionPerformed
 
     private void btn_xin_nhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xin_nhanActionPerformed
-        chuyenManHinhController.setView(new trangChuJPanel(0, 2));
+        chuyenManHinhController.setView(new trangChuJPanel(2,0));
     }//GEN-LAST:event_btn_xin_nhanActionPerformed
 
     private void btn_gay_quyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gay_quyActionPerformed
-        chuyenManHinhController.setView(new trangChuJPanel(0, 3));
+        chuyenManHinhController.setView(new trangChuJPanel(3,0));
     }//GEN-LAST:event_btn_gay_quyActionPerformed
 
     private void btn_thuc_phamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thuc_phamActionPerformed
