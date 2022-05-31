@@ -394,9 +394,7 @@ public class dangNhap extends javax.swing.JFrame {
             String inputPassword = getMd5(String.valueOf(jPasswordField1.getPassword()));
             if(Password.equals(inputPassword)){
                 this.dispose();
-                new mainFrame().setVisible(true);
-                user.setCurrentUserId(userId); // lưu lại userId của người dùng đang sử dụng app
-                user.setCurrentRoleId(roleId); // lưu lại roleId của người dùng đang sử dụng app
+                new mainFrame(userId).setVisible(true);
                 System.out.println("Đăng nhập thành công, userId " + userId + ", roleId " + roleId);
             }
             else{

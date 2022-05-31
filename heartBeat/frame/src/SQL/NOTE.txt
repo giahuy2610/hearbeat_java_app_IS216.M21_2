@@ -1,4 +1,4 @@
-thứ tự chạy bảng
+git thứ tự chạy bảng
 
 poststatus -> category -> purpose -> role -> user -> city 
 -> district -> address -> post -> scoretransaction 

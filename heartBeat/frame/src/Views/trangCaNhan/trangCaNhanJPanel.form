@@ -139,9 +139,9 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField6" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField5" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
+                                  <Component id="labelVaiTro" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
+                                  <Component id="labelDiem" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelTen" alignment="0" min="-2" pref="258" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -169,12 +169,12 @@
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel5" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                                  <Component id="jTextField5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                                  <Component id="labelTen" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="3" attributes="0">
                                                   <Component id="jLabel4" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="labelDiem" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <Component id="jLabel7" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
@@ -185,7 +185,7 @@
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel6" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jTextField6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="labelVaiTro" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -265,7 +265,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="labelDiem">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="1"/>
@@ -284,7 +284,7 @@
                 <Property name="text" type="java.lang.String" value="Xin ch&#xe0;o"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField5">
+            <Component class="javax.swing.JTextField" name="labelTen">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="1"/>
@@ -295,7 +295,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="labelTenActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
@@ -306,7 +306,7 @@
                 <Property name="text" type="java.lang.String" value="Vai tr&#xf2;:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField6">
+            <Component class="javax.swing.JTextField" name="labelVaiTro">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
@@ -317,7 +317,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField6ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="labelVaiTroActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
