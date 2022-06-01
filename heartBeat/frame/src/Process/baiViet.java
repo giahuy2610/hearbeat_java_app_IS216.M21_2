@@ -5,7 +5,7 @@
 package Process;
 
 import ConnectDB.OracleConnUtils;
-import Views.global.user;
+import Views.main.mainFrame;
 import java.sql.*;
 
 /**
@@ -17,9 +17,9 @@ public class baiViet {
         Connection conn = OracleConnUtils.getOracleConnection();
         String firstName = "Trịnh Gia";
         String query = "{call P_INSERT_POST(?,?,?,?,?)}";
-        System.out.println(user.getCurrentUserId());
+        System.out.println(mainFrame.currentUser.getUserId());
         CallableStatement caSt = conn.prepareCall(query);
-        caSt.setString(1, user.getCurrentUserId());
+        caSt.setString(1, mainFrame.currentUser.getUserId());
         caSt.setString(2, postTitle);
         caSt.setString(3, postContent);
         caSt.setString(4, postCategoryId);

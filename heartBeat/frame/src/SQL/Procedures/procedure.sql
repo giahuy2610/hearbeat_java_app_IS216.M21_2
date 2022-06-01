@@ -42,6 +42,22 @@ BEGIN
         roleid
     );
 
+    INSERT INTO tb_address (
+        userid,
+            CITYID INTEGER NOT NULL,
+    DISTRICTID INTEGER NOT NULL,
+    WARD NVARCHAR2(255),
+    ADDRESS NVARCHAR2(255)
+    ) VALUES (
+        firstname,
+        lastname,
+        gender,
+        phone,
+        dateofbirth,
+        email,
+        password,
+        roleid
+    );
     COMMIT;
 END;
 

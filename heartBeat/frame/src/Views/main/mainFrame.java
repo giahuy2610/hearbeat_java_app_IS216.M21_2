@@ -4,6 +4,7 @@
  */
 package Views.main;
 
+import Views.global.user;
 import Views.logIn_sigIn.dangNhap;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +16,18 @@ import javax.swing.JOptionPane;
  */
 public class mainFrame extends javax.swing.JFrame {
     private static chuyenManHinhController controller;
+    public static user currentUser = new user();
     /**
      * Creates new form mainFrame
      */
-    public mainFrame() {
+    public mainFrame(String currentUserId) {
         initComponents();
         this.setLocationRelativeTo(null);
         setTitle("HeartBeat");
+        
+        currentUser.loadUser(currentUserId);
+        System.out.println(currentUser.getUserId());
+        
 
         controller = new chuyenManHinhController(jpnView);
 
@@ -226,8 +232,8 @@ public class mainFrame extends javax.swing.JFrame {
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnRootLayout.createSequentialGroup()
                 .addComponent(jpnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, 994, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpnRootLayout.setVerticalGroup(
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,7 +322,7 @@ public class mainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainFrame().setVisible(true);
+   
             }
         });
     }

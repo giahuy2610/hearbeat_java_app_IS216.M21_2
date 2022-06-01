@@ -6,7 +6,6 @@ package Views.main;
 
 import ConnectDB.OracleConnUtils;
 import Views.global.notification;
-import Views.global.user;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -55,7 +54,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         DefaultTableModel model = new DefaultTableModel();
         List<String> list = new ArrayList<String>();
 
-        for (notification row : prepareNotifications(user.getCurrentUserId())) {
+        for (notification row : prepareNotifications(mainFrame.currentUser.getUserId())) {
             String row_temp[] = {row.getCreatedOn(), row.getContent()};
             DefaultTableModel tblModel = (DefaultTableModel) tableThongBao.getModel();
 

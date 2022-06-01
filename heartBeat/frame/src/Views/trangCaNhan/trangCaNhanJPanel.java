@@ -4,34 +4,46 @@
  */
 package Views.trangCaNhan;
 
-import Views.global.user;
 import Views.logIn_sigIn.quenMatKhau;
 import Views.main.chuyenManHinhProfile;
 import Views.main.danhMucBean;
+import Views.main.mainFrame;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author giahu
  */
 public class trangCaNhanJPanel extends javax.swing.JPanel {
 
+    public void updateJLabel() {
+        labelTen.setText(mainFrame.currentUser.getLastName());
+        System.out.println(mainFrame.currentUser.getRoleId());
+        if ((mainFrame.currentUser.getRoleId()).equals("1") == true) {
+            labelVaiTro.setText("Người dùng");
+        } else {
+            labelVaiTro.setText("Quản trị viên");
+        }
+        labelDiem.setText(mainFrame.currentUser.getScore());
+    }
+
     /**
      * Creates new form trangCaNhanJPanel
      */
     public trangCaNhanJPanel() {
         initComponents();
-
+        updateJLabel();
         chuyenManHinhProfile profile = new chuyenManHinhProfile(jPanelProfile);
         profile.setView(jbtnBaiViet);
-        
+
         List<danhMucBean> listItem = new ArrayList<>();
         listItem.add(new danhMucBean("BaiViet", jbtnBaiViet));
         listItem.add(new danhMucBean("ThongTin", jbtnThongTin));
-        
+
         profile.setEvent(listItem);
-        
+
     }
 
     /**
@@ -52,11 +64,11 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jbtnBaiViet = new javax.swing.JButton();
         jbtnThongTin = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        labelDiem = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        labelTen = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        labelVaiTro = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -115,31 +127,31 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         jbtnThongTin.setText("Giới thiệu");
         jbtnThongTin.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 51, 153));
-        jLabel3.setText("100 điểm");
+        labelDiem.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelDiem.setForeground(new java.awt.Color(255, 51, 153));
+        labelDiem.setText("100 điểm");
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setText("Xin chào");
 
-        jTextField5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jTextField5.setText("Tên người dùng");
-        jTextField5.setBorder(null);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        labelTen.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelTen.setText("Tên người dùng");
+        labelTen.setBorder(null);
+        labelTen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                labelTenActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Vai trò:");
 
-        jTextField6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextField6.setText("Người dùng");
-        jTextField6.setBorder(null);
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        labelVaiTro.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        labelVaiTro.setText("Người dùng");
+        labelVaiTro.setBorder(null);
+        labelVaiTro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                labelVaiTroActionPerformed(evt);
             }
         });
 
@@ -182,9 +194,9 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(labelVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelDiem)
+                            .addComponent(labelTen, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(333, 333, 333)
                         .addComponent(jbtnBaiViet, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,17 +218,17 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(labelTen, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(14, 14, 14)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel3)))
+                                            .addComponent(labelDiem)))
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -258,23 +270,22 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void labelTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labelTenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_labelTenActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void labelVaiTroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labelVaiTroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_labelVaiTroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MousePressed
-       //bật thông báo
-       System.out.println(user.getCurrentEmail());
-       JOptionPane.showMessageDialog(this,"Mã khôi phục mật khẩu đã được gửi về email!");
-       new quenMatKhau(user.getCurrentEmail()).setVisible(true);
+        //bật thông báo
+        JOptionPane.showMessageDialog(this, "Mã khôi phục mật khẩu đã được gửi về email!");
+        new quenMatKhau(mainFrame.currentUser.getEmail()).setVisible(true);
     }//GEN-LAST:event_jLabel7MousePressed
 
 
@@ -282,7 +293,6 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -290,10 +300,11 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelProfile;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JButton jbtnBaiViet;
     private javax.swing.JButton jbtnThongTin;
     private keeptoo.KGradientPanel kGradientPanel2;
+    private javax.swing.JLabel labelDiem;
+    private javax.swing.JTextField labelTen;
+    private javax.swing.JTextField labelVaiTro;
     // End of variables declaration//GEN-END:variables
 }

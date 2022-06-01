@@ -6,6 +6,10 @@ package Views.trangCaNhan;
 
 import Views.global.city;
 import Views.global.district;
+import Views.main.mainFrame;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +26,14 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         cb_city.setSelectedIndex(0);
         district.prepareDistrictFilter(cb_city, cb_district);
 
+        field_first_name.setText(mainFrame.currentUser.getFirstName());
+        field_last_name.setText(mainFrame.currentUser.getLastName());
+        field_phone.setText(mainFrame.currentUser.getPhone());
+        field_mail.setText(mainFrame.currentUser.getEmail());
+        field_address.setText(mainFrame.currentUser.getAddress());
+        System.out.println(mainFrame.currentUser.getCity());
+        cb_city.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getCity()));
+        cb_district.setSelectedItem(Integer.parseInt(mainFrame.currentUser.getDistrict()));
     }
 
     /**
@@ -38,7 +50,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         field_mail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        field_phone = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         cb_district = new javax.swing.JComboBox<>();
@@ -76,9 +88,9 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(0, 51, 153));
         jLabel5.setText("Liên hệ");
 
-        jTextField2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTextField2.setText("0123456789");
-        jTextField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 102, 255)));
+        field_phone.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        field_phone.setText("0123456789");
+        field_phone.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 102, 255)));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -171,7 +183,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(field_last_name)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(field_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -217,7 +229,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                             .addGroup(jPanelProfileLayout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(field_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelProfileLayout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,11 +259,18 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     }//GEN-LAST:event_field_addressActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            mainFrame.currentUser.modifiedUser(field_first_name.getText(), field_last_name.getText(), mainFrame.currentUser.getGender(), mainFrame.currentUser.getDateOfBirth());
+        } catch (SQLException ex) {
+            Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //new trangCaNhanJPanel().updateJLabelTen(mainFrame.currentUser.getLastName());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cb_cityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_cityActionPerformed
-        
+
         district.prepareDistrictFilter(cb_city, cb_district);        // TODO add your handling code here:
     }//GEN-LAST:event_cb_cityActionPerformed
 
@@ -267,6 +286,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     private javax.swing.JTextField field_first_name;
     private javax.swing.JTextField field_last_name;
     private javax.swing.JTextField field_mail;
+    private javax.swing.JTextField field_phone;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -278,6 +298,5 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelProfile;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
