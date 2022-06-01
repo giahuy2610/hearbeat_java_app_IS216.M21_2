@@ -26,7 +26,8 @@ import java.sql.*;
  * @author Admin
  */
 public class themBaiVietJPanel extends javax.swing.JPanel {
-
+    String pathImage = "";
+    
     private void changeEnableButton() {
         // nếu người dùng chọn danh mục và mục đích rồi mới cho đăng bài viết
         if (purposeFilter.getSelectedIndex() != 0 && categoryFilter.getSelectedIndex() != 0) {
@@ -179,6 +180,12 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
             }
         });
 
+        jTextFieldPath.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPathActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -239,12 +246,12 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jTextFieldPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(postBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -268,8 +275,10 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void postBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postBtnActionPerformed
-        try {                                        
-            baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()),jTextFieldPath.getText());
+
+                                              
+            try {
+                baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()),jTextFieldPath.getText());
 //            try {
 //                String query = "select max(postid) as maxPostId from tb_post where ownerid = " + mainFrame.currentUser.getUserId();
 //                
@@ -284,8 +293,29 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
 //            } catch (SQLException | ClassNotFoundException ex) {
 //                Logger.getLogger(postCategory.class.getName()).log(Level.SEVERE, null, ex);
 //            }
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             
+
+        try {
+            baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()), pathImage);
+            try {
+                String query = "select max(postid) as maxPostId from tb_post where ownerid = " + mainFrame.currentUser.getUserId();
+
+                try ( Connection conn = OracleConnUtils.getOracleConnection()) {
+                    Statement stmt = conn.createStatement();
+                    ResultSet rs = stmt.executeQuery(query);
+
+                    while (rs.next()) {
+                        chuyenManHinhController.setView(new chiTietBaiVietJPanel(rs.getString("maxPostId")));
+                    }
+                }
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(postCategory.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -304,12 +334,20 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
+        this.pathImage = f.toString();
         jLabel7.setIcon(new ImageIcon(f.toString()));
+
         String filename = f.getAbsolutePath();
 jTextFieldPath.setText(filename);
         //convert filePath to array byte
 
         // TODO add your handling code here:
+
+        filename = f.getAbsolutePath();
+jTextFieldPath.setText(filename);
+        
+        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void purposeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purposeFilterActionPerformed
@@ -324,8 +362,10 @@ jTextFieldPath.setText(filename);
         changeEnableButton();
     }//GEN-LAST:event_categoryFilterActionPerformed
 
-    byte[] photo = null;
-    String filename = null;
+    private void jTextFieldPathActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPathActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPathActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> categoryFilter;
     private javax.swing.JButton jButton1;

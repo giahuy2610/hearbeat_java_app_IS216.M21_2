@@ -15,7 +15,10 @@ import java.util.logging.Logger;
  * @author giahu
  */
 public class baiViet {
+
     public static void themBaiViet(String postTitle, String postContent, String postCategoryId, String postPurposeId, String image) throws SQLException, ClassNotFoundException {
+
+    
         Connection conn = OracleConnUtils.getOracleConnection();
      
         String query = "{call P_INSERT_POST(?,?,?,?,?,?)}";
@@ -29,22 +32,12 @@ public class baiViet {
         caSt.setString(6, image);
         caSt.execute();       
     }
-    
-    
-    
-    public static void datLichHen(String postId, String userId)
-    {
-        try {
-            Connection conn = OracleConnUtils.getOracleConnection();
-            String query = "{call P_SCHEDULING(?,?)}";
-        } catch (SQLException ex) {
-            Logger.getLogger(baiViet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(baiViet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-             
     }
-        
-    }
+
+    
+    
+    
+   
+
+
 
