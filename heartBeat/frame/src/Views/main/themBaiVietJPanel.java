@@ -8,7 +8,6 @@ import ConnectDB.OracleConnUtils;
 import Process.baiViet;
 import Views.global.postCategory;
 import Views.global.postPurpose;
-import Views.global.user;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,7 +26,8 @@ import java.sql.*;
  * @author Admin
  */
 public class themBaiVietJPanel extends javax.swing.JPanel {
-
+    String pathImage = "";
+    
     private void changeEnableButton() {
         // nếu người dùng chọn danh mục và mục đích rồi mới cho đăng bài viết
         if (purposeFilter.getSelectedIndex() != 0 && categoryFilter.getSelectedIndex() != 0) {
@@ -263,14 +263,14 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
 
     private void postBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postBtnActionPerformed
         try {
-            baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()));
+            baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()), pathImage);
             try {
-                String query = "select max(postid) as maxPostId from tb_post where ownerid = " + user.getCurrentUserId();
-                
-                try (Connection conn = OracleConnUtils.getOracleConnection()) {
+                String query = "select max(postid) as maxPostId from tb_post where ownerid = " + mainFrame.currentUser.getUserId();
+
+                try ( Connection conn = OracleConnUtils.getOracleConnection()) {
                     Statement stmt = conn.createStatement();
                     ResultSet rs = stmt.executeQuery(query);
-                     
+
                     while (rs.next()) {
                         chuyenManHinhController.setView(new chiTietBaiVietJPanel(rs.getString("maxPostId")));
                     }
@@ -278,50 +278,6 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(postCategory.class.getName()).log(Level.SEVERE, null, ex);
             }
-//
-
-            /*  try {
-            
-            try
-            {
-            java.sql.Connection conn = TestConnectJDBC.getConnection();
-            String query = "insert INTO TB_POST(TITLE, PURPOSEID, CATEGORYID,CONTENT,IMAGEPATH) VALUE(?,?,?,?,?)";
-            PreparedStatement pst;
-            pst = conn.prepareStatement(query);
-            
-            String SQL = "{call PROCEDURE p_insert_post(?,?,?,?,?)}";
-            
-            CallableStatement ps = conn.prepareCall(SQL);
-            ResultSet rs = ps.executeQuery(SQL);
-            
-            pst.setString(1,jTextFieldTieuDe.getText());
-            
-            pst.setInt(2,purposeFilter.getSelectedIndex());
-            pst.setInt(3,categoryFilter.getSelectedIndex());
-            
-            pst.setString(4, jTextField2.getText());
-            pst.setBytes(5,photo);
-            
-            pst.execute();
-            JOptionPane.showMessageDialog(null,"saved!");
-            }
-            catch(ClassNotFoundException | SQLException e) {
-            System.out.println("huy:" + e);
-            }
-            
-            }
-            
-            catch(Exception e)
-            {
-            JOptionPane.showMessageDialog(null, e);
-            }
-            
-            jTextFieldTieuDe.setText("");
-            purposeFilter.setSelectedIndex(0);
-            categoryFilter.setSelectedIndex(0);
-            jTextField2.setText("");
-            
-            // TODO add your handling code here:*/
         } catch (SQLException ex) {
             Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -338,28 +294,12 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
+        this.pathImage = f.toString();
         jLabel7.setIcon(new ImageIcon(f.toString()));
         filename = f.getAbsolutePath();
 
-        //convert filePath to array byte
-        try {
-            File image = new File(filename);
-            FileInputStream fis = new FileInputStream(image);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-            for (int readNum; (readNum = fis.read(buf)) != -1;) {
-
-                bos.write(buf, 0, readNum);
-            }
-            photo = bos.toByteArray();
-
-        } catch (FileNotFoundException e) {
-
-            JOptionPane.showMessageDialog(null, e);
-        } catch (IOException ex) {
-            Logger.getLogger(testStoreImage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void purposeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purposeFilterActionPerformed

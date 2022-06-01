@@ -109,9 +109,8 @@ public class chuyenManHinhProfile {
         for (danhMucBean item : listItem) {
             if (item.getKind().equalsIgnoreCase(kind)) {
                 item.getJbtn().setOpaque(true);
-            }
-            else {
-                item.getJbtn().setOpaque(false);              
+            } else {
+                item.getJbtn().setOpaque(false);
             }
         }
 

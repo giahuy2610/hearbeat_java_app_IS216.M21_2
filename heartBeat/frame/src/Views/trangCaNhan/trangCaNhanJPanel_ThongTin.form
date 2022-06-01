@@ -84,7 +84,7 @@
                           <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
                           <Component id="field_last_name" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel10" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jTextField2" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
+                          <Component id="field_phone" alignment="0" min="-2" pref="247" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="58" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -142,7 +142,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel5" min="-2" pref="25" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jTextField2" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="field_phone" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel3" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
@@ -215,7 +215,7 @@
                 <Property name="text" type="java.lang.String" value="Li&#xea;n h&#x1ec7;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
+            <Component class="javax.swing.JTextField" name="field_phone">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>

@@ -4,12 +4,9 @@
  */
 package Views.trangCaNhan;
 
-import ConnectDB.OracleConnUtils;
 import Views.global.sort;
-import Views.global.user;
+import Views.main.mainFrame;
 import Views.main.trangChuJPanel;
-import Views.main.trangChuJPanel;
-import java.sql.*;
 
 /**
  *
@@ -19,45 +16,10 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
 
     @Override
     protected String initQuery() {
-        query = "select * from  tb_post where ownerid = " + user.getCurrentUserId() + " order by createdon";
+        query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getScore() + " order by createdon";
 
         return query;
     }
-/*
-   @Override
-    protected void preparePost() {
-        try {
-            conn = OracleConnUtils.getOracleConnection();
-            query = initQuery();
-            System.out.println(query);
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-            container.removeAll();
-
-            postId.removeAll(postId);
-            postTitle.removeAll(postId);
-            postCategory.removeAll(postCategory);
-            postContent.removeAll(postContent);
-            while (rs.next()) {
-                postId.add(rs.getString("postid"));
-                postTitle.add(rs.getString("title"));
-                postCategory.add(rs.getString("categoryid"));
-                postContent.add(rs.getString("content"));
-            }
-            conn.close();
-
-            for (int i = 0; i < postId.size(); i++) {
-                //baiViet x = new baiViet(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i));
-                container.add(x);
-            }
-            
-
-        } catch (SQLException | ClassNotFoundException ex) {
-            //Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-*/
     public trangCaNhanJPanel_BaiViet() {
         initComponents();
         sort.prepareSortFilter(sortFilter);
