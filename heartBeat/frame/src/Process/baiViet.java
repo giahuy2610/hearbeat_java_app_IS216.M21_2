@@ -17,9 +17,9 @@ import java.util.logging.Logger;
 public class baiViet {
     public static void themBaiViet(String postTitle, String postContent, String postCategoryId, String postPurposeId, String image) throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
-        String firstName = "Trịnh Gia";
-        String query = "{call P_INSERT_POST(?,?,?,?,?)}";
-        System.out.println(mainFrame.currentUser.getUserId());
+     
+        String query = "{call P_INSERT_POST(?,?,?,?,?,?)}";
+    
         CallableStatement caSt = conn.prepareCall(query);
         caSt.setString(1, mainFrame.currentUser.getUserId());
         caSt.setString(2, postTitle);
@@ -30,6 +30,21 @@ public class baiViet {
         caSt.execute();       
     }
     
+    
+    
+    public static void datLichHen(String postId, String userId)
+    {
+        try {
+            Connection conn = OracleConnUtils.getOracleConnection();
+            String query = "{call P_SCHEDULING(?,?)}";
+        } catch (SQLException ex) {
+            Logger.getLogger(baiViet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(baiViet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+             
+    }
         
     }
 

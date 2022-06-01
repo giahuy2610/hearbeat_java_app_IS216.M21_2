@@ -70,7 +70,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         postBtn = new javax.swing.JButton();
         categoryFilter = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        jTextFieldPath = new javax.swing.JTextField();
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -179,8 +179,6 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
             }
         });
 
-        jTextField1.setText("jTextField1");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -204,7 +202,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldPath, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(postBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(78, 78, 78))
@@ -246,7 +244,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jTextFieldPath, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(postBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -271,21 +269,21 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
 
     private void postBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postBtnActionPerformed
         try {                                        
-            baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()),jTextField1.getText());
-            try {
-                String query = "select max(postid) as maxPostId from tb_post where ownerid = " + mainFrame.currentUser.getUserId();
-                
-                try ( Connection conn = OracleConnUtils.getOracleConnection()) {
-                    Statement stmt = conn.createStatement();
-                    ResultSet rs = stmt.executeQuery(query);
-                    
-                    while (rs.next()) {
-                        chuyenManHinhController.setView(new chiTietBaiVietJPanel(rs.getString("maxPostId")));
-                    }
-                }
-            } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(postCategory.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()),jTextFieldPath.getText());
+//            try {
+//                String query = "select max(postid) as maxPostId from tb_post where ownerid = " + mainFrame.currentUser.getUserId();
+//                
+//                try ( Connection conn = OracleConnUtils.getOracleConnection()) {
+//                    Statement stmt = conn.createStatement();
+//                    ResultSet rs = stmt.executeQuery(query);
+//                    
+//                    while (rs.next()) {
+//                        chuyenManHinhController.setView(new chiTietBaiVietJPanel(rs.getString("maxPostId")));
+//                    }
+//                }
+//            } catch (SQLException | ClassNotFoundException ex) {
+//                Logger.getLogger(postCategory.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             
             
         } catch (SQLException ex) {
@@ -308,7 +306,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         File f = chooser.getSelectedFile();
         jLabel7.setIcon(new ImageIcon(f.toString()));
         String filename = f.getAbsolutePath();
-jTextField1.setText(filename);
+jTextFieldPath.setText(filename);
         //convert filePath to array byte
 
         // TODO add your handling code here:
@@ -340,7 +338,7 @@ jTextField1.setText(filename);
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextFieldPath;
     private javax.swing.JTextField jTextFieldTieuDe;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JButton postBtn;

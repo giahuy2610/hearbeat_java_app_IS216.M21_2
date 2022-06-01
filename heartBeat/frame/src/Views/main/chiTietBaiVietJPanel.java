@@ -229,7 +229,6 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         jLabel2.setBackground(new java.awt.Color(204, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/backgroud.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
 
         jButton1.setBackground(new java.awt.Color(255, 204, 204));
         jButton1.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N

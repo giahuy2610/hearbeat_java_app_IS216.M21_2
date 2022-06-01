@@ -74,7 +74,8 @@ CREATE OR REPLACE PROCEDURE p_insert_post (
     title       tb_post.title%TYPE,
     content     tb_post.content%TYPE,
     categoryid  tb_post.categoryid%TYPE,
-    purposeid   tb_post.purposeid%TYPE
+    purposeid   tb_post.purposeid%TYPE,
+    imagepath       tb_post.imagepath%TYPE,
 ) AS
 BEGIN
     INSERT INTO tb_post (
@@ -82,13 +83,15 @@ BEGIN
         title,
         content,
         categoryid,
-        purposeid
+        purposeid,
+        imagepath
     ) VALUES (
         ownerid,
         title,
         content,
         categoryid,
-        purposeid
+        purposeid,
+        imagepath,
     );
     
     COMMIT;
