@@ -8,16 +8,11 @@ import ConnectDB.OracleConnUtils;
 import Process.baiViet;
 import Views.global.postCategory;
 import Views.global.postPurpose;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 import java.sql.*;
 
@@ -336,15 +331,13 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         File f = chooser.getSelectedFile();
         this.pathImage = f.toString();
         jLabel7.setIcon(new ImageIcon(f.toString()));
-
-        String filename = f.getAbsolutePath();
-jTextFieldPath.setText(filename);
-        //convert filePath to array byte
-
-        // TODO add your handling code here:
-
         filename = f.getAbsolutePath();
-jTextFieldPath.setText(filename);
+        System.out.println(pathImage);
+                // Get Current Directory using getAbsolutePath()
+        File file = new File("");
+        String currentDirectory = file.getAbsolutePath();
+        System.out.println("Current working directory : " + currentDirectory);
+ 
         
         
 

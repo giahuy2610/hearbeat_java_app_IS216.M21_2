@@ -32,12 +32,5 @@ public class baiViet {
         caSt.setString(6, image);
         caSt.execute();       
     }
-    }
-
-    
-    
-    
    
-
-
-
+}
