@@ -331,7 +331,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         File f = chooser.getSelectedFile();
         this.pathImage = f.toString();
         jLabel7.setIcon(new ImageIcon(f.toString()));
-        filename = f.getAbsolutePath();
+        
         System.out.println(pathImage);
                 // Get Current Directory using getAbsolutePath()
         File file = new File("");

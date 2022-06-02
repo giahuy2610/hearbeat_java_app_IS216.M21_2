@@ -66,7 +66,6 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnConfirmSchedule = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         btnSchedule = new javax.swing.JButton();
 
@@ -273,20 +272,10 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDelete.setBackground(new java.awt.Color(153, 255, 255));
-        btnDelete.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        btnDelete.setForeground(new java.awt.Color(0, 51, 153));
-        btnDelete.setText("XÓA BÀI VIẾT");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
         btnModify.setBackground(new java.awt.Color(153, 255, 255));
         btnModify.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         btnModify.setForeground(new java.awt.Color(0, 51, 153));
-        btnModify.setText("SỬA BÀI VIẾT");
+        btnModify.setText("HỦY LỊCH HẸN");
         btnModify.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModifyActionPerformed(evt);
@@ -308,15 +297,13 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addComponent(btnSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(152, 152, 152)
                 .addComponent(btnConfirmSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(121, 121, 121)
                 .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+                .addGap(31, 31, 31))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,8 +312,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnConfirmSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -351,28 +337,6 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        String[] options = {"Xóa", "Hủy"};
-        int output = JOptionPane.showOptionDialog(this,
-                "Bạn thực sự muốn xóa bài viết", "Xóa bài viết",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.YES_NO_OPTION, null, options, options[0]);
-        if (output == JOptionPane.YES_OPTION) {
-            try {
-                post01.deletedPost();
-            } catch (SQLException ex) {
-                Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            chuyenManHinhController.setView(new trangChuJPanel());
-        } else if (output == JOptionPane.NO_OPTION) {
-            System.out.println("No selected.");
-        }
-
-
-    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnConfirmScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmScheduleActionPerformed
 
@@ -415,7 +379,6 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmSchedule;
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnSchedule;
     private javax.swing.JLabel jLabel1;

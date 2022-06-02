@@ -120,6 +120,11 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         jbtnBaiViet.setForeground(new java.awt.Color(0, 51, 153));
         jbtnBaiViet.setText("Bài viết");
         jbtnBaiViet.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        jbtnBaiViet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBaiVietActionPerformed(evt);
+            }
+        });
 
         jbtnThongTin.setBackground(new java.awt.Color(255, 204, 204));
         jbtnThongTin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -287,6 +292,10 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Mã khôi phục mật khẩu đã được gửi về email!");
         new quenMatKhau(mainFrame.currentUser.getEmail()).setVisible(true);
     }//GEN-LAST:event_jLabel7MousePressed
+
+    private void jbtnBaiVietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBaiVietActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnBaiVietActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
