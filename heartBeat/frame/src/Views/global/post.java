@@ -183,7 +183,7 @@ public class post {
         caSt.execute();
         System.out.println("Deleted post" + postId);
     }
-
+    //chỉnh sửa bài viết
     public void modifyPost() throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
         String query = "{call p_cancel_scheduling (?)}";
@@ -215,4 +215,6 @@ public class post {
         caSt.execute();
         System.out.println("Scheduling confirm successful, post" + postId);
     }
+    
+
 }

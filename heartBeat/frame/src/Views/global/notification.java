@@ -57,5 +57,9 @@ public class notification {
         this.createdOn = createdOn;
         this.isSeen = isSeen;
     }
+    
+    public notification(String notiId) {
+        
+    }
 
 }

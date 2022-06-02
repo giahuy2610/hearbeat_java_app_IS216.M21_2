@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,12 +29,17 @@ public class thongBaoJPanel extends javax.swing.JPanel {
     /**
      * Creates new form thongBaoJPanel
      */
-
-    public static ArrayList<notification> prepareNotifications(String userId) {
+    public void prepareNotifications(String date) {
         ArrayList<notification> notiList = new ArrayList<notification>();
         try {
             Connection conn = OracleConnUtils.getOracleConnection();
-            String query = "select * from tb_notification where userid = " + userId + " order by createdon";
+            String query = "";
+            if (date.equals("all")) {
+                query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " order by createdon";
+            } else {
+                query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " and TO_CHAR(createdon,'DD-MM-YY') = '" + date + "' order by createdon";
+            }
+            System.out.println(query);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
@@ -44,22 +51,22 @@ public class thongBaoJPanel extends javax.swing.JPanel {
             Logger.getLogger(thongBaoJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        return notiList;
+        List<String> list = new ArrayList<String>();
+        DefaultTableModel tblModel = (DefaultTableModel) tableThongBao.getModel();
+        tblModel.setRowCount(0);//xóa hết những hàng dữ liệu ở lần lọc trước đó
+
+        for (notification row : notiList) {
+            String row_temp[] = {row.getCreatedOn(), row.getContent()};
+
+            tblModel.addRow(row_temp);
+        }
     }
 
     public thongBaoJPanel() {
         initComponents();
         tableThongBao.setAutoCreateRowSorter(true);
+        prepareNotifications("all");
 
-        DefaultTableModel model = new DefaultTableModel();
-        List<String> list = new ArrayList<String>();
-
-        for (notification row : prepareNotifications(mainFrame.currentUser.getUserId())) {
-            String row_temp[] = {row.getCreatedOn(), row.getContent()};
-            DefaultTableModel tblModel = (DefaultTableModel) tableThongBao.getModel();
-
-            tblModel.addRow(row_temp);
-        }
     }
 
     /**
@@ -76,7 +83,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         field_tim_kiem = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooserFilter = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -126,6 +133,21 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/loupe.png"))); // NOI18N
         jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
 
+        jDateChooserFilter.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jDateChooserFilterAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jDateChooserFilter.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooserFilterPropertyChange(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 153));
         jLabel2.setText("Chọn thời gian");
@@ -142,7 +164,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jDateChooserFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(148, 148, 148))
         );
         jPanel1Layout.setVerticalGroup(
@@ -154,7 +176,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton4))
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateChooserFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(field_tim_kiem, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(7, 7, 7))
         );
@@ -165,27 +187,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         tableThongBao.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         tableThongBao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "<html> <h2 style = \"color: #004aad;\">	Thời gian </h2> </html>", "<html> <h2 style = \"color: #004aad;\">Nội dung</h2> </html>"
@@ -247,11 +249,22 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_field_tim_kiemMousePressed
 
+    private void jDateChooserFilterAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jDateChooserFilterAncestorAdded
+
+    }//GEN-LAST:event_jDateChooserFilterAncestorAdded
+
+    private void jDateChooserFilterPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserFilterPropertyChange
+        System.out.println(jDateChooserFilter.getDate());
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+        if (jDateChooserFilter.getDate() != null)
+            prepareNotifications(dateFormat.format(jDateChooserFilter.getDate()));
+    }//GEN-LAST:event_jDateChooserFilterPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField field_tim_kiem;
     private javax.swing.JButton jButton4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooserFilter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

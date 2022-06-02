@@ -406,7 +406,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
                 JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         if (output == JOptionPane.YES_OPTION) {
             //chuyển hướng sang trang sửa bài viết
-            chuyenManHinhController.setView(new trangChuJPanel());
+            chuyenManHinhController.setView(new suaBaiVietJPanel(post01));
         } else if (output == JOptionPane.NO_OPTION) {
             System.out.println("No selected.");
         }
