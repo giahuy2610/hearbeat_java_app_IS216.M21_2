@@ -38,7 +38,7 @@ public class user {
     private String address;
     private String city;
     private String district;
-    
+
 //hàm để lấy mọi data của user đó
     public void loadUser(String currentUserId) {
         Connection conn = null;
@@ -84,9 +84,9 @@ public class user {
     }
 
 //hàm thay đổi     
-    public void modifiedUser(String newFirstName, String newLastName, String newGender, String newDateOfBirth) throws SQLException, ClassNotFoundException {
+    public void modifiedUser(String newFirstName, String newLastName, String newGender, String newDateOfBirth, String newCityid, String newDistrictid, String newAddress) throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
-        String query = "{call p_update_account(?,?,?,?,?)}";
+        String query = "{call p_update_account(?,?,?,?,?,?,?,?)}";
 
         CallableStatement caSt = conn.prepareCall(query);
         caSt.setString(1, this.userId);
@@ -94,6 +94,9 @@ public class user {
         caSt.setString(3, newLastName);
         caSt.setString(4, newGender);
         caSt.setString(5, newDateOfBirth);
+        caSt.setString(6, newCityid);
+        caSt.setString(7, newDistrictid);
+        caSt.setString(8, newAddress);
         caSt.execute();
     }
 

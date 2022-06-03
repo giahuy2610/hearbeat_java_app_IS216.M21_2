@@ -38,7 +38,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         cb_gender.addItem("Nam");
         cb_gender.addItem("Nữ");
         cb_gender.addItem("Khác");
-        
+
         cb_city.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getCity()));
         cb_district.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getDistrict()));
     }
@@ -327,13 +327,25 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     }//GEN-LAST:event_field_addressActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            mainFrame.currentUser.modifiedUser(field_first_name.getText(), field_last_name.getText(), mainFrame.currentUser.getGender(), mainFrame.currentUser.getDateOfBirth());
-        } catch (SQLException ex) {
-            Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
+        String[] options = {"Đồng ý", "Hủy"};
+        int output = JOptionPane.showOptionDialog(this,
+                "Bạn muốn thay đổi thông tin cá nhân?", "Xác nhận",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        if (output == JOptionPane.YES_OPTION) {
+            try {
+                mainFrame.currentUser.modifiedUser(field_first_name.getText(), field_last_name.getText(), mainFrame.currentUser.getGender(), mainFrame.currentUser.getDateOfBirth(), String.valueOf(cb_city.getSelectedIndex()),String.valueOf(cb_district.getSelectedIndex()), String.valueOf(field_address.getText()));
+                JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
+            } catch (SQLException ex) {
+                Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (output == JOptionPane.NO_OPTION) {
+            System.out.println("No selected.");
         }
+
         //new trangCaNhanJPanel().updateJLabelTen(mainFrame.currentUser.getLastName());
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -351,7 +363,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     }//GEN-LAST:event_cb_genderActionPerformed
 
     private void field_mailMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_mailMousePressed
-       JOptionPane.showMessageDialog(this, "Không thể thay đổi Email!");
+        JOptionPane.showMessageDialog(this, "Không thể thay đổi Email!");
     }//GEN-LAST:event_field_mailMousePressed
 
     private void field_phoneMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_phoneMousePressed
@@ -365,7 +377,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     private void jDateChooserFilterPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserFilterPropertyChange
         System.out.println(jDateChooserFilter.getDate());
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
-        
+
     }//GEN-LAST:event_jDateChooserFilterPropertyChange
 
 
