@@ -287,7 +287,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                 "<html> <h4 style = \"color: #004aad\"> MÃ USER </h4> </html>", "<html> <h4 style = \"color: #004aad\"> HỌ TÊN ĐỆM </h4> </html>", "<html> <h4 style = \"color: #004aad\"> TÊN </h4> </html>", "<html> <h4 style = \"color: #004aad\"> GIỚI TÍNH </h4> </html>", "<html> <h4 style = \"color: #004aad\"> SĐT </h4> </html>", "<html> <h4 style = \"color: #004aad\"> NGÀY SINH </h4> </html>", "<html> <h4 style = \"color: #004aad\"> EMAIL </h4> </html>", "<html> <h4 style = \"color: #004aad\"> ĐIỂM YT </h4> </html>", "<html> <h4 style = \"color: #004aad\"> NGÀY TẠO </h4> </html>", "<html> <h4 style = \"color: #004aad\"> VAI TRÒ </h4> </html>"
             }
         ));
-        jTable1.setColumnSelectionAllowed(true);
+        jTable1.setCellSelectionEnabled(false);
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.setDropMode(javax.swing.DropMode.ON_OR_INSERT_ROWS);
         jTable1.setGridColor(new java.awt.Color(204, 204, 204));

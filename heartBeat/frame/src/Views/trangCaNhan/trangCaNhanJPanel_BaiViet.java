@@ -4,9 +4,16 @@
  */
 package Views.trangCaNhan;
 
+import ConnectDB.OracleConnUtils;
 import Views.global.sort;
+import Views.main.baiVietJPanel;
 import Views.main.mainFrame;
 import Views.main.trangChuJPanel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,16 +23,52 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
 
     @Override
     protected String initQuery() {
-        query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getScore() + " order by createdon";
+        query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId() + " order by createdon desc";
 
         return query;
     }
+
     public trangCaNhanJPanel_BaiViet() {
         initComponents();
         sort.prepareSortFilter(sortFilter);
-        
+
         this.preparePost();
-        jScrollPane6.setViewportView(container);
+    }
+
+    private void preparePost() {
+        try {
+            conn = OracleConnUtils.getOracleConnection();
+            query = initQuery();
+            System.out.println("trang cá nhân đang chạy query " + query);
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            container.removeAll();
+
+            postId.removeAll(postId);
+            postTitle.removeAll(postId);
+            postCategory.removeAll(postCategory);
+            postContent.removeAll(postContent);
+            while (rs.next()) {
+                postId.add(rs.getString("postid"));
+                postTitle.add(rs.getString("title"));
+                postCategory.add(rs.getString("categoryid"));
+                postContent.add(rs.getString("content"));
+                postCreatedOn.add(rs.getString("createdon"));
+                postPurpose.add(rs.getString("purposeid"));
+            }
+            conn.close();
+
+            for (int i = 0; i < postId.size(); i++) {
+                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i));
+                //baiViet x = new baiViet(postId.get(i), postTitle.get(i), categoryName.get(Integer.parseInt(postCategory.get(i))), postContent.get(i),  purposeName.get(Integer.parseInt(postPurpose.get(i))), postCreatedOn.get(i));
+                container.add(x);
+            }
+            jScrollPanePost.setViewportView(container);
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -46,7 +89,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         jLabel9 = new javax.swing.JLabel();
         sortFilter = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        jScrollPanePost = new javax.swing.JScrollPane();
 
         setPreferredSize(new java.awt.Dimension(1000, 360));
 
@@ -126,7 +169,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 .addContainerGap())
         );
 
-        jScrollPane6.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPanePost.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanelProfileLayout = new javax.swing.GroupLayout(jPanelProfile);
         jPanelProfile.setLayout(jPanelProfileLayout);
@@ -135,8 +178,8 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             .addGroup(jPanelProfileLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
-                    .addComponent(jScrollPane6))
+                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 980, Short.MAX_VALUE)
+                    .addComponent(jScrollPanePost))
                 .addContainerGap())
         );
         jPanelProfileLayout.setVerticalGroup(
@@ -145,7 +188,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 .addContainerGap()
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                .addComponent(jScrollPanePost, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -196,7 +239,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanelProfile;
-    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPanePost;
     private javax.swing.JComboBox<String> sortFilter;
     private javax.swing.JComboBox<String> statusFilter;
     // End of variables declaration//GEN-END:variables

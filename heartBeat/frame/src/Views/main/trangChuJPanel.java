@@ -84,7 +84,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
         return query;
     }
 
-    protected void preparePost() {
+    private void preparePost() {
         try {
             conn = OracleConnUtils.getOracleConnection();
             query = initQuery();

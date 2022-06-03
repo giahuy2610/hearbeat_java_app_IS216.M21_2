@@ -402,6 +402,7 @@
                     <Column editable="true" title="&lt;html&gt; &lt;h4 style = &quot;color: #004aad&quot;&gt; VAI TR&#xd2; &lt;/h4&gt; &lt;/html&gt;" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="cellSelectionEnabled" type="boolean" value="false"/>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="2">
                     <Column maxWidth="80" minWidth="80" prefWidth="80" resizable="true">
@@ -456,7 +457,6 @@
                     </Column>
                   </TableColumnModel>
                 </Property>
-                <Property name="columnSelectionAllowed" type="boolean" value="true"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Default Cursor"/>
                 </Property>
