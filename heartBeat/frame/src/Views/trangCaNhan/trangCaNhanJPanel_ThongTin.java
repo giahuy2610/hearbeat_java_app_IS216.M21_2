@@ -38,7 +38,9 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         cb_gender.addItem("Nam");
         cb_gender.addItem("Nữ");
         cb_gender.addItem("Khác");
-
+        //ngày sinh
+        //jDateChooserFilter.setDate(mainFrame.currentUser.getDateOfBirth());
+        
         cb_city.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getCity()));
         cb_district.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getDistrict()));
     }
@@ -68,7 +70,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         field_last_name = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         field_address = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         cb_gender = new javax.swing.JComboBox<>();
         jDateChooserFilter = new com.toedter.calendar.JDateChooser();
@@ -167,12 +169,12 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/save.png"))); // NOI18N
-        jButton1.setText("Lưu thay đổi");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setBackground(new java.awt.Color(204, 204, 255));
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/save.png"))); // NOI18N
+        btnSave.setText("Lưu thay đổi");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -253,7 +255,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanelProfileLayout.createSequentialGroup()
                 .addGap(421, 421, 421)
-                .addComponent(jButton1)
+                .addComponent(btnSave)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelProfileLayout.createSequentialGroup()
@@ -308,7 +310,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                     .addGroup(jPanelProfileLayout.createSequentialGroup()
                         .addComponent(jDateChooserFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)))
-                .addComponent(jButton1)
+                .addComponent(btnSave)
                 .addGap(52, 52, 52))
             .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfileLayout.createSequentialGroup()
@@ -326,7 +328,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_field_addressActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         String[] options = {"Đồng ý", "Hủy"};
         int output = JOptionPane.showOptionDialog(this,
                 "Bạn muốn thay đổi thông tin cá nhân?", "Xác nhận",
@@ -347,7 +349,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         }
 
         //new trangCaNhanJPanel().updateJLabelTen(mainFrame.currentUser.getLastName());
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     private void cb_cityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_cityActionPerformed
 
@@ -377,11 +379,13 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     private void jDateChooserFilterPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserFilterPropertyChange
         System.out.println(jDateChooserFilter.getDate());
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+        dateFormat.format(jDateChooserFilter.getDate());
 
     }//GEN-LAST:event_jDateChooserFilterPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cb_city;
     private javax.swing.JComboBox<String> cb_district;
     private javax.swing.JComboBox<String> cb_gender;
@@ -390,7 +394,6 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     private javax.swing.JTextField field_last_name;
     private javax.swing.JTextField field_mail;
     private javax.swing.JTextField field_phone;
-    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooserFilter;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

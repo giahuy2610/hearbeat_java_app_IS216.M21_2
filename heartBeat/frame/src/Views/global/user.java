@@ -12,7 +12,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Connection;
-
+import java.sql.Date;
+//import java.util.Date;
 /**
  *
  * @author giahu
@@ -86,6 +87,7 @@ public class user {
 //hàm thay đổi     
     public void modifiedUser(String newFirstName, String newLastName, String newGender, String newDateOfBirth, String newCityid, String newDistrictid, String newAddress) throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
+        System.out.println("date " + newDateOfBirth);
         String query = "{call p_update_account(?,?,?,?,?,?,?,?)}";
 
         CallableStatement caSt = conn.prepareCall(query);

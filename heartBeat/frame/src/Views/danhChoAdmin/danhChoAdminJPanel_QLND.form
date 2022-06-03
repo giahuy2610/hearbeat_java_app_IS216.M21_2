@@ -68,18 +68,18 @@
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="field_phone" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="filed_userId" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="field_userId" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="field_gender" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jTextField6" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="field_lastname" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="jTextField8" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="jTextField9" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="field_mail" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -96,7 +96,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="filed_userId" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="field_userId" min="-2" pref="35" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -105,7 +105,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField6" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="field_lastname" min="-2" pref="35" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -124,7 +124,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField9" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="field_mail" min="-2" pref="35" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
@@ -145,7 +145,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="filed_userId">
+        <Component class="javax.swing.JTextField" name="field_userId">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="0"/>
@@ -156,10 +156,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="filed_userIdActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="field_userIdActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField6">
+        <Component class="javax.swing.JTextField" name="field_lastname">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="0"/>
@@ -170,7 +170,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField6ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="field_lastnameActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -269,7 +269,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField9">
+        <Component class="javax.swing.JTextField" name="field_mail">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="0"/>
@@ -280,7 +280,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField9ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="field_mailActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
@@ -480,6 +480,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MousePressed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

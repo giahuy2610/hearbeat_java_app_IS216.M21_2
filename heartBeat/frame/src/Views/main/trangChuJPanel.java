@@ -122,6 +122,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
 
     public trangChuJPanel() {
         initComponents();
+        firstFill = 0;
         field_tim_kiem.setText("Bạn muốn tìm kiếm....");
         city d = new city();
         d.prepareCityFilter(cityFilter);

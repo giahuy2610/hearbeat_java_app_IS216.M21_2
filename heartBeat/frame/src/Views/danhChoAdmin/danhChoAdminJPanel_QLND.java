@@ -5,6 +5,7 @@
 package Views.danhChoAdmin;
 
 import ConnectDB.TestConnectJDBC;
+import Views.global.user;
 import Views.main.testGetDBToTable;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,13 +20,15 @@ import javax.swing.table.DefaultTableModel;
  * @author giahu
  */
 public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
+
     private static int firstFill;
+
     /**
      * Creates new form danhChoAdminJPanel
      */
     public danhChoAdminJPanel_QLND() {
         initComponents();
-                Connection conn = null;
+        Connection conn = null;
         try {
             conn = TestConnectJDBC.getConnection();
         } catch (SQLException ex) {
@@ -46,6 +49,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                 tblModel.addRow(row_temp);
             }
             conn.close();
+
         } catch (SQLException e) {
             System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
         }
@@ -61,8 +65,8 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        filed_userId = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        field_userId = new javax.swing.JTextField();
+        field_lastname = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -72,7 +76,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        field_mail = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         field_score = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -91,21 +95,21 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        filed_userId.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        filed_userId.setText("000");
-        filed_userId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        filed_userId.addActionListener(new java.awt.event.ActionListener() {
+        field_userId.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        field_userId.setText("000");
+        field_userId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        field_userId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filed_userIdActionPerformed(evt);
+                field_userIdActionPerformed(evt);
             }
         });
 
-        jTextField6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField6.setText("Họ và tên");
-        jTextField6.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        field_lastname.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        field_lastname.setText("Họ và tên");
+        field_lastname.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        field_lastname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                field_lastnameActionPerformed(evt);
             }
         });
 
@@ -154,12 +158,12 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/avatarTest.png"))); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
-        jTextField9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField9.setText("Email");
-        jTextField9.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        field_mail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        field_mail.setText("Email");
+        field_mail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        field_mail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                field_mailActionPerformed(evt);
             }
         });
 
@@ -211,17 +215,17 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(field_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(filed_userId, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(field_userId, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(field_gender, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(76, 76, 76)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(field_lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(field_mail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(72, 72, 72))
         );
@@ -233,7 +237,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(filed_userId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(field_userId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -241,7 +245,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(field_lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -257,7 +261,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(field_mail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -293,6 +297,11 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jTable1.setSelectionForeground(new java.awt.Color(0, 51, 153));
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.setShowGrid(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTable1MousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
@@ -451,13 +460,13 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void filed_userIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filed_userIdActionPerformed
+    private void field_userIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_userIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_filed_userIdActionPerformed
+    }//GEN-LAST:event_field_userIdActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void field_lastnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_lastnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_field_lastnameActionPerformed
 
     private void field_phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_phoneActionPerformed
         // TODO add your handling code here:
@@ -471,9 +480,9 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField8ActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void field_mailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_mailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_field_mailActionPerformed
 
     private void field_scoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_scoreActionPerformed
         // TODO add your handling code here:
@@ -494,13 +503,31 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jTable1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MousePressed
+        DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+
+        String userid = tblModel.getValueAt(jTable1.getSelectedRow(), 0).toString();//số 0 là số thứ tự cột, lấy ra userid 
+
+        user user01 = new user();
+        user01.loadUser(userid);//lấy hết dữ liệu của người dùng được chọn
+
+        field_userId.setText(userid);
+        field_phone.setText(user01.getPhone());
+        field_mail.setText(user01.getEmail());
+        field_lastname.setText(user01.getLastName());
+        field_gender.setText(user01.getGender());
+
+    }//GEN-LAST:event_jTable1MousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField field_gender;
+    private javax.swing.JTextField field_lastname;
+    private javax.swing.JTextField field_mail;
     private javax.swing.JTextField field_phone;
     private javax.swing.JTextField field_score;
     private javax.swing.JTextField field_tim_kiem;
-    private javax.swing.JTextField filed_userId;
+    private javax.swing.JTextField field_userId;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -521,8 +548,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
