@@ -34,3 +34,39 @@ BEGIN
     
     COMMIT;
 END;
+
+--thêm bài viết
+CREATE OR REPLACE PROCEDURE p_insert_post_new (
+    ownerid     tb_post.ownerid%TYPE,
+    title       tb_post.title%TYPE,
+    content     tb_post.content%TYPE,
+    categoryid  tb_post.categoryid%TYPE,
+    purposeid   tb_post.purposeid%TYPE,
+    imagepath       tb_post.imagepath%TYPE
+) AS
+BEGIN
+    INSERT INTO tb_post (
+        ownerid,
+        title,
+        content,
+        categoryid,
+        purposeid,
+        imagepath
+    ) VALUES (
+        ownerid,
+        title,
+        content,
+        categoryid,
+        purposeid,
+        imagepath
+    );
+    
+    INSERT INTO tb_notification (
+        userid,
+        content
+    ) VALUES (
+        ownerid,
+        'Bài viết ' ||  title ||' đã được đăng thành công'
+    );
+    COMMIT;
+END;

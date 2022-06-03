@@ -10,6 +10,7 @@ import Views.main.mainFrame;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -39,7 +40,8 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         cb_gender.addItem("Nữ");
         cb_gender.addItem("Khác");
         //ngày sinh
-        //jDateChooserFilter.setDate(mainFrame.currentUser.getDateOfBirth());
+        jDateChooserFilter.setDateFormatString("dd/MM/yyyy");
+        jDateChooserFilter.setDate(mainFrame.currentUser.getDateOfBirth());
         
         cb_city.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getCity()));
         cb_district.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getDistrict()));

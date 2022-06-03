@@ -12,8 +12,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Connection;
-import java.sql.Date;
-//import java.util.Date;
+import java.util.Date;
 /**
  *
  * @author giahu
@@ -35,7 +34,7 @@ public class user {
     private String avatar;
     private String score;
     private String lastName;
-    private String dateOfBirth;
+    private Date dateOfBirth;
     private String address;
     private String city;
     private String district;
@@ -73,7 +72,8 @@ public class user {
                 isDeleted = rs.getString("isdeleted");
                 avatar = rs.getString("avatar");
                 score = rs.getString("score");
-                dateOfBirth = rs.getString("dateofbirth");
+                dateOfBirth = rs.getDate("dateofbirth");
+                System.out.println("birth " + dateOfBirth);
                 address = rs.getString("address");
                 city = rs.getString("cityid");
                 district = rs.getString("districtid");
@@ -85,7 +85,7 @@ public class user {
     }
 
 //hàm thay đổi     
-    public void modifiedUser(String newFirstName, String newLastName, String newGender, String newDateOfBirth, String newCityid, String newDistrictid, String newAddress) throws SQLException, ClassNotFoundException {
+    public void modifiedUser(String newFirstName, String newLastName, String newGender, Date newDateOfBirth, String newCityid, String newDistrictid, String newAddress) throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
         System.out.println("date " + newDateOfBirth);
         String query = "{call p_update_account(?,?,?,?,?,?,?,?)}";
@@ -95,7 +95,7 @@ public class user {
         caSt.setString(2, newFirstName);
         caSt.setString(3, newLastName);
         caSt.setString(4, newGender);
-        caSt.setString(5, newDateOfBirth);
+        caSt.setDate(5, (java.sql.Date) newDateOfBirth);
         caSt.setString(6, newCityid);
         caSt.setString(7, newDistrictid);
         caSt.setString(8, newAddress);
@@ -126,11 +126,11 @@ public class user {
         this.address = address;
     }
 
-    public String getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

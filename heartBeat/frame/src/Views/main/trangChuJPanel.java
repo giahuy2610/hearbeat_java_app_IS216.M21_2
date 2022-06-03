@@ -75,9 +75,9 @@ public class trangChuJPanel extends javax.swing.JPanel {
         }
 
         if (sortFilter.getSelectedIndex() > 0) {
-            query += " order by createdon desc";
-        } else {
             query += " order by createdon";
+        } else {
+            query += " order by createdon desc";
         }
 
         System.out.println(query);

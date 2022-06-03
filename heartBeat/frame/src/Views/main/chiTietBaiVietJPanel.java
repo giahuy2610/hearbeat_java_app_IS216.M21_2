@@ -24,7 +24,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
 
     private void loadData() {
         labelTitle.setText(post01.getTitle());
-        //labelContent.setText(post01.getContent());
+        labelContent.setText(post01.getContent());
         //labelContent.setText("<html><p style=\\\"color:red\\\">\"+paragraph+\"</p></html>");
         labelImage.setIcon(new ImageIcon(post01.getImagePath()));
         labelCreatedOn.setText(post01.getCreatedOn());
