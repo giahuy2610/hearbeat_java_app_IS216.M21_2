@@ -15,6 +15,8 @@ public class thongTinDatHen extends javax.swing.JFrame {
      */
     public thongTinDatHen() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        setTitle("Thông tin");
     }
 
     /**

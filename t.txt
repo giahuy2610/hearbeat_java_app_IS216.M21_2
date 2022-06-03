@@ -1,0 +1,8 @@
+select * from tb_user left join tb_address on tb_user.userid = tb_address.userid
+INSERT INTO TB_ADDRESS VALUES (21, 24, 1, 'Phường 4', 'Hẻm 444 Trần Hưng Đạo');
+INSERT INTO TB_ADDRESS VALUES (29, 58, 32, 'Phường Nguyễn Cư Trinh', 'A45 đường Nguyễn Trãi');
+INSERT INTO TB_ADDRESS VALUES (36, 70,27, 'Phường Phúc Thành', '141 Hải Thượng Lãn Ông');
+
+select * from tb_address
+
+select * from tb_district order by districtid

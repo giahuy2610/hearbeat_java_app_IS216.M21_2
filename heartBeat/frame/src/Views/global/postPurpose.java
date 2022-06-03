@@ -20,6 +20,10 @@ public class postPurpose {
     protected static ArrayList<String> purposeId = new ArrayList<String>();
     protected static ArrayList<String> purposeName = new ArrayList<String>();
 
+    public static String getPurposeNameFromId(String purposeId) {
+        return purposeName.get(Integer.parseInt(purposeId));
+    }
+
     public postPurpose() {
     }
 

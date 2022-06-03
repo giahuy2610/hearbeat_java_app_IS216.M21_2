@@ -20,6 +20,10 @@ public class postCategory {
     private static ArrayList<String> categoryId = new ArrayList<String>();
     private static ArrayList<String> categoryName = new ArrayList<String>();
 
+    public static String getCategoryNameFromId(String categoryId) {
+        return categoryName.get(Integer.parseInt(categoryId));
+    }
+
     public postCategory() {
     }
 
