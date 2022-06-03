@@ -5,7 +5,6 @@
 package Views.global;
 
 import ConnectDB.OracleConnUtils;
-import Views.main.mainFrame;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -74,9 +73,9 @@ public class user {
                 avatar = rs.getString("avatar");
                 score = rs.getString("score");
                 dateOfBirth = rs.getString("dateofbirth");
-                address = rs.getString("addresss");
-                city = rs.getString("city");
-                district = rs.getString("district");
+                address = rs.getString("address");
+                city = rs.getString("cityid");
+                district = rs.getString("districtid");
             }
             conn.close();
         } catch (SQLException e) {

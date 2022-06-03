@@ -24,7 +24,8 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
 
     private void loadData() {
         labelTitle.setText(post01.getTitle());
-        labelContent.setText(post01.getContent());
+        //labelContent.setText(post01.getContent());
+        //labelContent.setText("<html><p style=\\\"color:red\\\">\"+paragraph+\"</p></html>");
         labelImage.setIcon(new ImageIcon(post01.getImagePath()));
         labelCreatedOn.setText(post01.getCreatedOn());
         
@@ -60,8 +61,9 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         labelImage = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        labelContent = new javax.swing.JLabel();
         labelTitle = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        labelContent = new javax.swing.JTextArea();
         kGradientPanel2 = new keeptoo.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -132,28 +134,25 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));
         jLabel8.setText("HÌNH ẢNH");
 
-        labelContent.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        labelContent.setText("jLabel2");
-
         labelTitle.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         labelTitle.setText("jLabel2");
+
+        labelContent.setColumns(20);
+        labelContent.setRows(5);
+        labelContent.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(labelContent);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(398, 398, 398))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelContent, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -176,9 +175,8 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(4, 4, 4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1))
                     .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
                 .addGap(31, 31, 31))
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,8 +369,9 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private keeptoo.KGradientPanel kGradientPanel2;
-    private javax.swing.JLabel labelContent;
+    private javax.swing.JTextArea labelContent;
     private javax.swing.JLabel labelCreatedOn;
     private javax.swing.JLabel labelImage;
     private javax.swing.JLabel labelPath;

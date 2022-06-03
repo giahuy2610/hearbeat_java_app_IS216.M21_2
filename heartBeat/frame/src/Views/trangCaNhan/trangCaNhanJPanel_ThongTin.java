@@ -8,8 +8,11 @@ import Views.global.city;
 import Views.global.district;
 import Views.main.mainFrame;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,9 +34,13 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         field_phone.setText(mainFrame.currentUser.getPhone());
         field_mail.setText(mainFrame.currentUser.getEmail());
         field_address.setText(mainFrame.currentUser.getAddress());
-        System.out.println(mainFrame.currentUser.getCity());
+        //combo box giới tính
+        cb_gender.addItem("Nam");
+        cb_gender.addItem("Nữ");
+        cb_gender.addItem("Khác");
+        
         cb_city.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getCity()));
-        cb_district.setSelectedItem(Integer.parseInt(mainFrame.currentUser.getDistrict()));
+        cb_district.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getDistrict()));
     }
 
     /**
@@ -63,6 +70,9 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         field_address = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        cb_gender = new javax.swing.JComboBox<>();
+        jDateChooserFilter = new com.toedter.calendar.JDateChooser();
+        jLabel12 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1000, 360));
         setLayout(new java.awt.CardLayout());
@@ -79,22 +89,35 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(0, 51, 153));
         jLabel3.setText("Email");
 
+        field_mail.setEditable(false);
         field_mail.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         field_mail.setText("tranquang000@gmail.com");
         field_mail.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 102, 255)));
+        field_mail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                field_mailMousePressed(evt);
+            }
+        });
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 51, 153));
         jLabel5.setText("Liên hệ");
 
+        field_phone.setEditable(false);
         field_phone.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         field_phone.setText("0123456789");
         field_phone.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(204, 102, 255)));
+        field_phone.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                field_phoneMousePressed(evt);
+            }
+        });
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel6.setText("Giới tính");
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -156,7 +179,34 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         jLabel11.setBackground(new java.awt.Color(255, 255, 255));
         jLabel11.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel11.setText("Địa chỉ");
+        jLabel11.setText("Ngày sinh");
+
+        cb_gender.setToolTipText("");
+        cb_gender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_genderActionPerformed(evt);
+            }
+        });
+
+        jDateChooserFilter.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jDateChooserFilterAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jDateChooserFilter.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooserFilterPropertyChange(evt);
+            }
+        });
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel12.setText("Địa chỉ");
 
         javax.swing.GroupLayout jPanelProfileLayout = new javax.swing.GroupLayout(jPanelProfile);
         jPanelProfile.setLayout(jPanelProfileLayout);
@@ -164,9 +214,6 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
             jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProfileLayout.createSequentialGroup()
                 .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfileLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanelProfileLayout.createSequentialGroup()
                             .addGap(37, 37, 37)
@@ -177,21 +224,33 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                                     .addComponent(field_first_name, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfileLayout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(field_mail, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(field_mail, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfileLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cb_gender, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(53, 53, 53)
-                .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(field_last_name)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(field_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cb_city, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cb_district, 0, 316, Short.MAX_VALUE)
-                    .addComponent(field_address))
-                .addGap(41, 41, 41))
+                .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelProfileLayout.createSequentialGroup()
+                        .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(field_last_name)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(field_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateChooserFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                        .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cb_city, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cb_district, 0, 316, Short.MAX_VALUE)
+                            .addComponent(field_address))
+                        .addGap(41, 41, 41))
+                    .addGroup(jPanelProfileLayout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanelProfileLayout.createSequentialGroup()
                 .addGap(421, 421, 421)
                 .addComponent(jButton1)
@@ -199,13 +258,13 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
             .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelProfileLayout.createSequentialGroup()
                     .addGap(653, 653, 653)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(31, 31, 31)))
         );
         jPanelProfileLayout.setVerticalGroup(
             jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProfileLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelProfileLayout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,17 +295,26 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cb_district, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(32, 32, 32)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(1, 1, 1)
-                .addComponent(field_address, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelProfileLayout.createSequentialGroup()
+                        .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(field_address, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cb_gender, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, Short.MAX_VALUE))
+                    .addGroup(jPanelProfileLayout.createSequentialGroup()
+                        .addComponent(jDateChooserFilter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)))
                 .addComponent(jButton1)
                 .addGap(52, 52, 52))
             .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfileLayout.createSequentialGroup()
-                    .addContainerGap(198, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(137, 137, 137)))
+                    .addContainerGap(194, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(141, 141, 141)))
         );
 
         jPanel1.add(jPanelProfile, "card2");
@@ -278,18 +346,43 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cb_districtActionPerformed
 
+    private void cb_genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_genderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_genderActionPerformed
+
+    private void field_mailMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_mailMousePressed
+       JOptionPane.showMessageDialog(this, "Không thể thay đổi Email!");
+    }//GEN-LAST:event_field_mailMousePressed
+
+    private void field_phoneMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_phoneMousePressed
+        JOptionPane.showMessageDialog(this, "Không thể thay đổi số điện thoại!");
+    }//GEN-LAST:event_field_phoneMousePressed
+
+    private void jDateChooserFilterAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jDateChooserFilterAncestorAdded
+
+    }//GEN-LAST:event_jDateChooserFilterAncestorAdded
+
+    private void jDateChooserFilterPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserFilterPropertyChange
+        System.out.println(jDateChooserFilter.getDate());
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+        
+    }//GEN-LAST:event_jDateChooserFilterPropertyChange
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_city;
     private javax.swing.JComboBox<String> cb_district;
+    private javax.swing.JComboBox<String> cb_gender;
     private javax.swing.JTextField field_address;
     private javax.swing.JTextField field_first_name;
     private javax.swing.JTextField field_last_name;
     private javax.swing.JTextField field_mail;
     private javax.swing.JTextField field_phone;
     private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooserFilter;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
