@@ -149,9 +149,9 @@
                       <Component id="jTextFieldTieuDe" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="purposeFilter" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -163,17 +163,14 @@
                               <Component id="jLabel3" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="postContent" min="-2" pref="160" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="31" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" pref="50" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" pref="100" max="-2" attributes="0"/>
                               <Component id="btnAddImage" alignment="1" min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="postBtn" min="-2" pref="50" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="postBtn" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
@@ -184,8 +181,9 @@
         <Component class="javax.swing.JTextField" name="jTextFieldTieuDe">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="13" style="0"/>
+              <Font name="Arial" size="13" style="1"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="test font"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Text Cursor"/>
@@ -222,6 +220,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="13" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="test font"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Text Cursor"/>
@@ -315,7 +314,7 @@
         <Component class="javax.swing.JButton" name="postBtn">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="cc" red="cc" type="rgb"/>
+              <Color blue="ff" green="ff" red="99" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
@@ -328,7 +327,6 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="postBtnMouseClicked"/>

@@ -95,7 +95,8 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
-        jTextFieldTieuDe.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        jTextFieldTieuDe.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jTextFieldTieuDe.setText("test font");
         jTextFieldTieuDe.setToolTipText("");
         jTextFieldTieuDe.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldTieuDe.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +114,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         jLabel3.setText("Nội dung");
 
         postContent.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        postContent.setText("test font");
         postContent.setToolTipText("");
         postContent.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
@@ -152,13 +154,12 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
             }
         });
 
-        postBtn.setBackground(new java.awt.Color(204, 204, 255));
+        postBtn.setBackground(new java.awt.Color(153, 255, 255));
         postBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         postBtn.setForeground(new java.awt.Color(0, 51, 153));
         postBtn.setText("Đăng");
         postBtn.setToolTipText("");
         postBtn.setBorder(null);
-        postBtn.setEnabled(false);
         postBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 postBtnMouseClicked(evt);
@@ -220,9 +221,9 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldTieuDe, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(purposeFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,14 +233,12 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(postContent, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAddImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(postBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(postBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(61, 61, 61))
         );
 
