@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Views.global;
+package Process;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ public class notification {
     private String notiId;
     private String content;
     private String createdOn;
-    private String isSeen;
+    private String isDeleted;
 
     public String getNotiId() {
         return notiId;
@@ -40,22 +40,16 @@ public class notification {
         this.createdOn = createdOn;
     }
 
-    public String getIsSeen() {
-        return isSeen;
-    }
 
-    public void setIsSeen(String isSeen) {
-        this.isSeen = isSeen;
-    }
 
     public notification() {
     }
 
-    public notification(String notiId, String content, String createdOn, String isSeen) {
+    public notification(String notiId, String content, String createdOn, String isDeleted) {
         this.notiId = notiId;
         this.content = content;
         this.createdOn = createdOn;
-        this.isSeen = isSeen;
+        this.isDeleted = isDeleted;
     }
     
     public notification(String notiId) {

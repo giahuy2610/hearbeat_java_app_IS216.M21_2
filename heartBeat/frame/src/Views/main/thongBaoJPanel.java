@@ -5,7 +5,7 @@
 package Views.main;
 
 import ConnectDB.OracleConnUtils;
-import Views.global.notification;
+import Process.notification;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,7 +44,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
             ResultSet rs = stmt.executeQuery(query);
 
             while (rs.next()) {
-                notiList.add(new notification(rs.getString("notiid"), rs.getString("content"), rs.getString("createdon"), rs.getString("isseen")));
+                notiList.add(new notification(rs.getString("notiid"), rs.getString("content"), rs.getString("createdon"), rs.getString("isdeleted")));
             }
             conn.close();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -90,13 +90,14 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableThongBao = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(126, 186, 181));
 
-        kGradientPanel2.setkEndColor(new java.awt.Color(255, 0, 255));
-        kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 255));
+        kGradientPanel2.setkEndColor(new java.awt.Color(126, 186, 181));
+        kGradientPanel2.setkStartColor(new java.awt.Color(126, 186, 181));
+        kGradientPanel2.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 51, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("THÔNG BÁO");
 
@@ -112,6 +113,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setOpaque(false);
 
         field_tim_kiem.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         field_tim_kiem.setForeground(new java.awt.Color(153, 153, 153));
@@ -131,7 +133,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 51, 153));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/loupe.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search_1.png"))); // NOI18N
         jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
 
         jDateChooserFilter.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -151,7 +153,8 @@ public class thongBaoJPanel extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel2.setText("Chọn thời gian");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Thời gian");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -163,7 +166,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jDateChooserFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(148, 148, 148))
@@ -183,6 +186,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setOpaque(false);
 
         tableThongBao.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 153)));
         tableThongBao.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
@@ -196,6 +200,11 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         ));
         tableThongBao.setToolTipText("");
         tableThongBao.setRowHeight(30);
+        tableThongBao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tableThongBaoMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableThongBao);
         if (tableThongBao.getColumnModel().getColumnCount() > 0) {
             tableThongBao.getColumnModel().getColumn(0).setMinWidth(200);
@@ -216,7 +225,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -260,6 +269,10 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         if (jDateChooserFilter.getDate() != null)
             prepareNotifications(dateFormat.format(jDateChooserFilter.getDate()));
     }//GEN-LAST:event_jDateChooserFilterPropertyChange
+
+    private void tableThongBaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableThongBaoMousePressed
+        
+    }//GEN-LAST:event_tableThongBaoMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -1,11 +1,11 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Views.trangCaNhan;
 
 import ConnectDB.OracleConnUtils;
-import Views.global.sort;
+import Process.sort;
 import Views.main.baiVietJPanel;
 import Views.main.mainFrame;
 import Views.main.trangChuJPanel;
@@ -21,24 +21,36 @@ import java.util.logging.Logger;
  */
 public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
 
-    @Override
-    protected String initQuery() {
-        query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId() + " order by createdon desc";
+    
+    protected String initQuery1() {
+        query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId();
+        if  (postStatusFilter != null) {
+            if (postStatusFilter.getSelectedIndex() > 0 && postStatusFilter.getSelectedIndex() < 4) {
+                query += " and statusid = " + postStatusFilter.getSelectedIndex();
+            } else if (postStatusFilter.getSelectedIndex() == 4) {
+                query += " and isdeleted = 1";
+            }
 
+            if (postSortFilter.getSelectedIndex() == 0) {
+                query += " order by createdon desc";
+            }
+            else {
+                query += " order by createdon";
+        }}
         return query;
     }
 
     public trangCaNhanJPanel_BaiViet() {
         initComponents();
-        sort.prepareSortFilter(sortFilter);
-
+        sort.prepareSortFilter(postSortFilter);
+        postSortFilter.setSelectedIndex(0);
         this.preparePost();
     }
 
     private void preparePost() {
         try {
             conn = OracleConnUtils.getOracleConnection();
-            query = initQuery();
+            query = initQuery1();
             System.out.println("trang cá nhân đang chạy query " + query);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -85,9 +97,9 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         jPanel17 = new javax.swing.JPanel();
         findUser = new javax.swing.JTextField();
         jButton14 = new javax.swing.JButton();
-        statusFilter = new javax.swing.JComboBox<>();
+        postStatusFilter = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        sortFilter = new javax.swing.JComboBox<>();
+        postSortFilter = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
         jScrollPanePost = new javax.swing.JScrollPane();
 
@@ -95,7 +107,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanelProfile.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelProfile.setBackground(new java.awt.Color(199, 234, 227));
 
         jPanel17.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -112,21 +124,21 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         jButton14.setBackground(new java.awt.Color(255, 204, 204));
         jButton14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton14.setForeground(new java.awt.Color(0, 51, 153));
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/loupe.png"))); // NOI18N
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search_1.png"))); // NOI18N
         jButton14.setBorder(null);
 
-        statusFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Chờ", "Có hẹn", "Thành công", "Đã xóa" }));
-        statusFilter.addActionListener(new java.awt.event.ActionListener() {
+        postStatusFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Chờ", "Có hẹn", "Thành công", "Đã xóa" }));
+        postStatusFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                statusFilterActionPerformed(evt);
+                postStatusFilterActionPerformed(evt);
             }
         });
 
         jLabel9.setText("Phân loại");
 
-        sortFilter.addActionListener(new java.awt.event.ActionListener() {
+        postSortFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sortFilterActionPerformed(evt);
+                postSortFilterActionPerformed(evt);
             }
         });
 
@@ -144,11 +156,11 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 .addGap(173, 173, 173)
                 .addComponent(jLabel9)
                 .addGap(48, 48, 48)
-                .addComponent(statusFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(postStatusFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(sortFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(postSortFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(97, 97, 97))
         );
         jPanel17Layout.setVerticalGroup(
@@ -159,10 +171,10 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                         .addContainerGap()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sortFilter, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(postSortFilter, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                             .addComponent(findUser)
-                            .addComponent(statusFilter)))
+                            .addComponent(postStatusFilter)))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -175,21 +187,15 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         jPanelProfile.setLayout(jPanelProfileLayout);
         jPanelProfileLayout.setHorizontalGroup(
             jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelProfileLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 980, Short.MAX_VALUE)
-                    .addComponent(jScrollPanePost))
-                .addContainerGap())
+            .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPanePost)
         );
         jPanelProfileLayout.setVerticalGroup(
             jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProfileLayout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPanePost, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPanePost, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -198,7 +204,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanelProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,14 +227,14 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_findUserActionPerformed
 
-    private void statusFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusFilterActionPerformed
+    private void postStatusFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postStatusFilterActionPerformed
         //System.out.println("city " + cityFilter.getSelectedIndex() + " district " + districtFilter.getSelectedIndex() + " category " + categoryFilter.getSelectedIndex());
         this.preparePost();
-    }//GEN-LAST:event_statusFilterActionPerformed
+    }//GEN-LAST:event_postStatusFilterActionPerformed
 
-    private void sortFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortFilterActionPerformed
+    private void postSortFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postSortFilterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sortFilterActionPerformed
+    }//GEN-LAST:event_postSortFilterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -240,7 +246,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanelProfile;
     private javax.swing.JScrollPane jScrollPanePost;
-    private javax.swing.JComboBox<String> sortFilter;
-    private javax.swing.JComboBox<String> statusFilter;
+    private javax.swing.JComboBox<String> postSortFilter;
+    private javax.swing.JComboBox<String> postStatusFilter;
     // End of variables declaration//GEN-END:variables
 }

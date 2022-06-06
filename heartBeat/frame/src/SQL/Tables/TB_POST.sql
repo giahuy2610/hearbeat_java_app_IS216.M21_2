@@ -64,6 +64,7 @@ INSERT INTO TB_POST (OWNERID,PARTNERID,STATUSID,TITLE,CONTENT,CATEGORYID,IMAGEPA
 INSERT INTO TB_POST (OWNERID,PARTNERID,STATUSID,TITLE,CONTENT,CATEGORYID,IMAGEPATH,CREATEDON,UPDATEDON,PURPOSEID,ISDELETED) VALUES (3, null, 1, 'Xin sách toeic', 'Có anh chị nào học xong toeic thì cho em xin hoặc mua lại ạ', 4, NULL, sysdate, NULL, 2, 0);
 commit;
 --Trigger thiết lập các giá trị mặc định cho dữ liệu bảng TB_Post
+--Trigger thiết lập các giá trị mặc định cho dữ liệu bảng TB_Post
 CREATE OR REPLACE TRIGGER trigger_default_value_post BEFORE
     INSERT ON tb_post
     REFERENCING
@@ -78,11 +79,19 @@ BEGIN
 
     :new.partnerid := NULL;
     :new.updatedon := NULL;
-    :new.imagepath := NULL;
     :new.statusid := 1;
     :new.isdeleted := 0;
 END;
 
+CREATE OR REPLACE TRIGGER trigger_noti_post AFRTER
+    INSERT ON tb_post
+    REFERENCING
+        NEW AS new
+    FOR EACH ROW
+BEGIN
+        INSERT INTO TB_NOTIFICATION (USERID, CONTENT, POSTID) VALUES ( :NEW.OWNERID,
+            'Bài viết ' ||  :NEW.title ||' đã được đăng thành công', :NEW.POSTID);
+END;
 -- trigger điểm nhân ái được tự động tăng khi bài viết chuyển sang trạng thái thành công
 CREATE OR REPLACE TRIGGER TRIGGER_ADD_SCORE AFTER
     UPDATE ON tb_post
@@ -90,6 +99,8 @@ CREATE OR REPLACE TRIGGER TRIGGER_ADD_SCORE AFTER
         OLD AS old
         NEW AS new
     FOR EACH ROW
+        DECLARE
+        CURRENTSCORE INTEGER;
 BEGIN
     IF (:NEW.STATUSID = 3 AND :NEW.PURPOSEID = 1) THEN
         --nếu trạng thái thành công (status = 3) và mục đích của
@@ -97,16 +108,26 @@ BEGIN
         UPDATE TB_USER
         SET TB_USER.SCORE = TB_USER.SCORE + 10
         WHERE TB_USER.USERID = :NEW.OWNERID;
-        INSERT INTO TB_NOTIFICATION (USERID, CONTENT) VALUES ( :NEW.OWNERID,
-            'Bạn đã được cộng 10 điểm cho việc giúp đỡ thành công một người, hãy tiếp tục nhé');
+        
+        SELECT SCORE INTO CURRENTSCORE
+        FROM TB_USER WHERE TB_USER.USERID = :NEW.OWNERID;
+        
+        INSERT INTO TB_NOTIFICATION (USERID, CONTENT, POSTID) VALUES ( :NEW.OWNERID,
+            'Bạn đã được cộng 10 điểm cho việc giúp đỡ thành công một người, hãy tiếp tục nhé', :NEW.POSTID);
+        INSERT INTO TB_SCORETRANSACTION (USERID, CURRENTSCORE, POSTID) VALUES ( :NEW.OWNERID, CURRENTSCORE ,:NEW.POSTID);
     ELSIF (:NEW.STATUSID = 3 AND :NEW.PURPOSEID = 2) THEN
         --nếu trạng thái thành công (status = 3) và mục đích của
         --bài đăng là để xin/nhận thì cộng điểm cho người đặt hẹn(người tặng)
         UPDATE TB_USER
         SET TB_USER.SCORE = TB_USER.SCORE + 10
         WHERE TB_USER.USERID = :NEW.PARTNERID;
-        INSERT INTO TB_NOTIFICATION (USERID, CONTENT) VALUES ( :NEW.PARTNERID,
-            'Bạn đã được cộng 10 điểm cho việc giúp đỡ thành công một người, hãy tiếp tục nhé');
+        
+        SELECT SCORE INTO CURRENTSCORE
+        FROM TB_USER WHERE TB_USER.USERID = :NEW.PARTNERID;
+        
+        INSERT INTO TB_NOTIFICATION (USERID, CONTENT, POSTID) VALUES ( :NEW.PARTNERID,
+            'Bạn đã được cộng 10 điểm cho việc giúp đỡ thành công một người dùng, hãy tiếp tục nhé', :NEW.POSTID);
+        INSERT INTO TB_SCORETRANSACTION (USERID, CURRENTSCORE, POSTID)  VALUES ( :NEW.PARTNERID, CURRENTSCORE ,:NEW.POSTID);
     END IF;
 END;
 

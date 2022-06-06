@@ -8,3 +8,6 @@ mở netbean và truy cập vào project ở folder heartbeat
 netbean hiển thị một danh sách các error cần resolve
 1. thiếu ojdbc: ấn resolve rồi trỏ đến folder resource lấy file ojdbc11.jar
 2. thiếu kgradientpanel: ấn resolve rồi trỏ đến folder resource lấy file kgradientpanel.jar
+
+poststatus -> category -> purpose -> role  -> city 
+-> district 

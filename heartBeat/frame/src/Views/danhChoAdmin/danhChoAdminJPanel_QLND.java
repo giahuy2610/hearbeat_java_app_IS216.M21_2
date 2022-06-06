@@ -5,7 +5,7 @@
 package Views.danhChoAdmin;
 
 import ConnectDB.TestConnectJDBC;
-import Views.global.user;
+import Process.user;
 import Views.main.testGetDBToTable;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -72,7 +72,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         field_phone = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        field_gender = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -82,6 +81,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
+        cbGender = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -93,10 +93,11 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+        setOpaque(false);
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         field_userId.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        field_userId.setText("000");
         field_userId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         field_userId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +106,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         });
 
         field_lastname.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        field_lastname.setText("Họ và tên");
         field_lastname.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         field_lastname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +123,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jLabel4.setText("Số điện thoại");
 
         field_phone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        field_phone.setText("Số điện thoại");
         field_phone.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         field_phone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,20 +133,10 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setText("Giới tính");
 
-        field_gender.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        field_gender.setText("Nam/Nữ");
-        field_gender.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        field_gender.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                field_genderActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel6.setText("Ngày sinh");
 
         jTextField8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField8.setText("00/00/0000");
         jTextField8.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +148,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
         field_mail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        field_mail.setText("Email");
         field_mail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         field_mail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,7 +159,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jLabel8.setText("Email");
 
         field_score.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        field_score.setText("00");
         field_score.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         field_score.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,16 +170,17 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jLabel9.setText("Điểm YT");
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel10.setText("vai trò");
+        jLabel10.setText("Vai trò");
 
         jTextField11.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField11.setText("vai trò");
         jTextField11.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField11ActionPerformed(evt);
             }
         });
+
+        cbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Khác" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -217,8 +205,8 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(field_userId, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(field_gender, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(76, 76, 76)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(field_lastname, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,8 +244,8 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(field_gender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -287,7 +275,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                 "<html> <h4 style = \"color: #004aad\"> MÃ USER </h4> </html>", "<html> <h4 style = \"color: #004aad\"> HỌ TÊN ĐỆM </h4> </html>", "<html> <h4 style = \"color: #004aad\"> TÊN </h4> </html>", "<html> <h4 style = \"color: #004aad\"> GIỚI TÍNH </h4> </html>", "<html> <h4 style = \"color: #004aad\"> SĐT </h4> </html>", "<html> <h4 style = \"color: #004aad\"> NGÀY SINH </h4> </html>", "<html> <h4 style = \"color: #004aad\"> EMAIL </h4> </html>", "<html> <h4 style = \"color: #004aad\"> ĐIỂM YT </h4> </html>", "<html> <h4 style = \"color: #004aad\"> NGÀY TẠO </h4> </html>", "<html> <h4 style = \"color: #004aad\"> VAI TRÒ </h4> </html>"
             }
         ));
-        jTable1.setCellSelectionEnabled(false);
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTable1.setDropMode(javax.swing.DropMode.ON_OR_INSERT_ROWS);
         jTable1.setGridColor(new java.awt.Color(204, 204, 204));
@@ -357,13 +344,13 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 51, 153));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/home.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/paper.png"))); // NOI18N
         jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 51, 153));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/find.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search_1.png"))); // NOI18N
         jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -374,7 +361,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 51, 153));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/add.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/studying.png"))); // NOI18N
         jButton5.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton5.setMaximumSize(new java.awt.Dimension(163, 40));
         jButton5.setMinimumSize(new java.awt.Dimension(163, 40));
@@ -387,7 +374,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 51, 153));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/pen.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/studying.png"))); // NOI18N
         jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton1.setMaximumSize(new java.awt.Dimension(163, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(163, 40));
@@ -395,7 +382,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 51, 153));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/delete.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/paper.png"))); // NOI18N
         jButton2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -472,10 +459,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_field_phoneActionPerformed
 
-    private void field_genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_genderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_field_genderActionPerformed
-
     private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField8ActionPerformed
@@ -515,13 +498,15 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         field_phone.setText(user01.getPhone());
         field_mail.setText(user01.getEmail());
         field_lastname.setText(user01.getLastName());
-        field_gender.setText(user01.getGender());
+
+        cbGender.setSelectedIndex(Integer.parseInt(user01.getGender())+1);
+
 
     }//GEN-LAST:event_jTable1MousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField field_gender;
+    private javax.swing.JComboBox<String> cbGender;
     private javax.swing.JTextField field_lastname;
     private javax.swing.JTextField field_mail;
     private javax.swing.JTextField field_phone;

@@ -60,8 +60,20 @@ BEGIN
         dual;
 
     :new.score := 0;
-    :new.avatar := NULL;
     :new.isdeleted := 0;
+END;
+
+CREATE OR REPLACE TRIGGER TRIGGER_DEFAULT_VALUE_USER AFTER
+    INSERT ON tb_user
+    REFERENCING
+        NEW AS new
+    FOR EACH ROW
+BEGIN
+    --tự động tạo địa chỉ 
+    INSERT INTO TB_ADDRESS VALUES (:new.userid, 24, 1,'');
+    --gửi thông báo
+    INSERT INTO TB_NOTIFICATION (USERID, CONTENT, POSTID) VALUES ( :NEW.USERID,
+    'Tài khoản được tạo thành công, vui lòng thay đổi thông tin cá nhân ở Trang cá nhân/Thông tin', '');
 END;
 /
 --trigger ngày sinh

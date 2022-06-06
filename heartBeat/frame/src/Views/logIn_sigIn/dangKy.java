@@ -407,7 +407,7 @@ public class dangKy extends javax.swing.JFrame {
             String query = "";
             synchronized (query) {
                 query = "INSERT INTO TB_USER (FIRSTNAME,LASTNAME,GENDER,PHONE,DATEOFBIRTH,EMAIL,SCORE,AVATAR,CREATEDON,PASSWORD,ROLEID,ISDELETED) "
-                        + "VALUES  ('" + HoTenDem + "', '" + Ten + "', 1, '" + SDT + "', TO_DATE('1/1/2000', 'dd/mm/yyyy'), '"+ jTextField4.getText() +"', 0, NULL, sysdate, '" + Password + "', 2, 0)";
+                        + "VALUES  ('" + HoTenDem + "', '" + Ten + "', 1, '" + SDT + "', TO_DATE('1/1/2000', 'dd/mm/yyyy'), '"+ jTextField4.getText() +"', 0, NULL, sysdate, '" + Password + "', 1, 0)";
             }
             try ( Statement stmt = conn.createStatement()) {
                 ResultSet rs = stmt.executeQuery(query);

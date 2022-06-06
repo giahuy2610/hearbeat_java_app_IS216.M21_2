@@ -42,9 +42,10 @@ public class danhMucJPanel extends javax.swing.JPanel {
         kGradientPanel2 = new keeptoo.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(199, 234, 227));
 
         jPanelNhuCau.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelNhuCau.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -113,6 +114,7 @@ public class danhMucJPanel extends javax.swing.JPanel {
         );
 
         jPanelDanhMuc.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelDanhMuc.setOpaque(false);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -224,8 +226,8 @@ public class danhMucJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        kGradientPanel2.setkEndColor(new java.awt.Color(255, 0, 255));
-        kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 255));
+        kGradientPanel2.setkEndColor(new java.awt.Color(126, 186, 181));
+        kGradientPanel2.setkStartColor(new java.awt.Color(126, 186, 181));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));

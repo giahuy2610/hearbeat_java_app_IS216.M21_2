@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Views.global;
+package Process;
 
 import ConnectDB.OracleConnUtils;
 import java.sql.CallableStatement;
@@ -39,6 +39,15 @@ public class user {
     private String city;
     private String district;
 
+    public user() {
+    }
+
+    public user(String userId) {
+        this.loadUser(userId);
+    }
+
+    
+    
 //hàm để lấy mọi data của user đó
     public void loadUser(String currentUserId) {
         Connection conn = null;
@@ -97,6 +106,7 @@ public class user {
         caSt.setString(4, newGender);
         caSt.setDate(5, (java.sql.Date) newDateOfBirth);
         caSt.setString(6, newCityid);
+        System.out.println("Đang thay đổi quận " + newDistrictid);
         caSt.setString(7, newDistrictid);
         caSt.setString(8, newAddress);
         caSt.execute();

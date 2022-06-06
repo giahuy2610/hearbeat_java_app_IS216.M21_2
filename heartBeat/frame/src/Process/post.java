@@ -1,4 +1,4 @@
-package Views.global;
+package Process;
 
 import ConnectDB.OracleConnUtils;
 import Views.main.mainFrame;
@@ -32,6 +32,21 @@ public class post {
     private String isDeleted;
     private String imagePath;
     private String statusId;
+
+    public static void themBaiViet(String postTitle, String postContent, String postCategoryId, String postPurposeId, String pathImage) throws SQLException, ClassNotFoundException {
+        Connection conn = OracleConnUtils.getOracleConnection();
+        String query = "{call P_INSERT_POST_NEW(?,?,?,?,?,?)}";
+        System.out.println(mainFrame.currentUser.getUserId());
+        CallableStatement caSt = conn.prepareCall(query);
+        caSt.setString(1, mainFrame.currentUser.getUserId());
+        caSt.setString(2, postTitle);
+        caSt.setString(3, postContent);
+        caSt.setString(4, postCategoryId);
+        caSt.setString(5, postPurposeId);
+        caSt.setString(6, pathImage);
+        System.out.println("đã nhận ảnh " + pathImage);
+        caSt.execute();
+    }
 
     public post(String postId) {
         try {
@@ -183,6 +198,7 @@ public class post {
         caSt.execute();
         System.out.println("Deleted post" + postId);
     }
+
     //chỉnh sửa bài viết
     public void modifyPost() throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
@@ -215,6 +231,5 @@ public class post {
         caSt.execute();
         System.out.println("Scheduling confirm successful, post" + postId);
     }
-    
 
 }

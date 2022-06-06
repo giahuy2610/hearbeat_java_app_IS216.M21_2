@@ -9,9 +9,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import Process.baiViet;
-import Views.global.postCategory;
-import Views.global.postPurpose;
+import Process.post;
+import Process.postCategory;
+import Process.postPurpose;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,11 +74,11 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
-        kGradientPanel2.setkEndColor(new java.awt.Color(255, 0, 255));
-        kGradientPanel2.setkStartColor(new java.awt.Color(0, 0, 255));
+        kGradientPanel2.setkEndColor(new java.awt.Color(126, 186, 181));
+        kGradientPanel2.setkStartColor(new java.awt.Color(126, 186, 181));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 51, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("THÊM BÀI VIẾT");
 
@@ -93,7 +93,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(199, 234, 227));
 
         jTextFieldTieuDe.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jTextFieldTieuDe.setToolTipText("");
@@ -138,7 +138,9 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         jLabel6.setText("Hình ảnh");
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jLabel7.setText("Hình ảnh");
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
+        jLabel7.setToolTipText("");
         jLabel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         btnAddImage.setBackground(new java.awt.Color(204, 255, 204));
@@ -155,6 +157,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         postBtn.setBackground(new java.awt.Color(204, 204, 255));
         postBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         postBtn.setForeground(new java.awt.Color(0, 51, 153));
+        postBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\giahu\\Downloads\\send.png")); // NOI18N
         postBtn.setText("Đăng");
         postBtn.setToolTipText("");
         postBtn.setBorder(null);
@@ -261,7 +264,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
 
     private void postBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postBtnActionPerformed
         try {
-            baiViet.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()), pathImage);
+            post.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()), pathImage);
             try {
                 String query = "select max(postid) as maxPostId from tb_post where ownerid = " + mainFrame.currentUser.getUserId();
 

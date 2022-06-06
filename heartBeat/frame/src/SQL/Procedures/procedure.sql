@@ -8,58 +8,7 @@ ALTER SESSION SET time_zone = '-7:0';
 CREATE PROCEDURE FOR DATABASE
 */
 
---procedure thêm tài khoản mới
 
-CREATE OR REPLACE PROCEDURE p_insert_account (
-    firstname    tb_user.firstname%TYPE,
-    lastname     tb_user.lastname%TYPE,
-    gender       tb_user.gender%TYPE,
-    phone        tb_user.phone%TYPE,
-    dateofbirth  tb_user.dateofbirth%TYPE,
-    email        tb_user.email%TYPE,
-    password     tb_user.password%TYPE,
-    roleid       tb_user.roleid%TYPE
-    --Thuộc tính Score, CreateOn, Avatar đã được thiết lặp mặc định trong TRIGGER_DEFAULT_VALUE_USER
-) AS
-BEGIN
-    INSERT INTO tb_user (
-        firstname,
-        lastname,
-        gender,
-        phone,
-        dateofbirth,
-        email,
-        password,
-        roleid
-    ) VALUES (
-        firstname,
-        lastname,
-        gender,
-        phone,
-        dateofbirth,
-        email,
-        password,
-        roleid
-    );
-
-    INSERT INTO tb_address (
-        userid,
-            CITYID INTEGER NOT NULL,
-    DISTRICTID INTEGER NOT NULL,
-    WARD NVARCHAR2(255),
-    ADDRESS NVARCHAR2(255)
-    ) VALUES (
-        firstname,
-        lastname,
-        gender,
-        phone,
-        dateofbirth,
-        email,
-        password,
-        roleid
-    );
-    COMMIT;
-END;
 
 /* Mẫu cho hàm p_insert_account
     BEGIN
@@ -69,13 +18,14 @@ END;
 
 --procedure thêm một bài đăng mới
 
-CREATE OR REPLACE PROCEDURE p_insert_post (
+--thêm bài viết
+CREATE OR REPLACE PROCEDURE p_insert_post_new (
     ownerid     tb_post.ownerid%TYPE,
     title       tb_post.title%TYPE,
     content     tb_post.content%TYPE,
     categoryid  tb_post.categoryid%TYPE,
     purposeid   tb_post.purposeid%TYPE,
-    imagepath       tb_post.imagepath%TYPE,
+    imagepath       tb_post.imagepath%TYPE
 ) AS
 BEGIN
     INSERT INTO tb_post (
@@ -91,9 +41,8 @@ BEGIN
         content,
         categoryid,
         purposeid,
-        imagepath,
+        imagepath
     );
-    
     COMMIT;
 END;
 
@@ -557,4 +506,40 @@ DBMS_OUTPUT.PUT_LINE('Phân loại: ' || PURPOSE_NAME);
 DBMS_OUTPUT.PUT_LINE('Danh mục: ' || CATEGORY_NAME);
 DBMS_OUTPUT.PUT_LINE('Nội dung: ' || GET_POST.CONTENT);
 DBMS_OUTPUT.PUT_LINE('Tình trạng: ' || STATUS_NAME);
+END;
+
+--procedure cập nhật thông tin cá nhân
+CREATE OR REPLACE PROCEDURE p_update_account (
+    userid_in tb_user.userid%type,
+    firstname_in    tb_user.firstname%TYPE,
+    lastname_in     tb_user.lastname%TYPE,
+    gender_in      tb_user.gender%TYPE,
+    dateofbirth_in  tb_user.dateofbirth%TYPE,
+    cityid_in tb_address.cityid%type,
+    districtid_in tb_address.districtid%TYPE,
+    address_in tb_address.address%type
+) AS
+BEGIN
+    update tb_user set 
+        firstname = firstname_in,
+        lastname = lastname_in,
+        gender = gender_in,
+        dateofbirth = dateofbirth_in
+    where userid = userid_in;
+    
+    update tb_address set
+        cityid = cityid_in,
+        districtid = districtid_in,
+        address = address_in
+    where userid = userid_in;
+    
+    INSERT INTO tb_notification (
+        userid,
+        content
+    ) VALUES (
+        userid_in,
+        'Cập nhật thông tin tài khoản thành công'
+    );
+    
+    COMMIT;
 END;

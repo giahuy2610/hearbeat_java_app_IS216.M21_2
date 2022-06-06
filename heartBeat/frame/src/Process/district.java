@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Views.global;
+package Process;
 
 import ConnectDB.OracleConnUtils;
 import java.sql.*;
@@ -17,8 +17,8 @@ import javax.swing.JComboBox;
  */
 public class district {
 
-    protected static ArrayList<String> districtId = new ArrayList<String>();
-    protected static ArrayList<String> districtName = new ArrayList<String>();
+    public static ArrayList<String> districtId = new ArrayList<String>();
+    public static ArrayList<String> districtName = new ArrayList<String>();
 
     public district() {
     }
