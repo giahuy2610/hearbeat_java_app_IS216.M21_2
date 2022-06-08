@@ -36,12 +36,14 @@ public class mainFrame extends javax.swing.JFrame {
         listItem.add(new danhMucBean("ThemBaiViet", jbtnThemBaiViet));
         listItem.add(new danhMucBean("ThongBao", jbtnThongBao));
         listItem.add(new danhMucBean("DanhMuc", jbtnDanhMuc));
-        listItem.add(new danhMucBean("TrangCaNhan", jbtnTrangCaNhan));/*
-        if (currentUser.getRoleId() == "2") {
-            
+        listItem.add(new danhMucBean("TrangCaNhan", jbtnTrangCaNhan));
+        //nếu người dùng này không phải admin thì không hiện ra trang admin
+        if (currentUser.getRoleId().equals("2")) {           
             listItem.add(new danhMucBean("DanhChoAdmin", jbtnDanhChoAdmin));
-        }    */   
-        listItem.add(new danhMucBean("DanhChoAdmin", jbtnDanhChoAdmin));
+        } 
+        else {
+            jbtnDanhChoAdmin.setVisible(false);
+        }
         controller.setEvent(listItem);
         chuyenManHinhController.setView(new trangChuJPanel());
     }
@@ -232,8 +234,8 @@ public class mainFrame extends javax.swing.JFrame {
                 .addComponent(jbtnTrangCaNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jbtnDanhChoAdmin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 

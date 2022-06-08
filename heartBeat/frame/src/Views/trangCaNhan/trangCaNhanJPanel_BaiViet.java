@@ -1,4 +1,4 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
@@ -8,10 +8,13 @@ import ConnectDB.OracleConnUtils;
 import Process.sort;
 import Views.main.baiVietJPanel;
 import Views.main.mainFrame;
+import static Views.main.setValue.postColor1;
+import static Views.main.setValue.postColor2;
 import Views.main.trangChuJPanel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,10 +24,22 @@ import java.util.logging.Logger;
  */
 public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
 
-    
+    private static ArrayList<String> postId = new ArrayList<String>();
+    private static ArrayList<String> postTitle = new ArrayList<String>();
+    private static ArrayList<String> postCategory = new ArrayList<String>();
+    private static ArrayList<String> postContent = new ArrayList<String>();
+    private static ArrayList<String> postPurpose = new ArrayList<String>();
+    private static ArrayList<String> postCreatedOn = new ArrayList<String>();
+    private static int firstFill = 0;
+
     protected String initQuery1() {
-        query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId();
-        if  (postStatusFilter != null) {
+        if (firstFill == 0) {
+            query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId();
+        } else {
+            query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId() + " and ( upper(title) like upper('%" + searchField.getText() + "%') )";
+        }
+
+        if (postStatusFilter != null) {
             if (postStatusFilter.getSelectedIndex() > 0 && postStatusFilter.getSelectedIndex() < 4) {
                 query += " and statusid = " + postStatusFilter.getSelectedIndex();
             } else if (postStatusFilter.getSelectedIndex() == 4) {
@@ -33,10 +48,10 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
 
             if (postSortFilter.getSelectedIndex() == 0) {
                 query += " order by createdon desc";
-            }
-            else {
+            } else {
                 query += " order by createdon";
-        }}
+            }
+        }
         return query;
     }
 
@@ -72,7 +87,11 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
 
             for (int i = 0; i < postId.size(); i++) {
                 baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i));
-                //baiViet x = new baiViet(postId.get(i), postTitle.get(i), categoryName.get(Integer.parseInt(postCategory.get(i))), postContent.get(i),  purposeName.get(Integer.parseInt(postPurpose.get(i))), postCreatedOn.get(i));
+                if (i % 2 == 0) {
+                    x.changeBackgroundColor(postColor1);
+                } else {
+                    x.changeBackgroundColor(postColor2);
+                }
                 container.add(x);
             }
             jScrollPanePost.setViewportView(container);
@@ -95,7 +114,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanelProfile = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
-        findUser = new javax.swing.JTextField();
+        searchField = new javax.swing.JTextField();
         jButton14 = new javax.swing.JButton();
         postStatusFilter = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
@@ -109,15 +128,20 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
 
         jPanelProfile.setBackground(new java.awt.Color(199, 234, 227));
 
-        jPanel17.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel17.setBackground(new java.awt.Color(126, 186, 181));
 
-        findUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        findUser.setForeground(new java.awt.Color(153, 153, 153));
-        findUser.setText(" Tìm kiếm bài viết");
-        findUser.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 51, 153)));
-        findUser.addActionListener(new java.awt.event.ActionListener() {
+        searchField.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        searchField.setForeground(new java.awt.Color(153, 153, 153));
+        searchField.setText(" Tìm kiếm bài viết");
+        searchField.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 51, 153)));
+        searchField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                searchFieldMousePressed(evt);
+            }
+        });
+        searchField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                findUserActionPerformed(evt);
+                searchFieldActionPerformed(evt);
             }
         });
 
@@ -126,6 +150,11 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         jButton14.setForeground(new java.awt.Color(0, 51, 153));
         jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search_1.png"))); // NOI18N
         jButton14.setBorder(null);
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         postStatusFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Chờ", "Có hẹn", "Thành công", "Đã xóa" }));
         postStatusFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +179,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(findUser, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(173, 173, 173)
@@ -173,7 +202,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                             .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(postSortFilter, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                            .addComponent(findUser)
+                            .addComponent(searchField)
                             .addComponent(postStatusFilter)))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
@@ -223,9 +252,9 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void findUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_findUserActionPerformed
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
+
+    }//GEN-LAST:event_searchFieldActionPerformed
 
     private void postStatusFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postStatusFilterActionPerformed
         //System.out.println("city " + cityFilter.getSelectedIndex() + " district " + districtFilter.getSelectedIndex() + " category " + categoryFilter.getSelectedIndex());
@@ -233,12 +262,22 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
     }//GEN-LAST:event_postStatusFilterActionPerformed
 
     private void postSortFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postSortFilterActionPerformed
-        // TODO add your handling code here:
+        this.preparePost();
     }//GEN-LAST:event_postSortFilterActionPerformed
+
+    private void searchFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMousePressed
+        if (firstFill == 0) {
+            searchField.setText("");
+            firstFill = 1;
+        }
+    }//GEN-LAST:event_searchFieldMousePressed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        this.preparePost();
+    }//GEN-LAST:event_jButton14ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField findUser;
     private javax.swing.JButton jButton14;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel9;
@@ -248,5 +287,6 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
     private javax.swing.JScrollPane jScrollPanePost;
     private javax.swing.JComboBox<String> postSortFilter;
     private javax.swing.JComboBox<String> postStatusFilter;
+    private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables
 }

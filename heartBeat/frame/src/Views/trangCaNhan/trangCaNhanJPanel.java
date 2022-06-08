@@ -4,12 +4,15 @@
  */
 package Views.trangCaNhan;
 
+import static Process.image.scaleImage;
 import Views.logIn_sigIn.quenMatKhau;
 import Views.main.chuyenManHinhProfile;
 import Views.main.danhMucBean;
 import Views.main.mainFrame;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +30,9 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
             labelVaiTro.setText("Quản trị viên");
         }
         labelDiem.setText(mainFrame.currentUser.getScore());
+        if (mainFrame.currentUser.getAvatar() != null) {
+            scaleImage(mainFrame.currentUser.getAvatar(), jLabel2);
+        }
     }
 
     /**
@@ -66,11 +72,11 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         jbtnThongTin = new javax.swing.JButton();
         labelDiem = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        labelTen = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        labelVaiTro = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        labelTen = new javax.swing.JLabel();
+        labelVaiTro = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(199, 234, 227));
         setLayout(new java.awt.CardLayout());
@@ -107,7 +113,7 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         );
         jPanelProfileLayout.setVerticalGroup(
             jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGap(0, 374, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(199, 234, 227));
@@ -116,6 +122,11 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Điểm YT:");
@@ -139,26 +150,8 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setText("Xin chào");
 
-        labelTen.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        labelTen.setText("Tên người dùng");
-        labelTen.setBorder(null);
-        labelTen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                labelTenActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Vai trò:");
-
-        labelVaiTro.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        labelVaiTro.setText("Người dùng");
-        labelVaiTro.setBorder(null);
-        labelVaiTro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                labelVaiTroActionPerformed(evt);
-            }
-        });
 
         jLabel7.setBackground(new java.awt.Color(255, 51, 102));
         jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -181,6 +174,12 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
             }
         });
 
+        labelTen.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        labelTen.setText("jLabel3");
+
+        labelVaiTro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        labelVaiTro.setText("jLabel3");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -188,55 +187,55 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
+                        .addGap(92, 92, 92)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addGap(70, 70, 70)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelDiem)
-                            .addComponent(labelTen, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(labelTen, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelVaiTro)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(333, 333, 333)
                         .addComponent(jbtnBaiViet, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jbtnThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(201, 214, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(labelTen, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(14, 14, 14)
+                                            .addComponent(labelTen))
+                                        .addGap(18, 18, 18)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(labelDiem)))
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelVaiTro)))
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelVaiTro, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(0, 16, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnBaiViet, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -263,14 +262,6 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void labelTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labelTenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_labelTenActionPerformed
-
-    private void labelVaiTroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_labelVaiTroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_labelVaiTroActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -280,6 +271,15 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Mã khôi phục mật khẩu đã được gửi về email!");
         new quenMatKhau(mainFrame.currentUser.getEmail()).setVisible(true);
     }//GEN-LAST:event_jLabel7MousePressed
+
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File f = chooser.getSelectedFile();
+        if (f != null) {
+            scaleImage(f.toString(), jLabel2);
+        }
+    }//GEN-LAST:event_jLabel2MousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -297,7 +297,7 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jbtnThongTin;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JLabel labelDiem;
-    private javax.swing.JTextField labelTen;
-    private javax.swing.JTextField labelVaiTro;
+    private javax.swing.JLabel labelTen;
+    private javax.swing.JLabel labelVaiTro;
     // End of variables declaration//GEN-END:variables
 }

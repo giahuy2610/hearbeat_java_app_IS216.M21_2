@@ -29,16 +29,21 @@ public class thongBaoJPanel extends javax.swing.JPanel {
     /**
      * Creates new form thongBaoJPanel
      */
-    public void prepareNotifications(String date) {
+    public void prepareNotifications(String control) {
         ArrayList<notification> notiList = new ArrayList<notification>();
         try {
             Connection conn = OracleConnUtils.getOracleConnection();
             String query = "";
-            if (date.equals("all")) {
+            if (control.equals("all")) {
                 query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " order by createdon";
-            } else {
-                query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " and TO_CHAR(createdon,'DD-MM-YY') = '" + date + "' order by createdon";
+            } 
+            else if (control.equals("searching")) {
+                query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " and upper(content) like upper('%" + field_tim_kiem.getText() + "%')";
             }
+            else {
+                query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " and TO_CHAR(createdon,'DD-MM-YY') = '" + control + "' order by createdon";
+            }
+                
             System.out.println(query);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -135,6 +140,11 @@ public class thongBaoJPanel extends javax.swing.JPanel {
         jButton4.setForeground(new java.awt.Color(0, 51, 153));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search_1.png"))); // NOI18N
         jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jDateChooserFilter.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
@@ -273,6 +283,12 @@ public class thongBaoJPanel extends javax.swing.JPanel {
     private void tableThongBaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableThongBaoMousePressed
         
     }//GEN-LAST:event_tableThongBaoMousePressed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        if (this.firstFill == 1) {
+            prepareNotifications("searching");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

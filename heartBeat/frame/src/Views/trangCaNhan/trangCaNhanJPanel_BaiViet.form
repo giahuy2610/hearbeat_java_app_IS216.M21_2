@@ -82,7 +82,7 @@
             <Container class="javax.swing.JPanel" name="jPanel17">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="cc" green="cc" red="ff" type="rgb"/>
+                  <Color blue="b5" green="ba" red="7e" type="rgb"/>
                 </Property>
               </Properties>
 
@@ -91,7 +91,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="findUser" min="-2" pref="294" max="-2" attributes="0"/>
+                          <Component id="searchField" min="-2" pref="294" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButton14" min="-2" pref="35" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
@@ -116,7 +116,7 @@
                                       <Component id="jLabel26" alignment="0" max="32767" attributes="0"/>
                                       <Component id="postSortFilter" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jButton14" alignment="0" pref="35" max="32767" attributes="0"/>
-                                      <Component id="findUser" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="searchField" alignment="1" max="32767" attributes="0"/>
                                       <Component id="postStatusFilter" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
@@ -131,7 +131,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="findUser">
+                <Component class="javax.swing.JTextField" name="searchField">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Arial" size="14" style="0"/>
@@ -149,7 +149,8 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="findUserActionPerformed"/>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchFieldMousePressed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchFieldActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton14">
@@ -170,6 +171,9 @@
                       <Border info="null"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="postStatusFilter">
                   <Properties>

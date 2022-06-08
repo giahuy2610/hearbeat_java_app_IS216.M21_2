@@ -28,12 +28,12 @@ import javax.swing.JPanel;
  */
 public class trangChuJPanel extends javax.swing.JPanel {
 
-    protected static ArrayList<String> postId = new ArrayList<String>();
-    protected static ArrayList<String> postTitle = new ArrayList<String>();
-    protected static ArrayList<String> postCategory = new ArrayList<String>();
-    protected static ArrayList<String> postContent = new ArrayList<String>();
-    protected static ArrayList<String> postPurpose = new ArrayList<String>();
-    protected static ArrayList<String> postCreatedOn = new ArrayList<String>();
+    private static ArrayList<String> postId = new ArrayList<String>();
+    private static ArrayList<String> postTitle = new ArrayList<String>();
+    private static ArrayList<String> postCategory = new ArrayList<String>();
+    private static ArrayList<String> postContent = new ArrayList<String>();
+    private static ArrayList<String> postPurpose = new ArrayList<String>();
+    private static ArrayList<String> postCreatedOn = new ArrayList<String>();
 
     protected Connection conn = null;
 
@@ -83,6 +83,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
         }
 
         System.out.println(query);
+ 
         return query;
     }
 
@@ -99,6 +100,9 @@ public class trangChuJPanel extends javax.swing.JPanel {
             postTitle.removeAll(postId);
             postCategory.removeAll(postCategory);
             postContent.removeAll(postContent);
+            postPurpose.removeAll(postPurpose);
+            postCreatedOn.removeAll(postCreatedOn);
+            int count = 0;
             while (rs.next()) {
                 postId.add(rs.getString("postid"));
                 postTitle.add(rs.getString("title"));
@@ -106,23 +110,28 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 postContent.add(rs.getString("content"));
                 postCreatedOn.add(rs.getString("createdon"));
                 postPurpose.add(rs.getString("purposeid"));
+                //System.out.println("1 bài viết " + rs.getString("title") + " " + rs.getString("content"));
+                count++;
             }
             conn.close();
 
-            for (int i = 0; i < postId.size(); i++) {
+            for (int i = 0; i < count; i++) {
                 baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i));
                 if (i % 2 == 0) {
                     x.changeBackgroundColor(postColor1);
+                } else {
+                    x.changeBackgroundColor(postColor2);
                 }
-                else x.changeBackgroundColor(postColor2);
                 container.add(x);
+                //System.out.println("2bài viết " + postTitle.get(i) + " - " + postContent.get(i));
             }
             jScrollPane1.setViewportView(container);
-
+     System.out.println("count " + Integer.toString(count));
+        System.out.println(Integer.toString(postId.size()) + Integer.toString(postTitle.size()) + Integer.toString(postContent.size()) + Integer.toString(postCategory.size()) + Integer.toString(postPurpose.size()));
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+  
     }
 
     public trangChuJPanel() {
