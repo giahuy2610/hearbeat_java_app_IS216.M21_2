@@ -290,6 +290,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel8.setText("Mục đích");
 
         categoryFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -298,6 +299,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel9.setText("Danh mục");
 
         cityFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -306,6 +308,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel24.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel24.setText("Tình/Thành phố");
 
         districtFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -314,6 +317,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel25.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel25.setText("Quận/Huyện");
 
         sortFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -348,6 +352,8 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sortFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
