@@ -115,7 +115,6 @@ public class danhChoAdminJPanel_QLNDTest extends javax.swing.JPanel {
                     .addGap(11, 11, 11)))
         );
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 51, 153));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/studying.png"))); // NOI18N
@@ -124,7 +123,6 @@ public class danhChoAdminJPanel_QLNDTest extends javax.swing.JPanel {
         jButton5.setMaximumSize(new java.awt.Dimension(163, 40));
         jButton5.setMinimumSize(new java.awt.Dimension(163, 40));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 51, 153));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/studying.png"))); // NOI18N
@@ -132,8 +130,12 @@ public class danhChoAdminJPanel_QLNDTest extends javax.swing.JPanel {
         jButton1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton1.setMaximumSize(new java.awt.Dimension(163, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(163, 40));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 51, 153));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/paper.png"))); // NOI18N
@@ -191,7 +193,6 @@ public class danhChoAdminJPanel_QLNDTest extends javax.swing.JPanel {
         jTable1.setDropMode(javax.swing.DropMode.ON_OR_INSERT_ROWS);
         jTable1.setGridColor(new java.awt.Color(204, 204, 204));
         jTable1.setRequestFocusEnabled(false);
-        jTable1.setRowHeight(20);
         jTable1.setSelectionBackground(new java.awt.Color(204, 204, 255));
         jTable1.setSelectionForeground(new java.awt.Color(0, 51, 153));
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -243,7 +244,6 @@ public class danhChoAdminJPanel_QLNDTest extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 51, 153));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search_1.png"))); // NOI18N
@@ -338,6 +338,10 @@ public class danhChoAdminJPanel_QLNDTest extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_jTable1MousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

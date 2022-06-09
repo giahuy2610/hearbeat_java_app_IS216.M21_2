@@ -76,6 +76,11 @@ public class danhChoAdminJPanel_QLSK extends javax.swing.JPanel {
         jButton6.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         jButton6.setMaximumSize(new java.awt.Dimension(163, 40));
         jButton6.setMinimumSize(new java.awt.Dimension(163, 40));
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -177,7 +182,6 @@ public class danhChoAdminJPanel_QLSK extends javax.swing.JPanel {
         jTable1.setDropMode(javax.swing.DropMode.ON_OR_INSERT_ROWS);
         jTable1.setGridColor(new java.awt.Color(204, 204, 204));
         jTable1.setRequestFocusEnabled(false);
-        jTable1.setRowHeight(20);
         jTable1.setSelectionBackground(new java.awt.Color(204, 204, 255));
         jTable1.setSelectionForeground(new java.awt.Color(0, 51, 153));
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -227,19 +231,16 @@ public class danhChoAdminJPanel_QLSK extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(0, 51, 153));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/home.png"))); // NOI18N
         jButton3.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 51, 153));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/find.png"))); // NOI18N
         jButton4.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(0, 51, 153));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/add.png"))); // NOI18N
@@ -252,7 +253,6 @@ public class danhChoAdminJPanel_QLSK extends javax.swing.JPanel {
         findUser.setText("Tìm kiếm bài viết");
         findUser.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 51, 153)));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 51, 153));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/pen.png"))); // NOI18N
@@ -260,7 +260,6 @@ public class danhChoAdminJPanel_QLSK extends javax.swing.JPanel {
         jButton1.setMaximumSize(new java.awt.Dimension(163, 40));
         jButton1.setMinimumSize(new java.awt.Dimension(163, 40));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 51, 153));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/delete.png"))); // NOI18N
@@ -340,6 +339,22 @@ public class danhChoAdminJPanel_QLSK extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+   
+        try{
+         
+
+        }
+        catch(Exception e)
+        {
+            
+        }
+        
+        
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

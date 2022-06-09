@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e4835f8c-d33c-4476-aab9-f4512caa5cf9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from TB_POST]]>
+	</queryString>
+	<field name="POSTID" class="java.math.BigDecimal"/>
+	<field name="OWNERID" class="java.math.BigDecimal"/>
+	<field name="PARTNERID" class="java.math.BigDecimal"/>
+	<field name="STATUSID" class="java.math.BigDecimal"/>
+	<field name="TITLE" class="java.lang.String"/>
+	<field name="CONTENT" class="java.lang.String"/>
+	<field name="CATEGORYID" class="java.math.BigDecimal"/>
+	<field name="IMAGEPATH" class="java.lang.String"/>
+	<field name="CREATEDON" class="java.sql.Timestamp"/>
+	<field name="UPDATEDON" class="java.sql.Timestamp"/>
+	<field name="PURPOSEID" class="java.math.BigDecimal"/>
+	<field name="ISDELETED" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="802" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="74" y="0" width="402" height="42" uuid="111d2fc1-ed50-4573-9ee6-8e28f5b89ea2"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Dummy Series"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{CREATEDON}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{POSTID}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<pieChart>
+				<chart>
+					<reportElement x="276" y="244" width="200" height="100" uuid="09acb8bd-d794-4d8a-9099-61892edb48df"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{PURPOSEID}]]></keyExpression>
+					<valueExpression><![CDATA[$F{PURPOSEID}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
+</jasperReport>
