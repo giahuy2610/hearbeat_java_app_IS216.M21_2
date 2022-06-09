@@ -8,11 +8,12 @@ import ConnectDB.OracleConnUtils;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Connection;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -94,8 +95,18 @@ public class user {
     }
 //hàm tạo mới
 
-    public void addNewUser() throws SQLException, ClassNotFoundException {
+    public static void addNewUser(String firstNameIn, String lastNameIn, String genderIn, String phoneIn, Date dateOfBirthIn, String emailIn) throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO TB_USER (FIRSTNAME,LASTNAME,GENDER,PHONE,DATEOFBIRTH,EMAIL,AVATAR,PASSWORD) VALUES (?,?,?,?,?,?,?,?)");
+        stmt.setString(1, firstNameIn);
+        stmt.setString(2, lastNameIn);
+        stmt.setString(3, genderIn);
+        stmt.setString(4, phoneIn);
+        stmt.setDate(5, (java.sql.Date) dateOfBirthIn);
+        stmt.setString(6, emailIn);
+        stmt.setString(7, "");
+        stmt.setString(8, "12345");
+
 
     }
 //hàm xóa

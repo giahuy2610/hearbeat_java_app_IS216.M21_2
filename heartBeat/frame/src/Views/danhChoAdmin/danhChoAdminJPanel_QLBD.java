@@ -45,8 +45,6 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -135,109 +133,15 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jScrollPane1.setBackground(new java.awt.Color(0, 102, 255));
-
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(0, 51, 153));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"001", "001", "005", "Đã đăng", "Test Test", "Test đi test lại", "Y tế", "", "01/01/2022", "1"},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "<html> <h4 style=\"color:#004aad\"> MÃ BÀI </h4> </html>", "<html> <h4 style=\"color:#004aad\"> MÃ ND </h4> </html>", "<html> <h4 style=\"color:#004aad\"> MÃ NN </h4> </html>", "<html> <h4 style=\"color:#004aad\"> TRẠNG THÁI </h4> </html>", "<html> <h4 style=\"color:#004aad\"> TIÊU ĐỀ </h4> </html>", "<html> <h4 style=\"color:#004aad\"> NỘI DUNG </h4> </html>", "<html> <h4 style=\"color:#004aad\"> DANH MỤC </h4> </html>", "<html> <h4 style=\"color:#004aad\"> ẢNH </h4> </html>", "<html> <h4 style=\"color:#004aad\"> NGÀY </h4> </html>", "<html> <h4 style=\"color:#004aad\"> MỤC ĐÍCH </h4> </html>"
-            }
-        ));
-        jTable1.setColumnSelectionAllowed(true);
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setDropMode(javax.swing.DropMode.ON_OR_INSERT_ROWS);
-        jTable1.setGridColor(new java.awt.Color(204, 204, 204));
-        jTable1.setRequestFocusEnabled(false);
-        jTable1.setRowHeight(20);
-        jTable1.setSelectionBackground(new java.awt.Color(204, 204, 255));
-        jTable1.setSelectionForeground(new java.awt.Color(0, 51, 153));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTable1.setShowGrid(true);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(60);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(60);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(60);
-            jTable1.getColumnModel().getColumn(1).setMinWidth(60);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(60);
-            jTable1.getColumnModel().getColumn(1).setMaxWidth(60);
-            jTable1.getColumnModel().getColumn(2).setMinWidth(60);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(60);
-            jTable1.getColumnModel().getColumn(2).setMaxWidth(60);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(6).setMinWidth(120);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(120);
-            jTable1.getColumnModel().getColumn(6).setMaxWidth(120);
-            jTable1.getColumnModel().getColumn(8).setMinWidth(80);
-            jTable1.getColumnModel().getColumn(8).setPreferredWidth(80);
-            jTable1.getColumnModel().getColumn(8).setMaxWidth(80);
-            jTable1.getColumnModel().getColumn(9).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(9).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(9).setMaxWidth(100);
-        }
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addGap(0, 994, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 302, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -276,8 +180,6 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;

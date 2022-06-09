@@ -27,8 +27,6 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
         List<danhMucBean> listItem = new ArrayList<>();
         listItem.add(new danhMucBean("QLND", jbtnQLND));
         listItem.add(new danhMucBean("QLBD", jbtnQLBD));
-        //listItem.add(new danhMucBean("QLSK", jbtnQLSK));
-        //listItem.add(new danhMucBean("QLDYT", jbtnQLDYT));
         
         profile.setEvent(listItem);
     }

@@ -252,6 +252,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         btnConfirmSchedule.setBackground(new java.awt.Color(255, 230, 236));
         btnConfirmSchedule.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         btnConfirmSchedule.setForeground(new java.awt.Color(0, 51, 153));
+        btnConfirmSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/give.png"))); // NOI18N
         btnConfirmSchedule.setText("Hoàn thành");
         btnConfirmSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,6 +264,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         btnDelete.setBackground(new java.awt.Color(255, 230, 236));
         btnDelete.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(0, 51, 153));
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/paper.png"))); // NOI18N
         btnDelete.setText("XÓA BÀI VIẾT");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,6 +288,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         btnSchedule.setBackground(new java.awt.Color(255, 230, 236));
         btnSchedule.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         btnSchedule.setForeground(new java.awt.Color(0, 51, 153));
+        btnSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/send.png"))); // NOI18N
         btnSchedule.setText("ĐẶT LỊCH HẸN");
         btnSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

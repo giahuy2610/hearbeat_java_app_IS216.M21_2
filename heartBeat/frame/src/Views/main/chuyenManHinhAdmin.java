@@ -71,9 +71,6 @@ public class chuyenManHinhAdmin {
                 case "QLBD":
                     node = new danhChoAdminJPanel_QLBD();
                     break;
-                case "QLSK":
-                    node = new danhChoAdminJPanel_QLSK();
-                    break;
                 default:
                     break;
             }

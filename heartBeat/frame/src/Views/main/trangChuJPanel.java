@@ -231,6 +231,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
         });
 
         btn_tim_kiem.setBackground(new java.awt.Color(126, 186, 181));
+        btn_tim_kiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search_1.png"))); // NOI18N
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -289,7 +290,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel8.setText("Mục đích");
 
         categoryFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -298,7 +298,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel9.setText("Danh mục");
 
         cityFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -307,7 +306,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel24.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel24.setText("Tình/Thành phố");
 
         districtFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -316,7 +314,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel25.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel25.setText("Quận/Huyện");
 
         sortFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -348,7 +345,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(categoryFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(sortFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -398,7 +395,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -416,7 +413,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

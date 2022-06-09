@@ -11,6 +11,7 @@ import Process.user;
 import Views.main.testGetDBToTable;
 import Views.trangCaNhan.trangCaNhanJPanel_ThongTin;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,7 +29,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
 
     //private static String selectedUserId;
     private static user user01;
-    private static int firstFill;
+    private static int firstFill = 0;
     private static boolean editable;
     private static String selectedBtn;
     private ArrayList<String> districtIdUser = new ArrayList<String>();
@@ -37,6 +37,48 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     /**
      * Creates new form danhChoAdminJPanel
      */
+    private void enableAllBtn() {
+        if (selectedBtn.equals("")) {
+            btnModifyUser.setEnabled(true);
+            btnAddUser.setEnabled(true);
+            btnDeleteUser.setEnabled(true);
+            btnSave.setEnabled(false);
+
+            fieldLastName.setEditable(false);
+            fieldFirstName.setEditable(false);
+            fieldDateOfBirth.setEnabled(false);
+            fieldAddress.setEditable(false);
+            cbCity.setEnabled(false);
+            cbDistrict.setEnabled(false);
+            cbGender.setEnabled(false);
+        } else if (selectedBtn.equals("btnAddUser") || selectedBtn.equals("btnModifyUser")) {
+            btnModifyUser.setEnabled(false);
+            btnAddUser.setEnabled(false);
+            btnDeleteUser.setEnabled(false);
+            btnSave.setEnabled(true);
+
+            fieldLastName.setEditable(true);
+            fieldFirstName.setEditable(true);
+            fieldDateOfBirth.setEnabled(true);
+            fieldAddress.setEditable(true);
+            cbCity.setEnabled(true);
+            cbDistrict.setEnabled(true);
+            cbGender.setEnabled(true);
+            if (selectedBtn.equals("btnAddUser")) {
+                clearField();
+                fieldFirstName.grabFocus();
+                tableUser.setFocusable(false);
+                fieldPhone.setEditable(true);
+                fieldEmail.setEditable(true);
+
+            } else {
+
+            }
+
+        } //người dùng ấn nút Lưu
+
+    }
+
     private void loadData() {
         Connection conn = null;
         try {
@@ -67,15 +109,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         city.prepareCityFilter(cbCity);
         district.prepareDistrictFilter(cbCity, cbDistrict);
 
-        fieldLastName.setEditable(editable);
-        fieldFirstName.setEditable(editable);
-        fieldDateOfBirth.setEnabled(editable);
-        fieldPhone.setEditable(editable);
-        fieldEmail.setEditable(editable);
-        fieldAddress.setEditable(editable);
-        cbCity.setEnabled(editable);
-        cbDistrict.setEnabled(editable);
-        cbGender.setEnabled(editable);
     }
 
     private void clearField() {
@@ -87,7 +120,8 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
 
         fieldLastName.setText("");
         fieldFirstName.setText("");
-        fieldDateOfBirth.setEnabled(editable);
+        fieldDateOfBirth.setDate(null);
+        cbGender.setSelectedIndex(0);
         fieldPhone.setText("");
         fieldEmail.setText("");
         fieldAddress.setText("");
@@ -98,7 +132,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         this.loadData();
         editable = false;
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -137,7 +170,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btnAddUser = new javax.swing.JButton();
-        field_tim_kiem = new javax.swing.JTextField();
+        fieldSearch = new javax.swing.JTextField();
         btnModifyUser = new javax.swing.JButton();
         btnDeleteUser = new javax.swing.JButton();
 
@@ -171,8 +204,14 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("Số điện thoại");
 
+        fieldPhone.setEditable(false);
         fieldPhone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         fieldPhone.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        fieldPhone.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                fieldPhoneMousePressed(evt);
+            }
+        });
         fieldPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldPhoneActionPerformed(evt);
@@ -185,8 +224,14 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel6.setText("Email");
 
+        fieldEmail.setEditable(false);
         fieldEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         fieldEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        fieldEmail.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                fieldEmailMousePressed(evt);
+            }
+        });
         fieldEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldEmailActionPerformed(evt);
@@ -391,7 +436,9 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 706, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,10 +487,20 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
             }
         });
 
-        field_tim_kiem.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        field_tim_kiem.setForeground(new java.awt.Color(204, 204, 204));
-        field_tim_kiem.setText("Tìm kiếm người dùng");
-        field_tim_kiem.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 51, 153)));
+        fieldSearch.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        fieldSearch.setForeground(new java.awt.Color(204, 204, 204));
+        fieldSearch.setText("Tìm kiếm người dùng");
+        fieldSearch.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 51, 153)));
+        fieldSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                fieldSearchMousePressed(evt);
+            }
+        });
+        fieldSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldSearchActionPerformed(evt);
+            }
+        });
 
         btnModifyUser.setBackground(new java.awt.Color(255, 255, 255));
         btnModifyUser.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -476,25 +533,26 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(1, 1, 1)
-                .addComponent(field_tim_kiem)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(fieldSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4))
+                .addComponent(jButton4)
+                .addGap(12, 12, 12))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(66, 66, 66)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnDeleteUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnModifyUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(field_tim_kiem)
+                    .addComponent(fieldSearch)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -537,11 +595,11 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     }//GEN-LAST:event_fieldLastNameActionPerformed
 
     private void fieldPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldPhoneActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_fieldPhoneActionPerformed
 
     private void fieldEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldEmailActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_fieldEmailActionPerformed
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
@@ -594,7 +652,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (firstFill == 0) {
             firstFill = 1;
-            field_tim_kiem.setText("");
+            fieldSearch.setText("");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -611,6 +669,9 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     }//GEN-LAST:event_tableUserMouseClicked
 
     private void tableUserMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUserMousePressed
+        selectedBtn = "";
+        enableAllBtn();
+
         DefaultTableModel tblModel = (DefaultTableModel) tableUser.getModel();
 
         String selectedUser = tblModel.getValueAt(tableUser.getSelectedRow(), 0).toString();//số 0 là số thứ tự cột
@@ -664,16 +725,16 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     }//GEN-LAST:event_fieldDateOfBirthPropertyChange
 
     private void btnModifyUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyUserActionPerformed
-        editable = true;
+
         selectedBtn = "btnModifyUser";
+        enableAllBtn();
         this.loadData();
-        System.out.println(selectedBtn);
-        btnSave.setEnabled(editable);
+
     }//GEN-LAST:event_btnModifyUserActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
         switch (selectedBtn) {
+            //người dùng đã ấn nút sửa trước đó
             case "btnModifyUser": {
                 String[] options = {"Đồng ý", "Hủy"};
                 int output = JOptionPane.showOptionDialog(this,
@@ -681,23 +742,13 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
                 if (output == JOptionPane.YES_OPTION) {
-                    try {
-                        //user01.modifiedUser(fieldFirstName.getText(), fieldLastName.getText(), Integer.toString(cbGender.selectedIndex() + 1), fieldDateOfBirth.getDate(), Integer.toString(cbCity.getSelectedIndex()), Integer.toString(cbDistrict.getSelectedIndex()), fieldAddress.getText());
-                        //JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                } else if (output == JOptionPane.NO_OPTION) {
-                    System.out.println("No selected.");
+                    //user01.modifiedUser(fieldFirstName.getText(), fieldLastName.getText(), Integer.toString(cbGender.selectedIndex() + 1), fieldDateOfBirth.getDate(), Integer.toString(cbCity.getSelectedIndex()), Integer.toString(cbDistrict.getSelectedIndex()), fieldAddress.getText());
+                    JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
                 }
-
                 break;
             }
-            case "btnDeleteUser": {
 
-                break;
-            }
+            //người dùng đã ấn nút thêm trước đó
             case "btnAddUser": {
                 String[] options = {"Đồng ý", "Hủy"};
                 int output = JOptionPane.showOptionDialog(this,
@@ -706,32 +757,47 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                         JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
                 if (output == JOptionPane.YES_OPTION) {
                     try {
-
-                        JOptionPane.showMessageDialog(this, "Thêm mới thành công!");
+                        user.addNewUser(fieldFirstName.getText(), fieldLastName.getText(), Integer.toString(cbGender.getSelectedIndex()), fieldPhone.getText(), (Date) fieldDateOfBirth.getDate(), fieldEmail.getText());
                     } catch (SQLException ex) {
-                        Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
+                    JOptionPane.showMessageDialog(this, "Thêm mới thành công!");
                 } else if (output == JOptionPane.NO_OPTION) {
                     System.out.println("No selected.");
                 }
-
                 break;
             }
         }
-
-
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
-        editable = true;
-        this.loadData();
-        this.clearField();
         selectedBtn = "btnAddUser";
-        btnSave.setEnabled(editable);
+        enableAllBtn();
+        this.loadData();
+
     }//GEN-LAST:event_btnAddUserActionPerformed
+
+    private void fieldPhoneMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldPhoneMousePressed
+        if (!selectedBtn.equals("btnAddUser"))
+            JOptionPane.showMessageDialog(this, "Không thể thay đổi số điện thoại!");
+    }//GEN-LAST:event_fieldPhoneMousePressed
+
+    private void fieldEmailMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldEmailMousePressed
+        if (!selectedBtn.equals("btnAddUser"))
+            JOptionPane.showMessageDialog(this, "Không thể thay đổi Email!");
+    }//GEN-LAST:event_fieldEmailMousePressed
+
+    private void fieldSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldSearchActionPerformed
+
+    }//GEN-LAST:event_fieldSearchActionPerformed
+
+    private void fieldSearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldSearchMousePressed
+        if (firstFill == 0) {
+            fieldSearch.setText("");
+        }
+    }//GEN-LAST:event_fieldSearchMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -748,7 +814,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     private javax.swing.JTextField fieldFirstName;
     private javax.swing.JTextField fieldLastName;
     private javax.swing.JTextField fieldPhone;
-    private javax.swing.JTextField field_tim_kiem;
+    private javax.swing.JTextField fieldSearch;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
