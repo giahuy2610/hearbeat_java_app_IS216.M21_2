@@ -10,6 +10,7 @@ import Views.main.mainFrame;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,32 +22,40 @@ import javax.swing.JOptionPane;
  */
 public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
 
+    private ArrayList<String> districtIdUser = new ArrayList<String>();
+
     /**
      * Creates new form trangCaNhanJPanel
      */
     public trangCaNhanJPanel_ThongTin() {
         initComponents();
-        city.prepareCityFilter(cb_city);
-        cb_city.setSelectedIndex(0);
-        district.prepareDistrictFilter(cb_city, cb_district);
+        city.prepareCityFilter(cbCity);
+        cbCity.setSelectedIndex(0);
 
         field_first_name.setText(mainFrame.currentUser.getFirstName());
         field_last_name.setText(mainFrame.currentUser.getLastName());
         field_phone.setText(mainFrame.currentUser.getPhone());
         field_mail.setText(mainFrame.currentUser.getEmail());
-        if (mainFrame.currentUser.getAddress() != null)
-        field_address.setText(mainFrame.currentUser.getAddress());
+        if (mainFrame.currentUser.getAddress() != null) {
+            field_address.setText(mainFrame.currentUser.getAddress());
+        }
         //combo box giới tính
-        cb_gender.addItem("Nam");
-        cb_gender.addItem("Nữ");
-        cb_gender.addItem("Khác");
+        cbGender.addItem("Nam");
+        cbGender.addItem("Nữ");
+        cbGender.addItem("Khác");
         //ngày sinh
         jDateChooserFilter.setDateFormatString("dd/MM/yyyy");
         jDateChooserFilter.setDate(mainFrame.currentUser.getDateOfBirth());
-        if (mainFrame.currentUser.getCity() != null)
-        cb_city.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getCity()));
-        if (mainFrame.currentUser.getDistrict() != null)
-        cb_district.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getDistrict()));
+
+        System.out.println("size of districtid array of current user is " + this.districtIdUser.size());
+
+        if (mainFrame.currentUser.getCity() != null) {
+            cbCity.setSelectedIndex(Integer.parseInt(mainFrame.currentUser.getCity()));
+        }
+        if (mainFrame.currentUser.getDistrict() != null) {
+            districtIdUser = district.prepareDistrictFilter(cbCity, cbDistrict);
+            cbDistrict.setSelectedIndex(districtIdUser.indexOf(mainFrame.currentUser.getDistrict()));
+        }
     }
 
     /**
@@ -66,8 +75,8 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         field_phone = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        cb_district = new javax.swing.JComboBox<>();
-        cb_city = new javax.swing.JComboBox<>();
+        cbDistrict = new javax.swing.JComboBox<>();
+        cbCity = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         field_first_name = new javax.swing.JTextField();
@@ -76,7 +85,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         field_address = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        cb_gender = new javax.swing.JComboBox<>();
+        cbGender = new javax.swing.JComboBox<>();
         jDateChooserFilter = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
 
@@ -130,15 +139,15 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(0, 51, 153));
         jLabel7.setText("Họ");
 
-        cb_district.addActionListener(new java.awt.event.ActionListener() {
+        cbDistrict.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_districtActionPerformed(evt);
+                cbDistrictActionPerformed(evt);
             }
         });
 
-        cb_city.addActionListener(new java.awt.event.ActionListener() {
+        cbCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_cityActionPerformed(evt);
+                cbCityActionPerformed(evt);
             }
         });
 
@@ -189,10 +198,10 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         jLabel11.setForeground(new java.awt.Color(0, 51, 153));
         jLabel11.setText("Ngày sinh");
 
-        cb_gender.setToolTipText("");
-        cb_gender.addActionListener(new java.awt.event.ActionListener() {
+        cbGender.setToolTipText("");
+        cbGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_genderActionPerformed(evt);
+                cbGenderActionPerformed(evt);
             }
         });
 
@@ -231,11 +240,11 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                             .addComponent(field_mail, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cb_city, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbCity, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(49, 49, 49)
                         .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(cb_district, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbDistrict, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -251,7 +260,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                                 .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jDateChooserFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cb_gender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cbGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanelProfileLayout.createSequentialGroup()
                         .addGap(409, 409, 409)
                         .addComponent(btnSave)))
@@ -279,7 +288,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                             .addGroup(jPanelProfileLayout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cb_gender, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,12 +305,12 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cb_district, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(field_address, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelProfileLayout.createSequentialGroup()
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb_city, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbCity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(41, 41, 41)
                 .addComponent(btnSave)
                 .addGap(26, 26, 26))
@@ -324,7 +333,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                 JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         if (output == JOptionPane.YES_OPTION) {
             try {
-                mainFrame.currentUser.modifiedUser(field_first_name.getText(), field_last_name.getText(), mainFrame.currentUser.getGender(), mainFrame.currentUser.getDateOfBirth(), String.valueOf(cb_city.getSelectedIndex()),String.valueOf(cb_district.getSelectedIndex()), String.valueOf(field_address.getText()));
+                mainFrame.currentUser.modifiedUser(field_first_name.getText(), field_last_name.getText(), String.valueOf(cbGender.getSelectedIndex()+1), mainFrame.currentUser.getDateOfBirth(), String.valueOf(cbCity.getSelectedIndex()), districtIdUser.get(cbDistrict.getSelectedIndex()), String.valueOf(field_address.getText()));
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
             } catch (SQLException ex) {
                 Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
@@ -339,18 +348,19 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         //new trangCaNhanJPanel().updateJLabelTen(mainFrame.currentUser.getLastName());
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void cb_cityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_cityActionPerformed
+    private void cbCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCityActionPerformed
 
-        district.prepareDistrictFilter(cb_city, cb_district);        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_cityActionPerformed
+        district.prepareDistrictFilter(cbCity, cbDistrict);        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCityActionPerformed
 
-    private void cb_districtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_districtActionPerformed
+    private void cbDistrictActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDistrictActionPerformed
+        if (cbDistrict.getSelectedIndex() > 0)
+            System.out.println("Đã thay đổi thành" + cbCity.getSelectedIndex() + ", quận " + districtIdUser.get(cbDistrict.getSelectedIndex()));
+    }//GEN-LAST:event_cbDistrictActionPerformed
+
+    private void cbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGenderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cb_districtActionPerformed
-
-    private void cb_genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_genderActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cb_genderActionPerformed
+    }//GEN-LAST:event_cbGenderActionPerformed
 
     private void field_mailMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_field_mailMousePressed
         JOptionPane.showMessageDialog(this, "Không thể thay đổi Email!");
@@ -368,15 +378,14 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         System.out.println(jDateChooserFilter.getDate());
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
         dateFormat.format(jDateChooserFilter.getDate());
-
     }//GEN-LAST:event_jDateChooserFilterPropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
-    private javax.swing.JComboBox<String> cb_city;
-    private javax.swing.JComboBox<String> cb_district;
-    private javax.swing.JComboBox<String> cb_gender;
+    private javax.swing.JComboBox<String> cbCity;
+    private javax.swing.JComboBox<String> cbDistrict;
+    private javax.swing.JComboBox<String> cbGender;
     private javax.swing.JTextField field_address;
     private javax.swing.JTextField field_first_name;
     private javax.swing.JTextField field_last_name;

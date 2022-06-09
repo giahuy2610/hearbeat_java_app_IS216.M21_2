@@ -68,12 +68,12 @@
                                   <Component id="field_mail" min="-2" pref="248" max="-2" attributes="0"/>
                                   <Component id="jLabel3" min="-2" pref="248" max="-2" attributes="0"/>
                                   <Component id="jLabel9" alignment="0" min="-2" pref="248" max="-2" attributes="0"/>
-                                  <Component id="cb_city" alignment="0" min="-2" pref="248" max="-2" attributes="0"/>
+                                  <Component id="cbCity" alignment="0" min="-2" pref="248" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="cb_district" max="32767" attributes="0"/>
+                                      <Component id="cbDistrict" max="32767" attributes="0"/>
                                       <Component id="jLabel8" min="-2" pref="245" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
@@ -93,7 +93,7 @@
                                       <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jDateChooserFilter" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="cb_gender" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                                      <Component id="cbGender" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -130,7 +130,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel6" min="-2" pref="25" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cb_gender" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Component id="cbGender" min="-2" pref="29" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -154,14 +154,14 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cb_district" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="cbDistrict" min="-2" pref="29" max="-2" attributes="0"/>
                                   <Component id="field_address" min="-2" pref="29" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel9" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="cb_city" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="cbCity" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
@@ -266,27 +266,27 @@
                 <Property name="text" type="java.lang.String" value="H&#x1ecd;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cb_district">
+            <Component class="javax.swing.JComboBox" name="cbDistrict">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_districtActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbDistrictActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cb_city">
+            <Component class="javax.swing.JComboBox" name="cbCity">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_cityActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbCityActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -415,12 +415,12 @@
                 <Property name="text" type="java.lang.String" value="Ng&#xe0;y sinh"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="cb_gender">
+            <Component class="javax.swing.JComboBox" name="cbGender">
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cb_genderActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbGenderActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

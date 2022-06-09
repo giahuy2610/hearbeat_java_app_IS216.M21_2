@@ -82,7 +82,7 @@ public class district {
         
     }
 
-    public static void prepareDistrictFilter(JComboBox cityFilter, JComboBox districtFilter) {
+    public static ArrayList<String> prepareDistrictFilter(JComboBox cityFilter, JComboBox districtFilter) {
     
         districtFilter.removeAllItems();
         loadData(cityFilter);
@@ -90,6 +90,8 @@ public class district {
         for (String item : districtName) {
             districtFilter.addItem(item);
         }
+        System.out.println("size of districtid array is " + districtId.size());
+        return districtId;
     }
 
 }

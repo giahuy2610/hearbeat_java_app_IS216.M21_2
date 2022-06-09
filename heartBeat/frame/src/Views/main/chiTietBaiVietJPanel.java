@@ -36,7 +36,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         labelContent.setText(post01.getContent());
         labelImage.setIcon(new ImageIcon(post01.getImagePath()));
         labelCreatedOn.setText(post01.getCreatedOn());
-        String postPath = getPurposeNameFromId(post01.getPurposeId()) + " > " + getCategoryNameFromId(post01.getCategoryId());
+        String postPath = "Heartbeat > " + getPurposeNameFromId(post01.getPurposeId()) + " > " + getCategoryNameFromId(post01.getCategoryId()) + " > " + post01.getTitle();
         labelPath.setText(postPath);
         labelStatus.setText(getStatusNameFromId(post01.getStatusId()));
     }
@@ -113,7 +113,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         jButton12.setBackground(new java.awt.Color(255, 204, 204));
         jButton12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton12.setForeground(new java.awt.Color(51, 51, 51));
-        jButton12.setIcon(new javax.swing.ImageIcon("C:\\Users\\giahu\\Downloads\\enter.png")); // NOI18N
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/enter.png"))); // NOI18N
         jButton12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jButton12.setContentAreaFilled(false);
         jButton12.setHideActionText(true);
@@ -131,8 +131,8 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
             .addGroup(headingLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(labelPath, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelPath, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         headingLayout.setVerticalGroup(
@@ -140,10 +140,8 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
             .addGroup(headingLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(headingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(headingLayout.createSequentialGroup()
-                        .addComponent(labelPath, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 7, Short.MAX_VALUE))
-                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton12, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(labelPath, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -197,10 +195,10 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(419, 419, 419)
-                        .addComponent(labelStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,8 +211,8 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
                         .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58))))
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
@@ -254,7 +252,6 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         btnConfirmSchedule.setBackground(new java.awt.Color(255, 230, 236));
         btnConfirmSchedule.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         btnConfirmSchedule.setForeground(new java.awt.Color(0, 51, 153));
-        btnConfirmSchedule.setIcon(new javax.swing.ImageIcon("C:\\Users\\giahu\\Downloads\\girl.png")); // NOI18N
         btnConfirmSchedule.setText("Hoàn thành");
         btnConfirmSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,7 +263,6 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         btnDelete.setBackground(new java.awt.Color(255, 230, 236));
         btnDelete.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(0, 51, 153));
-        btnDelete.setIcon(new javax.swing.ImageIcon("C:\\Users\\giahu\\Downloads\\paper.png")); // NOI18N
         btnDelete.setText("XÓA BÀI VIẾT");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,7 +286,6 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         btnSchedule.setBackground(new java.awt.Color(255, 230, 236));
         btnSchedule.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         btnSchedule.setForeground(new java.awt.Color(0, 51, 153));
-        btnSchedule.setIcon(new javax.swing.ImageIcon("C:\\Users\\giahu\\Downloads\\scheduling (1).png")); // NOI18N
         btnSchedule.setText("ĐẶT LỊCH HẸN");
         btnSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,7 +300,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(heading, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(heading, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1009, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

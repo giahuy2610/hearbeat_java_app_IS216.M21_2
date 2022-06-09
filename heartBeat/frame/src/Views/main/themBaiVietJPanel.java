@@ -155,7 +155,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         postBtn.setBackground(new java.awt.Color(153, 255, 255));
         postBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         postBtn.setForeground(new java.awt.Color(0, 51, 153));
-        postBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\giahu\\Downloads\\send.png")); // NOI18N
+        postBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/send.png"))); // NOI18N
         postBtn.setText("Đăng");
         postBtn.setToolTipText("");
         postBtn.setBorder(null);
@@ -218,8 +218,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldTieuDe, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(postBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)

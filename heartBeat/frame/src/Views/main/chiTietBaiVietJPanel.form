@@ -18,7 +18,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jPanel5" alignment="1" max="32767" attributes="0"/>
           <Component id="jPanel7" alignment="0" min="-2" max="-2" attributes="0"/>
-          <Component id="heading" alignment="1" pref="1000" max="32767" attributes="0"/>
+          <Component id="heading" alignment="1" pref="1009" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -53,8 +53,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jButton12" min="-2" pref="63" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                  <Component id="labelPath" min="-2" pref="200" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="labelPath" min="-2" pref="505" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -64,11 +64,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="labelPath" min="-2" pref="33" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="jButton12" max="32767" attributes="0"/>
+                      <Component id="jButton12" pref="40" max="32767" attributes="0"/>
+                      <Component id="labelPath" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -99,7 +96,7 @@
               <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\giahu\Downloads\enter.png"/>
+              <Image iconType="3" name="/Resource/images/enter.png"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -128,14 +125,13 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="419" max="-2" attributes="0"/>
-                          <Component id="labelStatus" max="32767" attributes="0"/>
+                          <Component id="labelStatus" min="-2" pref="173" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel3" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="583" max="-2" attributes="0"/>
-                      <Component id="labelTitle" min="-2" pref="592" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -151,8 +147,8 @@
                   </Group>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                  <Component id="labelTitle" min="-2" pref="401" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                  <Component id="labelTitle" min="-2" pref="592" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
@@ -322,9 +318,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\giahu\Downloads\girl.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Ho&#xe0;n th&#xe0;nh"/>
           </Properties>
           <Events>
@@ -341,9 +334,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\giahu\Downloads\paper.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="X&#xd3;A B&#xc0;I VI&#x1ebe;T"/>
           </Properties>
@@ -381,9 +371,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\giahu\Downloads\scheduling (1).png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#x1eb6;T L&#x1eca;CH H&#x1eb8;N"/>
           </Properties>

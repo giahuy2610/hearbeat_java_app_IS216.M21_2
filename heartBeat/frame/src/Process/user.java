@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Connection;
 import java.util.Date;
+
 /**
  *
  * @author giahu
@@ -44,10 +45,9 @@ public class user {
 
     public user(String userId) {
         this.loadUser(userId);
+        this.loadUser(userId);
     }
 
-    
-    
 //hàm để lấy mọi data của user đó
     public void loadUser(String currentUserId) {
         Connection conn = null;
@@ -82,7 +82,7 @@ public class user {
                 avatar = rs.getString("avatar");
                 score = rs.getString("score");
                 dateOfBirth = rs.getDate("dateofbirth");
-                System.out.println("birth " + dateOfBirth);
+                System.out.println("city của người dùng là " + rs.getString("cityid"));
                 address = rs.getString("address");
                 city = rs.getString("cityid");
                 district = rs.getString("districtid");
@@ -92,8 +92,32 @@ public class user {
             System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
         }
     }
+//hàm tạo mới
 
+    public void addNewUser() throws SQLException, ClassNotFoundException {
+        Connection conn = OracleConnUtils.getOracleConnection();
+
+    }
+//hàm xóa
+
+    public void deletedUser() throws SQLException, ClassNotFoundException {
+        Connection conn = OracleConnUtils.getOracleConnection();
+        String query = "{call p_delete_account(?)}";
+        CallableStatement caSt = conn.prepareCall(query);
+        caSt.setString(1, this.userId);
+        caSt.execute();
+    }
+
+//khôi phục lại tài khoản
+    public void recoveryUser() throws SQLException, ClassNotFoundException {
+        Connection conn = OracleConnUtils.getOracleConnection();
+        String query = "{call p_recovery_account(?)}";
+        CallableStatement caSt = conn.prepareCall(query);
+        caSt.setString(1, this.userId);
+        caSt.execute();
+    }
 //hàm thay đổi     
+
     public void modifiedUser(String newFirstName, String newLastName, String newGender, Date newDateOfBirth, String newCityid, String newDistrictid, String newAddress) throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
         System.out.println("date " + newDateOfBirth);
