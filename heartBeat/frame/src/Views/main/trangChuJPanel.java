@@ -446,7 +446,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_districtFilterActionPerformed
 
     private void cityFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityFilterActionPerformed
-
         this.preparePost();
         district.prepareDistrictFilter(cityFilter, districtFilter);
     }//GEN-LAST:event_cityFilterActionPerformed

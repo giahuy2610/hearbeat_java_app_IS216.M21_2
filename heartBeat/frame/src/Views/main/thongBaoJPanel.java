@@ -35,13 +35,13 @@ public class thongBaoJPanel extends javax.swing.JPanel {
             Connection conn = OracleConnUtils.getOracleConnection();
             String query = "";
             if (control.equals("all")) {
-                query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " order by createdon";
+                query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " order by createdon desc";
             } 
             else if (control.equals("searching")) {
-                query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " and upper(content) like upper('%" + field_tim_kiem.getText() + "%')";
+                query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " and upper(content) like upper('%" + field_tim_kiem.getText() + "%') order by createdon desc ";
             }
             else {
-                query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " and TO_CHAR(createdon,'DD-MM-YY') = '" + control + "' order by createdon";
+                query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " and TO_CHAR(createdon,'DD-MM-YY') = '" + control + "' order by createdon desc";
             }
                 
             System.out.println(query);
