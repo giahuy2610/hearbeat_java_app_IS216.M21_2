@@ -211,12 +211,13 @@ public class post {
     }
 
     //chỉnh sửa bài viết
-    public void modifyPost() throws SQLException, ClassNotFoundException {
+    public void cancelSchedulingPost() throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
-        String query = "{call p_cancel_scheduling (?)}";
+        String query = "{call p_cancel_scheduling (?,?)}";
         CallableStatement caSt = conn.prepareCall(query);
         System.out.println(this.postId);
         caSt.setString(1, this.postId);
+        caSt.setString(1, mainFrame.currentUser.getUserId());
         caSt.execute();
         System.out.println("Cancel success, post" + postId);
     }

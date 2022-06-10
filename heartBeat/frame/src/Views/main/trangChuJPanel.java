@@ -83,7 +83,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
         }
 
         System.out.println(query);
- 
+
         return query;
     }
 
@@ -126,12 +126,12 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 //System.out.println("2bài viết " + postTitle.get(i) + " - " + postContent.get(i));
             }
             jScrollPane1.setViewportView(container);
-     System.out.println("count " + Integer.toString(count));
-        System.out.println(Integer.toString(postId.size()) + Integer.toString(postTitle.size()) + Integer.toString(postContent.size()) + Integer.toString(postCategory.size()) + Integer.toString(postPurpose.size()));
+            System.out.println("count " + Integer.toString(count));
+            System.out.println(Integer.toString(postId.size()) + Integer.toString(postTitle.size()) + Integer.toString(postContent.size()) + Integer.toString(postCategory.size()) + Integer.toString(postPurpose.size()));
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-  
+
     }
 
     public trangChuJPanel() {
