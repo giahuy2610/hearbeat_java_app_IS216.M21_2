@@ -70,7 +70,13 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
                 btnSchedule.setVisible(false);
             }
         }
-        System.out.println("visible of btn delete is" + btnDelete.isVisible());
+        //bài viết đã bị xóa thì không thể tiếp tục xóa, sửa
+        if (post01.getIsDeleted().equals("1")) {
+            btnDelete.setVisible(false);
+            btnModify.setVisible(false);
+            btnConfirmSchedule.setVisible(false);
+            btnSchedule.setVisible(false);
+        }
 
         loadData();
     }
@@ -387,7 +393,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         File f = chooser.getSelectedFile();
         if (f != null) {
             System.out.println(f);
-            scaleImage(f.toString(), labelImage);
+            scaleImage(f.toString(), labelImage);//render ảnh vào label
         }
     }//GEN-LAST:event_labelImageMouseClicked
 

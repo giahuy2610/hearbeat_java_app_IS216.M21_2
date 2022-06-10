@@ -48,7 +48,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
             fieldTitle.setEditable(false);
             cbPurpose.setEnabled(false);
             cbCategory.setEnabled(false);
-        } else if (selectedBtn.equals("btnAddUser") || selectedBtn.equals("btnModifyUser")) {
+        } else if (selectedBtn.equals("btnAddPost") || selectedBtn.equals("btnModifyPost")) {
             btnModifyPost.setEnabled(false);
             btnAddPost.setEnabled(false);
             btnDeletePost.setEnabled(false);
@@ -58,7 +58,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
             fieldTitle.setEditable(true);
             cbPurpose.setEnabled(true);
             cbCategory.setEnabled(true);
-            if (selectedBtn.equals("btnAddUser")) {
+            if (selectedBtn.equals("btnAddPost")) {
                 clearField();
                 fieldTitle.grabFocus();
                 tableUser.setFocusable(false);
@@ -482,7 +482,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
 
     private void btnDeletePostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePostActionPerformed
         if (post01.getIsDeleted().equals("0")) {
-            selectedBtn = "btnDeleteUser";
+            selectedBtn = "btnDeletePost";
             String[] options = {"Đồng ý", "Hủy"};
             int output = JOptionPane.showOptionDialog(this,
                     "Bài viết sẽ bị xóa", "Xác nhận",
@@ -503,7 +503,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
                 System.out.println("No selected.");
             }
         } else {
-            selectedBtn = "btnDeleteUser";
+            selectedBtn = "btnDeletePost";
             String[] options = {"Đồng ý", "Hủy"};
             int output = JOptionPane.showOptionDialog(this,
                     "Bạn đang khôi phục lại bài viết bị xóa", "Xác nhận",
@@ -572,7 +572,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
 
     private void btnModifyPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPostActionPerformed
 
-        selectedBtn = "btnModifyUser";
+        selectedBtn = "btnModifyPost";
         enableAllBtn();
         //this.loadData();
 
@@ -581,29 +581,13 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         switch (selectedBtn) {
             //người dùng đã ấn nút sửa trước đó
-            case "btnModifyUser": {
+            case "btnModifyPost": {
                 String[] options = {"Đồng ý", "Hủy"};
                 int output = JOptionPane.showOptionDialog(this,
-                        "Bạn đang thay đổi thông tin người dùng", "Xác nhận",
+                        "Bạn đang thay đổi thông tin bài viết", "Xác nhận",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
                 if (output == JOptionPane.YES_OPTION) {
-                }
-                break;
-            }
-
-            //người dùng đã ấn nút thêm trước đó
-            case "btnAddUser": {
-                String[] options = {"Đồng ý", "Hủy"};
-                int output = JOptionPane.showOptionDialog(this,
-                        "Bạn đang thêm mới thông tin người dùng", "Xác nhận",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-                if (output == JOptionPane.YES_OPTION) {
-
-                    JOptionPane.showMessageDialog(this, "Thêm mới thành công!");
-                } else if (output == JOptionPane.NO_OPTION) {
-                    System.out.println("No selected.");
                 }
                 break;
             }

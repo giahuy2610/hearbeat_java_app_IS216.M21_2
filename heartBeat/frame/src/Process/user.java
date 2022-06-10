@@ -109,6 +109,8 @@ public class user {
         stmt.setString(9, "1");
         System.out.println("Số dòng bị thay đổi " + stmt.executeUpdate());
         /*
+        conn.prepareStatement("select top(userid) from tb_user").execute();
+        String newUser = ;
         stmt = conn.prepareStatement("UPDATE TB_ADDRESS SET CITYID = ?, DISTRICTID = ?, ADDRESS = ? WHERE USERID = ?");
         stmt.setString(1, cityIdIn);
         stmt.setString(2, districtIdIn);
@@ -124,6 +126,7 @@ public class user {
         CallableStatement caSt = conn.prepareCall(query);
         caSt.setString(1, this.userId);
         caSt.execute();
+        conn.close();
     }
 
 //khôi phục lại tài khoản
@@ -133,6 +136,7 @@ public class user {
         CallableStatement caSt = conn.prepareCall(query);
         caSt.setString(1, this.userId);
         caSt.execute();
+        conn.close();
     }
 //hàm thay đổi     
 
@@ -152,6 +156,7 @@ public class user {
         caSt.setString(7, newDistrictid);
         caSt.setString(8, newAddress);
         System.out.println("Số dòng bị thay đổi " + caSt.executeUpdate());
+        conn.close();
     }
 
     public String getCity() {

@@ -72,7 +72,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             container.removeAll();
 
             postId.removeAll(postId);
-            postTitle.removeAll(postId);
+            postTitle.removeAll(postTitle);
             postCategory.removeAll(postCategory);
             postContent.removeAll(postContent);
             while (rs.next()) {

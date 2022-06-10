@@ -77,6 +77,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     }
 
     private void loadData() {
+        System.out.println("Đang thực hiện load data cho quản lí người dùng");
         Connection conn = null;
         try {
             conn = TestConnectJDBC.getConnection();
@@ -103,6 +104,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
             System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
         }
 
+        tableUser.repaint();
         city.prepareCityFilter(cbCity);
         district.prepareDistrictFilter(cbCity, cbDistrict);
 
@@ -129,7 +131,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         selectedBtn = "";
         this.enableAllBtn();
         this.loadData();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -623,6 +625,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                     user01.deletedUser();
                     JOptionPane.showMessageDialog(this, "Xóa người dùng thành công!");
                     this.loadData();
+
                 } catch (SQLException ex) {
                     Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {
@@ -814,7 +817,8 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     }//GEN-LAST:event_fieldSearchMousePressed
 
     private void cbCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCityActionPerformed
-        if (cbCity.getSelectedIndex()>0)districtIdUser = district.prepareDistrictFilter(cbCity, cbDistrict);
+        if (cbCity.getSelectedIndex() > 0)
+            districtIdUser = district.prepareDistrictFilter(cbCity, cbDistrict);
     }//GEN-LAST:event_cbCityActionPerformed
 
 

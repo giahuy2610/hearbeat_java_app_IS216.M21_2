@@ -27,8 +27,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     /**
      * Creates new form trangCaNhanJPanel
      */
-    public trangCaNhanJPanel_ThongTin() {
-        initComponents();
+    private void loadData() {
         city.prepareCityFilter(cbCity);
         cbCity.setSelectedIndex(0);
 
@@ -56,6 +55,12 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
             districtIdUser = district.prepareDistrictFilter(cbCity, cbDistrict);
             cbDistrict.setSelectedIndex(districtIdUser.indexOf(mainFrame.currentUser.getDistrict()));
         }
+
+    }
+
+    public trangCaNhanJPanel_ThongTin() {
+        initComponents();
+        this.loadData();
     }
 
     /**
@@ -253,14 +258,13 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                                 .addComponent(field_phone, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(50, 50, 50)
                         .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(field_address)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jDateChooserFilter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cbGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cbGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(field_address, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanelProfileLayout.createSequentialGroup()
                         .addGap(409, 409, 409)
                         .addComponent(btnSave)))
@@ -333,8 +337,11 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                 JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         if (output == JOptionPane.YES_OPTION) {
             try {
-                mainFrame.currentUser.modifiedUser(field_first_name.getText(), field_last_name.getText(), String.valueOf(cbGender.getSelectedIndex()+1), mainFrame.currentUser.getDateOfBirth(), String.valueOf(cbCity.getSelectedIndex()), districtIdUser.get(cbDistrict.getSelectedIndex()), String.valueOf(field_address.getText()));
+                mainFrame.currentUser.modifiedUser(field_first_name.getText(), field_last_name.getText(), String.valueOf(cbGender.getSelectedIndex() + 1), mainFrame.currentUser.getDateOfBirth(), String.valueOf(cbCity.getSelectedIndex()), districtIdUser.get(cbDistrict.getSelectedIndex()), String.valueOf(field_address.getText()));
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
+                //load lại dữ liệu của người dùng
+                mainFrame.currentUser.loadUser(mainFrame.currentUser.getUserId());
+                this.loadData();
             } catch (SQLException ex) {
                 Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -349,7 +356,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void cbCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCityActionPerformed
-
+        if (cbCity.getSelectedIndex() > 0)
         district.prepareDistrictFilter(cbCity, cbDistrict);        // TODO add your handling code here:
     }//GEN-LAST:event_cbCityActionPerformed
 

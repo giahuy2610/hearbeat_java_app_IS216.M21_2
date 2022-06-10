@@ -38,7 +38,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="header" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="jPanel1" pref="539" max="32767" attributes="0"/>
+              <Component id="jPanel1" pref="545" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -118,6 +118,9 @@
               <Image iconType="3" name="/Resource/images/search_1.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_tim_kiemActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -139,8 +142,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" pref="990" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -148,7 +151,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" pref="479" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -242,7 +245,7 @@
                           <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="categoryFilter" min="-2" pref="76" max="-2" attributes="0"/>
-                          <EmptySpace pref="80" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="sortFilter" min="-2" pref="87" max="-2" attributes="0"/>

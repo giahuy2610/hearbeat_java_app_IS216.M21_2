@@ -4,17 +4,10 @@
  */
 package Views.main;
 
-import ConnectDB.OracleConnUtils;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import Process.post;
 import Process.postCategory;
 import Process.postPurpose;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 

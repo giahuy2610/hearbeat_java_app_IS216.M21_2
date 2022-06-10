@@ -43,7 +43,8 @@ public class post {
         caSt.setString(3, postContent);
         caSt.setString(4, postCategoryId);
         caSt.setString(5, postPurposeId);
-        caSt.setString(6, pathImage);
+        
+        
         System.out.println("đã nhận ảnh " + pathImage);
         caSt.execute();
     }
@@ -242,6 +243,22 @@ public class post {
         caSt.setString(2, mainFrame.currentUser.getUserId());
         caSt.execute();
         System.out.println("Scheduling confirm successful, post" + postId);
+        conn.close();
     }
 
+    public int modifyPost(String newTitle, String newContent, String newCategoryId, String newPurposeId, String newImagePath) throws SQLException, ClassNotFoundException {
+        Connection conn = OracleConnUtils.getOracleConnection();
+        String query = "{update tb_post set title = ?, content = ?, categoryid = ?, purposeid = ?, imagepath = ? where postid = ?}";
+        CallableStatement caSt = conn.prepareCall(query);
+        caSt.setString(1, newTitle);
+        caSt.setString(2, newContent);
+        caSt.setString(3, newCategoryId);
+        caSt.setString(4, newPurposeId);
+        caSt.setString(5, newImagePath);
+        caSt.setString(6, this.postId);
+        caSt.execute();
+        System.out.println("successful modify post" + postId);
+        conn.close();
+        return 1;
+    }
 }

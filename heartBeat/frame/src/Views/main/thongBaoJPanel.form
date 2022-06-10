@@ -97,7 +97,7 @@
                   <Component id="jLabel2" min="-2" pref="124" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jDateChooserFilter" min="-2" pref="170" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
