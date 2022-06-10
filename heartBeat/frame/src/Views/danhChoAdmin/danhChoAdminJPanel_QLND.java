@@ -8,10 +8,8 @@ import ConnectDB.TestConnectJDBC;
 import Process.city;
 import Process.district;
 import Process.user;
-import Views.main.testGetDBToTable;
 import Views.trangCaNhan.trangCaNhanJPanel_ThongTin;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -30,7 +28,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     //private static String selectedUserId;
     private static user user01;
     private static int firstFill = 0;
-    private static boolean editable;
     private static String selectedBtn;
     private ArrayList<String> districtIdUser = new ArrayList<String>();
 
@@ -84,9 +81,9 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         try {
             conn = TestConnectJDBC.getConnection();
         } catch (SQLException ex) {
-            Logger.getLogger(testGetDBToTable.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(testGetDBToTable.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
         }
         String query = "";
         synchronized (query) {
@@ -129,8 +126,10 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
 
     public danhChoAdminJPanel_QLND() {
         initComponents();
+        selectedBtn = "";
+        this.enableAllBtn();
         this.loadData();
-        editable = false;
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -282,6 +281,11 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         cbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Khác" }));
 
         cbCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Khác" }));
+        cbCity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCityActionPerformed(evt);
+            }
+        });
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel20.setText("Thành phố");
@@ -728,7 +732,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
 
         selectedBtn = "btnModifyUser";
         enableAllBtn();
-        this.loadData();
+        //this.loadData();
 
     }//GEN-LAST:event_btnModifyUserActionPerformed
 
@@ -742,7 +746,13 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
                 if (output == JOptionPane.YES_OPTION) {
-                    //user01.modifiedUser(fieldFirstName.getText(), fieldLastName.getText(), Integer.toString(cbGender.selectedIndex() + 1), fieldDateOfBirth.getDate(), Integer.toString(cbCity.getSelectedIndex()), Integer.toString(cbDistrict.getSelectedIndex()), fieldAddress.getText());
+                    try {
+                        user01.modifiedUser(fieldFirstName.getText(), fieldLastName.getText(), Integer.toString(cbGender.getSelectedIndex() + 1), new java.sql.Date(fieldDateOfBirth.getDate().getTime()), Integer.toString(cbCity.getSelectedIndex()), districtIdUser.get(cbDistrict.getSelectedIndex()), fieldAddress.getText());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
                 }
                 break;
@@ -757,7 +767,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                         JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
                 if (output == JOptionPane.YES_OPTION) {
                     try {
-                        user.addNewUser(fieldFirstName.getText(), fieldLastName.getText(), Integer.toString(cbGender.getSelectedIndex()), fieldPhone.getText(), (Date) fieldDateOfBirth.getDate(), fieldEmail.getText());
+                        user.addNewUser(fieldFirstName.getText(), fieldLastName.getText(), Integer.toString(cbGender.getSelectedIndex()), fieldPhone.getText(), new java.sql.Date(fieldDateOfBirth.getDate().getTime()), fieldEmail.getText());
                     } catch (SQLException ex) {
                         Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (ClassNotFoundException ex) {
@@ -798,6 +808,10 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
             fieldSearch.setText("");
         }
     }//GEN-LAST:event_fieldSearchMousePressed
+
+    private void cbCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCityActionPerformed
+        if (cbCity.getSelectedIndex()>0)districtIdUser = district.prepareDistrictFilter(cbCity, cbDistrict);
+    }//GEN-LAST:event_cbCityActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

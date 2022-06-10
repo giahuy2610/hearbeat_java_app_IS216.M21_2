@@ -97,7 +97,7 @@ public class user {
 
     public static void addNewUser(String firstNameIn, String lastNameIn, String genderIn, String phoneIn, Date dateOfBirthIn, String emailIn) throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO TB_USER (FIRSTNAME,LASTNAME,GENDER,PHONE,DATEOFBIRTH,EMAIL,AVATAR,PASSWORD) VALUES (?,?,?,?,?,?,?,?)");
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO TB_USER (FIRSTNAME,LASTNAME,GENDER,PHONE,DATEOFBIRTH,EMAIL,AVATAR,PASSWORD,ROLEID) VALUES (?,?,?,?,?,?,?,?,?)");
         stmt.setString(1, firstNameIn);
         stmt.setString(2, lastNameIn);
         stmt.setString(3, genderIn);
@@ -106,7 +106,14 @@ public class user {
         stmt.setString(6, emailIn);
         stmt.setString(7, "");
         stmt.setString(8, "12345");
-
+        stmt.setString(9, "1");
+        System.out.println("Số dòng bị thay đổi " + stmt.executeUpdate());
+        /*
+        stmt = conn.prepareStatement("UPDATE TB_ADDRESS SET CITYID = ?, DISTRICTID = ?, ADDRESS = ? WHERE USERID = ?");
+        stmt.setString(1, cityIdIn);
+        stmt.setString(2, districtIdIn);
+        stmt.setString(3, addressIn);
+        stmt.setString(4, cityIdIn);*/
 
     }
 //hàm xóa
@@ -141,10 +148,10 @@ public class user {
         caSt.setString(4, newGender);
         caSt.setDate(5, (java.sql.Date) newDateOfBirth);
         caSt.setString(6, newCityid);
-        System.out.println("Đang thay đổi quận " + newDistrictid);
+        
         caSt.setString(7, newDistrictid);
         caSt.setString(8, newAddress);
-        caSt.execute();
+        System.out.println("Số dòng bị thay đổi " + caSt.executeUpdate());
     }
 
     public String getCity() {

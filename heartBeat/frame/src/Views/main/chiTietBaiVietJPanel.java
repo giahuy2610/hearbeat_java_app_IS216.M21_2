@@ -31,7 +31,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         if (post01.getImagePath() != null) {
             scaleImage("C:\\Users\\giahu\\OneDrive\\Máy tính\\usecase.png", labelImage);
         }
-        
+
         labelTitle.setText(post01.getTitle());
         labelContent.setText(post01.getContent());
         labelImage.setIcon(new ImageIcon(post01.getImagePath()));
@@ -46,7 +46,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
      */
     public chiTietBaiVietJPanel(String postId) {
         initComponents();
-        labelImage.setSize(220,220);
+        labelImage.setSize(220, 220);
         post01 = new post(postId);
         //nếu người đăng bài cũng là người đang xem bài viết
         if (mainFrame.currentUser.getUserId().equals(post01.getOwnerId())) {

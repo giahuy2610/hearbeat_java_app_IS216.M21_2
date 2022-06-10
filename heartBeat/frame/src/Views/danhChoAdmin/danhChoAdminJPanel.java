@@ -27,7 +27,7 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
         List<danhMucBean> listItem = new ArrayList<>();
         listItem.add(new danhMucBean("QLND", jbtnQLND));
         listItem.add(new danhMucBean("QLBD", jbtnQLBD));
-        
+        listItem.add(new danhMucBean("Report", jbtnReport));
         profile.setEvent(listItem);
     }
 
@@ -44,7 +44,7 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jbtnQLND = new javax.swing.JButton();
         jbtnQLBD = new javax.swing.JButton();
-        jbtnQLSK = new javax.swing.JButton();
+        jbtnReport = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(126, 186, 181));
 
@@ -74,13 +74,13 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
         jbtnQLBD.setText("Quản lý bài đăng");
         jbtnQLBD.setBorder(new javax.swing.border.MatteBorder(null));
 
-        jbtnQLSK.setBackground(new java.awt.Color(0, 204, 255));
-        jbtnQLSK.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jbtnQLSK.setText("Báo cáo");
-        jbtnQLSK.setBorder(new javax.swing.border.MatteBorder(null));
-        jbtnQLSK.addActionListener(new java.awt.event.ActionListener() {
+        jbtnReport.setBackground(new java.awt.Color(0, 204, 255));
+        jbtnReport.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jbtnReport.setText("Báo cáo");
+        jbtnReport.setBorder(new javax.swing.border.MatteBorder(null));
+        jbtnReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnQLSKActionPerformed(evt);
+                jbtnReportActionPerformed(evt);
             }
         });
 
@@ -94,7 +94,7 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnQLBD, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtnQLSK, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addComponent(jbtnReport, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -104,7 +104,7 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnQLND, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnQLBD, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnQLSK, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jbtnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -123,9 +123,9 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnQLSKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnQLSKActionPerformed
+    private void jbtnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnReportActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jbtnQLSKActionPerformed
+    }//GEN-LAST:event_jbtnReportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -133,6 +133,6 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbtnQLBD;
     private javax.swing.JButton jbtnQLND;
-    private javax.swing.JButton jbtnQLSK;
+    private javax.swing.JButton jbtnReport;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,9 +4,9 @@
  */
 package Views.main;
 
-import Views.danhChoAdmin.danhChoAdminJPanel_QLSK;
 import Views.danhChoAdmin.danhChoAdminJPanel_QLND;
 import Views.danhChoAdmin.danhChoAdminJPanel_QLBD;
+import Views.danhChoAdmin.danhChoAdminJPanel_Report;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -71,6 +71,8 @@ public class chuyenManHinhAdmin {
                 case "QLBD":
                     node = new danhChoAdminJPanel_QLBD();
                     break;
+                case "report":
+                    node = new danhChoAdminJPanel_Report();
                 default:
                     break;
             }
