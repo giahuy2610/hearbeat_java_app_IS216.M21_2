@@ -98,7 +98,6 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(199, 234, 227));
 
         jTextFieldTieuDe.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
-        jTextFieldTieuDe.setText("test font");
         jTextFieldTieuDe.setToolTipText("");
         jTextFieldTieuDe.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldTieuDe.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +115,6 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         jLabel3.setText("Nội dung");
 
         postContent.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        postContent.setText("test font");
         postContent.setToolTipText("");
         postContent.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 

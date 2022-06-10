@@ -198,6 +198,17 @@ public class post {
         caSt.execute();
         System.out.println("Deleted post" + postId);
     }
+    //khôi phục bài viết bị xóa
+
+    public void recoveryPost() throws SQLException, ClassNotFoundException {
+        Connection conn = OracleConnUtils.getOracleConnection();
+        String query = "{call p_recovery_post(?)}";
+        CallableStatement caSt = conn.prepareCall(query);
+        System.out.println(this.postId);
+        caSt.setString(1, this.postId);
+        caSt.execute();
+        System.out.println("Successful recovery post" + postId);
+    }
 
     //chỉnh sửa bài viết
     public void modifyPost() throws SQLException, ClassNotFoundException {

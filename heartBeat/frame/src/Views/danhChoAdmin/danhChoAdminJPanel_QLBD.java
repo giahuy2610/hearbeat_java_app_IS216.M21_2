@@ -9,6 +9,8 @@ import Process.post;
 import static Process.postCategory.prepareCategoryFilter;
 import static Process.postPurpose.preparePurposeFilter;
 import static Process.postStatus.getStatusNameFromId;
+import Views.main.chuyenManHinhController;
+import Views.main.themBaiVietJPanel;
 import Views.trangCaNhan.trangCaNhanJPanel_ThongTin;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -114,7 +116,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         selectedBtn = "";
         this.enableAllBtn();
         this.loadData();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -183,7 +185,8 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         labelCategory.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         labelCategory.setText("Danh mục");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/avatarTest.png"))); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
         cbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Khác" }));
@@ -228,7 +231,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelUserId, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -482,13 +485,13 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
             selectedBtn = "btnDeleteUser";
             String[] options = {"Đồng ý", "Hủy"};
             int output = JOptionPane.showOptionDialog(this,
-                    "Bạn đang Xóa người dùng", "Xác nhận",
+                    "Bài viết sẽ bị xóa", "Xác nhận",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
             if (output == JOptionPane.YES_OPTION) {
                 try {
                     post01.deletedPost();
-                    JOptionPane.showMessageDialog(this, "Xóa người dùng thành công!");
+                    JOptionPane.showMessageDialog(this, "Xóa bài viết thành công!");
                     this.loadData();
                 } catch (SQLException ex) {
                     Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
@@ -503,11 +506,19 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
             selectedBtn = "btnDeleteUser";
             String[] options = {"Đồng ý", "Hủy"};
             int output = JOptionPane.showOptionDialog(this,
-                    "Bạn đang khôi phục lại tài khoản", "Xác nhận",
+                    "Bạn đang khôi phục lại bài viết bị xóa", "Xác nhận",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
             if (output == JOptionPane.YES_OPTION) {
- 
+                try {
+                    post01.recoveryPost();
+                } catch (SQLException ex) {
+                    Logger.getLogger(danhChoAdminJPanel_QLBD.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(danhChoAdminJPanel_QLBD.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(this, "Khôi phục bài viết thành công!");
+                this.loadData();
 
             } else if (output == JOptionPane.NO_OPTION) {
                 System.out.println("No selected.");
@@ -543,13 +554,13 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         labelCreatedOn.setText("Ngày tạo: " + post01.getCreatedOn());
         labelIsDeleted.setText("Tình trạng: " + (post01.getIsDeleted().equals("0") ? "Khả dụng" : "Đã xóa"));
         labelStatus.setText("Trạng thái bài viết: " + getStatusNameFromId(post01.getStatusId()));
-        
+
         fieldContent.setText(post01.getContent());
 
         fieldTitle.setText(post01.getTitle());
         cbCategory.setSelectedIndex(Integer.valueOf(post01.getCategoryId()));
         cbPurpose.setSelectedIndex(Integer.valueOf(post01.getPurposeId()));
-        System.out.println("Category "+post01.getCategoryId());
+        System.out.println("Category " + post01.getCategoryId());
         //nếu người dùng đã bị xóa tài khoản thì có thể khôi phục lại
         if (post01.getIsDeleted().equals("1")) {
             btnDeletePost.setText("Khôi phục");
@@ -600,9 +611,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnAddPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPostActionPerformed
-        selectedBtn = "btnAddUser";
-        enableAllBtn();
-        this.loadData();
+        chuyenManHinhController.setView(new themBaiVietJPanel());
 
     }//GEN-LAST:event_btnAddPostActionPerformed
 
@@ -617,7 +626,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
     }//GEN-LAST:event_fieldSearchMousePressed
 
     private void cbPurposeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPurposeActionPerformed
-        
+
     }//GEN-LAST:event_cbPurposeActionPerformed
 
 
