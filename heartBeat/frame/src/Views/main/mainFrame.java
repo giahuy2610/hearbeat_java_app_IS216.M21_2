@@ -38,7 +38,8 @@ public class mainFrame extends javax.swing.JFrame {
         listItem.add(new danhMucBean("DanhMuc", jbtnDanhMuc));
         listItem.add(new danhMucBean("TrangCaNhan", jbtnTrangCaNhan));
         //nếu người dùng này không phải admin thì không hiện ra trang admin
-        if (currentUser.getRoleId().equals("2")) {           
+     if (currentUser.getRoleId().equals("1"
+             + "")) {           
             listItem.add(new danhMucBean("DanhChoAdmin", jbtnDanhChoAdmin));
         } 
         else {

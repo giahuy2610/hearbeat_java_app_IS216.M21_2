@@ -126,6 +126,11 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnQLSKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnQLSKActionPerformed
+
+
+
+
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnQLSKActionPerformed
 
