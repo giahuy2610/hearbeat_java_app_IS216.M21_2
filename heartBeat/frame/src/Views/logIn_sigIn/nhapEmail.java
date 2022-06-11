@@ -53,6 +53,7 @@ public class nhapEmail extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(450, 260));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         panel_nhap_ma.setkEndColor(new java.awt.Color(153, 153, 255));

@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Views.main;
+package Views.danhChoAdmin;
 
-import Views.trangCaNhan.trangCaNhanJPanel_ThongTin;
-import Views.trangCaNhan.trangCaNhanJPanel_BaiViet;
+import Views.danhChoAdmin.danhChoAdminJPanel_QLND;
+import Views.danhChoAdmin.danhChoAdminJPanel_QLBD;
+import Views.danhChoAdmin.danhChoAdminJPanel_Report;
+import Views.main.danhMucBean;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -17,24 +19,24 @@ import javax.swing.JPanel;
  *
  * @author giahu
  */
-public class chuyenManHinhProfile {
+public class chuyenManHinhAdmin {
 
     private JPanel root;
     private String kindSelected = "";
 
     private static List<danhMucBean> listItem = null;
 
-    public chuyenManHinhProfile(JPanel jpnRoot) {
+    public chuyenManHinhAdmin(JPanel jpnRoot) {
         this.root = jpnRoot;
     }
 
     public void setView(JButton jlbItem) {
-        kindSelected = "BaiViet";
+        kindSelected = "QLND";
         jlbItem.setOpaque(true);
 
         root.removeAll();
         root.setLayout(new BorderLayout());
-        root.add(new trangCaNhanJPanel_BaiViet());
+        root.add(new danhChoAdminJPanel_QLND());
         root.validate();
         root.repaint();
 
@@ -64,11 +66,14 @@ public class chuyenManHinhProfile {
         public void mouseClicked(MouseEvent e) {
 
             switch (kind) {
-                case "BaiViet":
-                    node = new trangCaNhanJPanel_BaiViet();
+                case "QLND":
+                    node = new danhChoAdminJPanel_QLND();
                     break;
-                case "ThongTin":
-                    node = new trangCaNhanJPanel_ThongTin();
+                case "QLBD":
+                    node = new danhChoAdminJPanel_QLBD();
+                    break;
+                case "Report":
+                    node = new danhChoAdminJPanel_Report();
                     break;
                 default:
                     break;
@@ -109,8 +114,9 @@ public class chuyenManHinhProfile {
         for (danhMucBean item : listItem) {
             if (item.getKind().equalsIgnoreCase(kind)) {
                 item.getJbtn().setOpaque(true);
-            } else {
-                item.getJbtn().setOpaque(false);
+            }
+            else {
+                item.getJbtn().setOpaque(false);              
             }
         }
 

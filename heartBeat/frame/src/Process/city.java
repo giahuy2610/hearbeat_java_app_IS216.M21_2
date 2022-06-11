@@ -17,8 +17,8 @@ import javax.swing.JComboBox;
  */
 public class city {
 
-    protected static ArrayList<String> cityId = new ArrayList<String>();
-    protected static ArrayList<String> cityName = new ArrayList<String>();
+    public static ArrayList<String> cityId = new ArrayList<String>();
+    public static ArrayList<String> cityName = new ArrayList<String>();
 
     public city() {
     }

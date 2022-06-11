@@ -28,12 +28,13 @@ import javax.swing.JPanel;
  */
 public class trangChuJPanel extends javax.swing.JPanel {
 
-    private static ArrayList<String> postId = new ArrayList<String>();
-    private static ArrayList<String> postTitle = new ArrayList<String>();
-    private static ArrayList<String> postCategory = new ArrayList<String>();
-    private static ArrayList<String> postContent = new ArrayList<String>();
-    private static ArrayList<String> postPurpose = new ArrayList<String>();
-    private static ArrayList<String> postCreatedOn = new ArrayList<String>();
+    private ArrayList<String> postId = new ArrayList<String>();
+    private ArrayList<String> postTitle = new ArrayList<String>();
+    private ArrayList<String> postCategory = new ArrayList<String>();
+    private ArrayList<String> postContent = new ArrayList<String>();
+    private ArrayList<String> postPurpose = new ArrayList<String>();
+    private ArrayList<String> postCreatedOn = new ArrayList<String>();
+    private ArrayList<byte[]> postImage = new ArrayList<byte[]>();
 
     protected Connection conn = null;
 
@@ -83,7 +84,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
         }
 
         System.out.println(query);
- 
+
         return query;
     }
 
@@ -95,9 +96,9 @@ public class trangChuJPanel extends javax.swing.JPanel {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             container.removeAll();
-
+            
             postId.removeAll(postId);
-            postTitle.removeAll(postId);
+            postTitle.removeAll(postTitle);
             postCategory.removeAll(postCategory);
             postContent.removeAll(postContent);
             postPurpose.removeAll(postPurpose);
@@ -110,28 +111,29 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 postContent.add(rs.getString("content"));
                 postCreatedOn.add(rs.getString("createdon"));
                 postPurpose.add(rs.getString("purposeid"));
-                //System.out.println("1 bài viết " + rs.getString("title") + " " + rs.getString("content"));
+                postImage.add(rs.getBytes("imagepath"));
+                System.out.println("1 bài viết " + rs.getString("title") + " " + rs.getString("content"));
                 count++;
             }
             conn.close();
 
             for (int i = 0; i < count; i++) {
-                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i));
+                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i), postImage.get(i));
                 if (i % 2 == 0) {
                     x.changeBackgroundColor(postColor1);
                 } else {
                     x.changeBackgroundColor(postColor2);
                 }
                 container.add(x);
-                //System.out.println("2bài viết " + postTitle.get(i) + " - " + postContent.get(i));
+                System.out.println("2bài viết " + postTitle.get(i) + " - " + postContent.get(i));
             }
             jScrollPane1.setViewportView(container);
-     System.out.println("count " + Integer.toString(count));
-        System.out.println(Integer.toString(postId.size()) + Integer.toString(postTitle.size()) + Integer.toString(postContent.size()) + Integer.toString(postCategory.size()) + Integer.toString(postPurpose.size()));
+            System.out.println("count " + Integer.toString(count));
+            System.out.println(Integer.toString(postId.size()) + Integer.toString(postTitle.size()) + Integer.toString(postContent.size()) + Integer.toString(postCategory.size()) + Integer.toString(postPurpose.size()));
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-  
+
     }
 
     public trangChuJPanel() {
@@ -231,7 +233,12 @@ public class trangChuJPanel extends javax.swing.JPanel {
         });
 
         btn_tim_kiem.setBackground(new java.awt.Color(126, 186, 181));
-        btn_tim_kiem.setIcon(new javax.swing.ImageIcon("C:\\Users\\giahu\\Downloads\\search.png")); // NOI18N
+        btn_tim_kiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search_1.png"))); // NOI18N
+        btn_tim_kiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tim_kiemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
@@ -290,7 +297,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel8.setText("Mục đích");
 
         categoryFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -299,7 +305,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel9.setText("Danh mục");
 
         cityFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -308,7 +313,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel24.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel24.setText("Tình/Thành phố");
 
         districtFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -317,7 +321,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel25.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         jLabel25.setText("Quận/Huyện");
 
         sortFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -349,11 +352,9 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(categoryFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel26)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sortFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
@@ -393,15 +394,15 @@ public class trangChuJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -419,7 +420,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -428,7 +429,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_sortFilterActionPerformed
 
     private void categoryFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryFilterActionPerformed
-        //System.out.println("city " + cityFilter.getSelectedIndex() + " district " + districtFilter.getSelectedIndex() + " category " + categoryFilter.getSelectedIndex());
+
         this.preparePost();
     }//GEN-LAST:event_categoryFilterActionPerformed
 
@@ -452,10 +453,13 @@ public class trangChuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_districtFilterActionPerformed
 
     private void cityFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityFilterActionPerformed
-
         this.preparePost();
         district.prepareDistrictFilter(cityFilter, districtFilter);
     }//GEN-LAST:event_cityFilterActionPerformed
+
+    private void btn_tim_kiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tim_kiemActionPerformed
+        this.preparePost();
+    }//GEN-LAST:event_btn_tim_kiemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,11 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Views.main;
+package Views.trangCaNhan;
 
-import Views.danhChoAdmin.danhChoAdminJPanel_QLSK;
-import Views.danhChoAdmin.danhChoAdminJPanel_QLND;
-import Views.danhChoAdmin.danhChoAdminJPanel_QLBD;
+import Views.main.danhMucBean;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -18,24 +16,24 @@ import javax.swing.JPanel;
  *
  * @author giahu
  */
-public class chuyenManHinhAdmin {
+public class chuyenManHinhProfile {
 
     private JPanel root;
     private String kindSelected = "";
 
     private static List<danhMucBean> listItem = null;
 
-    public chuyenManHinhAdmin(JPanel jpnRoot) {
+    public chuyenManHinhProfile(JPanel jpnRoot) {
         this.root = jpnRoot;
     }
 
     public void setView(JButton jlbItem) {
-        kindSelected = "QLND";
+        kindSelected = "BaiViet";
         jlbItem.setOpaque(true);
 
         root.removeAll();
         root.setLayout(new BorderLayout());
-        root.add(new danhChoAdminJPanel_QLND());
+        root.add(new trangCaNhanJPanel_BaiViet());
         root.validate();
         root.repaint();
 
@@ -65,14 +63,11 @@ public class chuyenManHinhAdmin {
         public void mouseClicked(MouseEvent e) {
 
             switch (kind) {
-                case "QLND":
-                    node = new danhChoAdminJPanel_QLND();
+                case "BaiViet":
+                    node = new trangCaNhanJPanel_BaiViet();
                     break;
-                case "QLBD":
-                    node = new danhChoAdminJPanel_QLBD();
-                    break;
-                case "QLSK":
-                    node = new danhChoAdminJPanel_QLSK();
+                case "ThongTin":
+                    node = new trangCaNhanJPanel_ThongTin();
                     break;
                 default:
                     break;
@@ -113,9 +108,8 @@ public class chuyenManHinhAdmin {
         for (danhMucBean item : listItem) {
             if (item.getKind().equalsIgnoreCase(kind)) {
                 item.getJbtn().setOpaque(true);
-            }
-            else {
-                item.getJbtn().setOpaque(false);              
+            } else {
+                item.getJbtn().setOpaque(false);
             }
         }
 

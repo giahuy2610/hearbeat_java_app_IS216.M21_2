@@ -30,13 +30,14 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
     private static ArrayList<String> postContent = new ArrayList<String>();
     private static ArrayList<String> postPurpose = new ArrayList<String>();
     private static ArrayList<String> postCreatedOn = new ArrayList<String>();
+    private ArrayList<byte[]> postImage = new ArrayList<byte[]>();
     private static int firstFill = 0;
 
     protected String initQuery1() {
         if (firstFill == 0) {
             query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId();
         } else {
-            query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId() + " and ( upper(title) like upper('%" + searchField.getText() + "%') )";
+            query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId() + " and ( upper(title) like upper('%" + searchField.getText() + "%') or upper(content) like upper('%" + searchField.getText() + "%'))";
         }
 
         if (postStatusFilter != null) {
@@ -57,6 +58,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
 
     public trangCaNhanJPanel_BaiViet() {
         initComponents();
+        firstFill = 0;
         sort.prepareSortFilter(postSortFilter);
         postSortFilter.setSelectedIndex(0);
         this.preparePost();
@@ -72,7 +74,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             container.removeAll();
 
             postId.removeAll(postId);
-            postTitle.removeAll(postId);
+            postTitle.removeAll(postTitle);
             postCategory.removeAll(postCategory);
             postContent.removeAll(postContent);
             while (rs.next()) {
@@ -82,11 +84,12 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 postContent.add(rs.getString("content"));
                 postCreatedOn.add(rs.getString("createdon"));
                 postPurpose.add(rs.getString("purposeid"));
+                postImage.add(rs.getBytes("imagepath"));
             }
             conn.close();
 
             for (int i = 0; i < postId.size(); i++) {
-                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i));
+                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i), postImage.get(i));
                 if (i % 2 == 0) {
                     x.changeBackgroundColor(postColor1);
                 } else {
