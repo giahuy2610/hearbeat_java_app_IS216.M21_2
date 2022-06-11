@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/danhChoAdmin/danhChoAdminJPanel_QLND.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/ConnectDB/OracleConnUtils.java</file>
-            <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/danhChoAdmin/danhChoAdminJPanel_QLNDTest.java</file>
-            <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Report/Userreport1.jrxml</file>
+            <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/danhChoAdmin/danhChoAdminJPanel.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/danhChoAdmin/danhChoAdminJPanel_QLBD.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/main/themBaiVietJPanel.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/ConnectDB/TestConnectJDBC.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/danhChoAdmin/danhChoAdminJPanel_QLSK.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/main/mainFrame.java</file>
+            <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Process/post.java</file>
         </group>
     </open-files>
 </project-private>

@@ -15,7 +15,7 @@ public class OracleConnUtils {
             ClassNotFoundException {
         String hostName = "localhost";
         String sid = "orcl";
-        String userName = "heartbeat";
+        String userName = "heartbeat2";
         String password = "Oradoc_db1";
 
         return getOracleConnection(hostName, sid, userName, password);

@@ -33,6 +33,8 @@ public class post {
     private String imagePath;
     private String statusId;
 
+
+
     public static void themBaiViet(String postTitle, String postContent, String postCategoryId, String postPurposeId, String pathImage) throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
         String query = "{call P_INSERT_POST_NEW(?,?,?,?,?,?)}";
