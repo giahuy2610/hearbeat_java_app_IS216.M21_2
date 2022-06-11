@@ -2,6 +2,9 @@ package Process;
 
 import ConnectDB.OracleConnUtils;
 import Views.main.mainFrame;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -30,10 +33,10 @@ public class post {
     private String partnerId;
     private String purposeId;
     private String isDeleted;
-    private String imagePath;
+    private byte[] imagePath;
     private String statusId;
 
-    public static void themBaiViet(String postTitle, String postContent, String postCategoryId, String postPurposeId, String pathImage) throws SQLException, ClassNotFoundException {
+    public static void themBaiViet(String postTitle, String postContent, String postCategoryId, String postPurposeId,File postImage) throws SQLException, ClassNotFoundException, FileNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
         String query = "{call P_INSERT_POST_NEW(?,?,?,?,?,?)}";
         System.out.println(mainFrame.currentUser.getUserId());
@@ -44,8 +47,10 @@ public class post {
         caSt.setString(4, postCategoryId);
         caSt.setString(5, postPurposeId);
         
+        FileInputStream is = new FileInputStream(postImage);
+        caSt.setBinaryStream(6,  is);
         
-        System.out.println("đã nhận ảnh " + pathImage);
+        System.out.println("đã nhận ảnh ");
         caSt.execute();
     }
 
@@ -67,7 +72,7 @@ public class post {
                 ownerId = rs.getString("ownerId");
                 partnerId = rs.getString("partnerId");
                 isDeleted = rs.getString("isdeleted");
-                imagePath = rs.getString("imagePath");
+                imagePath = rs.getBytes("imagePath");
                 statusId = rs.getString("statusid");
             }
             conn.close();
@@ -76,6 +81,16 @@ public class post {
         }
     }
 
+    public byte[] getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(byte[] imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    
+    
     public String getPostId() {
         return postId;
     }
@@ -156,14 +171,6 @@ public class post {
         this.isDeleted = isDeleted;
     }
 
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
     public String getStatusId() {
         return statusId;
     }
@@ -175,20 +182,6 @@ public class post {
     public post() {
     }
 
-    public post(String postId, String title, String categoryId, String content, String createdOn, String updatedOn, String ownerId, String partnerId, String purposeId, String isDeleted, String imagePath, String statusId) {
-        this.postId = postId;
-        this.title = title;
-        this.categoryId = categoryId;
-        this.content = content;
-        this.createdOn = createdOn;
-        this.updatedOn = updatedOn;
-        this.ownerId = ownerId;
-        this.partnerId = partnerId;
-        this.purposeId = purposeId;
-        this.isDeleted = isDeleted;
-        this.imagePath = imagePath;
-        this.statusId = statusId;
-    }
 
     public void deletedPost() throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();

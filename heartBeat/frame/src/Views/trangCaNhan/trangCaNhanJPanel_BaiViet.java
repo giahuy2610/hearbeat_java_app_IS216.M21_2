@@ -30,6 +30,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
     private static ArrayList<String> postContent = new ArrayList<String>();
     private static ArrayList<String> postPurpose = new ArrayList<String>();
     private static ArrayList<String> postCreatedOn = new ArrayList<String>();
+    private ArrayList<byte[]> postImage = new ArrayList<byte[]>();
     private static int firstFill = 0;
 
     protected String initQuery1() {
@@ -82,11 +83,12 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 postContent.add(rs.getString("content"));
                 postCreatedOn.add(rs.getString("createdon"));
                 postPurpose.add(rs.getString("purposeid"));
+                postImage.add(rs.getBytes("imagepath"));
             }
             conn.close();
 
             for (int i = 0; i < postId.size(); i++) {
-                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i));
+                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i), postImage.get(i));
                 if (i % 2 == 0) {
                     x.changeBackgroundColor(postColor1);
                 } else {

@@ -5,6 +5,9 @@
 package Process;
 
 import ConnectDB.OracleConnUtils;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,7 +36,7 @@ public class user {
     private String password;
     private String roleId;
     private String isDeleted;
-    private String avatar;
+    private byte[] avatar;
     private String score;
     private String lastName;
     private Date dateOfBirth;
@@ -80,7 +83,7 @@ public class user {
                 password = rs.getString("password");
                 roleId = rs.getString("roleid");
                 isDeleted = rs.getString("isdeleted");
-                avatar = rs.getString("avatar");
+                avatar = rs.getBytes("avatar");
                 score = rs.getString("score");
                 dateOfBirth = rs.getDate("dateofbirth");
                 System.out.println("city của người dùng là " + rs.getString("cityid"));
@@ -152,7 +155,7 @@ public class user {
         caSt.setString(4, newGender);
         caSt.setDate(5, (java.sql.Date) newDateOfBirth);
         caSt.setString(6, newCityid);
-        
+
         caSt.setString(7, newDistrictid);
         caSt.setString(8, newAddress);
         System.out.println("Số dòng bị thay đổi " + caSt.executeUpdate());
@@ -163,112 +166,67 @@ public class user {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getDistrict() {
         return district;
-    }
-
-    public void setDistrict(String district) {
-        this.district = district;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public Date getDateOfBirth() {
         return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public String getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getGender() {
         return gender;
     }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
+    
     public String getPhone() {
         return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getCreatedOn() {
         return createdOn;
-    }
-
-    public void setCreatedOn(String createdOn) {
-        this.createdOn = createdOn;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getRoleId() {
         return roleId;
-    }
-
-    public void setRoleId(String roleId) {
-        this.roleId = roleId;
     }
 
     public String getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(String isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
-    public String getAvatar() {
+    public byte[] getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setAvatar(File avatar) throws SQLException, ClassNotFoundException, FileNotFoundException {
+        Connection conn = OracleConnUtils.getOracleConnection();
+        String query = "update tb_user set avatar = ? where userid = ?";
+        PreparedStatement stmt=conn.prepareStatement(query);  
+        stmt.setString(2, userId);
+        stmt.setBinaryStream(1, new FileInputStream(avatar));
+        stmt.execute();
+        conn.close();
     }
 
     public String getScore() {

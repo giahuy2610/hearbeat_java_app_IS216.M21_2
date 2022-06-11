@@ -10,8 +10,10 @@ import static Process.postCategory.prepareCategoryFilter;
 import static Process.postPurpose.preparePurposeFilter;
 import static Process.postStatus.getStatusNameFromId;
 import Views.main.chuyenManHinhController;
+import Views.main.imageHelper;
 import Views.main.themBaiVietJPanel;
 import Views.trangCaNhan.trangCaNhanJPanel_ThongTin;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +21,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 
@@ -131,7 +134,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         labelPurpose = new javax.swing.JLabel();
         labelUserId = new javax.swing.JLabel();
         labelCategory = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        labelImage = new javax.swing.JLabel();
         cbCategory = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         labelCreatedOn = new javax.swing.JLabel();
@@ -185,9 +188,9 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         labelCategory.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         labelCategory.setText("Danh mục");
 
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
-        jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        labelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
+        labelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
 
         cbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Khác" }));
         cbCategory.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +234,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelUserId, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,7 +261,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelUserId)
                         .addGap(18, 18, 18)
@@ -555,6 +558,17 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         labelIsDeleted.setText("Tình trạng: " + (post01.getIsDeleted().equals("0") ? "Khả dụng" : "Đã xóa"));
         labelStatus.setText("Trạng thái bài viết: " + getStatusNameFromId(post01.getStatusId()));
 
+        //load ảnh
+        byte[] imagedata = post01.getImagePath();
+        if (imagedata != null) {
+            ImageIcon format = new ImageIcon(imagedata);
+            Image resize = imageHelper.reSize(format.getImage(), 130, 130);
+            labelImage.setIcon(new ImageIcon(resize));
+        }
+        else {
+            labelImage.setIcon(new ImageIcon(getClass().getResource("/Resource/images/size.png")));
+        }
+        
         fieldContent.setText(post01.getContent());
 
         fieldTitle.setText(post01.getTitle());
@@ -628,13 +642,13 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelCategory;
     private javax.swing.JLabel labelCreatedOn;
+    private javax.swing.JLabel labelImage;
     private javax.swing.JLabel labelIsDeleted;
     private javax.swing.JLabel labelPurpose;
     private javax.swing.JLabel labelStatus;

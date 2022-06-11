@@ -8,10 +8,17 @@ import static Process.image.scaleImage;
 import Views.logIn_sigIn.quenMatKhau;
 import Views.main.chuyenManHinhProfile;
 import Views.main.danhMucBean;
+import Views.main.imageHelper;
 import Views.main.mainFrame;
+import java.awt.Image;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -30,8 +37,16 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
             labelVaiTro.setText("Quản trị viên");
         }
         labelDiem.setText(mainFrame.currentUser.getScore());
-        if (mainFrame.currentUser.getAvatar() != null) {
-            scaleImage(mainFrame.currentUser.getAvatar(), jLabel2);
+
+        
+                //load ảnh
+        byte[] imagedata = mainFrame.currentUser.getAvatar();
+        if (imagedata != null) {
+            ImageIcon format = new ImageIcon(imagedata);
+            Image resize = imageHelper.reSize(format.getImage(), 130, 130);
+            labelImage.setIcon(new ImageIcon(resize));
+        } else {
+            labelImage.setIcon(new ImageIcon(getClass().getResource("/Resource/images/size.png")));
         }
     }
 
@@ -66,7 +81,7 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jPanelProfile = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        labelImage = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jbtnBaiViet = new javax.swing.JButton();
         jbtnThongTin = new javax.swing.JButton();
@@ -118,13 +133,13 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(199, 234, 227));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
-        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelImage.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        labelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
+        labelImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 153)));
+        labelImage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel2MousePressed(evt);
+                labelImageMousePressed(evt);
             }
         });
 
@@ -188,7 +203,7 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(92, 92, 92)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
@@ -215,7 +230,7 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -272,20 +287,24 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         new quenMatKhau(mainFrame.currentUser.getEmail()).setVisible(true);
     }//GEN-LAST:event_jLabel7MousePressed
 
-    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+    private void labelImageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImageMousePressed
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
         if (f != null) {
-            scaleImage(f.toString(), jLabel2);
+            scaleImage(f.toString(), labelImage);
         }
-    }//GEN-LAST:event_jLabel2MousePressed
+        try {
+            mainFrame.currentUser.setAvatar(f);
+        } catch (SQLException | ClassNotFoundException | FileNotFoundException ex) {
+            Logger.getLogger(trangCaNhanJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_labelImageMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -297,6 +316,7 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jbtnThongTin;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JLabel labelDiem;
+    private javax.swing.JLabel labelImage;
     private javax.swing.JLabel labelTen;
     private javax.swing.JLabel labelVaiTro;
     // End of variables declaration//GEN-END:variables

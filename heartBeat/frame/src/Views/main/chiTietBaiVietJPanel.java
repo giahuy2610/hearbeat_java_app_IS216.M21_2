@@ -10,13 +10,17 @@ import static Process.postCategory.getCategoryNameFromId;
 import static Process.postPurpose.getPurposeNameFromId;
 import static Process.postStatus.getStatusNameFromId;
 import Process.user;
+import java.awt.Image;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -28,17 +32,22 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
 
     private void loadData() {
         System.out.println("width of label is" + Integer.toString(labelImage.getHeight()));
-        if (post01.getImagePath() != null) {
-            scaleImage("C:\\Users\\giahu\\OneDrive\\Máy tính\\usecase.png", labelImage);
-        }
 
         labelTitle.setText(post01.getTitle());
         labelContent.setText(post01.getContent());
-        labelImage.setIcon(new ImageIcon(post01.getImagePath()));
+
         labelCreatedOn.setText(post01.getCreatedOn());
         String postPath = "Heartbeat > " + getPurposeNameFromId(post01.getPurposeId()) + " > " + getCategoryNameFromId(post01.getCategoryId()) + " > " + post01.getTitle();
         labelPath.setText(postPath);
         labelStatus.setText(getStatusNameFromId(post01.getStatusId()));
+
+        //load ảnh
+        byte[] imagedata = post01.getImagePath();
+        if (imagedata != null) {
+            ImageIcon format = new ImageIcon(imagedata);
+            Image resize = imageHelper.reSize(format.getImage(), 320, 320);
+            labelImage.setIcon(new ImageIcon(resize));
+        }
     }
 
     /**
@@ -94,19 +103,18 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         labelPath = new javax.swing.JLabel();
         jButton12 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         labelTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         labelContent = new javax.swing.JTextArea();
         labelCreatedOn = new javax.swing.JLabel();
         labelStatus = new javax.swing.JLabel();
         labelImage = new javax.swing.JLabel();
-        labelTitle1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnConfirmSchedule = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
         btnSchedule = new javax.swing.JButton();
+        btnCancelSchedule = new javax.swing.JButton();
 
         heading.setBackground(new java.awt.Color(126, 186, 181));
         heading.setMinimumSize(new java.awt.Dimension(957, 56));
@@ -153,11 +161,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
 
         jPanel7.setBackground(new java.awt.Color(199, 234, 227));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 51, 153));
-        jLabel3.setText("NỘI DUNG");
-
-        labelTitle.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        labelTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         labelTitle.setForeground(new java.awt.Color(0, 51, 153));
         labelTitle.setText("TIÊU ĐỀ");
 
@@ -191,40 +195,28 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
             }
         });
 
-        labelTitle1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        labelTitle1.setForeground(new java.awt.Color(0, 51, 153));
-        labelTitle1.setText("TIÊU ĐỀ");
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(419, 419, 419)
-                        .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(labelCreatedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(49, Short.MAX_VALUE))
+                        .addGap(49, 49, 49)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))))
+                        .addContainerGap()
+                        .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(59, 59, 59)
-                    .addComponent(labelTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(540, Short.MAX_VALUE)))
+                .addGap(568, 568, 568)
+                .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(labelCreatedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,23 +225,14 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelCreatedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(31, 31, 31))
-            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(42, 42, 42)
-                    .addComponent(labelTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(408, Short.MAX_VALUE)))
         );
 
         jPanel5.setBackground(new java.awt.Color(126, 186, 181));
@@ -304,6 +287,18 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         });
         jPanel5.add(btnSchedule);
 
+        btnCancelSchedule.setBackground(new java.awt.Color(255, 230, 236));
+        btnCancelSchedule.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        btnCancelSchedule.setForeground(new java.awt.Color(0, 51, 153));
+        btnCancelSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/send.png"))); // NOI18N
+        btnCancelSchedule.setText("HỦY LỊCH HẸN");
+        btnCancelSchedule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelScheduleActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnCancelSchedule);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -346,7 +341,23 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnConfirmScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmScheduleActionPerformed
-
+        String[] options = {"Xác nhận", "Hủy"};
+        int output = JOptionPane.showOptionDialog(this,
+                "Bạn muốn hoàn tất bài viết?", "Hoàn tất",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        if (output == JOptionPane.YES_OPTION) {
+            try {
+                post01.confirmSchedulePost();
+            } catch (SQLException ex) {
+                Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Hoàn tất bài viết!");
+        } else if (output == JOptionPane.NO_OPTION) {
+            System.out.println("No selected.");
+        }
     }//GEN-LAST:event_btnConfirmScheduleActionPerformed
 
     private void btnScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnScheduleActionPerformed
@@ -364,6 +375,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
                 Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
             new thongTinDatHen(new user(post01.getOwnerId())).setVisible(true);
+            JOptionPane.showMessageDialog(this, "Đặt hẹn thành công!");
         } else if (output == JOptionPane.NO_OPTION) {
             System.out.println("No selected.");
         }
@@ -376,7 +388,6 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         if (output == JOptionPane.YES_OPTION) {
-            //chuyển hướng sang trang sửa bài viết
             chuyenManHinhController.setView(new suaBaiVietJPanel(post01));
         } else if (output == JOptionPane.NO_OPTION) {
             System.out.println("No selected.");
@@ -388,24 +399,38 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void labelImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImageMouseClicked
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-        if (f != null) {
-            System.out.println(f);
-            scaleImage(f.toString(), labelImage);//render ảnh vào label
-        }
+
     }//GEN-LAST:event_labelImageMouseClicked
+
+    private void btnCancelScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelScheduleActionPerformed
+        String[] options = {"Xác nhận", "Hủy"};
+        int output = JOptionPane.showOptionDialog(this,
+                "Bạn muốn hủy hẹn với chủ bài viết?", "Hủy hẹn",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        if (output == JOptionPane.YES_OPTION) {
+            try {
+                post01.cancelSchedulingPost();
+            } catch (SQLException ex) {
+                Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            JOptionPane.showMessageDialog(this, "Hủy hẹn thành công!");
+        } else if (output == JOptionPane.NO_OPTION) {
+            System.out.println("No selected.");
+        }
+    }//GEN-LAST:event_btnCancelScheduleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelSchedule;
     private javax.swing.JButton btnConfirmSchedule;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnSchedule;
     private javax.swing.JPanel heading;
     private javax.swing.JButton jButton12;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
@@ -415,6 +440,5 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel labelPath;
     private javax.swing.JLabel labelStatus;
     private javax.swing.JLabel labelTitle;
-    private javax.swing.JLabel labelTitle1;
     // End of variables declaration//GEN-END:variables
 }

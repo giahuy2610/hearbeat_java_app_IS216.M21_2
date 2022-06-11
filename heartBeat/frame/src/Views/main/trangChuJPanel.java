@@ -34,6 +34,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
     private ArrayList<String> postContent = new ArrayList<String>();
     private ArrayList<String> postPurpose = new ArrayList<String>();
     private ArrayList<String> postCreatedOn = new ArrayList<String>();
+    private ArrayList<byte[]> postImage = new ArrayList<byte[]>();
 
     protected Connection conn = null;
 
@@ -95,7 +96,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             container.removeAll();
-
+            
             postId.removeAll(postId);
             postTitle.removeAll(postTitle);
             postCategory.removeAll(postCategory);
@@ -110,13 +111,14 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 postContent.add(rs.getString("content"));
                 postCreatedOn.add(rs.getString("createdon"));
                 postPurpose.add(rs.getString("purposeid"));
+                postImage.add(rs.getBytes("imagepath"));
                 System.out.println("1 bài viết " + rs.getString("title") + " " + rs.getString("content"));
                 count++;
             }
             conn.close();
 
             for (int i = 0; i < count; i++) {
-                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i));
+                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i), postImage.get(i));
                 if (i % 2 == 0) {
                     x.changeBackgroundColor(postColor1);
                 } else {

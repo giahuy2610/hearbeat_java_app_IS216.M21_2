@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.sql.CallableStatement;
 import javax.swing.JFileChooser;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -113,11 +114,11 @@ public class testStoreImage  extends javax.swing.JFrame {
         Connection con = null;
         try {
             con = OracleConnUtils.getOracleConnection();
-            String q = "INSERT INTO TEMP(ID, IMG) VALUES (5,?)";
-            PreparedStatement ps=con.prepareStatement(q);
+            String q = "{call p_insertTest(?)}";
+            CallableStatement ps=con.prepareCall(q);
             FileInputStream is = new FileInputStream(a);
             ps.setBinaryStream(1,  is);
-            rs = ps.executeUpdate();
+            ps.execute();
         } catch (ClassNotFoundException | SQLException e){
             System.out.println(e);
         } catch (FileNotFoundException ex) {
@@ -131,7 +132,7 @@ public class testStoreImage  extends javax.swing.JFrame {
         Connection con = null;
         try {
             con = OracleConnUtils.getOracleConnection();
-            String q = "SELECT * FROM TEMP WHERE ID = 5";
+            String q = "SELECT * FROM TEMP WHERE ID = 10";
             Statement statement = con.prepareStatement(q);
             ResultSet rs;
             rs = statement.executeQuery(q);

@@ -14,9 +14,12 @@ import Process.post;
 import Process.postCategory;
 import Process.postPurpose;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 /**
  *
@@ -24,11 +27,9 @@ import javax.swing.JFileChooser;
  */
 public class themBaiVietJPanel extends javax.swing.JPanel {
 
-    String pathImage = "";
+    File pathImage;
 
     //hàm resize ảnh
-
-
     private void changeEnableButton() {
         // nếu người dùng chọn danh mục và mục đích rồi mới cho đăng bài viết
         if (purposeFilter.getSelectedIndex() != 0 && categoryFilter.getSelectedIndex() != 0) {
@@ -68,7 +69,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         purposeFilter = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        labelImage = new javax.swing.JLabel();
         postBtn = new javax.swing.JButton();
         categoryFilter = new javax.swing.JComboBox<>();
 
@@ -139,14 +140,17 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(0, 51, 153));
         jLabel6.setText("Hình ảnh");
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
-        jLabel7.setToolTipText("");
-        jLabel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelImage.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        labelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
+        labelImage.setToolTipText("");
+        labelImage.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        labelImage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel7MouseClicked(evt);
+                labelImageMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelImageMousePressed(evt);
             }
         });
 
@@ -194,7 +198,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(postContent, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(postBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(78, 78, 78))
@@ -239,7 +243,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                                 .addGap(111, 111, 111))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(19, 19, 19))))))
         );
 
@@ -262,23 +266,21 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
     private void postBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postBtnActionPerformed
         try {
             post.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()), pathImage);
-            try {
-                String query = "select max(postid) as maxPostId from tb_post where ownerid = " + mainFrame.currentUser.getUserId();
 
-                try ( Connection conn = OracleConnUtils.getOracleConnection()) {
-                    Statement stmt = conn.createStatement();
-                    ResultSet rs = stmt.executeQuery(query);
+            String query = "select max(postid) as maxPostId from tb_post where ownerid = " + mainFrame.currentUser.getUserId();
 
-                    while (rs.next()) {
-                        chuyenManHinhController.setView(new chiTietBaiVietJPanel(rs.getString("maxPostId")));
-                    }
+            try ( Connection conn = OracleConnUtils.getOracleConnection()) {
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    chuyenManHinhController.setView(new chiTietBaiVietJPanel(rs.getString("maxPostId")));
                 }
-            } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(postCategory.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
+
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_postBtnActionPerformed
@@ -300,16 +302,25 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         changeEnableButton();
     }//GEN-LAST:event_categoryFilterActionPerformed
 
-    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+    private void labelImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImageMouseClicked
+
+
+    }//GEN-LAST:event_labelImageMouseClicked
+
+    private void labelImageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImageMousePressed
         JFileChooser chooser = new JFileChooser();
+
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGE", "png", "jpg", "jpeg");
+        chooser.addChoosableFileFilter(fnef);
+
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
+        pathImage = f;
         if (f != null) {
-            this.pathImage = f.toString();
-            scaleImage(pathImage, jLabel7);            
+            System.out.println(f);
+            scaleImage(f.toString(), labelImage);//render ảnh vào label
         }
-
-    }//GEN-LAST:event_jLabel7MouseClicked
+    }//GEN-LAST:event_labelImageMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> categoryFilter;
@@ -320,10 +331,10 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldTieuDe;
     private keeptoo.KGradientPanel kGradientPanel2;
+    private javax.swing.JLabel labelImage;
     private javax.swing.JButton postBtn;
     private javax.swing.JTextField postContent;
     private javax.swing.JComboBox<String> purposeFilter;

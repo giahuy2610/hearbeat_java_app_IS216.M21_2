@@ -71,7 +71,7 @@
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel7" min="-2" pref="127" max="-2" attributes="0"/>
+                          <Component id="labelImage" min="-2" pref="127" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -84,25 +84,34 @@
                       <Component id="cbCity" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="fieldLastName" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="fieldEmail" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="cbDistrict" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel13" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="jLabel14" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="fieldAddress" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="jLabel11" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="cbGender" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="jLabel21" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                      <Component id="fieldDateOfBirth" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                  <Component id="fieldLastName" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="jLabel6" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="fieldEmail" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Component id="jLabel8" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="cbDistrict" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="labelCountPostComplete" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jLabel13" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="jLabel14" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="fieldAddress" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="jLabel11" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="cbGender" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="jLabel21" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="fieldDateOfBirth" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="labelCountPost" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               </Group>
@@ -112,7 +121,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="15" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -127,9 +136,15 @@
                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="fieldAddress" min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="labelCountPost" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelCountPostComplete" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel7" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="labelImage" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="labelUserId" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
@@ -421,7 +436,7 @@
             <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="fieldDateOfBirthPropertyChange"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel7">
+        <Component class="javax.swing.JLabel" name="labelImage">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -434,6 +449,24 @@
                 </LineBorder>
               </Border>
             </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelCountPost">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="S&#x1ed1; b&#xe0;i vi&#x1ebf;t: 0"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelCountPostComplete">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="4"/>
+            <Property name="text" type="java.lang.String" value="S&#x1ed1; b&#xe0;i vi&#x1ebf;t th&#xe0;nh c&#xf4;ng: 0"/>
           </Properties>
         </Component>
       </SubComponents>
