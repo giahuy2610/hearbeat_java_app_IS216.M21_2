@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Views.main;
+package Views.danhChoAdmin;
 
 import Views.danhChoAdmin.danhChoAdminJPanel_QLND;
 import Views.danhChoAdmin.danhChoAdminJPanel_QLBD;
 import Views.danhChoAdmin.danhChoAdminJPanel_Report;
+import Views.main.danhMucBean;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -73,6 +74,7 @@ public class chuyenManHinhAdmin {
                     break;
                 case "Report":
                     node = new danhChoAdminJPanel_Report();
+                    break;
                 default:
                     break;
             }

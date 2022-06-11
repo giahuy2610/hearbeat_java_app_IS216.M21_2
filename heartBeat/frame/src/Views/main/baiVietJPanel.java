@@ -57,7 +57,7 @@ public class baiVietJPanel extends javax.swing.JPanel {
         byte[] imagedata = image;
         if (imagedata != null) {
             ImageIcon format = new ImageIcon(imagedata);
-            Image resize = imageHelper.reSize(format.getImage(), 166, 110);
+            Image resize = imageHelper.reSize(format.getImage(), 130, 120);
             labelImageMini.setIcon(new ImageIcon(resize));
         }
     }

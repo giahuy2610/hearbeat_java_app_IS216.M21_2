@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.sql.CallableStatement;
 import javax.swing.JFileChooser;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Statement;

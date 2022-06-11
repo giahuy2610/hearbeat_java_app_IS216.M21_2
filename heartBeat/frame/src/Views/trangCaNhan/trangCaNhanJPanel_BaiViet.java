@@ -37,7 +37,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         if (firstFill == 0) {
             query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId();
         } else {
-            query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId() + " and ( upper(title) like upper('%" + searchField.getText() + "%') )";
+            query = "select * from  tb_post where ownerid = " + mainFrame.currentUser.getUserId() + " and ( upper(title) like upper('%" + searchField.getText() + "%') or upper(content) like upper('%" + searchField.getText() + "%'))";
         }
 
         if (postStatusFilter != null) {
@@ -58,6 +58,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
 
     public trangCaNhanJPanel_BaiViet() {
         initComponents();
+        firstFill = 0;
         sort.prepareSortFilter(postSortFilter);
         postSortFilter.setSelectedIndex(0);
         this.preparePost();

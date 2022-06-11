@@ -462,6 +462,14 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                 tableUserMousePressed(evt);
             }
         });
+        tableUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tableUserKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tableUserKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(tableUser);
         if (tableUser.getColumnModel().getColumnCount() > 0) {
             tableUser.getColumnModel().getColumn(0).setMaxWidth(40);
@@ -742,7 +750,6 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
         fieldLastName.setText(user01.getLastName());
 
@@ -881,6 +888,93 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         if (cbCity.getSelectedIndex() > 0)
             districtIdUser = district.prepareDistrictFilter(cbCity, cbDistrict);
     }//GEN-LAST:event_cbCityActionPerformed
+
+    private void tableUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableUserKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableUserKeyPressed
+
+    private void tableUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableUserKeyReleased
+        selectedBtn = "";
+        enableAllBtn();
+
+        DefaultTableModel tblModel = (DefaultTableModel) tableUser.getModel();
+
+        String selectedUser = tblModel.getValueAt(tableUser.getSelectedRow(), 0).toString();//số 0 là số thứ tự cột
+        user01 = new user(selectedUser);
+        labelUserId.setText("Mã: " + user01.getUserId());
+        labelRole.setText("Vai trò: " + (user01.getRoleId().equals("1") ? "Người dùng" : "Quản trị viên"));
+        labelScore.setText("Điểm: " + user01.getScore());
+        labelCreatedOn.setText("Ngày tạo: " + user01.getCreatedOn());
+        labelStatus.setText("Tình trạng: " + (user01.getIsDeleted().equals("0") ? "Khả dụng" : "Đã xóa"));
+
+        Statement stmt;
+        try {
+            stmt = OracleConnUtils.getOracleConnection().createStatement();
+            ResultSet rs = stmt.executeQuery("select count(postid) as countP from tb_post where ownerid = " + user01.getUserId());
+            while (rs.next()) {
+                labelCountPost.setText("Số bài viết: " + rs.getString("countP"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            stmt = OracleConnUtils.getOracleConnection().createStatement();
+            ResultSet rs = stmt.executeQuery("select count(postid) as countP from tb_post where statusid = 3 and ownerid = " + user01.getUserId());
+            while (rs.next()) {
+                labelCountPostComplete.setText("Số bài viết thành công: " + rs.getString("countP"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        fieldLastName.setText(user01.getLastName());
+
+        fieldFirstName.setText(user01.getFirstName());
+        fieldDateOfBirth.setDateFormatString("dd/MM/yyyy");
+        fieldDateOfBirth.setDate(user01.getDateOfBirth());
+        fieldPhone.setText(user01.getPhone());
+        fieldEmail.setText(user01.getEmail());
+
+        //load ảnh
+        byte[] imagedata = user01.getAvatar();
+        if (imagedata != null) {
+            ImageIcon format = new ImageIcon(imagedata);
+            Image resize = imageHelper.reSize(format.getImage(), 130, 130);
+            labelImage.setIcon(new ImageIcon(resize));
+        } else {
+            labelImage.setIcon(new ImageIcon(getClass().getResource("/Resource/images/size.png")));
+        }
+
+        cbGender.setSelectedIndex(Integer.parseInt(user01.getGender()) - 1);
+
+        if (fieldAddress != null) {
+            fieldAddress.setText(user01.getAddress());
+        }
+        if (user01.getCity() != null) {
+            cbCity.setSelectedIndex(Integer.parseInt(user01.getCity()));
+        } else {
+            cbCity.setSelectedIndex(0);
+        }
+        if (user01.getDistrict() != null) {
+            districtIdUser = district.prepareDistrictFilter(cbCity, cbDistrict);
+            cbDistrict.setSelectedIndex(districtIdUser.indexOf(user01.getDistrict()));
+        } else {
+            cbDistrict.setSelectedIndex(0);
+        }
+
+        //nếu người dùng đã bị xóa tài khoản thì có thể khôi phục lại
+        if (user01.getIsDeleted().equals("1")) {
+            btnDeleteUser.setText("Khôi phục");
+        } else {
+            btnDeleteUser.setText("Xóa");
+        }
+
+    }//GEN-LAST:event_tableUserKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

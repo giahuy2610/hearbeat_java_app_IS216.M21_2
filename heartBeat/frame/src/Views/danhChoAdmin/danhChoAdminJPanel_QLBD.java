@@ -141,6 +141,8 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         labelIsDeleted = new javax.swing.JLabel();
         cbPurpose = new javax.swing.JComboBox<>();
         labelStatus = new javax.swing.JLabel();
+        labelOwner = new javax.swing.JLabel();
+        labelPartner = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableUser = new javax.swing.JTable();
@@ -217,6 +219,12 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         labelStatus.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         labelStatus.setText("Trạng thái bài viết");
 
+        labelOwner.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        labelOwner.setText("ID Chủ bài viết:");
+
+        labelPartner.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        labelPartner.setText("ID Người hẹn:");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -226,7 +234,24 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(labelPartner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(labelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(51, 51, 51)
+                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(labelOwner, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(fieldContent, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelCreatedOn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -238,22 +263,13 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(39, 39, 39)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelPurpose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbPurpose, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(labelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(51, 51, 51)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(fieldContent, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fieldTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelPurpose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(569, 569, 569))
+                            .addComponent(cbPurpose, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,10 +280,8 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
                         .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelUserId)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelCreatedOn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelIsDeleted))
+                        .addGap(10, 10, 10)
+                        .addComponent(labelCreatedOn))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -292,9 +306,14 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cbPurpose, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(17, 17, 17)
-                .addComponent(labelStatus)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelIsDeleted)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelStatus)
+                    .addComponent(labelPartner)
+                    .addComponent(labelOwner))
+                .addGap(25, 25, 25))
         );
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -314,6 +333,11 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tableUserMousePressed(evt);
+            }
+        });
+        tableUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tableUserKeyReleased(evt);
             }
         });
         jScrollPane2.setViewportView(tableUser);
@@ -557,18 +581,22 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         labelCreatedOn.setText("Ngày tạo: " + post01.getCreatedOn());
         labelIsDeleted.setText("Tình trạng: " + (post01.getIsDeleted().equals("0") ? "Khả dụng" : "Đã xóa"));
         labelStatus.setText("Trạng thái bài viết: " + getStatusNameFromId(post01.getStatusId()));
-
+        labelOwner.setText("ID Chủ bài viết: " + post01.getOwnerId());
+        if (post01.getPartnerId() != null) {
+            labelPartner.setText("ID Người hẹn: " + post01.getPartnerId());
+        } else {
+            labelPartner.setText("ID Người hẹn: ");
+        }
         //load ảnh
         byte[] imagedata = post01.getImagePath();
         if (imagedata != null) {
             ImageIcon format = new ImageIcon(imagedata);
             Image resize = imageHelper.reSize(format.getImage(), 130, 130);
             labelImage.setIcon(new ImageIcon(resize));
-        }
-        else {
+        } else {
             labelImage.setIcon(new ImageIcon(getClass().getResource("/Resource/images/size.png")));
         }
-        
+
         fieldContent.setText(post01.getContent());
 
         fieldTitle.setText(post01.getTitle());
@@ -627,6 +655,49 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
 
     }//GEN-LAST:event_cbPurposeActionPerformed
 
+    private void tableUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableUserKeyReleased
+        selectedBtn = "";
+        enableAllBtn();
+
+        DefaultTableModel tblModel = (DefaultTableModel) tableUser.getModel();
+
+        String selectedUser = tblModel.getValueAt(tableUser.getSelectedRow(), 0).toString();//số 0 là số thứ tự cột
+        post01 = new post(selectedUser);
+        labelUserId.setText("Mã: " + post01.getPostId());
+        labelCreatedOn.setText("Ngày tạo: " + post01.getCreatedOn());
+        labelIsDeleted.setText("Tình trạng: " + (post01.getIsDeleted().equals("0") ? "Khả dụng" : "Đã xóa"));
+        labelStatus.setText("Trạng thái bài viết: " + getStatusNameFromId(post01.getStatusId()));
+        labelOwner.setText("ID Chủ bài viết: " + post01.getOwnerId());
+        if (post01.getPartnerId() != null) {
+            labelPartner.setText("ID Người hẹn: " + post01.getPartnerId());
+        } else {
+            labelPartner.setText("ID Người hẹn: Chưa có");
+        }
+        //load ảnh
+        byte[] imagedata = post01.getImagePath();
+        if (imagedata != null) {
+            ImageIcon format = new ImageIcon(imagedata);
+            Image resize = imageHelper.reSize(format.getImage(), 130, 130);
+            labelImage.setIcon(new ImageIcon(resize));
+        } else {
+            labelImage.setIcon(new ImageIcon(getClass().getResource("/Resource/images/size.png")));
+        }
+
+        fieldContent.setText(post01.getContent());
+
+        fieldTitle.setText(post01.getTitle());
+        cbCategory.setSelectedIndex(Integer.valueOf(post01.getCategoryId()));
+        cbPurpose.setSelectedIndex(Integer.valueOf(post01.getPurposeId()));
+        System.out.println("Category " + post01.getCategoryId());
+        //nếu người dùng đã bị xóa tài khoản thì có thể khôi phục lại
+        if (post01.getIsDeleted().equals("1")) {
+            btnDeletePost.setText("Khôi phục");
+        } else {
+            btnDeletePost.setText("Xóa");
+        }
+
+    }//GEN-LAST:event_tableUserKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddPost;
@@ -650,6 +721,8 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
     private javax.swing.JLabel labelCreatedOn;
     private javax.swing.JLabel labelImage;
     private javax.swing.JLabel labelIsDeleted;
+    private javax.swing.JLabel labelOwner;
+    private javax.swing.JLabel labelPartner;
     private javax.swing.JLabel labelPurpose;
     private javax.swing.JLabel labelStatus;
     private javax.swing.JLabel labelUserId;

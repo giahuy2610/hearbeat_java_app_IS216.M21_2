@@ -6,7 +6,6 @@ package Views.trangCaNhan;
 
 import static Process.image.scaleImage;
 import Views.logIn_sigIn.quenMatKhau;
-import Views.main.chuyenManHinhProfile;
 import Views.main.danhMucBean;
 import Views.main.imageHelper;
 import Views.main.mainFrame;

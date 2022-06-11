@@ -57,11 +57,35 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="labelStatus" min="-2" pref="214" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="jLabel2" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                          <Component id="cbCategory" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                          <Component id="labelPartner" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Component id="labelCategory" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Component id="jLabel14" min="-2" pref="200" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="labelOwner" min="-2" pref="200" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Component id="fieldContent" alignment="0" min="-2" pref="464" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labelCreatedOn" alignment="0" max="32767" attributes="0"/>
                               <Component id="labelIsDeleted" alignment="0" max="32767" attributes="0"/>
@@ -75,27 +99,16 @@
                           </Group>
                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel3" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="fieldTitle" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="labelPurpose" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel3" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="fieldTitle" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="labelPurpose" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="569" pref="569" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="cbPurpose" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="55" pref="55" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jLabel2" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                          <Component id="cbCategory" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="labelCategory" min="-2" pref="200" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" min="-2" pref="200" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="fieldContent" alignment="0" min="-2" pref="464" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -110,10 +123,8 @@
                           <Component id="labelImage" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="labelUserId" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           <Component id="labelCreatedOn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="labelIsDeleted" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -148,9 +159,15 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                  <Component id="labelStatus" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="labelIsDeleted" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelPartner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelOwner" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -302,6 +319,22 @@
             <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i b&#xe0;i vi&#x1ebf;t"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="labelOwner">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="ID Ch&#x1ee7; b&#xe0;i vi&#x1ebf;t:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelPartner">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="ID Ng&#x1b0;&#x1edd;i h&#x1eb9;n:"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -378,6 +411,7 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableUserMouseClicked"/>
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableUserMousePressed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tableUserKeyReleased"/>
               </Events>
             </Component>
           </SubComponents>

@@ -2,10 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Views.main;
+package Views.trangCaNhan;
 
-import Views.trangCaNhan.trangCaNhanJPanel_ThongTin;
-import Views.trangCaNhan.trangCaNhanJPanel_BaiViet;
+import Views.main.danhMucBean;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

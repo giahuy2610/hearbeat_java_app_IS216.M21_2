@@ -429,7 +429,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_sortFilterActionPerformed
 
     private void categoryFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryFilterActionPerformed
-        //System.out.println("city " + cityFilter.getSelectedIndex() + " district " + districtFilter.getSelectedIndex() + " category " + categoryFilter.getSelectedIndex());
+
         this.preparePost();
     }//GEN-LAST:event_categoryFilterActionPerformed
 

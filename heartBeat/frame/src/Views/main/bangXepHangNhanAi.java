@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Views.danhChoAdmin;
+package Views.main;
 
 /**
  *
  * @author giahu
  */
-public class danhChoAdminJPanel_Report extends javax.swing.JPanel {
+public class bangXepHangNhanAi extends javax.swing.JPanel {
 
     /**
-     * Creates new form danhChoAdminJPanel_Report
+     * Creates new form bangXepHangNhanAi
      */
-    public danhChoAdminJPanel_Report() {
+    public bangXepHangNhanAi() {
         initComponents();
     }
 
