@@ -73,7 +73,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jbtnQLBD" min="-2" pref="325" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jbtnQLSK" pref="330" max="32767" attributes="0"/>
+                  <Component id="jbtnReport" pref="330" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -85,7 +85,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jbtnQLND" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jbtnQLBD" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="jbtnQLSK" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="jbtnReport" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -124,7 +124,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jbtnQLSK">
+        <Component class="javax.swing.JButton" name="jbtnReport">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="0" type="rgb"/>
@@ -140,7 +140,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnQLSKActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnReportActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

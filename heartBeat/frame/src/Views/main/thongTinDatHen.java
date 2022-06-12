@@ -4,26 +4,38 @@
  */
 package Views.main;
 
+import Process.city;
+import Process.district;
 import Process.user;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author giahu
  */
 public class thongTinDatHen extends javax.swing.JFrame {
+
     private user user01;
+
     /**
      * Creates new form thongTinDatHen
      */
-    private void loadData() {
+    private void loadData() throws SQLException, ClassNotFoundException {
         labelName.setText(user01.getLastName());
         labelPhone.setText(user01.getPhone());
-        labelAddress.setText(user01.getAddress());
-        labelCity.setText(user01.getCity());
-        labelDistrict.setText(user01.getCity());
+        if (user01.getAddress() != null) {
+            labelAddress.setText(user01.getAddress());
+        }
+        if (user01.getCity() != null) {
+            labelCity.setText(city.getCityNameFromCityId(user01.getCity()));
+        }
+        if (user01.getDistrict() != null) {
+            labelDistrict.setText(district.getDistrictNameFromCityId(user01.getDistrict()));
+        }
     }
-    
-    public thongTinDatHen(user userTemp) {
+
+    public thongTinDatHen(user userTemp) throws SQLException, ClassNotFoundException {
         initComponents();
         user01 = userTemp;
         loadData();
@@ -72,35 +84,35 @@ public class thongTinDatHen extends javax.swing.JFrame {
         jLabel2.setText("Người dùng");
 
         labelName.setForeground(new java.awt.Color(0, 51, 153));
-        labelName.setText("Người dùng");
+        labelName.setText("liên hệ");
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 153));
         jLabel6.setText("Điện thoại");
 
         labelPhone.setForeground(new java.awt.Color(0, 51, 153));
-        labelPhone.setText("Người dùng");
+        labelPhone.setText("liên hệ");
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 153));
         jLabel8.setText("Thành phố");
 
         labelCity.setForeground(new java.awt.Color(0, 51, 153));
-        labelCity.setText("Người dùng");
+        labelCity.setText("liên hệ");
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 51, 153));
         jLabel10.setText("Quận");
 
         labelDistrict.setForeground(new java.awt.Color(0, 51, 153));
-        labelDistrict.setText("Người dùng");
+        labelDistrict.setText("liên hệ");
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 51, 153));
         jLabel12.setText("Địa chỉ");
 
         labelAddress.setForeground(new java.awt.Color(0, 51, 153));
-        labelAddress.setText("Người dùng");
+        labelAddress.setText("liên hệ");
 
         jButton1.setText("Đã lưu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -121,10 +133,10 @@ public class thongTinDatHen extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(labelCity, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                        .addComponent(labelCity, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                         .addGap(66, 66, 66))
                     .addComponent(labelName, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,6 +207,7 @@ public class thongTinDatHen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
+        JOptionPane.showMessageDialog(this, "Đặt hẹn thành công!");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

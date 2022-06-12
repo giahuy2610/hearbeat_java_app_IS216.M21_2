@@ -53,15 +53,16 @@ public class nhapEmail extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(450, 260));
         getContentPane().setLayout(new java.awt.CardLayout());
 
         panel_nhap_ma.setkEndColor(new java.awt.Color(153, 153, 255));
         panel_nhap_ma.setkStartColor(new java.awt.Color(238, 156, 167));
-        panel_nhap_ma.setPreferredSize(new java.awt.Dimension(450, 600));
+        panel_nhap_ma.setPreferredSize(new java.awt.Dimension(450, 250));
         panel_nhap_ma.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Nhập email tài khoản:");
+        jLabel1.setText("Nhập email tài khoản");
         panel_nhap_ma.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 130, 20));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {

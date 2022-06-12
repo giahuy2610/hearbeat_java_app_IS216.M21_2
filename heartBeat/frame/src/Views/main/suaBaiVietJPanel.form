@@ -85,7 +85,7 @@
               <Color blue="99" green="33" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="TH&#xca;M B&#xc0;I VI&#x1ebe;T"/>
+            <Property name="text" type="java.lang.String" value="S&#x1eec;A B&#xc0;I VI&#x1ebe;T"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -102,7 +102,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jLabel2" max="32767" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jTextFieldTieuDe" min="-2" pref="700" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jLabel6" min="-2" pref="110" max="-2" attributes="0"/>
@@ -326,9 +331,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="33" red="0" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\giahu\Downloads\send.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>

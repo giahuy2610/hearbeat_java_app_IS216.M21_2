@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/danhChoAdmin/danhChoAdminJPanel_QLND.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/ConnectDB/OracleConnUtils.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/danhChoAdmin/danhChoAdminJPanel.java</file>
@@ -12,6 +13,12 @@
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/danhChoAdmin/danhChoAdminJPanel_QLSK.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Views/main/mainFrame.java</file>
             <file>file:/D:/HOC_KI_4/JAVA/JAVAPROJECT/java_IS216.M21_2/heartBeat/frame/src/Process/post.java</file>
+=======
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/HK4/java_IS216.M21_2/heartBeat/frame/src/Views/main/mainFrame.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/HK4/java_IS216.M21_2/heartBeat/frame/src/Views/danhChoAdmin/danhChoAdminJPanel_QLBD.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/HK4/java_IS216.M21_2/heartBeat/frame/src/Views/danhChoAdmin/danhChoAdminJPanel_Report.java</file>
+            <file>file:/C:/Users/giahu/OneDrive/Máy%20tính/HK4/java_IS216.M21_2/heartBeat/frame/src/Views/main/chiTietBaiVietJPanel.java</file>
+>>>>>>> c957a0521e932b181745f5bd09f486f011a8bada
         </group>
     </open-files>
 </project-private>

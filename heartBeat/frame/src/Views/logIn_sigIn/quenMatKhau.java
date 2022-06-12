@@ -88,6 +88,8 @@ public class quenMatKhau extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLayeredPane1.setPreferredSize(new java.awt.Dimension(450, 260));
+        jLayeredPane1.setRequestFocusEnabled(false);
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
         panel_nhap_ma.setkEndColor(new java.awt.Color(153, 153, 255));
@@ -95,7 +97,7 @@ public class quenMatKhau extends javax.swing.JFrame {
         panel_nhap_ma.setPreferredSize(new java.awt.Dimension(450, 600));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Mã khôi phục:");
+        jLabel1.setText("Mã khôi phục");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +183,7 @@ public class quenMatKhau extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1)
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
