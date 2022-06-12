@@ -4,9 +4,16 @@
  */
 package Views.danhChoAdmin;
 
+import ConnectDB.OracleConnUtils;
 import Views.main.danhMucBean;
+import com.sun.jdi.connect.spi.Connection;
+import java.beans.Statement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.jfree.data.general.DefaultPieDataset;
 
 /**
  *
@@ -73,10 +80,7 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
         jbtnQLBD.setText("Quản lý bài đăng");
         jbtnQLBD.setBorder(new javax.swing.border.MatteBorder(null));
 
-        jbtnReport.setBackground(new java.awt.Color(0, 204, 255));
-        jbtnReport.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jbtnReport.setText("Báo cáo");
-        jbtnReport.setBorder(new javax.swing.border.MatteBorder(null));
+        jbtnReport.setText("jButton1");
         jbtnReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnReportActionPerformed(evt);
@@ -92,9 +96,9 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
                 .addComponent(jbtnQLND, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbtnQLBD, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtnReport, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(59, 59, 59)
+                .addComponent(jbtnReport)
+                .addContainerGap(214, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,8 +106,11 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnQLND, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnQLBD, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jbtnQLBD, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jbtnReport)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -122,18 +129,37 @@ public class danhChoAdminJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
-    private void jbtnQLSKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnQLSKActionPerformed
-
-
-
-
-
-=======
     private void jbtnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnReportActionPerformed
->>>>>>> 9058c51ac2272ac22812f41e52ebe05b8df9e54d
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+            
+            
+            DefaultPieDataset dataset = new DefaultPieDataset();
+            Connection conn = (Connection) OracleConnUtils.getOracleConnection();
+  Statement st1;
+  
+  
+//            st1 = conn.createStatement();
+     
+          
+            
+         
+             
+            }
+            
+        catch(ClassNotFoundException | SQLException e)
+                {
+                }
+        
     }//GEN-LAST:event_jbtnReportActionPerformed
+
+
+    private void jbtnQLSKActionPerformed(java.awt.event.ActionEvent evt) {                                         
+
+
+}
+
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

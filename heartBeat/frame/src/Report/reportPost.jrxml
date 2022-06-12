@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bf7b71ef-d2b3-43f5-aaf8-eedf269e0478">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="parameter1" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT FIRSTNAME || ' ' || LASTNAME AS HoTen,USERID,  PHONE, EMAIL, SCORE, POSTID, TB_POST.CREATEDON, TITLE , CONTENT
+FROM TB_USER JOIN TB_POST ON TB_USER.USERID = TB_POST.OWNERID
+WHERE USERID = $P{parameter1}]]>
+	</queryString>
+	<field name="HOTEN" class="java.lang.String"/>
+	<field name="USERID" class="java.math.BigDecimal"/>
+	<field name="PHONE" class="java.lang.String"/>
+	<field name="EMAIL" class="java.lang.String"/>
+	<field name="SCORE" class="java.math.BigDecimal"/>
+	<field name="POSTID" class="java.math.BigDecimal"/>
+	<field name="CREATEDON" class="java.sql.Timestamp"/>
+	<field name="TITLE" class="java.lang.String"/>
+	<field name="CONTENT" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="185" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="131" y="62" width="467" height="0" uuid="d373fcc1-f086-45bf-bbb1-47aab3aacf9e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="30" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[BẢNG CHI TIẾT BÀI VIẾT NGƯỜI DÙNG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="266" y="0" width="227" height="22" uuid="15ec3b1f-dd5a-49c8-9201-665b215fe479"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Tổ chức từ thiện Heartbeat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="62" width="451" height="43" uuid="4383eaf9-9b7a-4966-bed2-3955f8111977"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BẢNG CHI TIẾT BÀI VIẾT NGƯỜI DÙNG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="42" width="100" height="20" uuid="eaf0af2a-b24e-4555-b305-add92e0d9cae"/>
+				<text><![CDATA[SDT: 0703264721]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="22" width="172" height="20" uuid="6f508544-53c4-4648-977b-fe6b7f77b0fc"/>
+				<text><![CDATA[47 Linh trung - Thủ Đức - TP HCM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="266" y="125" width="219" height="20" uuid="ba39d559-4fd5-46e6-afc1-ccd805daae3c"/>
+				<textFieldExpression><![CDATA[$F{HOTEN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="266" y="105" width="100" height="20" uuid="cd630719-7f1e-4a51-88c6-b26d0081ea27"/>
+				<textFieldExpression><![CDATA[$F{USERID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="142" y="125" width="107" height="20" uuid="55b4f0e6-d4de-45ff-b43a-641776be7259"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tên người dùng]]></text>
+			</staticText>
+			<image>
+				<reportElement x="37" y="0" width="94" height="85" uuid="7e65acff-398d-473a-9143-295deb7576b9"/>
+				<imageExpression><![CDATA["D:\\HOC_KI_4\\JAVA\\JAVAPROJECT\\java_IS216.M21_2\\heartBeat\\frame\\src\\Resource\\images\\backgroud.png"]]></imageExpression>
+			</image>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="663" y="85" width="139" height="20" forecolor="#736343" uuid="0944d24c-f601-4e64-b9b2-4e036b6190d5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="142" y="105" width="100" height="20" uuid="f3b997f3-15a3-4f63-8a3d-5e013f2f1889"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Mã người dùng]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="44" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="0453221f-6a4d-4ccf-86ec-ff97f525676d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="249" y="1" width="80" height="15" forecolor="#736343" uuid="887d8ffd-ae0c-4a05-be17-58dde198ffbf"/>
+				<text><![CDATA[Ngày tạo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="131" y="1" width="80" height="15" forecolor="#736343" uuid="11c18a90-a35b-44a9-93b2-422466a037d0"/>
+				<text><![CDATA[Mã bài viết]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="379" y="1" width="80" height="15" forecolor="#736343" uuid="be322d60-6e84-456b-a286-e657b768350c"/>
+				<text><![CDATA[Tiêu đề]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="518" y="1" width="284" height="15" forecolor="#736343" uuid="fc46067b-9ec7-4d94-9ace-6bb84a6a18a8"/>
+				<text><![CDATA[Nội dung]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="802" height="15" uuid="23bc180d-aa9f-4ac1-8df7-6d056aed1137"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="249" y="0" width="100" height="15" uuid="87515540-e3bb-4101-9f70-7ca322640e46"/>
+					<textFieldExpression><![CDATA[$F{CREATEDON}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="157" y="0" width="70" height="15" uuid="e58dbaa1-b667-4e5c-9b4a-54fb1b8a89da"/>
+					<textFieldExpression><![CDATA[$F{POSTID}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="379" y="0" width="128" height="15" uuid="5df5362e-b48e-49f8-8bd2-ac700afa402c"/>
+					<textFieldExpression><![CDATA[$F{TITLE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="518" y="0" width="284" height="15" uuid="39ff7b74-1d30-4d34-a65c-87fcb2bbb1fa"/>
+					<textFieldExpression><![CDATA[$F{CONTENT}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1" uuid="0ba3a6c3-bb82-46a1-bf8a-2fe546b1e7db"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="55431e31-7071-463f-851d-a45f1a5577fd"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="34f125b0-a5f1-43a5-bbc1-89530c5f3054"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="e8cbefa7-fca2-4d88-b507-b28fd5f285c3"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

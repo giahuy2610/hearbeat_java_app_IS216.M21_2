@@ -36,13 +36,11 @@ public class post {
     private byte[] imagePath;
     private String statusId;
 
-<<<<<<< HEAD
 
 
-    public static void themBaiViet(String postTitle, String postContent, String postCategoryId, String postPurposeId, String pathImage) throws SQLException, ClassNotFoundException {
-=======
+    
     public static void themBaiViet(String postTitle, String postContent, String postCategoryId, String postPurposeId,File postImage) throws SQLException, ClassNotFoundException, FileNotFoundException {
->>>>>>> 9058c51ac2272ac22812f41e52ebe05b8df9e54d
+
         Connection conn = OracleConnUtils.getOracleConnection();
         String query = "{call P_INSERT_POST_NEW(?,?,?,?,?,?)}";
         System.out.println(mainFrame.currentUser.getUserId());
