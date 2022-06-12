@@ -97,7 +97,7 @@ public class quenMatKhau extends javax.swing.JFrame {
         panel_nhap_ma.setPreferredSize(new java.awt.Dimension(450, 600));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Mã khôi phục:");
+        jLabel1.setText("Mã khôi phục");
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

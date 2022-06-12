@@ -50,9 +50,9 @@ public class district {
 
         } else {
             Connection conn = null;
-        
+
             try {
-                 conn = OracleConnUtils.getOracleConnection();
+                conn = OracleConnUtils.getOracleConnection();
             } catch (SQLException ex) {
                 Logger.getLogger(district.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -62,7 +62,7 @@ public class district {
             ArrayList<String> cityId = city.getCityId();
             String cityid_temp = cityId.get(cityFilter.getSelectedIndex());
             String query = "";
-            
+
             synchronized (query) {
                 query = "select * from tb_district where cityid = " + cityid_temp;
                 System.out.println(query);
@@ -72,21 +72,21 @@ public class district {
                 while (rs.next()) {
                     districtId.add(rs.getString("districtid"));
                     districtName.add(rs.getString("districtname"));
-                    
+
                 }
                 conn.close();
             } catch (SQLException e) {
                 System.out.println("lỗi khi truy vấn sql" + e.getMessage().toString());
             }
         }
-        
+
     }
 
     public static ArrayList<String> prepareDistrictFilter(JComboBox cityFilter, JComboBox districtFilter) {
-    
+
         districtFilter.removeAllItems();
         loadData(cityFilter);
-        
+
         for (String item : districtName) {
             districtFilter.addItem(item);
         }
@@ -94,4 +94,15 @@ public class district {
         return districtId;
     }
 
-}
+    public static String getDistrictNameFromCityId(String districtId) throws SQLException, ClassNotFoundException {
+        Connection conn = OracleConnUtils.getOracleConnection();
+        String query = "select districtname from tb_district where districtid = " + districtId;
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            return rs.getString("districtname");
+        }
+            return "";
+        }
+    
+    }

@@ -41,6 +41,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
     protected static JPanel container = new JPanel(new GridLayout(0, 1)); // 1 column variable;
 
     protected static String query = "";
+    private static int firstLoad = 0;
     private static int firstFill = 0;
 
     protected String initQuery() {
@@ -96,13 +97,14 @@ public class trangChuJPanel extends javax.swing.JPanel {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             container.removeAll();
-            
+
             postId.removeAll(postId);
             postTitle.removeAll(postTitle);
             postCategory.removeAll(postCategory);
             postContent.removeAll(postContent);
             postPurpose.removeAll(postPurpose);
             postCreatedOn.removeAll(postCreatedOn);
+            postImage.removeAll(postImage);
             int count = 0;
             while (rs.next()) {
                 postId.add(rs.getString("postid"));
@@ -125,7 +127,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
                     x.changeBackgroundColor(postColor2);
                 }
                 container.add(x);
-                System.out.println("2bài viết " + postTitle.get(i) + " - " + postContent.get(i));
+                
             }
             jScrollPane1.setViewportView(container);
             System.out.println("count " + Integer.toString(count));
@@ -154,6 +156,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
         sort.prepareSortFilter(sortFilter);
 
         this.preparePost();
+        firstLoad = 1;
     }
 
     public trangChuJPanel(int defaultSeletectedPurpose, int defaultSeletectedCategory) {
@@ -176,6 +179,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
         sort.prepareSortFilter(sortFilter);
 
         this.preparePost();
+        firstLoad = 1;
     }
 
     /**
@@ -425,15 +429,17 @@ public class trangChuJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sortFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortFilterActionPerformed
+        if (firstLoad != 0)
         this.preparePost();
     }//GEN-LAST:event_sortFilterActionPerformed
 
     private void categoryFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryFilterActionPerformed
-
+        if (firstLoad != 0)
         this.preparePost();
     }//GEN-LAST:event_categoryFilterActionPerformed
 
     private void purposeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purposeFilterActionPerformed
+        if (firstLoad != 0)
         this.preparePost();
     }//GEN-LAST:event_purposeFilterActionPerformed
 
@@ -449,12 +455,14 @@ public class trangChuJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_field_tim_kiemMousePressed
 
     private void districtFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtFilterActionPerformed
+        if (firstLoad != 0)
         this.preparePost();
     }//GEN-LAST:event_districtFilterActionPerformed
 
     private void cityFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityFilterActionPerformed
+        if (firstLoad != 0) {
         this.preparePost();
-        district.prepareDistrictFilter(cityFilter, districtFilter);
+        district.prepareDistrictFilter(cityFilter, districtFilter);}
     }//GEN-LAST:event_cityFilterActionPerformed
 
     private void btn_tim_kiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tim_kiemActionPerformed
@@ -484,7 +492,3 @@ public class trangChuJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> sortFilter;
     // End of variables declaration//GEN-END:variables
 }
-
-
-
-

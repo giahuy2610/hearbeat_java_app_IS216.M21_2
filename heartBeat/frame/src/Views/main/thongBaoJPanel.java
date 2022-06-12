@@ -36,14 +36,12 @@ public class thongBaoJPanel extends javax.swing.JPanel {
             String query = "";
             if (control.equals("all")) {
                 query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " order by createdon desc";
-            } 
-            else if (control.equals("searching")) {
+            } else if (control.equals("searching")) {
                 query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " and upper(content) like upper('%" + field_tim_kiem.getText() + "%') order by createdon desc ";
-            }
-            else {
+            } else {
                 query = "select * from tb_notification where userid = " + mainFrame.currentUser.getUserId() + " and TO_CHAR(createdon,'DD-MM-YY') = '" + control + "' order by createdon desc";
             }
-                
+
             System.out.println(query);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
@@ -70,7 +68,7 @@ public class thongBaoJPanel extends javax.swing.JPanel {
     public thongBaoJPanel() {
         initComponents();
         tableThongBao.setAutoCreateRowSorter(true);
-        
+
         prepareNotifications("all");
 
     }
@@ -274,14 +272,14 @@ public class thongBaoJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jDateChooserFilterAncestorAdded
 
     private void jDateChooserFilterPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserFilterPropertyChange
-        System.out.println(jDateChooserFilter.getDate());
+
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
         if (jDateChooserFilter.getDate() != null)
             prepareNotifications(dateFormat.format(jDateChooserFilter.getDate()));
     }//GEN-LAST:event_jDateChooserFilterPropertyChange
 
     private void tableThongBaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableThongBaoMousePressed
-        
+
     }//GEN-LAST:event_tableThongBaoMousePressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

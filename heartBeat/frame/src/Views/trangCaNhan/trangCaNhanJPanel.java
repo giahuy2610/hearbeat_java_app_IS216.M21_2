@@ -9,12 +9,15 @@ import Views.logIn_sigIn.quenMatKhau;
 import Views.main.danhMucBean;
 import Views.main.imageHelper;
 import Views.main.mainFrame;
+import java.awt.Font;
 import java.awt.Image;
+import java.awt.font.TextAttribute;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -36,9 +39,12 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
             labelVaiTro.setText("Quản trị viên");
         }
         labelDiem.setText(mainFrame.currentUser.getScore());
+        Font font = labelDiem.getFont();
+        Map attributes = font.getAttributes();
+        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+        labelDiem.setFont(font.deriveFont(attributes));
 
-        
-                //load ảnh
+        //load ảnh
         byte[] imagedata = mainFrame.currentUser.getAvatar();
         if (imagedata != null) {
             ImageIcon format = new ImageIcon(imagedata);

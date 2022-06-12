@@ -78,8 +78,8 @@ public class mainFrame extends javax.swing.JFrame {
 
         jpnRoot.setPreferredSize(new java.awt.Dimension(1200, 600));
 
-        jpnMenu.setkEndColor(new java.awt.Color(255, 230, 236));
-        jpnMenu.setkStartColor(new java.awt.Color(255, 230, 236));
+        jpnMenu.setkEndColor(new java.awt.Color(104, 167, 173));
+        jpnMenu.setkStartColor(new java.awt.Color(104, 167, 173));
         jpnMenu.setPreferredSize(new java.awt.Dimension(200, 600));
 
         jButton6.setBackground(new java.awt.Color(102, 255, 51));
@@ -94,7 +94,7 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
-        jbtnDanhChoAdmin.setBackground(new java.awt.Color(255, 204, 204));
+        jbtnDanhChoAdmin.setBackground(new java.awt.Color(199, 234, 227));
         jbtnDanhChoAdmin.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jbtnDanhChoAdmin.setForeground(new java.awt.Color(51, 51, 51));
         jbtnDanhChoAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/admin.png"))); // NOI18N
@@ -108,7 +108,7 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
-        jbtnTrangChu.setBackground(new java.awt.Color(255, 204, 204));
+        jbtnTrangChu.setBackground(new java.awt.Color(199, 234, 227));
         jbtnTrangChu.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jbtnTrangChu.setForeground(new java.awt.Color(51, 51, 51));
         jbtnTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/home (2).png"))); // NOI18N
@@ -122,7 +122,7 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
-        jbtnThemBaiViet.setBackground(new java.awt.Color(255, 204, 204));
+        jbtnThemBaiViet.setBackground(new java.awt.Color(199, 234, 227));
         jbtnThemBaiViet.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jbtnThemBaiViet.setForeground(new java.awt.Color(51, 51, 51));
         jbtnThemBaiViet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/love-letter.png"))); // NOI18N
@@ -136,7 +136,7 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
-        jbtnThongBao.setBackground(new java.awt.Color(255, 204, 204));
+        jbtnThongBao.setBackground(new java.awt.Color(199, 234, 227));
         jbtnThongBao.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jbtnThongBao.setForeground(new java.awt.Color(51, 51, 51));
         jbtnThongBao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/love-letter (1).png"))); // NOI18N
@@ -150,7 +150,7 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
-        jbtnDanhMuc.setBackground(new java.awt.Color(255, 204, 204));
+        jbtnDanhMuc.setBackground(new java.awt.Color(199, 234, 227));
         jbtnDanhMuc.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jbtnDanhMuc.setForeground(new java.awt.Color(51, 51, 51));
         jbtnDanhMuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/wish-list.png"))); // NOI18N
@@ -164,7 +164,7 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton12.setBackground(new java.awt.Color(255, 204, 204));
+        jButton12.setBackground(new java.awt.Color(199, 234, 227));
         jButton12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton12.setForeground(new java.awt.Color(51, 51, 51));
         jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/enter.png"))); // NOI18N
@@ -184,7 +184,7 @@ public class mainFrame extends javax.swing.JFrame {
             }
         });
 
-        jbtnTrangCaNhan.setBackground(new java.awt.Color(255, 204, 204));
+        jbtnTrangCaNhan.setBackground(new java.awt.Color(199, 234, 227));
         jbtnTrangCaNhan.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jbtnTrangCaNhan.setForeground(new java.awt.Color(51, 51, 51));
         jbtnTrangCaNhan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/boy.png"))); // NOI18N

@@ -42,20 +42,16 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
      */
     private void enableAllBtn() {
         if (selectedBtn.equals("")) {
-            btnModifyPost.setEnabled(true);
             btnAddPost.setEnabled(true);
             btnDeletePost.setEnabled(true);
-            btnSave.setEnabled(false);
 
             fieldContent.setEditable(false);
             fieldTitle.setEditable(false);
             cbPurpose.setEnabled(false);
             cbCategory.setEnabled(false);
         } else if (selectedBtn.equals("btnAddPost") || selectedBtn.equals("btnModifyPost")) {
-            btnModifyPost.setEnabled(false);
             btnAddPost.setEnabled(false);
             btnDeletePost.setEnabled(false);
-            btnSave.setEnabled(true);
 
             fieldContent.setEditable(true);
             fieldTitle.setEditable(true);
@@ -147,17 +143,15 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableUser = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        btnSave = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         btnAddPost = new javax.swing.JButton();
         fieldSearch = new javax.swing.JTextField();
-        btnModifyPost = new javax.swing.JButton();
         btnDeletePost = new javax.swing.JButton();
 
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(199, 234, 227));
 
         fieldTitle.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         fieldTitle.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -316,7 +310,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
                 .addGap(25, 25, 25))
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(199, 234, 227));
 
         tableUser.setAutoCreateRowSorter(true);
         tableUser.setModel(new javax.swing.table.DefaultTableModel(
@@ -357,23 +351,10 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        btnSave.setBackground(new java.awt.Color(255, 255, 255));
-        btnSave.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnSave.setForeground(new java.awt.Color(0, 51, 153));
-        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/paper.png"))); // NOI18N
-        btnSave.setText("Lưu thay đổi");
-        btnSave.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        btnSave.setEnabled(false);
-        btnSave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSaveActionPerformed(evt);
-            }
-        });
+        jPanel3.setBackground(new java.awt.Color(199, 234, 227));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -415,20 +396,6 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
             }
         });
 
-        btnModifyPost.setBackground(new java.awt.Color(255, 255, 255));
-        btnModifyPost.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnModifyPost.setForeground(new java.awt.Color(0, 51, 153));
-        btnModifyPost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/studying.png"))); // NOI18N
-        btnModifyPost.setText("Sửa");
-        btnModifyPost.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
-        btnModifyPost.setMaximumSize(new java.awt.Dimension(163, 40));
-        btnModifyPost.setMinimumSize(new java.awt.Dimension(163, 40));
-        btnModifyPost.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifyPostActionPerformed(evt);
-            }
-        });
-
         btnDeletePost.setBackground(new java.awt.Color(255, 255, 255));
         btnDeletePost.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnDeletePost.setForeground(new java.awt.Color(0, 51, 153));
@@ -454,11 +421,8 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAddPost, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnDeletePost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnModifyPost, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnDeletePost, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -471,10 +435,6 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
                 .addComponent(btnAddPost, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(btnDeletePost, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnModifyPost, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -506,53 +466,6 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
     private void fieldContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldContentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldContentActionPerformed
-
-    private void btnDeletePostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePostActionPerformed
-        if (post01.getIsDeleted().equals("0")) {
-            selectedBtn = "btnDeletePost";
-            String[] options = {"Đồng ý", "Hủy"};
-            int output = JOptionPane.showOptionDialog(this,
-                    "Bài viết sẽ bị xóa", "Xác nhận",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-            if (output == JOptionPane.YES_OPTION) {
-                try {
-                    post01.deletedPost();
-                    JOptionPane.showMessageDialog(this, "Xóa bài viết thành công!");
-                    this.loadData();
-                } catch (SQLException ex) {
-                    Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-            } else if (output == JOptionPane.NO_OPTION) {
-                System.out.println("No selected.");
-            }
-        } else {
-            selectedBtn = "btnDeletePost";
-            String[] options = {"Đồng ý", "Hủy"};
-            int output = JOptionPane.showOptionDialog(this,
-                    "Bạn đang khôi phục lại bài viết bị xóa", "Xác nhận",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-            if (output == JOptionPane.YES_OPTION) {
-                try {
-                    post01.recoveryPost();
-                } catch (SQLException ex) {
-                    Logger.getLogger(danhChoAdminJPanel_QLBD.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(danhChoAdminJPanel_QLBD.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                JOptionPane.showMessageDialog(this, "Khôi phục bài viết thành công!");
-                this.loadData();
-
-            } else if (output == JOptionPane.NO_OPTION) {
-                System.out.println("No selected.");
-            }
-        }
-
-    }//GEN-LAST:event_btnDeletePostActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         if (firstFill == 0) {
@@ -611,30 +524,6 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_tableUserMousePressed
-
-    private void btnModifyPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyPostActionPerformed
-
-        selectedBtn = "btnModifyPost";
-        enableAllBtn();
-        //this.loadData();
-
-    }//GEN-LAST:event_btnModifyPostActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        switch (selectedBtn) {
-            //người dùng đã ấn nút sửa trước đó
-            case "btnModifyPost": {
-                String[] options = {"Đồng ý", "Hủy"};
-                int output = JOptionPane.showOptionDialog(this,
-                        "Bạn đang thay đổi thông tin bài viết", "Xác nhận",
-                        JOptionPane.YES_NO_OPTION,
-                        JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-                if (output == JOptionPane.YES_OPTION) {
-                }
-                break;
-            }
-        }
-    }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnAddPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPostActionPerformed
         chuyenManHinhController.setView(new themBaiVietJPanel());
@@ -698,12 +587,56 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
 
     }//GEN-LAST:event_tableUserKeyReleased
 
+    private void btnDeletePostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePostActionPerformed
+        if (post01.getIsDeleted().equals("0")) {
+            selectedBtn = "btnDeletePost";
+            String[] options = {"Đồng ý", "Hủy"};
+            int output = JOptionPane.showOptionDialog(this,
+                    "Bài viết sẽ bị xóa", "Xác nhận",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            if (output == JOptionPane.YES_OPTION) {
+                try {
+                    post01.deletedPost();
+                    JOptionPane.showMessageDialog(this, "Xóa bài viết thành công!");
+                    this.loadData();
+                } catch (SQLException ex) {
+                    Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } else if (output == JOptionPane.NO_OPTION) {
+                System.out.println("No selected.");
+            }
+        } else {
+            selectedBtn = "btnDeletePost";
+            String[] options = {"Đồng ý", "Hủy"};
+            int output = JOptionPane.showOptionDialog(this,
+                    "Bạn đang khôi phục lại bài viết bị xóa", "Xác nhận",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            if (output == JOptionPane.YES_OPTION) {
+                try {
+                    post01.recoveryPost();
+                } catch (SQLException ex) {
+                    Logger.getLogger(danhChoAdminJPanel_QLBD.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(danhChoAdminJPanel_QLBD.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                JOptionPane.showMessageDialog(this, "Khôi phục bài viết thành công!");
+                this.loadData();
+
+            } else if (output == JOptionPane.NO_OPTION) {
+                System.out.println("No selected.");
+            }
+        }
+    }//GEN-LAST:event_btnDeletePostActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddPost;
     private javax.swing.JButton btnDeletePost;
-    private javax.swing.JButton btnModifyPost;
-    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cbCategory;
     private javax.swing.JComboBox<String> cbPurpose;
     private javax.swing.JTextField fieldContent;

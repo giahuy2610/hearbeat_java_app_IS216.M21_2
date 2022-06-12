@@ -68,9 +68,12 @@ public class city {
         cityFilter.removeAllItems();
         loadData();
         
-       
         for (String item : cityName) {
             cityFilter.addItem(item);
         }
+    }
+    
+    public static String getCityNameFromCityId(String cityId) {
+        return cityName.get(Integer. valueOf(cityId));
     }
 }

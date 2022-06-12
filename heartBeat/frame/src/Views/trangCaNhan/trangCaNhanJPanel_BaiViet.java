@@ -24,14 +24,15 @@ import java.util.logging.Logger;
  */
 public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
 
-    private static ArrayList<String> postId = new ArrayList<String>();
-    private static ArrayList<String> postTitle = new ArrayList<String>();
-    private static ArrayList<String> postCategory = new ArrayList<String>();
-    private static ArrayList<String> postContent = new ArrayList<String>();
-    private static ArrayList<String> postPurpose = new ArrayList<String>();
-    private static ArrayList<String> postCreatedOn = new ArrayList<String>();
+    private ArrayList<String> postId = new ArrayList<String>();
+    private ArrayList<String> postTitle = new ArrayList<String>();
+    private ArrayList<String> postCategory = new ArrayList<String>();
+    private ArrayList<String> postContent = new ArrayList<String>();
+    private ArrayList<String> postPurpose = new ArrayList<String>();
+    private ArrayList<String> postCreatedOn = new ArrayList<String>();
     private ArrayList<byte[]> postImage = new ArrayList<byte[]>();
     private static int firstFill = 0;
+    private static int firstLoad = 0;
 
     protected String initQuery1() {
         if (firstFill == 0) {
@@ -45,6 +46,9 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 query += " and statusid = " + postStatusFilter.getSelectedIndex();
             } else if (postStatusFilter.getSelectedIndex() == 4) {
                 query += " and isdeleted = 1";
+            } else if (postStatusFilter.getSelectedIndex() == 5) {
+                //lấy ra bài viết bản thân đã đặt hẹn
+                query = "select * from  tb_post where partnerid = " + mainFrame.currentUser.getUserId();
             }
 
             if (postSortFilter.getSelectedIndex() == 0) {
@@ -62,6 +66,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         sort.prepareSortFilter(postSortFilter);
         postSortFilter.setSelectedIndex(0);
         this.preparePost();
+        firstLoad = 1;
     }
 
     private void preparePost() {
@@ -77,6 +82,9 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             postTitle.removeAll(postTitle);
             postCategory.removeAll(postCategory);
             postContent.removeAll(postContent);
+            postCreatedOn.removeAll(postCreatedOn);
+            postImage.removeAll(postImage);
+            postPurpose.removeAll(postPurpose);
             while (rs.next()) {
                 postId.add(rs.getString("postid"));
                 postTitle.add(rs.getString("title"));
@@ -118,7 +126,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         jPanelProfile = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         searchField = new javax.swing.JTextField();
-        jButton14 = new javax.swing.JButton();
+        btnSearch = new javax.swing.JButton();
         postStatusFilter = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         postSortFilter = new javax.swing.JComboBox<>();
@@ -148,18 +156,18 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             }
         });
 
-        jButton14.setBackground(new java.awt.Color(255, 204, 204));
-        jButton14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(0, 51, 153));
-        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search_1.png"))); // NOI18N
-        jButton14.setBorder(null);
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setBackground(new java.awt.Color(255, 204, 204));
+        btnSearch.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnSearch.setForeground(new java.awt.Color(0, 51, 153));
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search_1.png"))); // NOI18N
+        btnSearch.setBorder(null);
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
 
-        postStatusFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Chờ", "Có hẹn", "Thành công", "Đã xóa" }));
+        postStatusFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả của tôi", "Bài của tôi đang chờ", "Bài của tôi có hẹn", "Bài của tôi thành công", "Bài của tôi đã xóa", "Tôi có hẹn với" }));
         postStatusFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 postStatusFilterActionPerformed(evt);
@@ -184,7 +192,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 .addContainerGap()
                 .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(173, 173, 173)
                 .addComponent(jLabel9)
                 .addGap(48, 48, 48)
@@ -204,7 +212,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(postSortFilter, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                            .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                             .addComponent(searchField)
                             .addComponent(postStatusFilter)))
                     .addGroup(jPanel17Layout.createSequentialGroup()
@@ -260,12 +268,13 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void postStatusFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postStatusFilterActionPerformed
-        //System.out.println("city " + cityFilter.getSelectedIndex() + " district " + districtFilter.getSelectedIndex() + " category " + categoryFilter.getSelectedIndex());
-        this.preparePost();
+        if (firstLoad != 0)
+            this.preparePost();
     }//GEN-LAST:event_postStatusFilterActionPerformed
 
     private void postSortFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postSortFilterActionPerformed
-        this.preparePost();
+        if (firstLoad != 0)
+            this.preparePost();
     }//GEN-LAST:event_postSortFilterActionPerformed
 
     private void searchFieldMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFieldMousePressed
@@ -275,13 +284,13 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         }
     }//GEN-LAST:event_searchFieldMousePressed
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         this.preparePost();
-    }//GEN-LAST:event_jButton14ActionPerformed
+    }//GEN-LAST:event_btnSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton14;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

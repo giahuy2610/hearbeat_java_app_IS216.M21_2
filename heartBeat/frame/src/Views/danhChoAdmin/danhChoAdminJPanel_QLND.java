@@ -184,7 +184,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1000, 550));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(199, 234, 227));
 
         fieldFirstName.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         fieldFirstName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -443,7 +443,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                             .addComponent(cbDistrict, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(199, 234, 227));
 
         tableUser.setAutoCreateRowSorter(true);
         tableUser.setModel(new javax.swing.table.DefaultTableModel(
@@ -490,7 +490,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(199, 234, 227));
 
         btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N

@@ -18,8 +18,8 @@ import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 
 /**
  *
@@ -264,25 +264,44 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void postBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postBtnActionPerformed
+        JOptionPane.showMessageDialog(this, "Vui lòng kiểm tra lại thông tin liên hệ, sửa lại ở trang cá nhân nếu sai!");
         try {
-            post.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()), pathImage);
+            new thongTinDatHen(mainFrame.currentUser).setVisible(true);
 
-            String query = "select max(postid) as maxPostId from tb_post where ownerid = " + mainFrame.currentUser.getUserId();
+            String[] options = {"Tiếp tục", "Hủy"};
+            int output = JOptionPane.showOptionDialog(this,
+                    "Thông tin đã đúng, tiếp tục đăng bài", "Xác nhận",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            if (output == JOptionPane.YES_OPTION) {
+                try {
+                    post.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()), pathImage);
 
-            try ( Connection conn = OracleConnUtils.getOracleConnection()) {
-                Statement stmt = conn.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
+                    String query = "select max(postid) as maxPostId from tb_post where ownerid = " + mainFrame.currentUser.getUserId();
 
-                while (rs.next()) {
-                    chuyenManHinhController.setView(new chiTietBaiVietJPanel(rs.getString("maxPostId")));
+                    try ( Connection conn = OracleConnUtils.getOracleConnection()) {
+                        Statement stmt = conn.createStatement();
+                        ResultSet rs = stmt.executeQuery(query);
+
+                        while (rs.next()) {
+                            chuyenManHinhController.setView(new chiTietBaiVietJPanel(rs.getString("maxPostId")));
+                        }
+                    }
+
+                } catch (SQLException | ClassNotFoundException ex) {
+                    Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
+            } else if (output == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(this, "Đã hủy đăng bài!");
             }
-
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_postBtnActionPerformed
 
     private void postBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postBtnMouseClicked

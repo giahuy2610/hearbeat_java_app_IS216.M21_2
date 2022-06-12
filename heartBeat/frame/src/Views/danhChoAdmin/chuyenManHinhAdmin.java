@@ -4,14 +4,14 @@
  */
 package Views.danhChoAdmin;
 
-import Views.danhChoAdmin.danhChoAdminJPanel_QLND;
-import Views.danhChoAdmin.danhChoAdminJPanel_QLBD;
-import Views.danhChoAdmin.danhChoAdminJPanel_Report;
 import Views.main.danhMucBean;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -73,8 +73,17 @@ public class chuyenManHinhAdmin {
                     node = new danhChoAdminJPanel_QLBD();
                     break;
                 case "Report":
-                    node = new danhChoAdminJPanel_Report();
+                {
+                    try {
+                        node = new danhChoAdminJPanel_Report();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(chuyenManHinhAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(chuyenManHinhAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                     break;
+
                 default:
                     break;
             }

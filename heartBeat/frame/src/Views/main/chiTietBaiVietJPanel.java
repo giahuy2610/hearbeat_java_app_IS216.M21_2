@@ -25,7 +25,58 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
     post post01;
 
     private void loadData() {
-        System.out.println("width of label is" + Integer.toString(labelImage.getHeight()));
+        labelImage.setSize(220, 220);
+        //nếu người đăng bài cũng là người đang xem bài viết: sửa, xóa, hủy lịch hẹn, hoàn tất
+        if (mainFrame.currentUser.getUserId().equals(post01.getOwnerId())) {
+            //người dùng có thể kiểm tra lại thông tin liên hệ của bản thân
+            btnContact.setVisible(true);
+            //bài viết có người đặt hẹn mới có thể xác nhận hoàn thành
+            if (post01.getStatusId().equals("2")) {
+                //bài viết đang có lịch hẹn nên có thể hủy hoặc xác nhận
+                btnConfirmSchedule.setVisible(true);
+                btnCancelSchedule.setVisible(true);
+
+                btnSchedule.setVisible(false);//không thể đặt hẹn cho chính mình
+                btnModify.setVisible(true);
+            } else {
+                btnConfirmSchedule.setVisible(false);//không có hẹn nên không thể xác nhận
+                btnCancelSchedule.setVisible(false);//không có hẹn nên không thể hủy
+
+                btnSchedule.setVisible(false);//không thể tự đặt hẹn
+                btnModify.setVisible(true);
+            }
+            //bài viết bị xóa rồi thì không thể tiếp tục bị xóa hay sửa bài viết
+            if (post01.getIsDeleted().equals("1")) {
+                btnDelete.setVisible(false);
+                btnModify.setVisible(false);
+            } else {
+                btnDelete.setVisible(true);
+                btnModify.setVisible(true);
+            }
+
+        } //người xem bài không phải người đăng bài
+        else {
+            //không phải chủ bài viết nên thể xóa sửa xác nhận bài viết
+            btnDelete.setVisible(false);
+            btnModify.setVisible(false);
+            btnConfirmSchedule.setVisible(false);
+            btnContact.setVisible(false);
+            //bài viết đang có hẹn
+            if (post01.getStatusId().equals("2")) {
+                btnSchedule.setVisible(false);//không thể đặt hẹn vì bài viết có hẹn
+                //nếu người đang xem là người có đặt hẹn với bài viết này thì có thể hủy hẹn
+                if (mainFrame.currentUser.getUserId().equals(post01.getPartnerId())) {
+                    btnCancelSchedule.setVisible(true);
+                    btnContact.setVisible(true);
+                } else {
+                    btnCancelSchedule.setVisible(false);
+                    btnContact.setVisible(false);
+                }
+            } else if (post01.getStatusId().equals("1")) {
+                btnSchedule.setVisible(true);//có thể đặt hẹn vì bài viết chưa có hẹn
+                btnCancelSchedule.setVisible(false);
+            }
+        }
 
         labelTitle.setText(post01.getTitle());
         labelContent.setText(post01.getContent());
@@ -49,39 +100,9 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
      */
     public chiTietBaiVietJPanel(String postId) {
         initComponents();
-        labelImage.setSize(220, 220);
         post01 = new post(postId);
-        //nếu người đăng bài cũng là người đang xem bài viết
-        if (mainFrame.currentUser.getUserId().equals(post01.getOwnerId())) {
-            //bài viết có người đặt hẹn mới có thể xác nhận hoàn thành
-            if (post01.getStatusId() != "2") {
-
-                btnConfirmSchedule.setVisible(false);
-            }
-
-            //không thể đặt hẹn cho chính mình
-            btnSchedule.setVisible(false);
-
-        } //người xem bài không phải người đăng bài
-        else {
-            //không thể xóa sửa bài viết
-            btnDelete.setVisible(false);
-            btnModify.setVisible(false);
-            btnConfirmSchedule.setVisible(false);
-            //bài viết không trống lịch hẹn thì không được đặt hẹn
-            if (post01.getStatusId().equals("1") == false) {
-                btnSchedule.setVisible(false);
-            }
-        }
-        //bài viết đã bị xóa thì không thể tiếp tục xóa, sửa
-        if (post01.getIsDeleted().equals("1")) {
-            btnDelete.setVisible(false);
-            btnModify.setVisible(false);
-            btnConfirmSchedule.setVisible(false);
-            btnSchedule.setVisible(false);
-        }
-
         loadData();
+
     }
 
     /**
@@ -109,6 +130,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         btnModify = new javax.swing.JButton();
         btnSchedule = new javax.swing.JButton();
         btnCancelSchedule = new javax.swing.JButton();
+        btnContact = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
@@ -279,7 +301,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         btnCancelSchedule.setBackground(new java.awt.Color(255, 230, 236));
         btnCancelSchedule.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         btnCancelSchedule.setForeground(new java.awt.Color(0, 51, 153));
-        btnCancelSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/send.png"))); // NOI18N
+        btnCancelSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/fundraiser.png"))); // NOI18N
         btnCancelSchedule.setText("HỦY LỊCH HẸN");
         btnCancelSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -287,6 +309,18 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
             }
         });
         jPanel5.add(btnCancelSchedule);
+
+        btnContact.setBackground(new java.awt.Color(255, 230, 236));
+        btnContact.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        btnContact.setForeground(new java.awt.Color(0, 51, 153));
+        btnContact.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/girl.png"))); // NOI18N
+        btnContact.setText("LIÊN HỆ");
+        btnContact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContactActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnContact);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -358,13 +392,20 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         if (output == JOptionPane.YES_OPTION) {
             try {
                 post01.schedulePost();
+                new thongTinDatHen(new user(post01.getOwnerId())).setVisible(true);
+                loadData();
             } catch (SQLException ex) {
+
+                if (ex.getErrorCode() == 20000) {
+                    System.out.println("lỗi với trigger: quá số lần đặt hẹn ");
+                    JOptionPane.showMessageDialog(this, "Đã quá số lần đặt hẹn trong tuần",
+                            "Báo lỗi", JOptionPane.ERROR_MESSAGE);
+                }
                 Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-            new thongTinDatHen(new user(post01.getOwnerId())).setVisible(true);
-            JOptionPane.showMessageDialog(this, "Đặt hẹn thành công!");
+
         } else if (output == JOptionPane.NO_OPTION) {
             System.out.println("No selected.");
         }
@@ -411,10 +452,35 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnCancelScheduleActionPerformed
 
+    private void btnContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContactActionPerformed
+        //chủ bài viết coi thông tin người đặt hẹn
+        if (post01.getOwnerId().equals(mainFrame.currentUser.getUserId())) {
+            try {
+                new thongTinDatHen(new user(post01.getPartnerId())).setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        //người đặt hẹn coi được thông tin chủ bài viết
+        else {
+            try {
+                new thongTinDatHen(new user(post01.getOwnerId())).setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }//GEN-LAST:event_btnContactActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelSchedule;
     private javax.swing.JButton btnConfirmSchedule;
+    private javax.swing.JButton btnContact;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModify;
     private javax.swing.JButton btnSchedule;
