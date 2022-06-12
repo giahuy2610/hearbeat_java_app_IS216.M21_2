@@ -6,6 +6,8 @@ package Views.trangCaNhan;
 
 import static Process.image.scaleImage;
 import Views.logIn_sigIn.quenMatKhau;
+import Views.main.bangXepHangNhanAi;
+import Views.main.chuyenManHinhController;
 import Views.main.danhMucBean;
 import Views.main.imageHelper;
 import Views.main.mainFrame;
@@ -166,6 +168,11 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         labelDiem.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         labelDiem.setForeground(new java.awt.Color(255, 51, 153));
         labelDiem.setText("100 điểm");
+        labelDiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelDiemMousePressed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setText("Xin chào");
@@ -305,6 +312,16 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
             Logger.getLogger(trangCaNhanJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_labelImageMousePressed
+
+    private void labelDiemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDiemMousePressed
+        try {
+            chuyenManHinhController.setView(new bangXepHangNhanAi());
+        } catch (SQLException ex) {
+            Logger.getLogger(trangCaNhanJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(trangCaNhanJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_labelDiemMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

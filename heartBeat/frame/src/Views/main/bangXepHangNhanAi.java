@@ -4,6 +4,13 @@
  */
 package Views.main;
 
+import ConnectDB.OracleConnUtils;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author giahu
@@ -13,8 +20,24 @@ public class bangXepHangNhanAi extends javax.swing.JPanel {
     /**
      * Creates new form bangXepHangNhanAi
      */
-    public bangXepHangNhanAi() {
+    private void loadData() throws SQLException, ClassNotFoundException {
+        Connection conn = OracleConnUtils.getOracleConnection();
+        String query = "SELECT * FROM (SELECT * FROM tb_user where isdeleted = 0 ORDER BY score desc) WHERE ROWNUM <= 5";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+
+        int count = 1;
+        while (rs.next()) {
+            String row_temp[] = {String.valueOf(count),rs.getString("lastName"),rs.getString("score"),"người dùng"};
+            DefaultTableModel tblModel = (DefaultTableModel) tabelRank.getModel();
+            tblModel.addRow(row_temp);
+            count++;
+        }
+    }
+
+    public bangXepHangNhanAi() throws SQLException, ClassNotFoundException {
         initComponents();
+        this.loadData();
     }
 
     /**
@@ -26,19 +49,83 @@ public class bangXepHangNhanAi extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        kGradientPanel2 = new keeptoo.KGradientPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelRank = new javax.swing.JTable();
+
+        kGradientPanel2.setkEndColor(new java.awt.Color(126, 186, 181));
+        kGradientPanel2.setkStartColor(new java.awt.Color(126, 186, 181));
+        kGradientPanel2.setOpaque(false);
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("BẢNG XẾP HẠNG NHÂN ÁI");
+
+        javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
+        kGradientPanel2.setLayout(kGradientPanel2Layout);
+        kGradientPanel2Layout.setHorizontalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        kGradientPanel2Layout.setVerticalGroup(
+            kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        );
+
+        jPanel1.setBackground(new java.awt.Color(126, 186, 181));
+
+        tabelRank.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Xếp hạng", "Tên", "Điểm", "Danh hiệu"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelRank);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 962, Short.MAX_VALUE)
+                .addGap(28, 28, 28))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private keeptoo.KGradientPanel kGradientPanel2;
+    private javax.swing.JTable tabelRank;
     // End of variables declaration//GEN-END:variables
 }
