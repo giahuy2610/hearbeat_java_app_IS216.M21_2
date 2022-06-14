@@ -15,8 +15,10 @@ import javax.swing.JOptionPane;
  * @author giahu
  */
 public class mainFrame extends javax.swing.JFrame {
+
     private static chuyenManHinhController controller;
     public static user currentUser = new user();
+
     /**
      * Creates new form mainFrame
      */
@@ -24,10 +26,9 @@ public class mainFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setTitle("HeartBeat");
-        
+
         currentUser.loadUser(currentUserId);
         System.out.println(currentUser.getUserId());
-        
 
         controller = new chuyenManHinhController(jpnView);
 
@@ -38,10 +39,9 @@ public class mainFrame extends javax.swing.JFrame {
         listItem.add(new danhMucBean("DanhMuc", jbtnDanhMuc));
         listItem.add(new danhMucBean("TrangCaNhan", jbtnTrangCaNhan));
         //nếu người dùng này không phải admin thì không hiện ra trang admin
-        if (currentUser.getRoleId().equals("2")) {           
+        if (currentUser.getRoleId().equals("2")) {
             listItem.add(new danhMucBean("DanhChoAdmin", jbtnDanhChoAdmin));
-        } 
-        else {
+        } else {
             jbtnDanhChoAdmin.setVisible(false);
         }
         controller.setEvent(listItem);
@@ -294,7 +294,7 @@ public class mainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnTrangCaNhanActionPerformed
 
     private void jButton12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MousePressed
-        String[] options = {"Đồng ý","Hủy"};
+        String[] options = {"Đồng ý", "Hủy"};
         int output = JOptionPane.showOptionDialog(this,
                 "Bạn thực sự muốn đăng xuất?", "Xác nhận",
                 JOptionPane.YES_NO_OPTION,
@@ -338,9 +338,6 @@ public class mainFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        
-        
-        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

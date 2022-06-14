@@ -4,12 +4,20 @@
  */
 package Views.main;
 
+import static Process.image.scaleImage;
 import Process.post;
 import Process.postCategory;
 import Process.postPurpose;
+import java.awt.Image;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -17,8 +25,10 @@ import javax.swing.JFileChooser;
  */
 public class suaBaiVietJPanel extends javax.swing.JPanel {
 
-    private String pathImage = "";
+    private File pathImage;
     private post post01;
+    private byte[] imagedata;
+    
 
     private void changeEnableButton() {
         // nếu người dùng chọn danh mục và mục đích rồi mới cho đăng bài viết
@@ -41,6 +51,12 @@ public class suaBaiVietJPanel extends javax.swing.JPanel {
         postContent.setText(post01.getContent());
         purposeFilter.setSelectedIndex(Integer.parseInt(post01.getPurposeId()));
         categoryFilter.setSelectedIndex(Integer.parseInt(post01.getCategoryId()));
+        imagedata = post01.getImagePath();
+        if (imagedata != null) {
+            ImageIcon format = new ImageIcon(imagedata);
+            Image resize = imageHelper.reSize(format.getImage(), 130, 120);
+            labelImage.setIcon(new ImageIcon(resize));
+        }
     }
 
     /**
@@ -64,8 +80,7 @@ public class suaBaiVietJPanel extends javax.swing.JPanel {
         purposeFilter = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        btnAddImage = new javax.swing.JButton();
+        labelImage = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         categoryFilter = new javax.swing.JComboBox<>();
         btnCancel = new javax.swing.JButton();
@@ -137,22 +152,11 @@ public class suaBaiVietJPanel extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(0, 51, 153));
         jLabel6.setText("Hình ảnh");
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
-        jLabel7.setToolTipText("");
-        jLabel7.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-
-        btnAddImage.setBackground(new java.awt.Color(204, 255, 204));
-        btnAddImage.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        btnAddImage.setForeground(new java.awt.Color(0, 51, 153));
-        btnAddImage.setText("Thêm ảnh");
-        btnAddImage.setBorder(null);
-        btnAddImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddImageActionPerformed(evt);
-            }
-        });
+        labelImage.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        labelImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
+        labelImage.setToolTipText("");
+        labelImage.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         btnSave.setBackground(new java.awt.Color(204, 204, 255));
         btnSave.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -215,9 +219,7 @@ public class suaBaiVietJPanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(postContent, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAddImage, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42)
@@ -256,8 +258,7 @@ public class suaBaiVietJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAddImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -283,27 +284,22 @@ public class suaBaiVietJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
+        try {
+            if (pathImage != null)
+                post01.modifyPost(jTextFieldTieuDe.getText(), postContent.getText(), Integer.toString(categoryFilter.getSelectedIndex()), Integer.toString(purposeFilter.getSelectedIndex()));
+            else {
+                post01.modifyPost(jTextFieldTieuDe.getText(), postContent.getText(), Integer.toString(categoryFilter.getSelectedIndex()), Integer.toString(purposeFilter.getSelectedIndex()));
+            }
+            JOptionPane.showMessageDialog(this, "Đã sửa bài viết!");
+        } catch (SQLException | ClassNotFoundException | FileNotFoundException ex) {
+            Logger.getLogger(suaBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
         // TODO add your handling code here:
 
     }//GEN-LAST:event_btnSaveMouseClicked
-
-    private void btnAddImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddImageActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-        this.pathImage = f.toString();
-        jLabel7.setIcon(new ImageIcon(pathImage));
-        filename = f.getAbsolutePath();
-        System.out.println(pathImage);
-        // Get Current Directory using getAbsolutePath()
-        File file = new File("");
-        String currentDirectory = file.getAbsolutePath();
-        System.out.println("Current working directory : " + currentDirectory);
-    }//GEN-LAST:event_btnAddImageActionPerformed
 
     private void purposeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purposeFilterActionPerformed
         changeEnableButton();
@@ -322,13 +318,11 @@ public class suaBaiVietJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCancelMouseClicked
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-       chuyenManHinhController.setView(new chiTietBaiVietJPanel(post01.getPostId()));
+        chuyenManHinhController.setView(new chiTietBaiVietJPanel(post01.getPostId()));
     }//GEN-LAST:event_btnCancelActionPerformed
 
-    byte[] photo = null;
-    String filename = null;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddImage;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> categoryFilter;
@@ -339,10 +333,10 @@ public class suaBaiVietJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextFieldTieuDe;
     private keeptoo.KGradientPanel kGradientPanel2;
+    private javax.swing.JLabel labelImage;
     private javax.swing.JTextField postContent;
     private javax.swing.JComboBox<String> purposeFilter;
     // End of variables declaration//GEN-END:variables

@@ -394,8 +394,11 @@ public class dangKy extends javax.swing.JFrame {
             }
         } else {
             Connection conn = null;
+            
             try {
+                
                 conn = dangKy.getConnection();
+                conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
             } catch (SQLException ex) {
                 Logger.getLogger(dangKy.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {

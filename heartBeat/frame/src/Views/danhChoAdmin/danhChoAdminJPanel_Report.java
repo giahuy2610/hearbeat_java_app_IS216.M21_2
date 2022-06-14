@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jfree.data.general.DefaultPieDataset;
@@ -29,10 +28,11 @@ import org.jfree.data.category.DefaultCategoryDataset;
  */
 public class danhChoAdminJPanel_Report extends javax.swing.JPanel {
 
+    private Connection conn = (Connection) OracleConnUtils.getOracleConnection();
+
     private void createPieChart() {
         DefaultPieDataset dataset = new DefaultPieDataset();
         try {
-            Connection conn = (Connection) OracleConnUtils.getOracleConnection();
 
             Statement st1 = conn.createStatement();
 
@@ -53,8 +53,8 @@ public class danhChoAdminJPanel_Report extends javax.swing.JPanel {
 
             int count_scheduling = rs.getInt("count(*)");
             dataset.setValue("Đã có lịch hẹn", count_scheduling);
-            conn.close();
-        } catch (SQLException | ClassNotFoundException ex) {
+
+        } catch (SQLException ex) {
             Logger.getLogger(danhChoAdminJPanel_Report.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -75,7 +75,6 @@ public class danhChoAdminJPanel_Report extends javax.swing.JPanel {
                 = new DefaultCategoryDataset();
 
         String query = "select count(postid) as countPost from tb_post where EXTRACT(YEAR FROM TO_DATE(CREATEDON, 'DD-MM-YY')) = ? AND extract(MONTH FROM to_date(createdon, 'DD-MM-YY')) = ?";
-        Connection conn = (Connection) OracleConnUtils.getOracleConnection();
 
         PreparedStatement stmt = conn.prepareStatement(query);
 
@@ -100,7 +99,7 @@ public class danhChoAdminJPanel_Report extends javax.swing.JPanel {
                 dataset.addValue(rs.getInt("countPost"), countCompletePost, "T" + i);
             }
         }
-        conn.close();
+
         return dataset;
     }
 
@@ -123,7 +122,6 @@ public class danhChoAdminJPanel_Report extends javax.swing.JPanel {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         String query = "select count(userid) as countUser from tb_user where EXTRACT(YEAR FROM TO_DATE(CREATEDON, 'DD-MM-YY')) = ? AND extract(MONTH FROM to_date(createdon, 'DD-MM-YY')) = ?";
-        Connection conn = (Connection) OracleConnUtils.getOracleConnection();
 
         PreparedStatement stmt = conn.prepareStatement(query);
 
@@ -157,14 +155,22 @@ public class danhChoAdminJPanel_Report extends javax.swing.JPanel {
      * Creates new form danhChoAdminJPanel_Report
      */
     public danhChoAdminJPanel_Report() throws SQLException, ClassNotFoundException {
+        conn.setAutoCommit(false);
+        System.out.println("TX is now " + conn.getTransactionIsolation());
+        conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        System.out.println("TX is now " + conn.getTransactionIsolation());
+        Statement stmt2 = conn.createStatement();
+        stmt2.executeQuery("LOCK TABLE tb_user IN SHARE MODE NOWAIT");
+
         initComponents();
 
         this.createPieChart();
         this.createBarChart();
         this.createLineChart();
-        Connection conn;
+        System.out.println();
+
         try {
-            conn = OracleConnUtils.getOracleConnection();
+
             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(USERID) AS COUNTU FROM TB_USER");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -178,8 +184,6 @@ public class danhChoAdminJPanel_Report extends javax.swing.JPanel {
                 labelCountTotalPost.setText(rs.getString("countp"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(danhChoAdminJPanel_Report.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
             Logger.getLogger(danhChoAdminJPanel_Report.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -478,9 +482,12 @@ public class danhChoAdminJPanel_Report extends javax.swing.JPanel {
     }//GEN-LAST:event_toDatePropertyChange
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Connection conn;
         try {
-            conn = OracleConnUtils.getOracleConnection();
+            System.out.println("TX is now " + conn.getTransactionIsolation());
+        } catch (SQLException ex) {
+            Logger.getLogger(danhChoAdminJPanel_Report.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
             PreparedStatement stmt = conn.prepareStatement("SELECT COUNT(USERID) AS COUNTU FROM TB_USER WHERE CREATEDON >= ? AND CREATEDON <= ?");
             stmt.setDate(1, new java.sql.Date(fromDate.getDate().getTime()));
             stmt.setDate(2, new java.sql.Date(toDate.getDate().getTime()));
@@ -498,8 +505,6 @@ public class danhChoAdminJPanel_Report extends javax.swing.JPanel {
                 labelCountTotalPost.setText(rs.getString("countp"));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(danhChoAdminJPanel_Report.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
             Logger.getLogger(danhChoAdminJPanel_Report.class.getName()).log(Level.SEVERE, null, ex);
         }
 

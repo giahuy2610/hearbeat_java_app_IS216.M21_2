@@ -4,13 +4,16 @@
  */
 package Views.main;
 
+import ConnectDB.OracleConnUtils;
 import Process.post;
 import static Process.postCategory.getCategoryNameFromId;
 import static Process.postPurpose.getPurposeNameFromId;
 import static Process.postStatus.getStatusNameFromId;
 import Process.user;
 import java.awt.Image;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -21,8 +24,8 @@ import javax.swing.JOptionPane;
  * @author giahu
  */
 public class chiTietBaiVietJPanel extends javax.swing.JPanel {
-
-    post post01;
+    private Connection conn;
+    private post post01;
 
     private void loadData() {
         labelImage.setSize(220, 220);
@@ -75,6 +78,9 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
             } else if (post01.getStatusId().equals("1")) {
                 btnSchedule.setVisible(true);//có thể đặt hẹn vì bài viết chưa có hẹn
                 btnCancelSchedule.setVisible(false);
+            } else {
+                btnSchedule.setVisible(false);//có thể đặt hẹn vì bài viết chưa có hẹn
+                btnCancelSchedule.setVisible(false);
             }
         }
 
@@ -98,7 +104,15 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
     /**
      * Creates new form NewJPanel
      */
-    public chiTietBaiVietJPanel(String postId) {
+    public chiTietBaiVietJPanel(String postId) throws SQLException, ClassNotFoundException {
+        conn  = (Connection) OracleConnUtils.getOracleConnection();
+        conn.setAutoCommit(false);
+        System.out.println("TX is now " + conn.getTransactionIsolation());
+        conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+        System.out.println("TX is now " + conn.getTransactionIsolation());
+        Statement stmt2 = conn.createStatement();
+        stmt2.executeQuery("select * from tb_post where postid = " + postId + " for update nowait");
+
         initComponents();
         post01 = new post(postId);
         loadData();
@@ -462,8 +476,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        //người đặt hẹn coi được thông tin chủ bài viết
+        } //người đặt hẹn coi được thông tin chủ bài viết
         else {
             try {
                 new thongTinDatHen(new user(post01.getOwnerId())).setVisible(true);
@@ -473,7 +486,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
                 Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
     }//GEN-LAST:event_btnContactActionPerformed
 
 

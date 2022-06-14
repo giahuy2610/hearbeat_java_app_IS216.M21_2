@@ -33,6 +33,8 @@ import javax.swing.JOptionPane;
 public class trangCaNhanJPanel extends javax.swing.JPanel {
 
     public void updateJLabel() {
+        mainFrame.currentUser.loadUser(mainFrame.currentUser.getUserId());
+        
         labelTen.setText(mainFrame.currentUser.getLastName());
         System.out.println(mainFrame.currentUser.getRoleId());
         if ((mainFrame.currentUser.getRoleId()).equals("1") == true) {

@@ -859,7 +859,18 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
 
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
         selectedBtn = "btnAddUser";
+        fieldDateOfBirth.setVisible(false);
+        cbGender.setVisible(false);
+        fieldAddress.setVisible(false);
+        cbCity.setVisible(false);
+        cbDistrict.setVisible(false);
+        jLabel20.setVisible(false);
+        jLabel8.setVisible(false);
+        jLabel21.setVisible(false);
+        jLabel11.setVisible(false);
+        jLabel13.setVisible(false);
         enableAllBtn();
+
         this.loadData();
 
     }//GEN-LAST:event_btnAddUserActionPerformed

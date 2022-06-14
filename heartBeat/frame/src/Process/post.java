@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import java.sql.PreparedStatement;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -36,7 +36,7 @@ public class post {
     private byte[] imagePath;
     private String statusId;
 
-    public static void themBaiViet(String postTitle, String postContent, String postCategoryId, String postPurposeId,File postImage) throws SQLException, ClassNotFoundException, FileNotFoundException {
+    public static void themBaiViet(String postTitle, String postContent, String postCategoryId, String postPurposeId, File postImage) throws SQLException, ClassNotFoundException, FileNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
         String query = "{call P_INSERT_POST_NEW(?,?,?,?,?,?)}";
         System.out.println(mainFrame.currentUser.getUserId());
@@ -46,12 +46,26 @@ public class post {
         caSt.setString(3, postContent);
         caSt.setString(4, postCategoryId);
         caSt.setString(5, postPurposeId);
-        
+
         FileInputStream is = new FileInputStream(postImage);
-        caSt.setBinaryStream(6,  is);
-        
+        caSt.setBinaryStream(6, is);
+
         System.out.println("đã nhận ảnh ");
         caSt.execute();
+    }
+
+    public void modifyPost(String newTitle, String newContent, String newCategoryId, String newPurposeId) throws SQLException, ClassNotFoundException, FileNotFoundException {
+        Connection conn = OracleConnUtils.getOracleConnection();
+        String query = "update tb_post set title = ?, content = ?, categoryid = ?, purposeid = ? where postid = ?";
+        PreparedStatement caSt = conn.prepareCall(query);
+        caSt.setString(1, newTitle);
+        caSt.setString(2, newContent);
+        caSt.setString(3, newCategoryId);
+        caSt.setString(4, newPurposeId);
+        caSt.setString(5, this.postId);
+        caSt.execute();
+        System.out.println("successful modify post" + postId);
+        conn.close();
     }
 
     public post(String postId) {
@@ -89,8 +103,6 @@ public class post {
         this.imagePath = imagePath;
     }
 
-    
-    
     public String getPostId() {
         return postId;
     }
@@ -182,7 +194,6 @@ public class post {
     public post() {
     }
 
-
     public void deletedPost() throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
         String query = "{call p_delete_post(?)}";
@@ -207,11 +218,10 @@ public class post {
     //chỉnh sửa bài viết
     public void cancelSchedulingPost() throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
-        String query = "{call p_cancel_scheduling (?,?)}";
+        String query = "{call p_cancel_scheduling (?)}";
         CallableStatement caSt = conn.prepareCall(query);
         System.out.println(this.postId);
         caSt.setString(1, this.postId);
-        caSt.setString(1, mainFrame.currentUser.getUserId());
         caSt.execute();
         System.out.println("Cancel success, post" + postId);
     }
@@ -219,7 +229,7 @@ public class post {
     public void schedulePost() throws SQLException, ClassNotFoundException {
         Connection conn = OracleConnUtils.getOracleConnection();
         String query = "{call p_scheduling (?,?)}";
-        CallableStatement caSt = conn.prepareCall(query);
+        PreparedStatement caSt=conn.prepareStatement(query);  
         System.out.println(this.postId);
         caSt.setString(1, this.postId);
         caSt.setString(2, mainFrame.currentUser.getUserId());
@@ -239,19 +249,4 @@ public class post {
         conn.close();
     }
 
-    public int modifyPost(String newTitle, String newContent, String newCategoryId, String newPurposeId, String newImagePath) throws SQLException, ClassNotFoundException {
-        Connection conn = OracleConnUtils.getOracleConnection();
-        String query = "{update tb_post set title = ?, content = ?, categoryid = ?, purposeid = ?, imagepath = ? where postid = ?}";
-        CallableStatement caSt = conn.prepareCall(query);
-        caSt.setString(1, newTitle);
-        caSt.setString(2, newContent);
-        caSt.setString(3, newCategoryId);
-        caSt.setString(4, newPurposeId);
-        caSt.setString(5, newImagePath);
-        caSt.setString(6, this.postId);
-        caSt.execute();
-        System.out.println("successful modify post" + postId);
-        conn.close();
-        return 1;
-    }
 }
