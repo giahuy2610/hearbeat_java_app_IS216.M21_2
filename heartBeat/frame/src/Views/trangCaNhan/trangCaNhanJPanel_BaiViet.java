@@ -5,6 +5,7 @@
 package Views.trangCaNhan;
 
 import ConnectDB.OracleConnUtils;
+import static Process.postStatus.getStatusNameFromId;
 import Process.sort;
 import Views.main.baiVietJPanel;
 import Views.main.mainFrame;
@@ -30,9 +31,10 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
     private ArrayList<String> postContent = new ArrayList<String>();
     private ArrayList<String> postPurpose = new ArrayList<String>();
     private ArrayList<String> postCreatedOn = new ArrayList<String>();
+    private ArrayList<String> postStatus = new ArrayList<String>();
     private ArrayList<byte[]> postImage = new ArrayList<byte[]>();
-    private static int firstFill = 0;
-    private static int firstLoad = 0;
+    private int firstFill = 0;
+    private int firstLoad = 0;
 
     protected String initQuery1() {
         if (firstFill == 0) {
@@ -85,6 +87,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
             postCreatedOn.removeAll(postCreatedOn);
             postImage.removeAll(postImage);
             postPurpose.removeAll(postPurpose);
+            postStatus.removeAll(postStatus);
             while (rs.next()) {
                 postId.add(rs.getString("postid"));
                 postTitle.add(rs.getString("title"));
@@ -93,11 +96,12 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 postCreatedOn.add(rs.getString("createdon"));
                 postPurpose.add(rs.getString("purposeid"));
                 postImage.add(rs.getBytes("imagepath"));
+                postStatus.add(rs.getString("statusid"));
             }
             conn.close();
 
             for (int i = 0; i < postId.size(); i++) {
-                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i), postImage.get(i));
+                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i),getStatusNameFromId(postStatus.get(i)), postImage.get(i));
                 if (i % 2 == 0) {
                     x.changeBackgroundColor(postColor1);
                 } else {

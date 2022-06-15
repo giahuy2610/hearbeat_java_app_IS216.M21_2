@@ -74,7 +74,7 @@ public class chuyenManHinhController {
 
         @Override
         public void mousePressed(MouseEvent e) {
-
+                System.out.println("Đã ấn chuyển màn hình");
                 switch (kind) {
                 case "TrangChu" -> node = new trangChuJPanel();
                 case "ThemBaiViet" -> node = new themBaiVietJPanel();

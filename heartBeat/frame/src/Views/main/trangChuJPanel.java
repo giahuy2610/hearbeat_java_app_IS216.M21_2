@@ -9,6 +9,7 @@ import Process.city;
 import Process.district;
 import Process.postCategory;
 import Process.postPurpose;
+import static Process.postStatus.getStatusNameFromId;
 import Process.sort;
 import static Views.main.setValue.postColor1;
 import static Views.main.setValue.postColor2;
@@ -34,15 +35,17 @@ public class trangChuJPanel extends javax.swing.JPanel {
     private ArrayList<String> postContent = new ArrayList<String>();
     private ArrayList<String> postPurpose = new ArrayList<String>();
     private ArrayList<String> postCreatedOn = new ArrayList<String>();
+    private ArrayList<String> postStatus = new ArrayList<String>();
     private ArrayList<byte[]> postImage = new ArrayList<byte[]>();
+    
 
     protected Connection conn = null;
 
-    protected static JPanel container = new JPanel(new GridLayout(0, 1)); // 1 column variable;
+    protected JPanel container = new JPanel(new GridLayout(0, 1)); // 1 column variable;
 
-    protected static String query = "";
-    private static int firstLoad = 0;
-    private static int firstFill = 0;
+    protected String query = "";
+    private int firstLoad = 0;
+    private int firstFill = 0;
 
     protected String initQuery() {
         if (firstFill == 0) {
@@ -84,7 +87,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             query += " order by createdon desc";
         }
 
-        System.out.println(query);
+        System.out.println("đang chạy " + query);
 
         return query;
     }
@@ -93,7 +96,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
         try {
             conn = OracleConnUtils.getOracleConnection();
             query = initQuery();
-            System.out.println(query);
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             container.removeAll();
@@ -105,6 +107,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             postPurpose.removeAll(postPurpose);
             postCreatedOn.removeAll(postCreatedOn);
             postImage.removeAll(postImage);
+            postStatus.removeAll(postStatus);
             int count = 0;
             while (rs.next()) {
                 postId.add(rs.getString("postid"));
@@ -114,13 +117,14 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 postCreatedOn.add(rs.getString("createdon"));
                 postPurpose.add(rs.getString("purposeid"));
                 postImage.add(rs.getBytes("imagepath"));
+                postStatus.add(rs.getString("statusid"));
                 System.out.println("1 bài viết " + rs.getString("title") + " " + rs.getString("content"));
                 count++;
             }
             conn.close();
 
             for (int i = 0; i < count; i++) {
-                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i), postImage.get(i));
+                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i), getStatusNameFromId(postStatus.get(i)),postImage.get(i));
                 if (i % 2 == 0) {
                     x.changeBackgroundColor(postColor1);
                 } else {
@@ -434,8 +438,11 @@ public class trangChuJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void sortFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortFilterActionPerformed
-        if (firstLoad != 0)
-        this.preparePost();
+        if (firstLoad != 0) {
+            this.preparePost();
+            System.out.println("đã sort");
+        }
+        
     }//GEN-LAST:event_sortFilterActionPerformed
 
     private void categoryFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryFilterActionPerformed

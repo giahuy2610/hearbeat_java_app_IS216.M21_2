@@ -444,6 +444,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         if (output == JOptionPane.YES_OPTION) {
             try {
                 post01.cancelSchedulingPost();
+                chuyenManHinhController.setView(new trangChuJPanel());
             } catch (SQLException ex) {
                 Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {

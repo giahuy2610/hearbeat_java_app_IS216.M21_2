@@ -39,7 +39,7 @@ public class baiVietJPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    public baiVietJPanel(String postId, String title, String category, String content, String purpose, String createdOn, byte[] image) {
+    public baiVietJPanel(String postId, String title, String category, String content, String purpose, String createdOn,String status, byte[] image) {
         initComponents();
         this.postId = postId;
         this.title = title;
@@ -51,6 +51,7 @@ public class baiVietJPanel extends javax.swing.JPanel {
         //jLabel2.setText(path);
         jLabel2.setText(content);
         jLabel4.setText(createdOn);
+        labelStatus.setText(status);
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 0));
         
         //load ảnh
@@ -76,6 +77,7 @@ public class baiVietJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        labelStatus = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(126, 186, 181));
@@ -123,6 +125,8 @@ public class baiVietJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Trao tặng >> Thực phẩm ");
 
+        labelStatus.setText("trạng thái");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,8 +136,10 @@ public class baiVietJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 89, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 41, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,7 +149,8 @@ public class baiVietJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(labelStatus))
         );
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -156,10 +163,10 @@ public class baiVietJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 454, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -189,5 +196,6 @@ public class baiVietJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelImageMini;
+    private javax.swing.JLabel labelStatus;
     // End of variables declaration//GEN-END:variables
 }
