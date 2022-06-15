@@ -99,15 +99,21 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 postStatus.add(rs.getString("statusid"));
             }
             conn.close();
-
-            for (int i = 0; i < postId.size(); i++) {
-                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i),getStatusNameFromId(postStatus.get(i)), postImage.get(i));
+            int count = postId.size();
+            for (int i = 0; i < count; i++) {
+                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i), getStatusNameFromId(postStatus.get(i)), postImage.get(i));
                 if (i % 2 == 0) {
                     x.changeBackgroundColor(postColor1);
                 } else {
                     x.changeBackgroundColor(postColor2);
                 }
                 container.add(x);
+            }
+            if (count < 2 && count > 0) {
+                for (; count < 2; count++) {
+                    baiVietJPanel x = new baiVietJPanel();
+                    container.add(x);
+                }
             }
             jScrollPanePost.setViewportView(container);
 

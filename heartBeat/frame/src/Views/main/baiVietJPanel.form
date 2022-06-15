@@ -37,7 +37,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" pref="186" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-              <Component id="jPanel1" pref="454" max="32767" attributes="0"/>
+              <Component id="jPanel1" pref="493" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel4" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -134,7 +134,7 @@
                               <Component id="jLabel2" min="-2" pref="378" max="-2" attributes="0"/>
                               <Component id="labelStatus" min="-2" pref="156" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="41" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="80" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -148,7 +148,7 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <EmptySpace pref="92" max="32767" attributes="0"/>
                   <Component id="labelStatus" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -160,25 +160,17 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ai &#x103;n k&#x1eb9;o ng&#xf4; khum"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Trao t&#x1eb7;ng &gt;&gt; Th&#x1ef1;c ph&#x1ea9;m "/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelStatus">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="tr&#x1ea1;ng th&#xe1;i"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="22/05/2022"/>
       </Properties>
     </Component>
   </SubComponents>

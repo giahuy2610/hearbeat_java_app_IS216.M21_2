@@ -37,7 +37,6 @@ public class trangChuJPanel extends javax.swing.JPanel {
     private ArrayList<String> postCreatedOn = new ArrayList<String>();
     private ArrayList<String> postStatus = new ArrayList<String>();
     private ArrayList<byte[]> postImage = new ArrayList<byte[]>();
-    
 
     protected Connection conn = null;
 
@@ -124,18 +123,24 @@ public class trangChuJPanel extends javax.swing.JPanel {
             conn.close();
 
             for (int i = 0; i < count; i++) {
-                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i), getStatusNameFromId(postStatus.get(i)),postImage.get(i));
+                baiVietJPanel x = new baiVietJPanel(postId.get(i), postTitle.get(i), postCategory.get(i), postContent.get(i), postPurpose.get(i), postCreatedOn.get(i), getStatusNameFromId(postStatus.get(i)), postImage.get(i));
                 if (i % 2 == 0) {
                     x.changeBackgroundColor(postColor1);
                 } else {
                     x.changeBackgroundColor(postColor2);
                 }
                 container.add(x);
-                
+
             }
+            if (count < 4 && count > 0) {
+                for (;count < 3; count++) {
+                    baiVietJPanel x = new baiVietJPanel();
+                    container.add(x);
+                }
+            }
+
             jScrollPane1.setViewportView(container);
-            System.out.println("count " + Integer.toString(count));
-            System.out.println(Integer.toString(postId.size()) + Integer.toString(postTitle.size()) + Integer.toString(postContent.size()) + Integer.toString(postCategory.size()) + Integer.toString(postPurpose.size()));
+
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(trangChuJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -442,17 +447,17 @@ public class trangChuJPanel extends javax.swing.JPanel {
             this.preparePost();
             System.out.println("đã sort");
         }
-        
+
     }//GEN-LAST:event_sortFilterActionPerformed
 
     private void categoryFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryFilterActionPerformed
         if (firstLoad != 0)
-        this.preparePost();
+            this.preparePost();
     }//GEN-LAST:event_categoryFilterActionPerformed
 
     private void purposeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purposeFilterActionPerformed
         if (firstLoad != 0)
-        this.preparePost();
+            this.preparePost();
     }//GEN-LAST:event_purposeFilterActionPerformed
 
     private void field_tim_kiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field_tim_kiemActionPerformed
@@ -468,13 +473,14 @@ public class trangChuJPanel extends javax.swing.JPanel {
 
     private void districtFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtFilterActionPerformed
         if (firstLoad != 0)
-        this.preparePost();
+            this.preparePost();
     }//GEN-LAST:event_districtFilterActionPerformed
 
     private void cityFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityFilterActionPerformed
         if (firstLoad != 0) {
-        this.preparePost();
-        district.prepareDistrictFilter(cityFilter, districtFilter);}
+            this.preparePost();
+            district.prepareDistrictFilter(cityFilter, districtFilter);
+        }
     }//GEN-LAST:event_cityFilterActionPerformed
 
     private void btn_tim_kiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tim_kiemActionPerformed
