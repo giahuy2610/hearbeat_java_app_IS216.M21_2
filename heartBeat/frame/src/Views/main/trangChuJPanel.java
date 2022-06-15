@@ -235,6 +235,11 @@ public class trangChuJPanel extends javax.swing.JPanel {
                 field_tim_kiemActionPerformed(evt);
             }
         });
+        field_tim_kiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                field_tim_kiemKeyPressed(evt);
+            }
+        });
 
         btn_tim_kiem.setBackground(new java.awt.Color(126, 186, 181));
         btn_tim_kiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/search_1.png"))); // NOI18N
@@ -424,7 +429,7 @@ public class trangChuJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -468,6 +473,12 @@ public class trangChuJPanel extends javax.swing.JPanel {
     private void btn_tim_kiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tim_kiemActionPerformed
         this.preparePost();
     }//GEN-LAST:event_btn_tim_kiemActionPerformed
+
+    private void field_tim_kiemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_field_tim_kiemKeyPressed
+        if (evt.getKeyCode() == 10) {
+            this.preparePost();
+        }
+    }//GEN-LAST:event_field_tim_kiemKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

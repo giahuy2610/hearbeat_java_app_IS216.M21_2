@@ -19,6 +19,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -30,14 +31,19 @@ import javax.swing.JOptionPane;
 public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
 
     //private static String selectedUserId;
-    private static user user01;
-    private static int firstFill = 0;
-    private static String selectedBtn;
+    private user user01;
+    private int firstFill = 0;
+    private String selectedBtn;
     private ArrayList<String> districtIdUser = new ArrayList<String>();
-
+    private Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
     /**
      * Creates new form danhChoAdminJPanel
      */
+    private boolean isNumeric(String str) {
+        if (str == null) return false;
+        return pattern.matcher(str).matches();
+    }
+    
     private void enableAllBtn() {
         if (selectedBtn.equals("")) {
             btnModifyUser.setEnabled(true);
@@ -81,7 +87,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     }
 
     private void loadData() {
-        System.out.println("Đang thực hiện load data cho quản lí người dùng");
+        
         Connection conn = null;
         try {
             conn = TestConnectJDBC.getConnection();
@@ -93,12 +99,21 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
         String query = "";
         synchronized (query) {
             query = "select * from tb_user order by userid";
+            if (firstFill == 1) {
+                if (isNumeric( fieldSearch.getText()))
+                    query = "select * from tb_user where userid = "+ fieldSearch.getText() +" or upper(firstname) like upper('%"+ fieldSearch.getText() +"%') or upper(lastname) like upper('%" + fieldSearch.getText() + "%') order by userid";
+                else 
+                    query = "select * from tb_user where upper(firstname) like upper('%"+ fieldSearch.getText() +"%') or upper(lastname) like upper('%" + fieldSearch.getText() + "%') order by userid";
+            }
         }
+        System.out.println("Đang thực hiện load data cho quản lí người dùng: "+query);
+        DefaultTableModel tblModel = (DefaultTableModel) tableUser.getModel();
+        tblModel.setRowCount(0);
         try ( Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 String row_temp[] = {rs.getString("userid"), rs.getString("lastname"), rs.getString("phone"), rs.getString("score"), rs.getString("roleid").equals("1") ? "Người dùng" : "Quản trị viên", rs.getString("isdeleted").equals("0") ? "Khả dụng" : "Đã xóa"};
-                DefaultTableModel tblModel = (DefaultTableModel) tableUser.getModel();
+                
 
                 tblModel.addRow(row_temp);
             }
@@ -694,10 +709,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteUserActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (firstFill == 0) {
-            firstFill = 1;
-            fieldSearch.setText("");
-        }
+        this.loadData();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void fieldAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldAddressActionPerformed
@@ -892,6 +904,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     private void fieldSearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldSearchMousePressed
         if (firstFill == 0) {
             fieldSearch.setText("");
+            firstFill = 1;
         }
     }//GEN-LAST:event_fieldSearchMousePressed
 

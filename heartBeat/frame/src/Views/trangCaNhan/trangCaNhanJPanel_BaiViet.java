@@ -155,6 +155,11 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 searchFieldActionPerformed(evt);
             }
         });
+        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchFieldKeyPressed(evt);
+            }
+        });
 
         btnSearch.setBackground(new java.awt.Color(255, 204, 204));
         btnSearch.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -287,6 +292,12 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         this.preparePost();
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void searchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyPressed
+        if (evt.getKeyCode() == 10) {
+            this.preparePost();
+        }
+    }//GEN-LAST:event_searchFieldKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

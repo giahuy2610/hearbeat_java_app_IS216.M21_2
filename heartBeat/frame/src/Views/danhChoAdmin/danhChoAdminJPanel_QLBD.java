@@ -21,6 +21,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
@@ -32,11 +33,18 @@ import javax.swing.JOptionPane;
 public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
 
     //private static String selectedUserId;
-    private static post post01;
-    private static int firstFill = 0;
-    private static String selectedBtn;
+    private post post01;
+    private int firstFill = 0;
+    private String selectedBtn;
     private ArrayList<String> districtIdUser = new ArrayList<String>();
-
+    private Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+    /**
+     * Creates new form danhChoAdminJPanel
+     */
+    private boolean isNumeric(String str) {
+        if (str == null) return false;
+        return pattern.matcher(str).matches();
+    }
     /**
      * Creates new form danhChoAdminJPanel
      */
@@ -81,12 +89,24 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         String query = "";
         synchronized (query) {
             query = "select * from tb_post order by postid";
+            if (firstFill == 1) {
+                if (isNumeric(fieldSearch.getText())) {
+                    query = "select * from tb_post where postid = " + fieldSearch.getText() + " or upper(title) like upper('%"+ fieldSearch.getText() +"%') or upper(content) like upper('%"+ fieldSearch.getText() +"%') order by postid";
+                }
+                else {
+                    query = "select * from tb_post where upper(title) like upper('%"+ fieldSearch.getText() +"%') or upper(content) like upper('%"+ fieldSearch.getText() +"%') order by postid";
+                }
+            }
         }
+        System.out.println("Đang thực hiện load data cho quản lí  bài đăng: "+query);
+        
+        DefaultTableModel tblModel = (DefaultTableModel) tableUser.getModel();
+        tblModel.setRowCount(0);
         try ( Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 String row_temp[] = {rs.getString("postid"), rs.getString("title"), rs.getString("isdeleted").equals("0") ? "Khả dụng" : "Đã xóa"};
-                DefaultTableModel tblModel = (DefaultTableModel) tableUser.getModel();
+                
 
                 tblModel.addRow(row_temp);
             }
@@ -395,6 +415,11 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
                 fieldSearchActionPerformed(evt);
             }
         });
+        fieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fieldSearchKeyPressed(evt);
+            }
+        });
 
         btnDeletePost.setBackground(new java.awt.Color(255, 255, 255));
         btnDeletePost.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -468,10 +493,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
     }//GEN-LAST:event_fieldContentActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (firstFill == 0) {
-            firstFill = 1;
-            fieldSearch.setText("");
-        }
+        loadData();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void cbCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCategoryActionPerformed
@@ -537,6 +559,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
     private void fieldSearchMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldSearchMousePressed
         if (firstFill == 0) {
             fieldSearch.setText("");
+            firstFill = 1;
         }
     }//GEN-LAST:event_fieldSearchMousePressed
 
@@ -632,6 +655,12 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_btnDeletePostActionPerformed
+
+    private void fieldSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldSearchKeyPressed
+        if (evt.getKeyCode()==10) {
+            this.loadData();
+        }
+    }//GEN-LAST:event_fieldSearchKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
