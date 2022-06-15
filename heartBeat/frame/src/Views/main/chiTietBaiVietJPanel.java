@@ -4,16 +4,13 @@
  */
 package Views.main;
 
-import ConnectDB.OracleConnUtils;
 import Process.post;
 import static Process.postCategory.getCategoryNameFromId;
 import static Process.postPurpose.getPurposeNameFromId;
 import static Process.postStatus.getStatusNameFromId;
 import Process.user;
 import java.awt.Image;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -24,8 +21,8 @@ import javax.swing.JOptionPane;
  * @author giahu
  */
 public class chiTietBaiVietJPanel extends javax.swing.JPanel {
-    private Connection conn;
-    private post post01;
+
+    post post01;
 
     private void loadData() {
         labelImage.setSize(220, 220);
@@ -104,15 +101,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
     /**
      * Creates new form NewJPanel
      */
-    public chiTietBaiVietJPanel(String postId) throws SQLException, ClassNotFoundException {
-        conn  = (Connection) OracleConnUtils.getOracleConnection();
-        conn.setAutoCommit(false);
-        System.out.println("TX is now " + conn.getTransactionIsolation());
-        conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-        System.out.println("TX is now " + conn.getTransactionIsolation());
-        Statement stmt2 = conn.createStatement();
-        stmt2.executeQuery("select * from tb_post where postid = " + postId + " for update nowait");
-
+    public chiTietBaiVietJPanel(String postId) {
         initComponents();
         post01 = new post(postId);
         loadData();

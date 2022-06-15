@@ -161,7 +161,7 @@ public class suaBaiVietJPanel extends javax.swing.JPanel {
         btnSave.setBackground(new java.awt.Color(204, 204, 255));
         btnSave.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnSave.setForeground(new java.awt.Color(0, 51, 153));
-        btnSave.setText("Đăng");
+        btnSave.setText("Cập nhật");
         btnSave.setToolTipText("");
         btnSave.setBorder(null);
         btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -291,6 +291,7 @@ public class suaBaiVietJPanel extends javax.swing.JPanel {
                 post01.modifyPost(jTextFieldTieuDe.getText(), postContent.getText(), Integer.toString(categoryFilter.getSelectedIndex()), Integer.toString(purposeFilter.getSelectedIndex()));
             }
             JOptionPane.showMessageDialog(this, "Đã sửa bài viết!");
+            chuyenManHinhController.setView(new chiTietBaiVietJPanel(post01.getPostId()));
         } catch (SQLException | ClassNotFoundException | FileNotFoundException ex) {
             Logger.getLogger(suaBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
