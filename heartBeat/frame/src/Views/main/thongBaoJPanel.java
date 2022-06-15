@@ -132,6 +132,11 @@ public class thongBaoJPanel extends javax.swing.JPanel {
                 field_tim_kiemActionPerformed(evt);
             }
         });
+        field_tim_kiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                field_tim_kiemKeyPressed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -287,6 +292,12 @@ public class thongBaoJPanel extends javax.swing.JPanel {
             prepareNotifications("searching");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void field_tim_kiemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_field_tim_kiemKeyPressed
+        if (evt.getKeyCode() == 10) {
+            prepareNotifications("searching");
+        }
+    }//GEN-LAST:event_field_tim_kiemKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

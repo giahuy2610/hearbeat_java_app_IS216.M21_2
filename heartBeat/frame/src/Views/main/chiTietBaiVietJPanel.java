@@ -396,7 +396,7 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
             try {
                 post01.schedulePost();
                 new thongTinDatHen(new user(post01.getOwnerId())).setVisible(true);
-                loadData();
+                chuyenManHinhController.setView(new chiTietBaiVietJPanel(post01.getPostId()));
             } catch (SQLException ex) {
 
                 if (ex.getErrorCode() == 20000) {
