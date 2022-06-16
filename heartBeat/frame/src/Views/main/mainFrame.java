@@ -21,6 +21,7 @@ public class mainFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form mainFrame
+     * @param currentUserId
      */
     public mainFrame(String currentUserId) {
         initComponents();

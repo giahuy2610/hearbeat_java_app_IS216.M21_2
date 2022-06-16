@@ -21,7 +21,7 @@ public class chuyenManHinhController {
 
     private static JPanel root;
     private static String kindSelected = "";
-
+    private static int firstLoad = 0;
     private static List<danhMucBean> listItem = null;
 
     public chuyenManHinhController(JPanel jpnRoot) {
@@ -29,25 +29,18 @@ public class chuyenManHinhController {
     }
 
     public static void setView(JPanel item) {
-        kindSelected = "TrangChu";
-        
+        if (firstLoad == 0) {
+            setChangeBackground("TrangChu");
+            firstLoad++;
+        }
+        System.out.println("firstLoad " + firstLoad);
         root.removeAll();
         root.setLayout(new BorderLayout());
         root.add(item);
         root.validate();
         root.repaint();
-        setChangeBackground("TrangChu");
     }
-    
-    public void changeView(JPanel item) {
-        root.removeAll();
-        root.setLayout(new BorderLayout());
-        root.add(item);
-        root.validate();
-        root.repaint();
-        
-    }
-    
+
     public void setEvent(List<danhMucBean> listItem) {
         this.listItem = listItem;
         for (danhMucBean item : listItem) {
@@ -69,19 +62,26 @@ public class chuyenManHinhController {
 
         @Override
         public void mouseClicked(MouseEvent e) {
+            System.out.println("đã click");
 
         }
 
         @Override
         public void mousePressed(MouseEvent e) {
-                System.out.println("Đã ấn chuyển màn hình");
-                switch (kind) {
-                case "TrangChu" -> node = new trangChuJPanel();
-                case "ThemBaiViet" -> node = new themBaiVietJPanel();
-                case "ThongBao" -> node = new thongBaoJPanel();
-                case "TrangCaNhan" -> node = new trangCaNhanJPanel();
-                case "DanhChoAdmin" -> node = new danhChoAdminJPanel();
-                case "DanhMuc" -> node = new danhMucJPanel();
+            System.out.println("Đã ấn chuyển màn hình");
+            switch (kind) {
+                case "TrangChu" ->
+                    node = new trangChuJPanel();
+                case "ThemBaiViet" ->
+                    node = new themBaiVietJPanel();
+                case "ThongBao" ->
+                    node = new thongBaoJPanel();
+                case "TrangCaNhan" ->
+                    node = new trangCaNhanJPanel();
+                case "DanhChoAdmin" ->
+                    node = new danhChoAdminJPanel();
+                case "DanhMuc" ->
+                    node = new danhMucJPanel();
                 default -> {
                 }
             }
@@ -92,16 +92,17 @@ public class chuyenManHinhController {
             root.validate();
             root.repaint();
             setChangeBackground(kind);
-                    
+
         }
 
         @Override
         public void mouseReleased(MouseEvent e) {
-  
+            System.out.println("thả");
         }
 
         @Override
         public void mouseEntered(MouseEvent e) {
+            System.out.println("đã enter");
         }
 
         @Override
@@ -117,9 +118,9 @@ public class chuyenManHinhController {
         for (danhMucBean item : listItem) {
             if (item.getKind().equalsIgnoreCase(kindSelected)) {
                 item.getJbtn().setOpaque(true);
-            }
-            else {
-                item.getJbtn().setOpaque(false);              
+            } else {
+                System.out.println("tắt màu " + item.getKind());
+                item.getJbtn().setOpaque(false);
             }
         }
 
