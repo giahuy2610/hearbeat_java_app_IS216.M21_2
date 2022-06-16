@@ -3,10 +3,10 @@
 ## Nhóm FourLittleDucks xin chào: 
 | Tên                        | MSSV     | Sdt        | Phân công | Đánh giá |
 |----------------------------|----------|------------|-----------|----------|
-| Trịnh Gia Huy(nhóm trưởng) | 20520556 | 0941510664 |           | 100%     |
-| Lê Thị Thanh Hương(tester) | 20520201 | 0703264721 |           | 100%     |
-| Nguyễn Hoàng Nhật          | 20520673 | 0389479682 |           | 100%     |
-| Trần Văn Quang             | 20520722 | 0375665412 |           | 100%     |
+| Trịnh Gia Huy(nhóm trưởng) | 20520556 | 0941510664 |Chức năng           | 100%     |
+| Lê Thị Thanh Hương(tester) | 20520201 | 0703264721 |Kiểm thử, ireport, phần thống kê, thiết kế UI, thêm-sửa-xem bài viết, lưu ảnh bằng blob, jfreechart      | 100%     |
+| Nguyễn Hoàng Nhật          | 20520673 | 0389479682 |Dữ liệu mẫu, đổi icon, thiết kế UI          | 100%     |
+| Trần Văn Quang             | 20520722 | 0375665412 |(UI Đăng nhập,đăng ký,quản trị viên,thông báo,trang cá nhân), dữ liệu mẫu, sửa lỗi giao diện(nhiều lần), thiết kế UI       | 100%     |
 
 
 ## Giới thiệu về đồ án
@@ -19,26 +19,36 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 
 ## Các chức năng có trong ứng dụng
 #### Chức năng chung
-> * Đăng nhập, đăng ký tài khoản
-> * Tạo một bài viết 
-> * updating
+> * Đăng nhập, đăng ký tài khoản, khôi phục mật khẩu
+> * Trang chủ xem bài viết, lọc bài viết theo danh mục, địa chỉ, thời gian
+> * Lưu trữ thông báo, lịch hẹn
+> * Đặt lịch hẹn, hủy lịch hẹn, xem thông tin người hẹn v.v
+> * Thêm, xóa, sửa bài viết
+> * Trang cá nhân (xem thông tin người dùng, bài viết đã đăng/đã quan tâm, cập nhật lại thông tin tài khoản v.v)
+> * Xem bảng xếp hạng nhân ái
 #### Chức năng của người quản trị viên
-> * Quản lí tài khoản người dùng
-> * updating
+> *  Hỗ trợ quản trị viên (quản lý thông tin người dùng, bài viết, thống kê hiệu quả hoạt động của ứng dụng (số bài viết/người dùng mới, số lượt hỗ trợ thành công, sơ đồ tăng trưởng v.v)
+
+## Mô hình dữ liệu quan hệ của ứng dụng
+![image](https://user-images.githubusercontent.com/87313146/174045456-a4f984fd-5391-498d-b639-f92efeab214d.png)
 
 ## Các công nghệ, nền tảng đã sử dụng
 > * Ngôn ngữ lập trình: Java
 > * Công cụ lập trình giao diện: Java Swing
 > * Cơ sở dữ liệu: Oracle
-> 
+> * Công cụ quản lý: Github, Trello
+
 ## Các chức năng, công nghệ mới(ngoài phạm vi môn học)
-> * Chức năng xóa mềm: khi một bài đăng được xóa, nó sẽ không bị xóa hẳn khỏi cơ sở dữ liệu mà sẽ được lưu vào thư mục thùng rác và tồn tại trong 2 ngày, nếu người dùng không thực hiện khôi phục, bài đăng sẽ bị xóa thực sự khỏi cơ sở dữ liệu
-> * Chức năng lưu ảnh: ảnh thực sự được lưu vào cơ sở dữ liệu Oracle dưới dạng BLOB.
+> * Chức năng xóa mềm: khi một bài đăng được xóa, nó sẽ không bị xóa hẳn khỏi cơ sở dữ liệu mà sẽ được lưu vào thư mục thùng rác và tồn tại trong 2 ngày, nếu người dùng không thực hiện khôi phục, bài đăng sẽ bị xóa thực sự khỏi cơ sở dữ liệu.
+> * Chức năng lưu ảnh: ảnh thực sự được lưu vào cơ sở dữ liệu Oracle dưới dạng BLOB thay vì dạng đường dẫn tương đối/tuyệt đối.
 > * Chức năng bảo mật: Sử dụng Kĩ thuật băm MD5 để băm mật khẩu của người dùng, tránh các rủi ro về bảo mật cho người dùng
-> * Sử dụng Regex để kiểm tra các ràng buộc đối với các trường dữ liệu 
-> * Chức năng khôi phục mật khẩu: Sử dụng JavaMail để thực hiện việc gửi mail tự động khi người dùng có nhu cầu khôi phục lại mật khẩu
+> * Sử dụng Regex để kiểm tra các ràng buộc đối với các trường dữ liệu.
+> * Chức năng khôi phục mật khẩu: Sử dụng JavaMail để thực hiện việc gửi mail tự động khi người dùng có nhu cầu khôi phục lại mật khẩu.
+
 ## Cách thức cài đặt chương trình
 > * Bước 1: Clone lại project với bằng các các ide như vs code với http:.. hoặc sstp:..
 > * Bước 2: Chạy project với NetBean, lúc này NetBean hiển thị thông báo xảy ra lỗi đối với các thư viện chưa có trên máy.
-> * Bước 3: Chọn resolve và chọn đường dẫn tới file jdbc11.jar để cài đặt jdbc. Tương tự chọn đường dẫn đến file KGradientPanel.jar để cài đặt thư viện hỗ trợ việc tạo hình ảnh có màu gradient.
+> * Bước 3: Chọn resolve và chọn đường dẫn tới folder Resource/file_jar trong cùng folder project, chọn các file .jar cần resolve tương ứng.
+> * Bước 4: Cài đặt thành công cơ sở dữ liệu Oracle và tạo cơ sở dữ liệu với file sql trong folder SQL.
+> * Bước 5: Thực hiện chạy file main trong folder main để mở trang giao diện đăng nhập/đăng ký. Thực hiện đăng ký mới một tài khoản (không tự insert vì dữ liệu mật khẩu được lưu dưới dạng hash và chỉ được hash khi thực hiện đăng ký trên chính ứng dụng). Đăng nhập để sử dụng các chức năng của ứng dụng.
 
