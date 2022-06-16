@@ -11,7 +11,7 @@ import static Process.postPurpose.preparePurposeFilter;
 import static Process.postStatus.getStatusNameFromId;
 import Views.main.chuyenManHinhController;
 import Views.main.imageHelper;
-import Views.main.themBaiVietJPanel;
+import Views.panel.themBaiVietJPanel;
 import Views.trangCaNhan.trangCaNhanJPanel_ThongTin;
 import java.awt.Image;
 import java.sql.Connection;

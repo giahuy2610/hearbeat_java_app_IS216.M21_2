@@ -2,21 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Views.main;
+package Views.panel;
 
-import ConnectDB.OracleConnUtils;
 import static Process.image.scaleImage;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import Process.post;
 import Process.postCategory;
 import Process.postPurpose;
+import Views.main.chuyenManHinhController;
+import Views.main.imageHelper;
+import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -25,27 +25,40 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Admin
  */
-public class themBaiVietJPanel extends javax.swing.JPanel {
+public class suaBaiVietJPanel extends javax.swing.JPanel {
 
-    File pathImage;
+    private File pathImage;
+    private post post01;
+    private byte[] imagedata;
+    
 
-    //hàm resize ảnh
     private void changeEnableButton() {
         // nếu người dùng chọn danh mục và mục đích rồi mới cho đăng bài viết
         if (purposeFilter.getSelectedIndex() != 0 && categoryFilter.getSelectedIndex() != 0) {
-            postBtn.setEnabled(true);
+            btnSave.setEnabled(true);
         } else {
-            postBtn.setEnabled(false);
+            btnSave.setEnabled(false);
         }
     }
 
     /**
      * Creates new form themBaiVietJPanel
      */
-    public themBaiVietJPanel() {
+    public suaBaiVietJPanel(post post1) {
         initComponents();
+        post01 = post1;
         postPurpose.preparePurposeFilter(purposeFilter);
         postCategory.prepareCategoryFilter(categoryFilter);
+        jTextFieldTieuDe.setText(post01.getTitle());
+        postContent.setText(post01.getContent());
+        purposeFilter.setSelectedIndex(Integer.parseInt(post01.getPurposeId()));
+        categoryFilter.setSelectedIndex(Integer.parseInt(post01.getCategoryId()));
+        imagedata = post01.getImagePath();
+        if (imagedata != null) {
+            ImageIcon format = new ImageIcon(imagedata);
+            Image resize = imageHelper.reSize(format.getImage(), 130, 120);
+            labelImage.setIcon(new ImageIcon(resize));
+        }
     }
 
     /**
@@ -70,8 +83,9 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         labelImage = new javax.swing.JLabel();
-        postBtn = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         categoryFilter = new javax.swing.JComboBox<>();
+        btnCancel = new javax.swing.JButton();
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -83,7 +97,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 153));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("THÊM BÀI VIẾT");
+        jLabel1.setText("SỬA BÀI VIẾT");
 
         javax.swing.GroupLayout kGradientPanel2Layout = new javax.swing.GroupLayout(kGradientPanel2);
         kGradientPanel2.setLayout(kGradientPanel2Layout);
@@ -98,7 +112,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(199, 234, 227));
 
-        jTextFieldTieuDe.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
+        jTextFieldTieuDe.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
         jTextFieldTieuDe.setToolTipText("");
         jTextFieldTieuDe.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextFieldTieuDe.addActionListener(new java.awt.event.ActionListener() {
@@ -145,30 +159,21 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         labelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/size.png"))); // NOI18N
         labelImage.setToolTipText("");
         labelImage.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        labelImage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelImageMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labelImageMousePressed(evt);
-            }
-        });
 
-        postBtn.setBackground(new java.awt.Color(153, 255, 255));
-        postBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        postBtn.setForeground(new java.awt.Color(0, 51, 153));
-        postBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/send.png"))); // NOI18N
-        postBtn.setText("Đăng");
-        postBtn.setToolTipText("");
-        postBtn.setBorder(null);
-        postBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSave.setBackground(new java.awt.Color(204, 204, 255));
+        btnSave.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnSave.setForeground(new java.awt.Color(0, 51, 153));
+        btnSave.setText("Cập nhật");
+        btnSave.setToolTipText("");
+        btnSave.setBorder(null);
+        btnSave.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                postBtnMouseClicked(evt);
+                btnSaveMouseClicked(evt);
             }
         });
-        postBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                postBtnActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -176,6 +181,24 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         categoryFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 categoryFilterActionPerformed(evt);
+            }
+        });
+
+        btnCancel.setBackground(new java.awt.Color(255, 102, 102));
+        btnCancel.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(0, 51, 153));
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/images/paper.png"))); // NOI18N
+        btnCancel.setText("Hủy");
+        btnCancel.setToolTipText("");
+        btnCancel.setBorder(null);
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelMouseClicked(evt);
+            }
+        });
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
             }
         });
 
@@ -198,9 +221,11 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(postContent, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(postBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(78, 78, 78))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(254, 254, 254)
@@ -222,10 +247,6 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(postBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,15 +257,16 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(postContent, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(111, 111, 111))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(labelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(19, 19, 19))))))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelImage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(61, 61, 61))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -263,51 +285,24 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void postBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postBtnActionPerformed
-        JOptionPane.showMessageDialog(this, "Vui lòng kiểm tra lại thông tin liên hệ, sửa lại ở trang cá nhân nếu sai!");
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
-            new thongTinDatHen(mainFrame.currentUser).setVisible(true);
-
-            String[] options = {"Tiếp tục", "Hủy"};
-            int output = JOptionPane.showOptionDialog(this,
-                    "Thông tin đã đúng, tiếp tục đăng bài", "Xác nhận",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-            if (output == JOptionPane.YES_OPTION) {
-                try {
-                    post.themBaiViet(jTextFieldTieuDe.getText(), postContent.getText(), postCategory.getCategoryId().get(categoryFilter.getSelectedIndex()), postPurpose.getPurposeId().get(purposeFilter.getSelectedIndex()), pathImage);
-
-                    String query = "select max(postid) as maxPostId from tb_post where ownerid = " + mainFrame.currentUser.getUserId();
-
-                    try ( Connection conn = OracleConnUtils.getOracleConnection()) {
-                        Statement stmt = conn.createStatement();
-                        ResultSet rs = stmt.executeQuery(query);
-
-                        while (rs.next()) {
-                            chuyenManHinhController.setView(new chiTietBaiVietJPanel(rs.getString("maxPostId")));
-                        }
-                    }
-
-                } catch (SQLException | ClassNotFoundException ex) {
-                    Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else if (output == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(this, "Đã hủy đăng bài!");
+            if (pathImage != null)
+                post01.modifyPost(jTextFieldTieuDe.getText(), postContent.getText(), Integer.toString(categoryFilter.getSelectedIndex()), Integer.toString(purposeFilter.getSelectedIndex()));
+            else {
+                post01.modifyPost(jTextFieldTieuDe.getText(), postContent.getText(), Integer.toString(categoryFilter.getSelectedIndex()), Integer.toString(purposeFilter.getSelectedIndex()));
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(themBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Đã sửa bài viết!");
+            chuyenManHinhController.setView(new chiTietBaiVietJPanel(post01.getPostId()));
+        } catch (SQLException | ClassNotFoundException | FileNotFoundException ex) {
+            Logger.getLogger(suaBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }//GEN-LAST:event_btnSaveActionPerformed
 
-    }//GEN-LAST:event_postBtnActionPerformed
-
-    private void postBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_postBtnMouseClicked
+    private void btnSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveMouseClicked
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_postBtnMouseClicked
+    }//GEN-LAST:event_btnSaveMouseClicked
 
     private void purposeFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purposeFilterActionPerformed
         changeEnableButton();
@@ -321,27 +316,18 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         changeEnableButton();
     }//GEN-LAST:event_categoryFilterActionPerformed
 
-    private void labelImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImageMouseClicked
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelMouseClicked
 
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        chuyenManHinhController.setView(new chiTietBaiVietJPanel(post01.getPostId()));
+    }//GEN-LAST:event_btnCancelActionPerformed
 
-    }//GEN-LAST:event_labelImageMouseClicked
-
-    private void labelImageMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelImageMousePressed
-        JFileChooser chooser = new JFileChooser();
-
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGE", "png", "jpg", "jpeg");
-        chooser.addChoosableFileFilter(fnef);
-
-        chooser.showOpenDialog(null);
-        File f = chooser.getSelectedFile();
-        pathImage = f;
-        if (f != null) {
-            System.out.println(f);
-            scaleImage(f.toString(), labelImage);//render ảnh vào label
-        }
-    }//GEN-LAST:event_labelImageMousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> categoryFilter;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
@@ -354,7 +340,6 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextFieldTieuDe;
     private keeptoo.KGradientPanel kGradientPanel2;
     private javax.swing.JLabel labelImage;
-    private javax.swing.JButton postBtn;
     private javax.swing.JTextField postContent;
     private javax.swing.JComboBox<String> purposeFilter;
     // End of variables declaration//GEN-END:variables
@@ -373,13 +358,13 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(themBaiVietJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(suaBaiVietJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(themBaiVietJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(suaBaiVietJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(themBaiVietJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(suaBaiVietJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(themBaiVietJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(suaBaiVietJPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -387,7 +372,7 @@ public class themBaiVietJPanel extends javax.swing.JPanel {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new themBaiVietJPanel().setVisible(true);
+                //new suaBaiVietTest().setVisible(true);
             }
         });
     }

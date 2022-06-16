@@ -2,13 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Views.main;
+package Views.panel;
 
+import Views.panel.suaBaiVietJPanel;
 import Process.post;
 import static Process.postCategory.getCategoryNameFromId;
 import static Process.postPurpose.getPurposeNameFromId;
 import static Process.postStatus.getStatusNameFromId;
 import Process.user;
+import Views.main.chuyenManHinhController;
+import Views.main.imageHelper;
+import Views.main.mainFrame;
 import java.awt.Image;
 import java.sql.SQLException;
 import java.util.logging.Level;

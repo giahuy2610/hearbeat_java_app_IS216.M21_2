@@ -4,6 +4,10 @@
  */
 package Views.main;
 
+import Views.panel.trangChuJPanel;
+import Views.panel.danhMucJPanel;
+import Views.panel.thongBaoJPanel;
+import Views.panel.themBaiVietJPanel;
 import Views.danhChoAdmin.danhChoAdminJPanel;
 import Views.trangCaNhan.trangCaNhanJPanel;
 import java.awt.BorderLayout;

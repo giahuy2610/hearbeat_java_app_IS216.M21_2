@@ -2,8 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Views.main;
+package Views.panel;
 
+import Views.main.chuyenManHinhController;
+import Views.main.imageHelper;
+import Views.panel.chiTietBaiVietJPanel;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.BorderFactory;
