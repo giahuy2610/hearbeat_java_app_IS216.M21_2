@@ -4,7 +4,7 @@
 | Tên                        | MSSV     | Sdt        | Phân công | Đánh giá |
 |----------------------------|----------|------------|-----------|----------|
 | Trịnh Gia Huy(nhóm trưởng) | 20520556 | 0941510664 |Chức năng           | 9/10     |
-| Lê Thị Thanh Hương(tester) | 20520201 | 0703264721 |Kiểm thử, ireport, phần thống kê, thiết kế UI, thêm-sửa-xem bài viết, lưu ảnh bằng blob, jfreechart      | 9/10     |
+| Lê Thị Thanh Hương(tester) | 20520201 | 0703264721 |Kiểm thử, ireport, phần thống kê, thiết kế UI, thêm-sửa-xem bài viết, lưu ảnh bằng blob, jfreechart      | 8/10     |
 | Nguyễn Hoàng Nhật          | 20520673 | 0389479682 |Dữ liệu mẫu, đổi icon, thiết kế UI          | 5/10     |
 | Trần Văn Quang             | 20520722 | 0375665412 |(UI Đăng nhập,đăng ký,quản trị viên,thông báo,trang cá nhân), dữ liệu mẫu, sửa lỗi giao diện(nhiều lần), thiết kế UI       | 7/10     |
 
