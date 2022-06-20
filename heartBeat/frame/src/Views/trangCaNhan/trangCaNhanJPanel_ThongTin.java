@@ -336,6 +336,7 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
                 JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         if (output == JOptionPane.YES_OPTION) {
             try {
+                System.out.println("Update account districtid " + this.districtIdUser.size());
                 mainFrame.currentUser.modifiedUser(field_first_name.getText(), field_last_name.getText(), String.valueOf(cbGender.getSelectedIndex() + 1), mainFrame.currentUser.getDateOfBirth(), String.valueOf(cbCity.getSelectedIndex()), districtIdUser.get(cbDistrict.getSelectedIndex()), String.valueOf(field_address.getText()));
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
                 //load lại dữ liệu của người dùng
@@ -355,13 +356,14 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void cbCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCityActionPerformed
-        if (cbCity.getSelectedIndex() > 0)
-        district.prepareDistrictFilter(cbCity, cbDistrict);        // TODO add your handling code here:
+        if (cbCity.getSelectedIndex() > 0) {
+        this.districtIdUser = district.prepareDistrictFilter(cbCity, cbDistrict);   
+        
+        }// TODO add your handling code here:
     }//GEN-LAST:event_cbCityActionPerformed
 
     private void cbDistrictActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDistrictActionPerformed
-        if (cbDistrict.getSelectedIndex() > 0)
-            System.out.println("Đã thay đổi thành" + cbCity.getSelectedIndex() + ", quận " + districtIdUser.get(cbDistrict.getSelectedIndex()));
+
     }//GEN-LAST:event_cbDistrictActionPerformed
 
     private void cbGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbGenderActionPerformed

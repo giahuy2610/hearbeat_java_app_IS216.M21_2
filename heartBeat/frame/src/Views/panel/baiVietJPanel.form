@@ -37,7 +37,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" pref="186" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-              <Component id="jPanel1" pref="493" max="32767" attributes="0"/>
+              <Component id="jPanel1" pref="500" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel4" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>

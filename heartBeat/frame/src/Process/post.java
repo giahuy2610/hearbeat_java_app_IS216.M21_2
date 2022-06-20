@@ -47,9 +47,11 @@ public class post {
         caSt.setString(4, postCategoryId);
         caSt.setString(5, postPurposeId);
 
+        if (postImage != null) {
         FileInputStream is = new FileInputStream(postImage);
         caSt.setBinaryStream(6, is);
-
+        }
+        else caSt.setBinaryStream(6, null);
         System.out.println("đã nhận ảnh ");
         caSt.execute();
     }

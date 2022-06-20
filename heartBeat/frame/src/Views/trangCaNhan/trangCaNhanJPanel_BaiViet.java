@@ -146,8 +146,10 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         setPreferredSize(new java.awt.Dimension(1000, 360));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(989, 370));
 
         jPanelProfile.setBackground(new java.awt.Color(199, 234, 227));
+        jPanelProfile.setPreferredSize(new java.awt.Dimension(995, 380));
 
         jPanel17.setBackground(new java.awt.Color(126, 186, 181));
 
@@ -214,7 +216,7 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
                 .addComponent(postStatusFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel26)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(postSortFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(97, 97, 97))
         );
@@ -237,20 +239,21 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         );
 
         jScrollPanePost.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPanePost.setMaximumSize(new java.awt.Dimension(985, 32767));
 
         javax.swing.GroupLayout jPanelProfileLayout = new javax.swing.GroupLayout(jPanelProfile);
         jPanelProfile.setLayout(jPanelProfileLayout);
         jPanelProfileLayout.setHorizontalGroup(
             jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPanePost)
+            .addComponent(jScrollPanePost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanelProfileLayout.setVerticalGroup(
             jPanelProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProfileLayout.createSequentialGroup()
                 .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPanePost, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE))
+                .addComponent(jScrollPanePost, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -270,11 +273,11 @@ public class trangCaNhanJPanel_BaiViet extends trangChuJPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

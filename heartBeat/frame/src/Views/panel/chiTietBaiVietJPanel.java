@@ -463,7 +463,11 @@ public class chiTietBaiVietJPanel extends javax.swing.JPanel {
         //chủ bài viết coi thông tin người đặt hẹn
         if (post01.getOwnerId().equals(mainFrame.currentUser.getUserId())) {
             try {
-                new thongTinDatHen(new user(post01.getPartnerId())).setVisible(true);
+                if (post01.getPartnerId() != null) {
+                    new thongTinDatHen(new user(post01.getPartnerId())).setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Chưa có hẹn");
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(chiTietBaiVietJPanel.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {

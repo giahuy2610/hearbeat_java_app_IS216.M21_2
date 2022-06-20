@@ -6,7 +6,6 @@ package Views.panel;
 
 import Views.main.chuyenManHinhController;
 import Views.main.imageHelper;
-import Views.panel.chiTietBaiVietJPanel;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.BorderFactory;

@@ -9,6 +9,7 @@ import ConnectDB.TestConnectJDBC;
 import Process.city;
 import Process.district;
 import Process.user;
+import Views.logIn_sigIn.dangKy;
 import Views.main.imageHelper;
 import Views.trangCaNhan.trangCaNhanJPanel_ThongTin;
 import java.awt.Image;
@@ -870,21 +871,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddUserActionPerformed
-        selectedBtn = "btnAddUser";
-        fieldDateOfBirth.setVisible(false);
-        cbGender.setVisible(false);
-        fieldAddress.setVisible(false);
-        cbCity.setVisible(false);
-        cbDistrict.setVisible(false);
-        jLabel20.setVisible(false);
-        jLabel8.setVisible(false);
-        jLabel21.setVisible(false);
-        jLabel11.setVisible(false);
-        jLabel13.setVisible(false);
-        enableAllBtn();
-
-        this.loadData();
-
+        new dangKy().setVisible(true);
     }//GEN-LAST:event_btnAddUserActionPerformed
 
     private void fieldPhoneMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldPhoneMousePressed

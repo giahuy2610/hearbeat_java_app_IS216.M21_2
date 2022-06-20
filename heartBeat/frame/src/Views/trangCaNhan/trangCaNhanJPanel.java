@@ -307,12 +307,13 @@ public class trangCaNhanJPanel extends javax.swing.JPanel {
         File f = chooser.getSelectedFile();
         if (f != null) {
             scaleImage(f.toString(), labelImage);
+            try {
+                mainFrame.currentUser.setAvatar(f);
+            } catch (SQLException | ClassNotFoundException | FileNotFoundException ex) {
+                Logger.getLogger(trangCaNhanJPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        try {
-            mainFrame.currentUser.setAvatar(f);
-        } catch (SQLException | ClassNotFoundException | FileNotFoundException ex) {
-            Logger.getLogger(trangCaNhanJPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }//GEN-LAST:event_labelImageMousePressed
 
     private void labelDiemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelDiemMousePressed
