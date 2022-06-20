@@ -44,7 +44,8 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 > * Chức năng bảo mật: Sử dụng Kĩ thuật băm MD5 để băm mật khẩu của người dùng, tránh các rủi ro về bảo mật cho người dùng
 > * Sử dụng Regex để kiểm tra các ràng buộc đối với các trường dữ liệu.
 > * Chức năng khôi phục mật khẩu: Sử dụng JavaMail để thực hiện việc gửi mail tự động khi người dùng có nhu cầu khôi phục lại mật khẩu.
-
+> * Nén project dưới dạng jar
+> 
 ## Cách thức cài đặt chương trình
 > * Bước 1: Clone lại project với bằng các các ide như vs code với http:.. hoặc sstp:..
 > * Bước 2: Chạy project với NetBean, lúc này NetBean hiển thị thông báo xảy ra lỗi đối với các thư viện chưa có trên máy.
