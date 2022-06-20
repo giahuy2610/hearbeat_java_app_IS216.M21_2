@@ -544,7 +544,7 @@ public class danhChoAdminJPanel_QLBD extends javax.swing.JPanel {
         } else {
             btnDeletePost.setText("Xóa");
         }
-
+              
     }//GEN-LAST:event_tableUserMousePressed
 
     private void btnAddPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPostActionPerformed

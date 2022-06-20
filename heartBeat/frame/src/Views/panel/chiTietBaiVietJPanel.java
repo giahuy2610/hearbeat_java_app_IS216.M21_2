@@ -4,7 +4,6 @@
  */
 package Views.panel;
 
-import Views.panel.suaBaiVietJPanel;
 import Process.post;
 import static Process.postCategory.getCategoryNameFromId;
 import static Process.postPurpose.getPurposeNameFromId;

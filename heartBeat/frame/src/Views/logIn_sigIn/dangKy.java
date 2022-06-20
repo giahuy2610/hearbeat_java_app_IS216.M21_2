@@ -4,6 +4,7 @@
  */
 package Views.logIn_sigIn;
 
+import Views.main.main;
 import ConnectDB.TestConnectJDBC;
 import static Views.logIn_sigIn.md5.getMd5;
 import java.awt.Color;
@@ -417,7 +418,7 @@ public class dangKy extends javax.swing.JFrame {
                 ResultSet rs = stmt.executeQuery(query);
                 JOptionPane.showMessageDialog(null, "Thành công", "", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
-                new dangNhap().setVisible(true);
+                new main().setVisible(true);
             } catch (SQLException e) {
 
                 System.out.println("lỗi khi truy vấn sql đăng ký " + e.getMessage().toString());
@@ -430,7 +431,7 @@ public class dangKy extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         this.dispose();
-        dangNhap d = new dangNhap();
+        main d = new main();
         d.setVisible(true);
     }//GEN-LAST:event_jButton1MouseClicked
 

@@ -6,7 +6,6 @@ package Views.main;
 
 import Views.panel.trangChuJPanel;
 import Process.user;
-import Views.logIn_sigIn.dangNhap;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -303,7 +302,7 @@ public class mainFrame extends javax.swing.JFrame {
                 JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         if (output == JOptionPane.YES_OPTION) {
             this.dispose();
-            new dangNhap().setVisible(true);
+            new main().setVisible(true);
         } else if (output == JOptionPane.NO_OPTION) {
             System.out.println("No selected.");
         }
@@ -343,7 +342,7 @@ public class mainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new mainFrame("166").setVisible(true);
+                new mainFrame("21").setVisible(true);
             }
         });
     }

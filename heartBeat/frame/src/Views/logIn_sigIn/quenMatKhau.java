@@ -4,6 +4,7 @@
  */
 package Views.logIn_sigIn;
 
+import Views.main.main;
 import ConnectDB.TestConnectJDBC;
 import java.awt.Color;
 import static Views.javaMail.RandomStringGenerator.randomAlphaNumeric;
@@ -237,7 +238,7 @@ public class quenMatKhau extends javax.swing.JFrame {
                     if (rs.next()) {
                         JOptionPane.showMessageDialog(null, "Đặt lại mật khẩu thành công!", "", JOptionPane.INFORMATION_MESSAGE);
                         this.dispose();
-                        new dangNhap().setVisible(true);
+                        new main().setVisible(true);
                     }
                 } catch (SQLException e) {
                     System.out.println(e.getMessage());
