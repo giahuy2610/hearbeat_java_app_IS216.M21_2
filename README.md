@@ -32,6 +32,10 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 ## Mô hình dữ liệu quan hệ của ứng dụng
 ![image](https://user-images.githubusercontent.com/87313146/174045456-a4f984fd-5391-498d-b639-f92efeab214d.png)
 
+## Mô hình phân lớp giao diện ứng dụng
+![288462633_1081661599423622_7667761579378514039_n](https://user-images.githubusercontent.com/87313146/175537961-22fa7954-4002-492d-91cd-2fec54e245f5.jpg)
+
+
 ## Các công nghệ, nền tảng đã sử dụng
 > * Ngôn ngữ lập trình: Java
 > * Công cụ lập trình giao diện: Java Swing
