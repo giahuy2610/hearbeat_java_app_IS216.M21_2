@@ -20,14 +20,14 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 ## Các chức năng có trong ứng dụng
 #### Chức năng chung
 > * Đăng nhập, đăng ký tài khoản, khôi phục mật khẩu
-> * Trang chủ xem bài viết, lọc bài viết theo danh mục, địa chỉ, thời gian
+> * Trang chủ xem bài viết, lọc bài viết theo danh mục, địa chỉ, thời gian, thành phố, mục đích
 > * Lưu trữ thông báo, lịch hẹn
 > * Đặt lịch hẹn, hủy lịch hẹn, xem thông tin người hẹn v.v
 > * Thêm, xóa, sửa bài viết
-> * Trang cá nhân (xem thông tin người dùng, bài viết đã đăng/đã quan tâm, cập nhật lại thông tin tài khoản v.v)
+> * Trang cá nhân (xem thông tin người dùng, bài viết đã đăng, cập nhật lại thông tin tài khoản v.v)
 
 #### Chức năng của người quản trị viên
-> *  Hỗ trợ quản lý ứng dụng (quản lý thông tin người dùng, bài viết, thống kê hiệu quả hoạt động của ứng dụng (số bài viết/người dùng mới, số lượt hỗ trợ thành công, sơ đồ tăng trưởng v.v)
+> *  Hỗ trợ quản lý ứng dụng (quản lý thông tin người dùng, bài viết, thống kê hiệu quả hoạt động của ứng dụng (số bài viết/người dùng mới, số lượt hỗ trợ thành công, số lượng bài viết mới  v.v)
 
 ## Mô hình dữ liệu quan hệ của ứng dụng
 ![image](https://user-images.githubusercontent.com/87313146/174045456-a4f984fd-5391-498d-b639-f92efeab214d.png)
