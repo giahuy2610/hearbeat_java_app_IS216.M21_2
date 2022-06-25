@@ -4,7 +4,7 @@
 | Tên                        | MSSV     | Sdt        | Phân công | Đánh giá |
 |----------------------------|----------|------------|-----------|----------|
 | Trịnh Gia Huy(nhóm trưởng) | 20520556 | 0941510664 |Chức năng           | 9/10     |
-| Lê Thị Thanh Hương(tester) | 20520201 | 0703264721 |Kiểm thử, ireport, phần thống kê, thiết kế UI, thêm-sửa-xem bài viết, lưu ảnh bằng blob, jfreechart      | 8/10     |
+| Lê Thị Thanh Hương(tester) | 20520201 | 0703264721 |Kiểm thử, ireport, phần thống kê, thiết kế UI, thêm-sửa-xem bài viết, lưu ảnh bằng blob, jfreechart, đóng gói ứng dụng thành file Jar     | 8/10     |
 | Nguyễn Hoàng Nhật          | 20520673 | 0389479682 |Dữ liệu mẫu, đổi icon, thiết kế UI, vẽ class diagram          | 5/10     |
 | Trần Văn Quang             | 20520722 | 0375665412 |(UI Đăng nhập,đăng ký,quản trị viên,thông báo,trang cá nhân), dữ liệu mẫu, sửa lỗi giao diện(nhiều lần), thiết kế UI,  vẽ class diagram         | 7/10     |
 
@@ -25,9 +25,9 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 > * Đặt lịch hẹn, hủy lịch hẹn, xem thông tin người hẹn v.v
 > * Thêm, xóa, sửa bài viết
 > * Trang cá nhân (xem thông tin người dùng, bài viết đã đăng/đã quan tâm, cập nhật lại thông tin tài khoản v.v)
-> * Xem bảng xếp hạng nhân ái
+
 #### Chức năng của người quản trị viên
-> *  Hỗ trợ quản trị viên (quản lý thông tin người dùng, bài viết, thống kê hiệu quả hoạt động của ứng dụng (số bài viết/người dùng mới, số lượt hỗ trợ thành công, sơ đồ tăng trưởng v.v)
+> *  Hỗ trợ quản lý ứng dụng (quản lý thông tin người dùng, bài viết, thống kê hiệu quả hoạt động của ứng dụng (số bài viết/người dùng mới, số lượt hỗ trợ thành công, sơ đồ tăng trưởng v.v)
 
 ## Mô hình dữ liệu quan hệ của ứng dụng
 ![image](https://user-images.githubusercontent.com/87313146/174045456-a4f984fd-5391-498d-b639-f92efeab214d.png)
@@ -46,12 +46,11 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 > * Chức năng xóa mềm: khi một bài đăng được xóa, nó sẽ không bị xóa hẳn khỏi cơ sở dữ liệu mà sẽ được lưu vào thư mục thùng rác và tồn tại trong 2 ngày, nếu người dùng không thực hiện khôi phục, bài đăng sẽ bị xóa thực sự khỏi cơ sở dữ liệu.
 > * Chức năng lưu ảnh: ảnh thực sự được lưu vào cơ sở dữ liệu Oracle dưới dạng BLOB thay vì dạng đường dẫn tương đối/tuyệt đối.
 > * Chức năng bảo mật: Sử dụng Kĩ thuật băm MD5 để băm mật khẩu của người dùng, tránh các rủi ro về bảo mật cho người dùng
-> * Sử dụng Regex để kiểm tra các ràng buộc đối với các trường dữ liệu.
 > * Chức năng khôi phục mật khẩu: Sử dụng JavaMail để thực hiện việc gửi mail tự động khi người dùng có nhu cầu khôi phục lại mật khẩu.
-> * Nén project dưới dạng jar
+> * Đóng gói project dưới dạng jar
 > 
 ## Cách thức cài đặt chương trình
-> * Bước 1: Clone lại project với bằng các các ide như vs code với http:.. hoặc sstp:..
+> * Bước 1: Clone lại project với bằng các các ide như vs code với http:[..](https://github.com/giahuy2610/java_IS216.M21_2.git) hoặc sstp:..
 > * Bước 2: Chạy project với NetBean, lúc này NetBean hiển thị thông báo xảy ra lỗi đối với các thư viện chưa có trên máy.
 > * Bước 3: Chọn resolve và chọn đường dẫn tới folder Resource/file_jar trong cùng folder project, chọn các file .jar cần resolve tương ứng.
 > * Bước 4: Cài đặt thành công cơ sở dữ liệu Oracle và tạo cơ sở dữ liệu với file sql trong folder SQL.
