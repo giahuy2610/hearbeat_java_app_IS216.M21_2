@@ -25,7 +25,7 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 > * Đặt lịch hẹn, hủy lịch hẹn, xem thông tin người hẹn v.v
 > * Thêm, xóa, sửa bài viết
 > * Trang cá nhân (xem thông tin người dùng, bài viết đã đăng/đã quan tâm, cập nhật lại thông tin tài khoản v.v)
-> * Xem bảng xếp hạng nhân ái
+
 #### Chức năng của người quản trị viên
 > *  Hỗ trợ quản trị viên (quản lý thông tin người dùng, bài viết, thống kê hiệu quả hoạt động của ứng dụng (số bài viết/người dùng mới, số lượt hỗ trợ thành công, sơ đồ tăng trưởng v.v)
 
@@ -46,9 +46,8 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 > * Chức năng xóa mềm: khi một bài đăng được xóa, nó sẽ không bị xóa hẳn khỏi cơ sở dữ liệu mà sẽ được lưu vào thư mục thùng rác và tồn tại trong 2 ngày, nếu người dùng không thực hiện khôi phục, bài đăng sẽ bị xóa thực sự khỏi cơ sở dữ liệu.
 > * Chức năng lưu ảnh: ảnh thực sự được lưu vào cơ sở dữ liệu Oracle dưới dạng BLOB thay vì dạng đường dẫn tương đối/tuyệt đối.
 > * Chức năng bảo mật: Sử dụng Kĩ thuật băm MD5 để băm mật khẩu của người dùng, tránh các rủi ro về bảo mật cho người dùng
-> * Sử dụng Regex để kiểm tra các ràng buộc đối với các trường dữ liệu.
 > * Chức năng khôi phục mật khẩu: Sử dụng JavaMail để thực hiện việc gửi mail tự động khi người dùng có nhu cầu khôi phục lại mật khẩu.
-> * Nén project dưới dạng jar
+> * Đóng gói project dưới dạng jar
 > 
 ## Cách thức cài đặt chương trình
 > * Bước 1: Clone lại project với bằng các các ide như vs code với http:[..](https://github.com/giahuy2610/java_IS216.M21_2.git) hoặc sstp:..
