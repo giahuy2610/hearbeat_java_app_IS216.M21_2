@@ -51,7 +51,7 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 > * Nén project dưới dạng jar
 > 
 ## Cách thức cài đặt chương trình
-> * Bước 1: Clone lại project với bằng các các ide như vs code với http:.. hoặc sstp:..
+> * Bước 1: Clone lại project với bằng các các ide như vs code với http:[..](https://github.com/giahuy2610/java_IS216.M21_2.git) hoặc sstp:..
 > * Bước 2: Chạy project với NetBean, lúc này NetBean hiển thị thông báo xảy ra lỗi đối với các thư viện chưa có trên máy.
 > * Bước 3: Chọn resolve và chọn đường dẫn tới folder Resource/file_jar trong cùng folder project, chọn các file .jar cần resolve tương ứng.
 > * Bước 4: Cài đặt thành công cơ sở dữ liệu Oracle và tạo cơ sở dữ liệu với file sql trong folder SQL.
