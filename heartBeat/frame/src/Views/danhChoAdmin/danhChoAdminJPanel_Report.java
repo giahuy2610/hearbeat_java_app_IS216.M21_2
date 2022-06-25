@@ -155,12 +155,12 @@ public class danhChoAdminJPanel_Report extends javax.swing.JPanel {
      * Creates new form danhChoAdminJPanel_Report
      */
     public danhChoAdminJPanel_Report() throws SQLException, ClassNotFoundException {
-        conn.setAutoCommit(false);
-        System.out.println("TX is now " + conn.getTransactionIsolation());
-        conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
-        System.out.println("TX is now " + conn.getTransactionIsolation());
-        Statement stmt2 = conn.createStatement();
-        stmt2.executeQuery("LOCK TABLE tb_user IN SHARE MODE NOWAIT");
+//        conn.setAutoCommit(false);
+//        System.out.println("TX is now " + conn.getTransactionIsolation());
+//        conn.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+//        System.out.println("TX is now " + conn.getTransactionIsolation());
+//        Statement stmt2 = conn.createStatement();
+//        stmt2.executeQuery("LOCK TABLE tb_user IN SHARE MODE NOWAIT");
 
         initComponents();
 

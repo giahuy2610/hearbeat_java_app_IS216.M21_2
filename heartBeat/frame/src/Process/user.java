@@ -147,7 +147,7 @@ public class user {
         Connection conn = OracleConnUtils.getOracleConnection();
         System.out.println("date " + newDateOfBirth);
         String query = "{call p_update_account(?,?,?,?,?,?,?,?)}";
-
+        System.out.println("đang sửa " + this.userId + newFirstName + newLastName + newGender);
         CallableStatement caSt = conn.prepareCall(query);
         caSt.setString(1, this.userId);
         caSt.setString(2, newFirstName);
@@ -158,7 +158,8 @@ public class user {
 
         caSt.setString(7, newDistrictid);
         caSt.setString(8, newAddress);
-        System.out.println("Số dòng bị thay đổi " + caSt.executeUpdate());
+        caSt.executeUpdate();
+        System.out.println("date" + (java.sql.Date) newDateOfBirth);
         conn.close();
     }
 

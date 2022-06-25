@@ -34,16 +34,17 @@ public class main extends javax.swing.JFrame {
         jLabel11.setVisible(false);
         jLabel11.setText("Vui lòng điền số điện thoại");
         jLabel11.setForeground(Color.red);
-        
+
         jLabel12.setVisible(false);
         jLabel12.setText("Vui lòng điền mật khẩu");
         jLabel12.setForeground(Color.red);
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
     }
 
-    private static Connection getConnection()throws SQLException, ClassNotFoundException{
+    private static Connection getConnection() throws SQLException, ClassNotFoundException {
         return TestConnectJDBC.getConnection();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -358,59 +359,62 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
-        if(jTextField1.getText().equals("") || jPasswordField1.getPassword().length == 0){
-            if(jTextField1.getText().equals("")){
+        if (jTextField1.getText().equals("") || jPasswordField1.getPassword().length == 0) {
+            if (jTextField1.getText().equals("")) {
                 jLabel11.setVisible(true);
-            }else{
+            } else {
                 jLabel11.setVisible(false);
             }
-            if(jPasswordField1.getPassword().length == 0){
+            if (jPasswordField1.getPassword().length == 0) {
                 jLabel12.setVisible(true);
                 System.out.println(jPasswordField1.getPassword());
-            }else{
+            } else {
                 jLabel12.setVisible(false);
                 System.out.println("false");
             }
-        }
-        else{
+        } else {
             Connection conn = null;
             try {
                 conn = main.getConnection();
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(dangKy.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String query="";
-            synchronized(query) {
-                query = "select * from TB_USER where PHONE = '" + jTextField1.getText()+"'";
+            String query = "";
+            synchronized (query) {
+                query = "select * from TB_USER where PHONE = '" + jTextField1.getText() + "'";
             }
             String Password = "";
             String userId = "";
             String roleId = "";
-        try (Statement stmt = conn.createStatement()) {
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                userId = rs.getString("userid");
-                Password = rs.getString("PASSWORD");
-                roleId = rs.getString("ROLEID");
+            int isDeleted = 0;
+            try ( Statement stmt = conn.createStatement()) {
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    userId = rs.getString("userid");
+                    Password = rs.getString("PASSWORD");
+                    roleId = rs.getString("ROLEID");
+                    isDeleted = rs.getInt("isdeleted");
+                }
+                String inputPassword = getMd5(String.valueOf(jPasswordField1.getPassword()));
+                if (Password.equals(inputPassword)) {
+                    if (isDeleted != 1) {
+                        this.dispose();
+
+                        new mainFrame(userId).setVisible(true);
+
+                        System.out.println("Đăng nhập thành công, userId " + userId + ", roleId " + roleId);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Tài khoản bị khóa, vui lòng liên hệ quản trị viên để được hướng dẫn", "", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Sai tên đăng nhập hoặc mật khẩu", "", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Lỗi đăng nhập " + e.getMessage());
             }
-            String inputPassword = getMd5(String.valueOf(jPasswordField1.getPassword()));
-            if(Password.equals(inputPassword)){
-                this.dispose();
-                
-                new mainFrame(userId).setVisible(true);
-                
-                System.out.println("Đăng nhập thành công, userId " + userId + ", roleId " + roleId);
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "Sai tên đăng nhập hoặc mật khẩu", "", JOptionPane.INFORMATION_MESSAGE);
-            }
-           
-      
-        } catch (SQLException e) {
-            System.out.println("Lỗi đăng nhập " + e.getMessage());
         }
-        }
-        
+
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked

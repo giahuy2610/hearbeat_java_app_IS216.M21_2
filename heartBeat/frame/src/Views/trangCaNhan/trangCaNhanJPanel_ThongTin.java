@@ -7,6 +7,7 @@ package Views.trangCaNhan;
 import Process.city;
 import Process.district;
 import Views.main.mainFrame;
+import java.util.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,6 +42,9 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         cbGender.addItem("Nam");
         cbGender.addItem("Nữ");
         cbGender.addItem("Khác");
+        if (mainFrame.currentUser.getGender() != null) {
+            cbGender.setSelectedIndex(Integer.valueOf(mainFrame.currentUser.getGender()) - 1);
+        }
         //ngày sinh
         jDateChooserFilter.setDateFormatString("dd/MM/yyyy");
         jDateChooserFilter.setDate(mainFrame.currentUser.getDateOfBirth());
@@ -337,11 +341,18 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
         if (output == JOptionPane.YES_OPTION) {
             try {
                 System.out.println("Update account districtid " + this.districtIdUser.size());
-                mainFrame.currentUser.modifiedUser(field_first_name.getText(), field_last_name.getText(), String.valueOf(cbGender.getSelectedIndex() + 1), mainFrame.currentUser.getDateOfBirth(), String.valueOf(cbCity.getSelectedIndex()), districtIdUser.get(cbDistrict.getSelectedIndex()), String.valueOf(field_address.getText()));
-                JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
-                //load lại dữ liệu của người dùng
-                mainFrame.currentUser.loadUser(mainFrame.currentUser.getUserId());
-                this.loadData();
+                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
+                Date date = new Date();
+                if (!jDateChooserFilter.getDate().after(date)) {
+                    mainFrame.currentUser.modifiedUser(field_first_name.getText(), field_last_name.getText(), String.valueOf(cbGender.getSelectedIndex() + 1), new java.sql.Date(jDateChooserFilter.getDate().getTime()), String.valueOf(cbCity.getSelectedIndex()), districtIdUser.get(cbDistrict.getSelectedIndex()), String.valueOf(field_address.getText()));
+                    JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
+                    //load lại dữ liệu của người dùng
+                    mainFrame.currentUser.loadUser(mainFrame.currentUser.getUserId());
+                    this.loadData();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Ngày sinh lớn hơn ngày hiện tại");
+                }
+
             } catch (SQLException ex) {
                 Logger.getLogger(trangCaNhanJPanel_ThongTin.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
@@ -357,8 +368,8 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
 
     private void cbCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCityActionPerformed
         if (cbCity.getSelectedIndex() > 0) {
-        this.districtIdUser = district.prepareDistrictFilter(cbCity, cbDistrict);   
-        
+            this.districtIdUser = district.prepareDistrictFilter(cbCity, cbDistrict);
+
         }// TODO add your handling code here:
     }//GEN-LAST:event_cbCityActionPerformed
 
@@ -383,9 +394,8 @@ public class trangCaNhanJPanel_ThongTin extends javax.swing.JPanel {
     }//GEN-LAST:event_jDateChooserFilterAncestorAdded
 
     private void jDateChooserFilterPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooserFilterPropertyChange
-        System.out.println(jDateChooserFilter.getDate());
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy");
-        dateFormat.format(jDateChooserFilter.getDate());
+
+
     }//GEN-LAST:event_jDateChooserFilterPropertyChange
 
 

@@ -835,6 +835,7 @@ public class danhChoAdminJPanel_QLND extends javax.swing.JPanel {
                         JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
                 if (output == JOptionPane.YES_OPTION) {
                     try {
+                        System.out.println(new java.sql.Date(fieldDateOfBirth.getDate().getTime()));
                         user01.modifiedUser(fieldFirstName.getText(), fieldLastName.getText(), Integer.toString(cbGender.getSelectedIndex() + 1), new java.sql.Date(fieldDateOfBirth.getDate().getTime()), Integer.toString(cbCity.getSelectedIndex()), districtIdUser.get(cbDistrict.getSelectedIndex()), fieldAddress.getText());
                     } catch (SQLException ex) {
                         Logger.getLogger(danhChoAdminJPanel_QLND.class.getName()).log(Level.SEVERE, null, ex);
