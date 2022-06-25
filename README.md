@@ -27,7 +27,7 @@ Hệ thống này cho phép người đang gặp khó khăn về kinh tế hay t
 > * Trang cá nhân (xem thông tin người dùng, bài viết đã đăng/đã quan tâm, cập nhật lại thông tin tài khoản v.v)
 
 #### Chức năng của người quản trị viên
-> *  Hỗ trợ quản trị viên (quản lý thông tin người dùng, bài viết, thống kê hiệu quả hoạt động của ứng dụng (số bài viết/người dùng mới, số lượt hỗ trợ thành công, sơ đồ tăng trưởng v.v)
+> *  Hỗ trợ quản lý ứng dụng (quản lý thông tin người dùng, bài viết, thống kê hiệu quả hoạt động của ứng dụng (số bài viết/người dùng mới, số lượt hỗ trợ thành công, sơ đồ tăng trưởng v.v)
 
 ## Mô hình dữ liệu quan hệ của ứng dụng
 ![image](https://user-images.githubusercontent.com/87313146/174045456-a4f984fd-5391-498d-b639-f92efeab214d.png)
